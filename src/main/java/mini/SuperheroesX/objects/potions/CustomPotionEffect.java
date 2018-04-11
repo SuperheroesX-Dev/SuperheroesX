@@ -18,16 +18,16 @@ import java.util.Arrays;
 import java.util.List;
 
 @SuppressWarnings("NullableProblems")
-public class CustomPotionEffect extends PotionAdv {
+public class CustomPotionEffect extends Potion {
 
     private final IEffectProvider effectProvider;
     private final List<ItemStack> curativeItems;
     private final ResourceLocation iconTexture;
 
     public CustomPotionEffect(String name, boolean isBadEffectIn, int liquidColorIn, IEffectProvider provider, ItemStack... curativeItems) {
-        super(isBadEffectIn, liquidColorIn, provider.isVisible());
+        super(isBadEffectIn, liquidColorIn);
         setPotionName(this, name);
-        this.iconTexture = new ResourceLocation(Reference.MODID, "textures/gui/" + name + ".png");
+        this.iconTexture = new ResourceLocation(Reference.MODID, "textures/gui/container/custom_effects.png");
         this.curativeItems = new ArrayList<>();
         this.curativeItems.addAll(Arrays.asList(curativeItems));
         this.effectProvider = provider;

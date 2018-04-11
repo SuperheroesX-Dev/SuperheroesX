@@ -4,6 +4,8 @@ import mini.SuperheroesX.SuperheroesX;
 import mini.SuperheroesX.init.ItemInit;
 import mini.SuperheroesX.init.PotionInit;
 import mini.SuperheroesX.util.interfaces.IHasModel;
+import net.minecraft.client.model.ModelBiped;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -13,6 +15,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ArmorDeadpool extends ItemArmor implements IHasModel
 
@@ -64,7 +68,22 @@ public class ArmorDeadpool extends ItemArmor implements IHasModel
         if (player.getActivePotionEffect(potion) == null || player.getActivePotionEffect(potion).getDuration() <= 1) {
             player.addPotionEffect(new PotionEffect(potion, duration, amplifier, false, false)); }
 	}
+	@Override
+    @SideOnly(Side.CLIENT)
+    public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
+           ModelBiped armorModel = null;
 
+        if (itemStack != null) {
+           armorModel = new ModelBiped(0.5F);
+
+           if (armorModel != null) {
+              armorModel.setModelAttributes(_default);
+                return armorModel;
+            }
+        }
+
+        return super.getArmorModel(entityLiving, itemStack, armorSlot, _default);
+    }
 	@Override
 
 	public void registerModels() 

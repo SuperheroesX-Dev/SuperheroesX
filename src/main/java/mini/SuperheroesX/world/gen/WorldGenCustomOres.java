@@ -54,7 +54,7 @@ public class WorldGenCustomOres implements IWorldGenerator
 			
 			runGenerator(palladium_ore, world, random, chunkX, chunkZ, 24, 0, 30);
 
-			runGenerator(vibranium_ore, world, random, chunkX, chunkZ, 12, 5, 12);
+			runGenerator(vibranium_ore, world, random, chunkX, chunkZ, 5, 5, 12);
 
 		}
 

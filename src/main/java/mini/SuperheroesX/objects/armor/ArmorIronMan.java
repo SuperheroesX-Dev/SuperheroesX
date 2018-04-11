@@ -13,6 +13,7 @@ import mini.SuperheroesX.util.helpers.SXStringHelper;
 import mini.SuperheroesX.util.helpers.StringHelper;
 import mini.SuperheroesX.util.interfaces.IHUDInfoProvider;
 import mini.SuperheroesX.util.interfaces.IHasModel;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityLivingBase;
@@ -27,6 +28,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
@@ -168,53 +170,25 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
     @Override
     public boolean hasEffect(ItemStack stack) {
         return false;
+
     }
 
-    /*@Override
-    @SideOnly(Side.CLIENT)
-    public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot,
-                                    ModelBiped defaultModel) {
+        @Override
+        @SideOnly(Side.CLIENT)
+        public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
+               ModelBiped armorModel = null;
 
-        if (itemStack != null) {
-            if (itemStack.getItem() instanceof ItemArmor) {
+            if (itemStack != null) {
+               armorModel = new ModelBiped(0.5F);
 
-                EntityEquipmentSlot type = ((ItemArmor) itemStack.getItem()).armorType;
-                ModelBiped armorModel = null;
-                switch (type) {
-                    case HEAD:
-                    case LEGS:
-                        armorModel = SuperheroesX.PROXY.getArmorModel(0);
-                        break;
-                    case FEET:
-                    case CHEST:
-                        armorModel = SuperheroesX.PROXY.getArmorModel(1);
-                        break;
-                    default:
-                        break;
+               if (armorModel != null) {
+                  armorModel.setModelAttributes(_default);
+                    return armorModel;
                 }
-
-                armorModel.bipedHead.showModel = armorSlot == EntityEquipmentSlot.HEAD;
-                armorModel.bipedHeadwear.showModel = armorSlot == EntityEquipmentSlot.HEAD;
-                armorModel.bipedBody.showModel = (armorSlot == EntityEquipmentSlot.CHEST)
-                        || (armorSlot == EntityEquipmentSlot.CHEST);
-                armorModel.bipedRightArm.showModel = armorSlot == EntityEquipmentSlot.CHEST;
-                armorModel.bipedLeftArm.showModel = armorSlot == EntityEquipmentSlot.CHEST;
-                armorModel.bipedRightLeg.showModel = (armorSlot == EntityEquipmentSlot.LEGS)
-                        || (armorSlot == EntityEquipmentSlot.FEET);
-                armorModel.bipedLeftLeg.showModel = (armorSlot == EntityEquipmentSlot.LEGS)
-                        || (armorSlot == EntityEquipmentSlot.FEET);
-
-                armorModel.isSneak = defaultModel.isSneak;
-                armorModel.isRiding = defaultModel.isRiding;
-                armorModel.isChild = defaultModel.isChild;
-                armorModel.rightArmPose = defaultModel.rightArmPose;
-                armorModel.leftArmPose = defaultModel.leftArmPose;
-
-                return armorModel;
             }
+
+            return super.getArmorModel(entityLiving, itemStack, armorSlot, _default);
         }
-        return null;
-    }*/
 
     private static boolean fullSetEquipped(EntityLivingBase entity) {
         for (ItemStack armor : entity.getArmorInventoryList()) {
@@ -254,7 +228,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         private double speedVerticalHoverSlow = 0.0D;
         private int capacity;
         private int maxTransfer = Integer.MAX_VALUE;
-        private int fuelUsage = 200;
+        private int fuelUsage = 10;
         private int energyPerShot = 200;
         private int cooldown;
         private float defaultSpeedSideways = 0.21F;

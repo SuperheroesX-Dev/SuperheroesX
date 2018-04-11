@@ -2,6 +2,7 @@ package mini.SuperheroesX.objects.armor;
 
 import mini.SuperheroesX.SuperheroesX;
 import mini.SuperheroesX.init.ItemInit;
+import mini.SuperheroesX.init.PotionInit;
 import mini.SuperheroesX.util.interfaces.IHasModel;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
@@ -45,7 +46,7 @@ public class ArmorBase extends ItemArmor implements IHasModel
             super.onArmorTick(world, player, stack);
 
             player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 0, 1, false, false));
-		player.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, 0, 4, false, false));
+		player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 0, 4, false, false));
 		player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 0, 2, false, false));
 		player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, 0, 2, false, false));
 		player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 0, 4, false, false)); }

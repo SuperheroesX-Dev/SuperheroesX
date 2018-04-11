@@ -1,0 +1,25 @@
+{
+    "type": "minecraft:crafting_shaped",
+
+    "pattern":
+    [
+        "R R",
+        "RYR",      
+        "RTR"
+    ],
+"key": {
+    "Y": {
+      "item": "sx:ingot_titanium"
+    },
+    "R": {
+        "item": "sx:red_spandex"
+          },
+    "T": {
+        "item": "sx:yellow_spandex"
+      }
+  },
+  "result": {
+    "item": "sx:robin1_chestplate",
+     "count": 1
+  }
+}

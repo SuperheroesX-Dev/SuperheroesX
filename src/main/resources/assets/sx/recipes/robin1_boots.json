@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+
+    "pattern":
+    [
+        "GTG",    
+        "G G"
+    ],
+"key": {
+    "T": {
+      "item": "sx:ingot_titanium"
+    },
+    "G": {
+        "item": "sx:green_spandex"
+  },
+  "result": {
+    "item": "sx:robin1_boots",
+     "count": 1
+  }
+}

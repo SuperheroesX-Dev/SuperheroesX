@@ -2,6 +2,7 @@ package mini.SuperheroesX.objects.armor;
 
 import mini.SuperheroesX.SuperheroesX;
 import mini.SuperheroesX.init.ItemInit;
+import mini.SuperheroesX.init.PotionInit;
 import mini.SuperheroesX.util.interfaces.IHasModel;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
@@ -36,7 +37,7 @@ public class ArmorRobin1 extends ItemArmor implements IHasModel {
             if (player.isSprinting()) {
                 player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 0, 1, false, false));
             }
-            player.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, 0, 1, false, false));
+            player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 0, 1, false, false));
             player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 0, 1, false, false));
             player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 0, 1, false, false));
         }

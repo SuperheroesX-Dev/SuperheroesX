@@ -1,5 +1,6 @@
 package mini.SuperheroesX.init;
 
+import mini.SuperheroesX.SuperheroesX;
 import mini.SuperheroesX.objects.armor.*;
 import mini.SuperheroesX.objects.items.ItemBase;
 import mini.SuperheroesX.objects.items.TestItem;
@@ -37,7 +38,14 @@ public class ItemInit
     public static final Item VIBRANIUM = new ItemBase("vibranium").setOreDictName("gemVibranium");
     public static final Item INGOT_PALLADIUM = new ItemBase("ingot_palladium").setOreDictName("ingotPalladium");
     public static final Item INGOT_TITANIUM = new ItemBase("ingot_titanium").setOreDictName("ingotTitanium");
-    public static final Item TEST_ITEM = new TestItem();
+    public static final Item TEST_ITEM;
+
+    static {
+        if (SuperheroesX.DEBUG) {
+            TEST_ITEM = new TestItem();
+        }
+    }
+
     public static final Item MINI_ARC_REACTOR_MK1 = new ItemBase("mini_arc_reactor_mk1");
     public static final Item MINI_ARC_REACTOR_MK2 = new ItemBase("mini_arc_reactor_mk2");
     public static final Item MINI_ARC_REACTOR_BASE = new ItemBase("mini_arc_reactor_base");

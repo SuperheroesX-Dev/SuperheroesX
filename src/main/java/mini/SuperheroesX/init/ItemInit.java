@@ -36,6 +36,7 @@ public class ItemInit
     public static final Item SPANDEX_WHITE = new ItemBase("white_spandex");
     public static final Item LOGO_KID_FLASH = new ItemBase("kidflash_logo");
     public static final Item VIBRANIUM = new ItemBase("vibranium").setOreDictName("gemVibranium");
+    public static final Item INGOT_VIBRANIUM = new ItemBase("ingot_vibranium").setOreDictName("ingotVibranium");
     public static final Item INGOT_PALLADIUM = new ItemBase("ingot_palladium").setOreDictName("ingotPalladium");
     public static final Item INGOT_TITANIUM = new ItemBase("ingot_titanium").setOreDictName("ingotTitanium");
     public static final Item TEST_ITEM;
@@ -46,10 +47,15 @@ public class ItemInit
         }
     }
 
-    public static final Item MINI_ARC_REACTOR_MK1 = new ItemBase("mini_arc_reactor_mk1");
-    public static final Item MINI_ARC_REACTOR_MK2 = new ItemBase("mini_arc_reactor_mk2");
+    public static final Item MINI_ARC_REACTOR_MK1 = new ItemBase("mini_arc_reactor_mk1").setOreDictName("itemArcReactor");
+    public static final Item MINI_ARC_REACTOR_MK2 = new ItemBase("mini_arc_reactor_mk2").setOreDictName("itemArcReactor");
     public static final Item MINI_ARC_REACTOR_BASE = new ItemBase("mini_arc_reactor_base");
     public static final Item CIRCUIT = new ItemBase("circuit");
+
+    public static final Item PLATE_VIBRANIUM = new ItemBase("plate_vibranium").setOreDictName("plateVibranium");
+    public static final Item PLATE_TITANIUM = new ItemBase("plate_titanium").setOreDictName("plateTitanium");
+    public static final Item PLATE_GOLD = new ItemBase("plate_gold").setOreDictName("plateGold");
+    public static final Item PLATE_TITANOGOLD = new ItemBase("plate_titanogold").setOreDictName("plateTitanogold");
 
 
 	

@@ -21,8 +21,8 @@ public class BlockVibraniumOre extends BlockBase
 		setResistance(15.0F);
 		setHarvestLevel("pickaxe", 3);
 	}
-		@Override
-	    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-	        return ItemInit.VIBRANIUM;
+	@Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+    	return Item.getItemFromBlock(this);
 	}
 }

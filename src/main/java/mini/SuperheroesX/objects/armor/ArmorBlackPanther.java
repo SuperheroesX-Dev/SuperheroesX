@@ -39,8 +39,8 @@ public class ArmorBlackPanther extends ItemArmor implements IHasModel {
 			 if (player.isSprinting()) {
 					player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 0, 4, true, false));
 			 }
-				player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 0, 1, true, false));
-			player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 3, 2, true, false));
+				player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 0, 3, true, false));
+			player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 3, 1, true, false));
 			player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 0, 5, true, false));
 			player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 0, 5, true, false));
 			player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, 0, 3, true, false));

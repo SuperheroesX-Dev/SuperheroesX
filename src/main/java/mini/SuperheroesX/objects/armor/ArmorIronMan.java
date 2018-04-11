@@ -275,7 +275,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
             if (cooldown == 0) {
                 if (player.onGround && getEnergyStored(stack) != getMaxEnergyStored(stack)) {
-                    receiveEnergy(stack, 100, false);
+                    receiveEnergy(stack, 100 * multiplier, false);
                 }
             } else {
                 cooldown--;

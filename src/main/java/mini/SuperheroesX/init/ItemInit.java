@@ -89,7 +89,7 @@ public class ItemInit
     public static final Item BOOTS_ROBIN1 = new ArmorRobin1("robin1_boots", ARMOR_ROBIN1, 1, EntityEquipmentSlot.FEET);
     
     public static final Item HELMET_IRONMAN = new ArmorIronMan("helmet_ironman", 1, EntityEquipmentSlot.HEAD);
-    public static final ChestplateIronMan CHESTPLATE_IRONMAN = new ArmorIronMan.ChestplateIronMan();
+    public static final ChestplateIronMan CHESTPLATE_IRONMAN = new ChestplateIronMan();
     public static final Item LEGGINGS_IRONMAN = new ArmorIronMan("leggings_ironman", 2, EntityEquipmentSlot.LEGS);
     public static final Item BOOTS_IRONMAN = new ArmorIronMan("boots_ironman", 1, EntityEquipmentSlot.FEET);
 }

@@ -35,9 +35,9 @@ public class ItemInit
     public static final Item SPANDEX_BLACK = new ItemBase("black_spandex");
     public static final Item SPANDEX_YELLOW = new ItemBase("yellow_spandex");
     public static final Item SPANDEX_WHITE = new ItemBase("white_spandex");
+    public static final Item SPANDEX_GREEN = new ItemBase("green_spandex");
     public static final Item LOGO_KID_FLASH = new ItemBase("kidflash_logo");
     public static final Item VIBRANIUM = new ItemBase("vibranium").setOreDictName("gemVibranium");
-    public static final Item INGOT_VIBRANIUM = new ItemBase("ingot_vibranium").setOreDictName("ingotVibranium");
     public static final Item INGOT_PALLADIUM = new ItemBase("ingot_palladium").setOreDictName("ingotPalladium");
     public static final Item INGOT_TITANIUM = new ItemBase("ingot_titanium").setOreDictName("ingotTitanium");
     public static final Item TEST_ITEM;

@@ -13,7 +13,7 @@ public class BlockInit
 {
     public static final List<Block> BLOCKS = new ArrayList<>();
 	
-	public static final Block Atom_Fuser = new BlockAtomFuser("atomfuser");
+	//public static final Block Atom_Fuser = new BlockAtomFuser("atomfuser");
 
     public static final Block ORE_VIBRANIUM = new BlockVibraniumOre("ore_vibranium", Material.ROCK).setOreDictName("oreVibranium");
     public static final Block ORE_PALLADIUM = new BlockPalladiumOre("ore_palladium", Material.ROCK).setOreDictName("orePalladium");

@@ -16,6 +16,7 @@ import mini.SuperheroesX.util.interfaces.IHasModel;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -28,8 +29,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
@@ -233,6 +234,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         private int cooldown;
         private float defaultSpeedSideways = 0.21F;
         private float sprintSpeedModifier = 2.4F;
+        private float damagePerHit = 5;
 
 
         public ChestplateIronMan() {
@@ -317,6 +319,12 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         private void shootEnergyBlast(EntityPlayer player, ChestplateIronMan item) {
             if (player.getHeldItemMainhand().isEmpty() && player.getHeldItemOffhand().isEmpty()) {
                 //do the shot
+                RayTraceResult pew = player.rayTrace(Double.MAX_VALUE, 10);
+                Entity e = pew.entityHit;
+                if (pew.entityHit instanceof EntityLivingBase) {
+                    EntityLivingBase hit = (EntityLivingBase) e;
+                    hit.attackEntityFrom(new DamageSource("energy-blast").setProjectile(), damagePerHit);
+                }
                 if (SuperheroesX.DEBUG) System.out.println("==both==");
             } else if (player.getHeldItemMainhand().isEmpty()) {
                 //do the shot

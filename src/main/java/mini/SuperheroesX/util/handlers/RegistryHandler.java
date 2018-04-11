@@ -7,7 +7,6 @@ import mini.SuperheroesX.init.ItemInit;
 import mini.SuperheroesX.init.PotionInit;
 import mini.SuperheroesX.util.Reference;
 import mini.SuperheroesX.util.interfaces.IHasModel;
-import mini.SuperheroesX.util.interfaces.IOreDict;
 import mini.SuperheroesX.world.gen.WorldGenCustomOres;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
@@ -23,7 +22,6 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.OreDictionary;
 
 
 @EventBusSubscriber
@@ -46,7 +44,7 @@ public class RegistryHandler {
 
     @SubscribeEvent
     public static void registerPotionTypes(RegistryEvent.Register<PotionType> event) {
-        PotionInit.POTION_ITEMS.add(new PotionType(new PotionEffect(PotionInit.FLY, 3600, 0)).setRegistryName(Reference.MODID, "fly"));
+        PotionInit.POTION_ITEMS.add(new PotionType(new PotionEffect(PotionInit.GLIDE, 3600, 0)).setRegistryName(Reference.MODID, "fly"));
         event.getRegistry().registerAll(PotionInit.POTION_ITEMS.toArray(new PotionType[0]));
         for (PotionType potion : PotionInit.POTION_ITEMS) {
             PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), potion);

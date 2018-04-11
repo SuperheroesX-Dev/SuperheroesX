@@ -2,6 +2,7 @@ package mini.SuperheroesX.objects.armor;
 
 import mini.SuperheroesX.SuperheroesX;
 import mini.SuperheroesX.init.ItemInit;
+import mini.SuperheroesX.init.PotionInit;
 import mini.SuperheroesX.util.interfaces.IHasModel;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
@@ -35,7 +36,7 @@ public class ArmorBlackPanther extends ItemArmor implements IHasModel {
 					player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 0, 4, true, false));
 					world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), 2, 2, 0);
 			 }
-			player.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, 0, 1, true, false));
+				player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 0, 1, true, false));
 			player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 3, 2, true, false));
 			player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 0, 5, true, false));
 			player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 0, 5, true, false));

@@ -5,6 +5,7 @@ import cofh.redstoneflux.api.IEnergyContainerItem;
 import cofh.redstoneflux.util.EnergyContainerItemWrapper;
 import mini.SuperheroesX.SuperheroesX;
 import mini.SuperheroesX.init.ItemInit;
+import mini.SuperheroesX.init.PotionInit;
 import mini.SuperheroesX.util.config.Config;
 import mini.SuperheroesX.util.handlers.SyncHandler;
 import mini.SuperheroesX.util.helpers.NBTHelper;
@@ -18,7 +19,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Enchantments;
-import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
@@ -309,7 +309,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
                     shootEnergyBlast(player, this);
                 }
                 super.onArmorTick(world, player, stack);
-                player.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, 0, 3, true, false));
+                player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 0, 3, true, false));
             }
             if (timer > 20) {
                 for (ItemStack stack1 : player.getArmorInventoryList()) {

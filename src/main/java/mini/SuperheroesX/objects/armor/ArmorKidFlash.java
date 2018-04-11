@@ -2,6 +2,7 @@ package mini.SuperheroesX.objects.armor;
 
 import mini.SuperheroesX.SuperheroesX;
 import mini.SuperheroesX.init.ItemInit;
+import mini.SuperheroesX.init.PotionInit;
 import mini.SuperheroesX.util.interfaces.IHasModel;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
@@ -44,7 +45,7 @@ public class ArmorKidFlash extends ItemArmor implements IHasModel
 					player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 0, 50, true, false));
 					world.spawnParticle(EnumParticleTypes.REDSTONE, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), 1, 1, 0);
 			 }
-			player.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, 0, 1, true, false));
+				player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 0, 1, true, false));
 			player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 0, 2, true, false));
 	 }
 

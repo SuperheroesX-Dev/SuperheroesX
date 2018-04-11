@@ -1,8 +1,10 @@
 package mini.SuperheroesX.init;
 
 import mini.SuperheroesX.objects.potions.CustomPotionEffect;
+import mini.SuperheroesX.objects.potions.StrengthAdv;
 import mini.SuperheroesX.util.interfaces.IEffectProvider;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -21,6 +23,8 @@ public class PotionInit {
             new Color(215, 215, 215).getRGB(), new PotionEffectGlide(),
             new ItemStack(Items.MILK_BUCKET)
     );
+
+    public static final Potion INVISIBLE_STRENGTH = new StrengthAdv(false).setPotionName("effect.damageBoost").registerPotionAttributeModifier(SharedMonsterAttributes.ATTACK_DAMAGE, "648D7064-6A60-4F59-8ABE-C2C23A6DD7A9", 0.0D, 0).setBeneficial();
 
 
     private static class PotionEffectGlide implements IEffectProvider {

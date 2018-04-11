@@ -48,8 +48,8 @@ public class ItemInit
         }
     }
 
-    public static final Item MINI_ARC_REACTOR_MK1 = new ItemBase("mini_arc_reactor_mk1").setOreDictName("itemArcReactor");
-    public static final Item MINI_ARC_REACTOR_MK2 = new ItemBase("mini_arc_reactor_mk2").setOreDictName("itemArcReactor");
+    public static final Item MINI_ARC_REACTOR_MK1 = new ItemBase("mini_arc_reactor_mk1");
+    public static final Item MINI_ARC_REACTOR_MK2 = new ItemBase("mini_arc_reactor_mk2");
     public static final Item MINI_ARC_REACTOR_BASE = new ItemBase("mini_arc_reactor_base");
     public static final Item CIRCUIT = new ItemBase("circuit");
 

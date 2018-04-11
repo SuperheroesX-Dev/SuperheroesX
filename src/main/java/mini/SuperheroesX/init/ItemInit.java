@@ -45,6 +45,7 @@ public class ItemInit
     public static final Item INGOT_VIBRANIUM;
     public static final Item INGOT_PALLADIUM;
     public static final Item INGOT_TITANIUM;
+    public static final Item INGOT_TITANOGOLD;
     public static final Item PLATE_VIBRANIUM;
     public static final Item PLATE_TITANIUM;
     public static final Item PLATE_GOLD;
@@ -54,66 +55,108 @@ public class ItemInit
     public static final Item MINI_ARC_REACTOR_MK1;
     public static final Item MINI_ARC_REACTOR_MK2;
 
+
+
+	
+	//Tools
+    public static final Item KATANA_DEADPOOL = new ToolSword("deadpool_katana", TOOL_DEADPOOL);
+
+    //Armor
+    public static final Item HELMET_DEADPOOL;
+    public static final Item CHESTPLATE_DEADPOOL;
+    public static final Item LEGGINGS_DEADPOOL;
+    public static final Item BOOTS_DEADPOOL;
+
+    public static final Item CHESTPLATE_SUPERBOY;
+    public static final Item LEGGINGS_SUPERBOY;
+    public static final Item BOOTS_SUPERBOY;
+
+    public static final Item HELMET_KIDFLASH;
+    public static final Item CHESTPLATE_KIDFLASH;
+    public static final Item LEGGINGS_KIDFLASH;
+    public static final Item BOOTS_KIDFLASH;
+
+    public static final Item HELMET_BLACKPANTHER;
+    public static final Item CHESTPLATE_BLACKPANTHER;
+    public static final Item LEGGINGS_BLACKPANTHER;
+    public static final Item BOOTS_BLACKPANTHER;
+
+    public static final Item HELMET_ROBIN1;
+    public static final Item CHESTPLATE_ROBIN1;
+    public static final Item LEGGINGS_ROBIN1;
+    public static final Item BOOTS_ROBIN1;
+
+    public static final Item HELMET_IRONMAN;
+    public static final ChestplateIronMan CHESTPLATE_IRONMAN;
+    public static final Item LEGGINGS_IRONMAN;
+    public static final Item BOOTS_IRONMAN;
+
+
     static {
 
 
-        INGOT_TITANIUM = new ItemBase("ingot_titanium").setOreDictName("ingotTitanium");
+        //MARVEL
+        //MCU
         INGOT_PALLADIUM = new ItemBase("ingot_palladium").setOreDictName("ingotPalladium");
         INGOT_VIBRANIUM = new ItemBase("ingot_vibranium").setOreDictName("ingotVibranium");
+        INGOT_TITANOGOLD = new ItemBase("ingot_titanogold").setOreDictName("ingotTitanogold");
         PLATE_TITANOGOLD = new ItemBase("plate_titanogold").setOreDictName("plateTitanogold");
-        PLATE_GOLD = new ItemBase("plate_gold").setOreDictName("plateGold");
-        PLATE_TITANIUM = new ItemBase("plate_titanium").setOreDictName("plateTitanium");
         PLATE_VIBRANIUM = new ItemBase("plate_vibranium").setOreDictName("plateVibranium");
-        CIRCUIT = new ItemBase("circuit");
         MINI_ARC_REACTOR_BASE = new ItemBase("mini_arc_reactor_base");
         MINI_ARC_REACTOR_MK1 = new ItemBase("mini_arc_reactor_mk1");
         MINI_ARC_REACTOR_MK2 = new ItemBase("mini_arc_reactor_mk2");
 
+        HELMET_BLACKPANTHER = new ArmorBlackPanther("blackpanther_helmet", ARMOR_BLACKPANTHER, 1, EntityEquipmentSlot.HEAD);
+        CHESTPLATE_BLACKPANTHER = new ArmorBlackPanther("blackpanther_chestplate", ARMOR_BLACKPANTHER, 1, EntityEquipmentSlot.CHEST);
+        LEGGINGS_BLACKPANTHER = new ArmorBlackPanther("blackpanther_leggings", ARMOR_BLACKPANTHER, 2, EntityEquipmentSlot.LEGS);
+        BOOTS_BLACKPANTHER = new ArmorBlackPanther("blackpanther_boots", ARMOR_BLACKPANTHER, 1, EntityEquipmentSlot.FEET);
 
+        HELMET_IRONMAN = new ArmorIronMan("helmet_ironman", 1, EntityEquipmentSlot.HEAD);
+        CHESTPLATE_IRONMAN = new ChestplateIronMan();
+        LEGGINGS_IRONMAN = new ArmorIronMan("leggings_ironman", 2, EntityEquipmentSlot.LEGS);
+        BOOTS_IRONMAN = new ArmorIronMan("boots_ironman", 1, EntityEquipmentSlot.FEET);
+
+
+        //XMen
+        HELMET_DEADPOOL = new ArmorDeadpool("deadpool_helmet", ARMOR_DEADPOOL, 1, EntityEquipmentSlot.HEAD);
+        CHESTPLATE_DEADPOOL = new ArmorDeadpool("deadpool_chestplate", ARMOR_DEADPOOL, 1, EntityEquipmentSlot.CHEST);
+        LEGGINGS_DEADPOOL = new ArmorDeadpool("deadpool_leggings", ARMOR_DEADPOOL, 2, EntityEquipmentSlot.LEGS);
+        BOOTS_DEADPOOL = new ArmorDeadpool("deadpool_boots", ARMOR_DEADPOOL, 1, EntityEquipmentSlot.FEET);
+
+
+        //DC
         LOGO_KID_FLASH = new ItemBase("kidflash_logo");
+
+        CHESTPLATE_SUPERBOY = new ArmorBase("superboy_chestplate", ARMOR_SUPERBOY, 1, EntityEquipmentSlot.CHEST);
+        LEGGINGS_SUPERBOY = new ArmorBase("superboy_leggings", ARMOR_SUPERBOY, 1, EntityEquipmentSlot.LEGS);
+        BOOTS_SUPERBOY = new ArmorBase("superboy_boots", ARMOR_SUPERBOY, 1, EntityEquipmentSlot.FEET);
+
+        HELMET_KIDFLASH = new ArmorKidFlash("kidflash_helmet", ARMOR_KIDFLASH, 1, EntityEquipmentSlot.HEAD);
+        CHESTPLATE_KIDFLASH = new ArmorKidFlash("kidflash_chestplate", ARMOR_KIDFLASH, 1, EntityEquipmentSlot.CHEST);
+        LEGGINGS_KIDFLASH = new ArmorKidFlash("kidflash_leggings", ARMOR_KIDFLASH, 2, EntityEquipmentSlot.LEGS);
+        BOOTS_KIDFLASH = new ArmorKidFlash("kidflash_boots", ARMOR_KIDFLASH, 1, EntityEquipmentSlot.FEET);
+
+        HELMET_ROBIN1 = new ArmorRobin1("robin1_helmet", ARMOR_ROBIN1, 1, EntityEquipmentSlot.HEAD);
+        CHESTPLATE_ROBIN1 = new ArmorRobin1("robin1_chestplate", ARMOR_ROBIN1, 1, EntityEquipmentSlot.CHEST);
+        LEGGINGS_ROBIN1 = new ArmorRobin1("robin1_leggings", ARMOR_ROBIN1, 2, EntityEquipmentSlot.LEGS);
+        BOOTS_ROBIN1 = new ArmorRobin1("robin1_boots", ARMOR_ROBIN1, 1, EntityEquipmentSlot.FEET);
+
+
+        //Materials
         SPANDEX_GREEN = new ItemBase("green_spandex");
         SPANDEX_WHITE = new ItemBase("white_spandex");
         SPANDEX_YELLOW = new ItemBase("yellow_spandex");
         SPANDEX_BLACK = new ItemBase("black_spandex");
         SPANDEX_RED = new ItemBase("red_spandex");
 
+        INGOT_TITANIUM = new ItemBase("ingot_titanium").setOreDictName("ingotTitanium");
+        PLATE_GOLD = new ItemBase("plate_gold").setOreDictName("plateGold");
+        PLATE_TITANIUM = new ItemBase("plate_titanium").setOreDictName("plateTitanium");
+        CIRCUIT = new ItemBase("circuit");
+
 
         if (SuperheroesX.DEBUG) {
             TEST_ITEM = new TestItem();
         }
     }
-
-	
-	//Tools
-    public static final Item KATANA_DEADPOOL = new ToolSword("deadpool_katana", TOOL_DEADPOOL);
-
-	//Armour
-    public static final Item HELMET_DEADPOOL = new ArmorDeadpool("deadpool_helmet", ARMOR_DEADPOOL, 1, EntityEquipmentSlot.HEAD);
-    public static final Item CHESTPLATE_DEADPOOL = new ArmorDeadpool("deadpool_chestplate", ARMOR_DEADPOOL, 1, EntityEquipmentSlot.CHEST);
-    public static final Item LEGGINGS_DEADPOOL = new ArmorDeadpool("deadpool_leggings", ARMOR_DEADPOOL, 2, EntityEquipmentSlot.LEGS);
-    public static final Item BOOTS_DEADPOOL = new ArmorDeadpool("deadpool_boots", ARMOR_DEADPOOL, 1, EntityEquipmentSlot.FEET);
-
-    public static final Item CHESTPLATE_SUPERBOY = new ArmorBase("superboy_chestplate", ARMOR_SUPERBOY, 1, EntityEquipmentSlot.CHEST);
-    public static final Item LEGGINGS_SUPERBOY = new ArmorBase("superboy_leggings", ARMOR_SUPERBOY, 1, EntityEquipmentSlot.LEGS);
-    public static final Item BOOTS_SUPERBOY = new ArmorBase("superboy_boots", ARMOR_SUPERBOY, 1, EntityEquipmentSlot.FEET);
-
-    public static final Item HELMET_KIDFLASH = new ArmorKidFlash("kidflash_helmet", ARMOR_KIDFLASH, 1, EntityEquipmentSlot.HEAD);
-    public static final Item CHESTPLATE_KIDFLASH = new ArmorKidFlash("kidflash_chestplate", ARMOR_KIDFLASH, 1, EntityEquipmentSlot.CHEST);
-    public static final Item LEGGINGS_KIDFLASH = new ArmorKidFlash("kidflash_leggings", ARMOR_KIDFLASH, 2, EntityEquipmentSlot.LEGS);
-    public static final Item BOOTS_KIDFLASH = new ArmorKidFlash("kidflash_boots", ARMOR_KIDFLASH, 1, EntityEquipmentSlot.FEET);
-
-    public static final Item HELMET_BLACKPANTHER = new ArmorBlackPanther("blackpanther_helmet", ARMOR_BLACKPANTHER, 1, EntityEquipmentSlot.HEAD);
-    public static final Item CHESTPLATE_BLACKPANTHER = new ArmorBlackPanther("blackpanther_chestplate", ARMOR_BLACKPANTHER, 1, EntityEquipmentSlot.CHEST);
-    public static final Item LEGGINGS_BLACKPANTHER = new ArmorBlackPanther("blackpanther_leggings", ARMOR_BLACKPANTHER, 2, EntityEquipmentSlot.LEGS);
-    public static final Item BOOTS_BLACKPANTHER = new ArmorBlackPanther("blackpanther_boots", ARMOR_BLACKPANTHER, 1, EntityEquipmentSlot.FEET);
-
-    public static final Item HELMET_ROBIN1 = new ArmorRobin1("robin1_helmet", ARMOR_ROBIN1, 1, EntityEquipmentSlot.HEAD);
-    public static final Item CHESTPLATE_ROBIN1 = new ArmorRobin1("robin1_chestplate", ARMOR_ROBIN1, 1, EntityEquipmentSlot.CHEST);
-    public static final Item LEGGINGS_ROBIN1 = new ArmorRobin1("robin1_leggings", ARMOR_ROBIN1, 2, EntityEquipmentSlot.LEGS);
-    public static final Item BOOTS_ROBIN1 = new ArmorRobin1("robin1_boots", ARMOR_ROBIN1, 1, EntityEquipmentSlot.FEET);
-    
-    public static final Item HELMET_IRONMAN = new ArmorIronMan("helmet_ironman", 1, EntityEquipmentSlot.HEAD);
-    public static final ChestplateIronMan CHESTPLATE_IRONMAN = new ChestplateIronMan();
-    public static final Item LEGGINGS_IRONMAN = new ArmorIronMan("leggings_ironman", 2, EntityEquipmentSlot.LEGS);
-    public static final Item BOOTS_IRONMAN = new ArmorIronMan("boots_ironman", 1, EntityEquipmentSlot.FEET);
 }

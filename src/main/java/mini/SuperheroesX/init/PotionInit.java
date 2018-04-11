@@ -1,12 +1,15 @@
 package mini.SuperheroesX.init;
 
 import mini.SuperheroesX.objects.potions.CustomPotionEffect;
+import mini.SuperheroesX.util.Reference;
 import mini.SuperheroesX.util.interfaces.IEffectProvider;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionType;
+import net.minecraft.util.ResourceLocation;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -32,14 +35,13 @@ public class PotionInit {
                 if (newMotionY < 0 && !entityLivingBaseIn.isElytraFlying()) {
                     entityLivingBaseIn.motionY = newMotionY;
                 }
-                entityLivingBaseIn.fallDistance = 0;
+                entityLivingBaseIn.fallDistance = 0; }
             }
-        }
-
+        
         @Override
-        public boolean isVisible() {
-            return false;
+        public boolean hasStatusIcon() {
+        	Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/container/custom_effects.png"));
+        	return true;
         }
     }
-
 }

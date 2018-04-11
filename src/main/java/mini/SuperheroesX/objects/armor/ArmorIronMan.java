@@ -5,6 +5,7 @@ import cofh.redstoneflux.api.IEnergyContainerItem;
 import cofh.redstoneflux.util.EnergyContainerItemWrapper;
 import mini.SuperheroesX.SuperheroesX;
 import mini.SuperheroesX.init.ItemInit;
+import mini.SuperheroesX.init.PotionInit;
 import mini.SuperheroesX.util.config.Config;
 import mini.SuperheroesX.util.handlers.SyncHandler;
 import mini.SuperheroesX.util.helpers.NBTHelper;
@@ -12,6 +13,7 @@ import mini.SuperheroesX.util.helpers.SXStringHelper;
 import mini.SuperheroesX.util.helpers.StringHelper;
 import mini.SuperheroesX.util.interfaces.IHUDInfoProvider;
 import mini.SuperheroesX.util.interfaces.IHasModel;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityLivingBase;
@@ -27,6 +29,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
@@ -63,7 +66,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
 
     @Override
     public EnumRarity getRarity(ItemStack stack) {
-        return EnumRarity.EPIC;
+        return super.getRarity(stack);
     }
 
     @Override
@@ -157,7 +160,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
                 event.setAmount(event.getAmount() * reductionAmmount);
             } else {
                 ChestplateIronMan chestplateIronMan = (ChestplateIronMan) chestplate.getItem();
-                for (; chestplateIronMan.getEnergyStored(chestplate) > 0; chestplateIronMan.gotDamaged(chestplate)) {
+                for (; chestplateIronMan.getEnergyStored(chestplate) > 0; chestplateIronMan.extractEnergy(chestplate, energyPerDamage, false)) {
                     event.setAmount(event.getAmount() - 1);
                 }
             }
@@ -168,53 +171,25 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
     @Override
     public boolean hasEffect(ItemStack stack) {
         return false;
+        
     }
 
-    /*@Override
-    @SideOnly(Side.CLIENT)
-    public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot,
-                                    ModelBiped defaultModel) {
+        @Override
+        @SideOnly(Side.CLIENT)
+        public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
+               ModelBiped armorModel = null;
+    
+            if (itemStack != null) {
+               armorModel = new ModelBiped(0.5F);
 
-        if (itemStack != null) {
-            if (itemStack.getItem() instanceof ItemArmor) {
-
-                EntityEquipmentSlot type = ((ItemArmor) itemStack.getItem()).armorType;
-                ModelBiped armorModel = null;
-                switch (type) {
-                    case HEAD:
-                    case LEGS:
-                        armorModel = SuperheroesX.PROXY.getArmorModel(0);
-                        break;
-                    case FEET:
-                    case CHEST:
-                        armorModel = SuperheroesX.PROXY.getArmorModel(1);
-                        break;
-                    default:
-                        break;
+               if (armorModel != null) {
+                  armorModel.setModelAttributes(_default);
+                    return armorModel;
                 }
-
-                armorModel.bipedHead.showModel = armorSlot == EntityEquipmentSlot.HEAD;
-                armorModel.bipedHeadwear.showModel = armorSlot == EntityEquipmentSlot.HEAD;
-                armorModel.bipedBody.showModel = (armorSlot == EntityEquipmentSlot.CHEST)
-                        || (armorSlot == EntityEquipmentSlot.CHEST);
-                armorModel.bipedRightArm.showModel = armorSlot == EntityEquipmentSlot.CHEST;
-                armorModel.bipedLeftArm.showModel = armorSlot == EntityEquipmentSlot.CHEST;
-                armorModel.bipedRightLeg.showModel = (armorSlot == EntityEquipmentSlot.LEGS)
-                        || (armorSlot == EntityEquipmentSlot.FEET);
-                armorModel.bipedLeftLeg.showModel = (armorSlot == EntityEquipmentSlot.LEGS)
-                        || (armorSlot == EntityEquipmentSlot.FEET);
-
-                armorModel.isSneak = defaultModel.isSneak;
-                armorModel.isRiding = defaultModel.isRiding;
-                armorModel.isChild = defaultModel.isChild;
-                armorModel.rightArmPose = defaultModel.rightArmPose;
-                armorModel.leftArmPose = defaultModel.leftArmPose;
-
-                return armorModel;
             }
+    
+            return super.getArmorModel(entityLiving, itemStack, armorSlot, _default);
         }
-        return null;
-    }*/
 
     private static boolean fullSetEquipped(EntityLivingBase entity) {
         for (ItemStack armor : entity.getArmorInventoryList()) {
@@ -246,7 +221,6 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         public static final String TAG_HOVERMODE_ON = "HoverModeOn";
         public static final String TAG_ON = "On";
         public static final String TAG_EHOVER_ON = "EHoverOn";
-        private static final int COOLDOWN_MAX = 20;
         private double accelVertical = 0.5D;//0.15D
         private double speedVertical = 0.9D;
         private double sprintFuelModifier = 6.0D;
@@ -254,9 +228,8 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         private double speedVerticalHoverSlow = 0.0D;
         private int capacity;
         private int maxTransfer = Integer.MAX_VALUE;
-        private int fuelUsage = 200;
+        private int fuelUsage = 10;
         private int energyPerShot = 200;
-        private int cooldown;
         private float defaultSpeedSideways = 0.21F;
         private float sprintSpeedModifier = 2.4F;
 
@@ -269,10 +242,10 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
 
         @Override
         public void addHUDInfo(List<String> list, ItemStack stack, boolean showFuel, boolean showState) {
-            if (showFuel || SuperheroesX.DEBUG) {
+            if (showFuel) {
                 list.add(this.getHUDEnergyInfo(stack, this));
             }
-            if (showState || SuperheroesX.DEBUG) {
+            if (showState) {
                 list.add(this.getHUDStatesInfo(stack));
             }
         }
@@ -296,20 +269,18 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
 
         @Override
         public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
-            if (cooldown == 0) {
-                if (player.onGround && getEnergyStored(stack) != getMaxEnergyStored(stack)) {
-                    receiveEnergy(stack, 100, false);
-                }
-            } else {
-                cooldown--;
-            }
+            flyUser(player, stack, this, false);
             if (ArmorIronMan.fullSetEquipped(player)) {
-                flyUser(player, stack, this, false);
                 if (SyncHandler.isRightClickDown(player)) {
                     shootEnergyBlast(player, this);
                 }
                 super.onArmorTick(world, player, stack);
-                player.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, 0, 3, true, false));
+                if (!player.isAirBorne) {
+                    //player.addPotionEffect(new PotionEffect(MobEffects.LEVITATION, 0,3, true, false));
+                    player.addPotionEffect(new PotionEffect(PotionInit.FLY, 0, 3, true, false));
+                    world.spawnParticle(EnumParticleTypes.FLAME, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), 1, 1, 0);
+                }
+                player.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, 0, 3, false, false));
             }
             if (timer > 20) {
                 for (ItemStack stack1 : player.getArmorInventoryList()) {
@@ -455,7 +426,6 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
 
                     if (item.getEnergyStored(stack) > 0) {
                         if (flyKeyDown) {
-                            cooldown = COOLDOWN_MAX;
                             if (!hoverMode) {
                                 user.motionY = Math.min(user.motionY + currentAccel, currentSpeedVertical);
                             } else {
@@ -584,11 +554,6 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
 
                 ((EntityPlayer) user).sendStatusMessage(new TextComponentString(StringHelper.LIGHT_RED + SXStringHelper.localize("chat.itemJetpack.emergencyHoverMode.msg")), false);
             }
-        }
-
-        public void gotDamaged(ItemStack chestplate) {
-            ((ChestplateIronMan) chestplate.getItem()).extractEnergy(chestplate, energyPerDamage, false);
-            cooldown = COOLDOWN_MAX;
         }
 
         public static final class StackUtil {

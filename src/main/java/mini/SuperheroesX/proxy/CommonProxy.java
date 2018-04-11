@@ -1,7 +1,7 @@
 package mini.SuperheroesX.proxy;
 
 import mini.SuperheroesX.SuperheroesX;
-import mini.SuperheroesX.objects.armor.IronManArmorModel;
+import mini.SuperheroesX.objects.armor.IronManArmorModel_NOTUSING;
 import mini.SuperheroesX.util.handlers.EnumHandler;
 import mini.SuperheroesX.util.handlers.LivingTickHandler;
 import mini.SuperheroesX.util.handlers.SyncHandler;
@@ -15,8 +15,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class CommonProxy 
 {
-    private static final IronManArmorModel ironManArmorModelCest = new IronManArmorModel(1.0f);
-    private static final IronManArmorModel ironManArmorModel = new IronManArmorModel(0.5f);
+    private static final IronManArmorModel_NOTUSING ironManArmorModelCest = new IronManArmorModel_NOTUSING(1.0f);
+    private static final IronManArmorModel_NOTUSING ironManArmorModel = new IronManArmorModel_NOTUSING(0.5f);
 
 	public void registerItemRenderer(Item item, int meta, String id) {}
 	public void registerVariantRenderer(Item item, int meta, String filename, String id) {}

@@ -14,7 +14,5 @@ public interface IEffectProvider {
         return false;
     }
 
-    default boolean isVisible() {
-        return true;
-    }
+	boolean hasStatusIcon();
 }

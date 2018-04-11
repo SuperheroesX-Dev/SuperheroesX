@@ -3,6 +3,8 @@ package mini.SuperheroesX.objects.armor;
 import mini.SuperheroesX.SuperheroesX;
 import mini.SuperheroesX.init.ItemInit;
 import mini.SuperheroesX.util.interfaces.IHasModel;
+import net.minecraft.client.model.ModelBiped;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -12,6 +14,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ArmorBase extends ItemArmor implements IHasModel
 
@@ -40,7 +44,7 @@ public class ArmorBase extends ItemArmor implements IHasModel
 		if (this.isWearingFullSet(player, ItemInit.CHESTPLATE_SUPERBOY, ItemInit.LEGGINGS_SUPERBOY, ItemInit.BOOTS_SUPERBOY)) {
 		super.onArmorTick(world, player, stack); 
 		
-		player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 0, 2, false, false));
+		player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 0, 1, false, false));
 		player.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, 0, 4, false, false));
 		player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 0, 2, false, false));
 		player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, 0, 2, false, false));
@@ -62,7 +66,22 @@ public class ArmorBase extends ItemArmor implements IHasModel
         if (player.getActivePotionEffect(potion) == null || player.getActivePotionEffect(potion).getDuration() <= 1) {
             player.addPotionEffect(new PotionEffect(potion, duration, amplifier, false, false)); }
 	}
+	@Override
+    @SideOnly(Side.CLIENT)
+    public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
+           ModelBiped armorModel = null;
 
+        if (itemStack != null) {
+           armorModel = new ModelBiped(0.5F);
+
+           if (armorModel != null) {
+              armorModel.setModelAttributes(_default);
+                return armorModel;
+            }
+        }
+
+        return super.getArmorModel(entityLiving, itemStack, armorSlot, _default);
+    }
 	@Override
 
 	public void registerModels() 

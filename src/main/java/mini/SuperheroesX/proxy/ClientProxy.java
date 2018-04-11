@@ -1,7 +1,6 @@
 package mini.SuperheroesX.proxy;
 
 import mini.SuperheroesX.util.Reference;
-import mini.SuperheroesX.util.client.handler.HUDTickHandler;
 import mini.SuperheroesX.util.client.handler.KeyTracker;
 import mini.SuperheroesX.util.handlers.EnumHandler;
 import mini.SuperheroesX.util.math.Pos3D;
@@ -13,23 +12,13 @@ import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.common.MinecraftForge;
 
 import java.util.Random;
 
 public class ClientProxy extends CommonProxy
 {
     private static final Minecraft mc = Minecraft.getMinecraft();
-
-    @Override
-    public void registerHandlers() {
-        super.registerHandlers();
-
-        MinecraftForge.EVENT_BUS.register(KeyTracker.instance);
-        MinecraftForge.EVENT_BUS.register(new HUDTickHandler());
-    }
-
-    @Override
+	@Override
 	public void registerItemRenderer(Item item, int meta, String id) 
 	{
 		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName(), id));

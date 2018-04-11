@@ -18,8 +18,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ArmorBlackPanther extends ItemArmor implements IHasModel {
-	public ArmorBlackPanther(String name,ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn)
+public class ArmorRobin1 extends ItemArmor implements IHasModel {
+	public ArmorRobin1(String name,ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn)
 	{
 			super(materialIn, renderIndexIn, equipmentSlotIn);
 
@@ -32,30 +32,26 @@ public class ArmorBlackPanther extends ItemArmor implements IHasModel {
 
 		@Override
 		public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
-			if (this.isWearingFullSet(player, ItemInit.HELMET_BLACKPANTHER, ItemInit.CHESTPLATE_BLACKPANTHER, ItemInit.LEGGINGS_BLACKPANTHER,
-					ItemInit.BOOTS_BLACKPANTHER)) {
+			if (this.isWearingFullSet(player, ItemInit.HELMET_ROBIN1, ItemInit.CHESTPLATE_ROBIN1, ItemInit.LEGGINGS_ROBIN1,
+					ItemInit.BOOTS_ROBIN1)) {
 			super.onArmorTick(world, player, stack); 
 			 if (player.isSprinting()) {
-					player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 0, 4, false, false));
-					//world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), 2, 2, 0);
+					player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 0, 1, false, false));
 			 }
 			player.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, 0, 1, false, false));
-			player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 0, 1, false, false));
-			player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 0, 5, false, false));
-			player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 0, 3, false, false));
-			player.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, 0, 2, false, false));
-			player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, 0, 2, false, false));
+			player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 0, 1, false, false));
+			player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 0, 1, false, false));
 	 }
 
 
 			}
 		
-		private boolean isWearingFullSet(EntityPlayer player, Item helmetBlackPanther, Item chestplateBlackPanther, Item leggingsBlackPanther,Item bootBlackPanther) {
+		private boolean isWearingFullSet(EntityPlayer player, Item helmetRobin1, Item chestplateRobin1, Item leggingsRobin1,Item bootsRobin1) {
 			return
-					!player.inventory.armorItemInSlot(3).isEmpty() && player.inventory.armorItemInSlot(3).getItem() == helmetBlackPanther
-							&& !player.inventory.armorItemInSlot(2).isEmpty() && player.inventory.armorItemInSlot(2).getItem() == chestplateBlackPanther
-							&& !player.inventory.armorItemInSlot(1).isEmpty() && player.inventory.armorItemInSlot(1).getItem() == leggingsBlackPanther
-							&& !player.inventory.armorItemInSlot(0).isEmpty() && player.inventory.armorItemInSlot(0).getItem() == bootBlackPanther;
+					!player.inventory.armorItemInSlot(3).isEmpty() && player.inventory.armorItemInSlot(3).getItem() == helmetRobin1
+							&& !player.inventory.armorItemInSlot(2).isEmpty() && player.inventory.armorItemInSlot(2).getItem() == chestplateRobin1
+							&& !player.inventory.armorItemInSlot(1).isEmpty() && player.inventory.armorItemInSlot(1).getItem() == leggingsRobin1
+							&& !player.inventory.armorItemInSlot(0).isEmpty() && player.inventory.armorItemInSlot(0).getItem() == bootsRobin1;
 		}
 
 		

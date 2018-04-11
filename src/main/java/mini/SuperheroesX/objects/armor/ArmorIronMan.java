@@ -235,11 +235,12 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         private float defaultSpeedSideways = 0.21F;
         private float sprintSpeedModifier = 2.4F;
         private float damagePerHit = 5;
+        private int multiplier = 1;
 
 
         public ChestplateIronMan() {
             super("chestplate_ironman", 1, EntityEquipmentSlot.CHEST);
-            this.capacity = this.getArmorMaterial().getDurability(this.armorType);
+            this.capacity = this.getArmorMaterial().getDurability(this.armorType) * multiplier;
             setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB);
         }
 
@@ -274,7 +275,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
             if (cooldown == 0) {
                 if (player.onGround && getEnergyStored(stack) != getMaxEnergyStored(stack)) {
-                    receiveEnergy(stack, 100, false);
+                    receiveEnergy(stack, 100 * multiplier, false);
                 }
             } else {
                 cooldown--;
@@ -571,6 +572,11 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         public void gotDamaged(ItemStack chestplate) {
             ((ChestplateIronMan) chestplate.getItem()).extractEnergy(chestplate, energyPerDamage, false);
             cooldown = COOLDOWN_MAX;
+        }
+
+        public ChestplateIronMan setMultiplier(int multiplier) {
+            this.multiplier = multiplier;
+            return this;
         }
 
         public static final class StackUtil {

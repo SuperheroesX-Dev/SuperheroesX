@@ -2,6 +2,7 @@ package mini.SuperheroesX.init;
 
 import mini.SuperheroesX.SuperheroesX;
 import mini.SuperheroesX.objects.armor.*;
+import mini.SuperheroesX.objects.armor.ArmorIronMan.ChestplateIronMan;
 import mini.SuperheroesX.objects.items.ItemBase;
 import mini.SuperheroesX.objects.items.TestItem;
 import mini.SuperheroesX.objects.tools.ToolSword;
@@ -39,23 +40,24 @@ public class ItemInit
     public static final Item VIBRANIUM = new ItemBase("vibranium").setOreDictName("gemVibranium");
     public static final Item INGOT_PALLADIUM = new ItemBase("ingot_palladium").setOreDictName("ingotPalladium");
     public static final Item INGOT_TITANIUM = new ItemBase("ingot_titanium").setOreDictName("ingotTitanium");
-    public static final Item MINI_ARC_REACTOR_MK1 = new ItemBase("mini_arc_reactor_mk1");
-    public static final Item MINI_ARC_REACTOR_MK2 = new ItemBase("mini_arc_reactor_mk2");
-    public static final Item MINI_ARC_REACTOR_BASE = new ItemBase("mini_arc_reactor_base");
-    public static final Item CIRCUIT = new ItemBase("circuit");
     public static final Item TEST_ITEM;
 
-
-
     static {
-
         if (SuperheroesX.DEBUG) {
-
             TEST_ITEM = new TestItem();
-
         }
-
     }
+
+    public static final Item MINI_ARC_REACTOR_MK1 = new ItemBase("mini_arc_reactor_mk1").setOreDictName("itemArcReactor");
+    public static final Item MINI_ARC_REACTOR_MK2 = new ItemBase("mini_arc_reactor_mk2").setOreDictName("itemArcReactor");
+    public static final Item MINI_ARC_REACTOR_BASE = new ItemBase("mini_arc_reactor_base");
+    public static final Item CIRCUIT = new ItemBase("circuit");
+
+    public static final Item PLATE_VIBRANIUM = new ItemBase("plate_vibranium").setOreDictName("plateVibranium");
+    public static final Item PLATE_TITANIUM = new ItemBase("plate_titanium").setOreDictName("plateTitanium");
+    public static final Item PLATE_GOLD = new ItemBase("plate_gold").setOreDictName("plateGold");
+    public static final Item PLATE_TITANOGOLD = new ItemBase("plate_titanogold").setOreDictName("plateTitanogold");
+
 
 	
 	//Tools
@@ -87,7 +89,7 @@ public class ItemInit
     public static final Item BOOTS_ROBIN1 = new ArmorRobin1("robin1_boots", ARMOR_ROBIN1, 1, EntityEquipmentSlot.FEET);
     
     public static final Item HELMET_IRONMAN = new ArmorIronMan("helmet_ironman", 1, EntityEquipmentSlot.HEAD);
-    public static final Item CHESTPLATE_IRONMAN = new ArmorIronMan.ChestplateIronMan();
+    public static final ChestplateIronMan CHESTPLATE_IRONMAN = new ChestplateIronMan();
     public static final Item LEGGINGS_IRONMAN = new ArmorIronMan("leggings_ironman", 2, EntityEquipmentSlot.LEGS);
     public static final Item BOOTS_IRONMAN = new ArmorIronMan("boots_ironman", 1, EntityEquipmentSlot.FEET);
 }

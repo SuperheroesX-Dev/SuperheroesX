@@ -1,50 +1,29 @@
 package mini.SuperheroesX.util.handlers;
 
 
-
-
-
 import mini.SuperheroesX.init.BlockInit;
-
 import mini.SuperheroesX.init.EntityInit;
-
 import mini.SuperheroesX.init.ItemInit;
-
 import mini.SuperheroesX.init.PotionInit;
-
 import mini.SuperheroesX.util.Reference;
-
 import mini.SuperheroesX.util.interfaces.IHasModel;
-
+import mini.SuperheroesX.util.interfaces.IOreDict;
 import mini.SuperheroesX.world.gen.WorldGenCustomOres;
-
 import net.minecraft.block.Block;
-
 import net.minecraft.init.Items;
-
 import net.minecraft.item.Item;
-
 import net.minecraft.item.ItemStack;
-
 import net.minecraft.potion.Potion;
-
 import net.minecraft.potion.PotionEffect;
-
 import net.minecraft.potion.PotionType;
-
 import net.minecraft.potion.PotionUtils;
-
 import net.minecraftforge.client.event.ModelRegistryEvent;
-
 import net.minecraftforge.event.RegistryEvent;
-
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 
 
 
@@ -130,6 +109,17 @@ public class RegistryHandler {
 
     }
 
+    public static void registerOres() {
+        for (Item item : ItemInit.ITEMS) {
+            if (item instanceof IOreDict && ((IOreDict) item).hasOreDictName()) {
+                OreDictionary.registerOre(((IOreDict) item).getOreDictName(), item);
+            }
+        }
+        for (Block block : BlockInit.BLOCKS) {
+            if (block instanceof IOreDict && ((IOreDict) block).hasOreDictName()) {
+                OreDictionary.registerOre(((IOreDict) block).getOreDictName(), block); }
+        }
+    }
     public static void registerRecipes() {
 
     }
@@ -149,7 +139,7 @@ public class RegistryHandler {
 
 
     public static void initRegistries() {
-
+    	registerOres();
     }
 
 

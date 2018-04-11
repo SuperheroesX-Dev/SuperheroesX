@@ -30,34 +30,58 @@ public class ItemInit
     public static final ArmorMaterial ARMOR_IRONMAN = EnumHelper.addArmorMaterial("armor_ironman", Reference.MODID + ":ironman", 7000, new int[]{7, 9, 8, 5}, 0, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 3.7F);
     public static final ArmorMaterial ARMOR_ROBIN1 = EnumHelper.addArmorMaterial("armor_robin1", Reference.MODID + ":robin1", 370, new int[]{4, 7, 9, 4}, 9, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 2.4F);
 
-	//Items
-    public static final Item SPANDEX_RED = new ItemBase("red_spandex");
-    public static final Item SPANDEX_BLACK = new ItemBase("black_spandex");
-    public static final Item SPANDEX_YELLOW = new ItemBase("yellow_spandex");
-    public static final Item SPANDEX_WHITE = new ItemBase("white_spandex");
-    public static final Item SPANDEX_GREEN = new ItemBase("green_spandex");
-    public static final Item LOGO_KID_FLASH = new ItemBase("kidflash_logo");
-    public static final Item VIBRANIUM = new ItemBase("vibranium").setOreDictName("gemVibranium");
-    public static final Item INGOT_PALLADIUM = new ItemBase("ingot_palladium").setOreDictName("ingotPalladium");
-    public static final Item INGOT_TITANIUM = new ItemBase("ingot_titanium").setOreDictName("ingotTitanium");
+
     public static final Item TEST_ITEM;
 
+	//Items
+    public static final Item SPANDEX_RED;
+    public static final Item SPANDEX_BLACK;
+    public static final Item SPANDEX_YELLOW;
+    public static final Item SPANDEX_WHITE;
+    public static final Item SPANDEX_GREEN;
+    public static final Item LOGO_KID_FLASH;
+
+
+    public static final Item INGOT_VIBRANIUM;
+    public static final Item INGOT_PALLADIUM;
+    public static final Item INGOT_TITANIUM;
+    public static final Item PLATE_VIBRANIUM;
+    public static final Item PLATE_TITANIUM;
+    public static final Item PLATE_GOLD;
+    public static final Item PLATE_TITANOGOLD;
+    public static final Item CIRCUIT;
+    public static final Item MINI_ARC_REACTOR_BASE;
+    public static final Item MINI_ARC_REACTOR_MK1;
+    public static final Item MINI_ARC_REACTOR_MK2;
+
     static {
+
+
+        INGOT_TITANIUM = new ItemBase("ingot_titanium").setOreDictName("ingotTitanium");
+        INGOT_PALLADIUM = new ItemBase("ingot_palladium").setOreDictName("ingotPalladium");
+        INGOT_VIBRANIUM = new ItemBase("ingot_vibranium").setOreDictName("ingotVibranium");
+        PLATE_TITANOGOLD = new ItemBase("plate_titanogold").setOreDictName("plateTitanogold");
+        PLATE_GOLD = new ItemBase("plate_gold").setOreDictName("plateGold");
+        PLATE_TITANIUM = new ItemBase("plate_titanium").setOreDictName("plateTitanium");
+        PLATE_VIBRANIUM = new ItemBase("plate_vibranium").setOreDictName("plateVibranium");
+        CIRCUIT = new ItemBase("circuit");
+        MINI_ARC_REACTOR_BASE = new ItemBase("mini_arc_reactor_base");
+        MINI_ARC_REACTOR_MK1 = new ItemBase("mini_arc_reactor_mk1");
+        MINI_ARC_REACTOR_MK2 = new ItemBase("mini_arc_reactor_mk2");
+
+
+        LOGO_KID_FLASH = new ItemBase("kidflash_logo");
+        SPANDEX_GREEN = new ItemBase("green_spandex");
+        SPANDEX_WHITE = new ItemBase("white_spandex");
+        SPANDEX_YELLOW = new ItemBase("yellow_spandex");
+        SPANDEX_BLACK = new ItemBase("black_spandex");
+        SPANDEX_RED = new ItemBase("red_spandex");
+
+
         if (SuperheroesX.DEBUG) {
             TEST_ITEM = new TestItem();
         }
     }
-
-    public static final Item MINI_ARC_REACTOR_MK1 = new ItemBase("mini_arc_reactor_mk1");
-    public static final Item MINI_ARC_REACTOR_MK2 = new ItemBase("mini_arc_reactor_mk2");
-    public static final Item MINI_ARC_REACTOR_BASE = new ItemBase("mini_arc_reactor_base");
-    public static final Item CIRCUIT = new ItemBase("circuit");
-
-    public static final Item PLATE_VIBRANIUM = new ItemBase("plate_vibranium").setOreDictName("plateVibranium");
-    public static final Item PLATE_TITANIUM = new ItemBase("plate_titanium").setOreDictName("plateTitanium");
-    public static final Item PLATE_GOLD = new ItemBase("plate_gold").setOreDictName("plateGold");
-    public static final Item PLATE_TITANOGOLD = new ItemBase("plate_titanogold").setOreDictName("plateTitanogold");
-
 
 	
 	//Tools

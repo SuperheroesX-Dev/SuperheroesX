@@ -1,0 +1,25 @@
+{
+    "type": "minecraft:crafting_shaped",
+
+    "pattern":
+    [
+        "R R",
+        "RYR",      
+        "RTR"
+    ],
+"key": {
+    "Y": {
+      "item": "minecraft:emerald"
+    },
+    "R": {
+        "item": "sx:black_spandex"
+          },
+    "T": {
+        "item": "sx:yellow_spandex"
+      }
+  },
+  "result": {
+    "item": "sx:superboy_chestplate",
+     "count": 1
+  }
+}

@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+
+    "pattern":
+    [
+        "RER",
+        "R R"
+    ],
+"key": {
+    "E": {
+      "item": "minecraft:emerald"
+    },
+    "R": {
+        "item": "minecraft:leather"
+
+      }
+  },
+  "result": {
+    "item": "sx:superboy_boots",
+     "count": 1
+  }
+}

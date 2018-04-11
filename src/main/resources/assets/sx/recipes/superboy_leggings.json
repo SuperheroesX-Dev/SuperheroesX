@@ -1,0 +1,25 @@
+{
+    "type": "minecraft:crafting_shaped",
+
+    "pattern":
+    [
+        "LLL",
+        "RAR",      
+        "R R"
+    ],
+"key": {
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "R": {
+        "item": "sx:red_spandex"
+          },
+    "A": {
+        "item": "minecraft:emerald"
+      }
+  },
+  "result": {
+    "item": "sx:superboy_leggings",
+     "count": 1
+  }
+}

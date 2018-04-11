@@ -10,7 +10,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
-version = "0.1.1" + "-FWr1"
+version = "0.1.1"
 
 def ENV = System.getenv()
 if (ENV.BUILD_NUMBER) {
@@ -42,11 +42,12 @@ repositories {
 }
 
 dependencies {
-    deobfCompile "cofh:RedstoneFlux:1.12-2.0.1.2:universal"
+    deobfProvided "cofh:RedstoneFlux:1.12-2.0.1.2:universal"
     // compile against the JEI API but do not include it at runtime
     deobfProvided "mezz.jei:jei_${mc_version}:${jei_version}:api"
     // at runtime, use the full JEI jar
     runtime "mezz.jei:jei_${mc_version}:${jei_version}"
+    runtime "cofh:RedstoneFlux:1.12-2.0.1.2:universal"
 }
 
 minecraft {

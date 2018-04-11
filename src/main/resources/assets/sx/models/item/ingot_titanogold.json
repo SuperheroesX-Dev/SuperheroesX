@@ -1,6 +1,6 @@
 {
    "parent": "item/generated",
    "textures": {
-       "layer0": "sx:items/vibranium"
+       "layer0": "sx:items/ingot_titanogold"
    }
 }

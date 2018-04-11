@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+
+    "pattern":
+    [
+        "B B",      
+        "B B"
+    ],
+
+    "key":
+    {
+        "B":
+        {
+            "item": "sx:vibranium"
+        }
+    },
+    "result":
+    {
+        "item": "sx:blackpanther_boots",
+        "count": 1
+    }
+}

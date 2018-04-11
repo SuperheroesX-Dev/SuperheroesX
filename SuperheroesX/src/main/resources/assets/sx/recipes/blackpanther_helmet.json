@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+
+    "pattern":
+    [
+        "BBB",
+        "B B"    
+    ],
+
+    "key":
+    {
+        "B":
+        {
+            "item": "sx:vibranium"
+        }
+    },
+    "result":
+    {
+        "item": "sx:blackpanther_helmet",
+        "count": 1
+    }
+}

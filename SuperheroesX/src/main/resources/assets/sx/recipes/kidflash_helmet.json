@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+
+    "pattern":
+    [
+        "BBB",
+        "BTB"
+    ],
+"key": {
+    "T": {
+      "item": "sx:ingot_titanium"
+    },
+    "b": {
+        "item": "sx:yellow_spandex"
+      }
+  },
+  "result": {
+    "item": "sx:kidflash_helmet",
+     "count": 1
+  }
+}

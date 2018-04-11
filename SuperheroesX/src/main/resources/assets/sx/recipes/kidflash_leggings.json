@@ -1,0 +1,25 @@
+{
+    "type": "minecraft:crafting_shaped",
+
+    "pattern":
+    [
+        "YTY",
+        "YTY",      
+        "S S"
+    ],
+"key": {
+    "T": {
+      "item": "sx:ingot_titanium"
+    },
+    "Y": {
+        "item": "sx:yellow_spandex"
+      },
+    "S": {
+        "item": "sx:red_spandex"
+        }
+  },
+  "result": {
+    "item": "sx:kidflash_leggings",
+     "count": 1
+  }
+}

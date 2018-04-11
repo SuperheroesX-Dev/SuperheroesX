@@ -39,7 +39,6 @@ public class RecipeHandler {
         RecipeHelper.addSmelting(BlockInit.ORE_PALLADIUM, cloneStack(ItemInit.INGOT_PALLADIUM, 1), 1F);
         RecipeHelper.addSmelting(BlockInit.ORE_TITANIUM, cloneStack(ItemInit.INGOT_TITANIUM, 1), 1F);
         RecipeHelper.addSmelting(BlockInit.ORE_VIBRANIUM, cloneStack(ItemInit.VIBRANIUM, 1), 1F);
-        RecipeHelper.addSmelting(ItemInit.VIBRANIUM, cloneStack(ItemInit.INGOT_VIBRANIUM, 1), 1F);
 
         /* brewing */
 

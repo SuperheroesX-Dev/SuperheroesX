@@ -1,8 +1,8 @@
 package mini.SuperheroesX.util.handlers;
 
 public class EnumHandler {
-	
-	
+
+
     public enum ParticleType {
         DEFAULT
     }

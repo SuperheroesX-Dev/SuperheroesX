@@ -18,7 +18,8 @@ import java.util.Random;
 public class ClientProxy extends CommonProxy
 {
     private static final Minecraft mc = Minecraft.getMinecraft();
-	@Override
+
+    @Override
 	public void registerItemRenderer(Item item, int meta, String id) 
 	{
 		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName(), id));

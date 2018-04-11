@@ -42,9 +42,9 @@ public class ArmorBase extends ItemArmor implements IHasModel
 	@Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
 		if (this.isWearingFullSet(player, ItemInit.CHESTPLATE_SUPERBOY, ItemInit.LEGGINGS_SUPERBOY, ItemInit.BOOTS_SUPERBOY)) {
-		super.onArmorTick(world, player, stack); 
-		
-		player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 0, 1, false, false));
+            super.onArmorTick(world, player, stack);
+
+            player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 0, 1, false, false));
 		player.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, 0, 4, false, false));
 		player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 0, 2, false, false));
 		player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, 0, 2, false, false));
@@ -66,16 +66,17 @@ public class ArmorBase extends ItemArmor implements IHasModel
         if (player.getActivePotionEffect(potion) == null || player.getActivePotionEffect(potion).getDuration() <= 1) {
             player.addPotionEffect(new PotionEffect(potion, duration, amplifier, false, false)); }
 	}
-	@Override
+
+    @Override
     @SideOnly(Side.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
-           ModelBiped armorModel = null;
+        ModelBiped armorModel = null;
 
         if (itemStack != null) {
-           armorModel = new ModelBiped(0.5F);
+            armorModel = new ModelBiped(0.5F);
 
-           if (armorModel != null) {
-              armorModel.setModelAttributes(_default);
+            if (armorModel != null) {
+                armorModel.setModelAttributes(_default);
                 return armorModel;
             }
         }

@@ -1,0 +1,16 @@
+[
+{
+  "modid": "sx",
+  "name": "Superheroes X",
+  "description": "This mod adds most of your favorite Marvel and DC Characters.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Mini_Me_Snipe","Minecraftschurli"],
+  "credits": "Team CoFH for the RF API, Tiviacz1337 For Deadpool Skin :D",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

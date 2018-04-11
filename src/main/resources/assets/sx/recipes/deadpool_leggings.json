@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+
+    "pattern":
+    [
+        "XBX",
+        "B B",      
+        "B B"
+    ],
+"key": {
+    "B": {
+      "item": "sx:red_spandex"
+    },
+    "X": {
+        "item": "sx:black_spandex"
+      }
+  },
+  "result": {
+    "item": "sx:deadpool_leggings",
+     "count": 1
+  }
+}

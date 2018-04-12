@@ -1,6 +1,5 @@
 package mini.SuperheroesX.util.handlers;
 
-import cofh.thermalexpansion.util.managers.machine.SmelterManager;
 import mini.SuperheroesX.init.BlockInit;
 import mini.SuperheroesX.init.ItemInit;
 import mini.SuperheroesX.init.PotionInit;
@@ -38,7 +37,7 @@ public class RecipeHandler {
         RecipeHelper.addShapedOreRecipe(ArmorIronMan.ChestplateIronMan.setDefaultMaxEnergyTag(cloneStack(item, 1), item.getArmorMaterial().getDurability(item.getEquipmentSlot()) * 2), "P P", "PAP", "PPP", 'P', "plateTitanogold", 'A', cloneStack(ItemInit.MINI_ARC_REACTOR_MK2, 1));
 
         if (Loader.isModLoaded("thermalexpansion")) {
-            SmelterManager.addAlloyRecipe(1000, cloneStack(OreDictionary.getOres("ingotTitanium").get(0)), cloneStack(OreDictionary.getOres("ingotGold").get(0)), cloneStack(ItemInit.INGOT_TITANOGOLD, 1));
+            cofh.thermalexpansion.util.managers.machine.SmelterManager.addAlloyRecipe(1000, cloneStack(OreDictionary.getOres("ingotTitanium").get(0)), cloneStack(OreDictionary.getOres("ingotGold").get(0)), cloneStack(ItemInit.INGOT_TITANOGOLD, 1));
         } else {
             RecipeHelper.addShapelessOreRecipe(cloneStack(ItemInit.INGOT_TITANOGOLD, 2), "ingotTitanium", "ingotGold");
             RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.PLATE_TITANOGOLD, 1), "TT", "TT", 'T', "ingotTitanogold");

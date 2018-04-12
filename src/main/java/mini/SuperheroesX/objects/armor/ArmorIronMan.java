@@ -330,6 +330,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
 
             if (stack.getTagCompound() == null) {
                 setDefaultEnergyTag(stack, 0);
+                setDefaultMaxEnergyTag(stack, this.capacity);
             }
             return 1D - (double) stack.getTagCompound().getInteger("Energy") / (double) getMaxEnergyStored(stack);
         }

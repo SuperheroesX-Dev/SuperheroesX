@@ -1,8 +1,10 @@
 package mini.SuperheroesX.util.handlers;
 
+import cofh.thermalexpansion.util.managers.machine.SmelterManager;
 import mini.SuperheroesX.init.BlockInit;
 import mini.SuperheroesX.init.ItemInit;
 import mini.SuperheroesX.init.PotionInit;
+import mini.SuperheroesX.objects.armor.ArmorIronMan;
 import mini.SuperheroesX.util.Reference;
 import mini.SuperheroesX.util.misc.MaterialTripplet;
 import net.minecraft.block.Block;
@@ -16,6 +18,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.ModContainer;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import net.minecraftforge.registries.GameData;
@@ -28,14 +31,25 @@ public class RecipeHandler {
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.MINI_ARC_REACTOR_BASE, 1), "XXX", "B B", "XXX", 'X', "ingotIron", 'B', cloneStack(ItemInit.CIRCUIT, 1));
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.MINI_ARC_REACTOR_MK1, 1), "XXX", "XBX", "XXX", 'X', "ingotPalladium", 'B', cloneStack(ItemInit.MINI_ARC_REACTOR_BASE, 1));
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.MINI_ARC_REACTOR_MK2, 1), "XXX", "XBX", "XXX", 'X', "ingotVibranium", 'B', cloneStack(ItemInit.MINI_ARC_REACTOR_MK1, 1));
-        RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.CIRCUIT, 1), "IGI", "GRG", "IGI", 'I', "ingotIron", 'G', "ingotGold", 'R', "dustRedstone");
-        RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.CHESTPLATE_IRONMAN.setMultiplier(1), 1), "P P", "PAP", "PPP", 'P', "plateTitanogold", 'A', cloneStack(ItemInit.MINI_ARC_REACTOR_MK1, 1));
-        RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.CHESTPLATE_IRONMAN.setMultiplier(2), 1), "P P", "PAP", "PPP", 'P', "plateTitanogold", 'A', cloneStack(ItemInit.MINI_ARC_REACTOR_MK2, 1));
+        RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.CIRCUIT, 1), "RRR", "GGG", 'G', "ingotGold", 'R', "dustRedstone");
+        ArmorIronMan.ChestplateIronMan item = ItemInit.CHESTPLATE_IRONMAN.setMultiplier(1);
+        RecipeHelper.addShapedOreRecipe(ArmorIronMan.ChestplateIronMan.setDefaultMaxEnergyTag(cloneStack(item, 1), item.getArmorMaterial().getDurability(item.getEquipmentSlot())), "P P", "PAP", "PPP", 'P', "plateTitanogold", 'A', cloneStack(ItemInit.MINI_ARC_REACTOR_MK1, 1));
+        item = item.setMultiplier(2);
+        RecipeHelper.addShapedOreRecipe(ArmorIronMan.ChestplateIronMan.setDefaultMaxEnergyTag(cloneStack(item, 1), item.getArmorMaterial().getDurability(item.getEquipmentSlot()) * 2), "P P", "PAP", "PPP", 'P', "plateTitanogold", 'A', cloneStack(ItemInit.MINI_ARC_REACTOR_MK2, 1));
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.PLATE_GOLD, 1), "GG", "GG", 'G', "ingotGold");
-        RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.PLATE_TITANIUM, 1), "TT", "TT", 'T', "ingotTitanium");
-        RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.PLATE_VIBRANIUM, 1), "VV", "VV", 'V', "ingotVibranium");
-        RecipeHelper.addShapelessOreRecipe(cloneStack(ItemInit.INGOT_TITANOGOLD, 2), "ingotTitanium", "ingotGold");
-        RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.PLATE_TITANOGOLD, 1), "TT", "TT", 'T', "ingotTitanogold");
+
+        if (Loader.isModLoaded("thermalexpansion")) {
+            SmelterManager.addAlloyRecipe(1000, cloneStack(OreDictionary.getOres("ingotTitanium").get(0)), cloneStack(OreDictionary.getOres("ingotGold").get(0)), cloneStack(ItemInit.INGOT_TITANOGOLD, 1));
+        } else {
+            RecipeHelper.addShapelessOreRecipe(cloneStack(ItemInit.INGOT_TITANOGOLD, 2), "ingotTitanium", "ingotGold");
+            RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.PLATE_TITANOGOLD, 1), "TT", "TT", 'T', "ingotTitanogold");
+            RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.PLATE_TITANIUM, 1), "TT", "TT", 'T', "ingotTitanium");
+            RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.PLATE_VIBRANIUM, 1), "VV", "VV", 'V', "ingotVibranium");
+        }
+
+
+
+
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.LOGO_KID_FLASH, 1), "TTT", "TST", "TTT", 'T', "ingotTitanium", 'S', cloneStack(ItemInit.SPANDEX_CLOTH_RED, 1));
 
         RecipeHelper.addSmallStorageRecipe(cloneStack(ItemInit.SPANDEX_CLOTH_BLACK, 1), cloneStack(ItemInit.SPANDEX_BLACK, 1));

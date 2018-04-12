@@ -7,6 +7,7 @@ import mini.SuperheroesX.util.interfaces.IHasModel;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -15,7 +16,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -71,6 +75,33 @@ public class ArmorKidFlash extends ItemArmor implements IHasModel
 	        if (player.getActivePotionEffect(potion) == null || player.getActivePotionEffect(potion).getDuration() <= 1) {
 	            player.addPotionEffect(new PotionEffect(potion, duration, amplifier, false, false)); }
 		}
+		
+		@SubscribeEvent
+	    public void WaterWalking(LivingUpdateEvent event)
+	    {
+	        if (event.getEntity() != null && event.getEntity() instanceof EntityPlayer)
+	        {
+	            EntityPlayer player = (EntityPlayer)event.getEntity();
+
+	            World world = player.world;
+
+	            BlockPos playerPos = new BlockPos(player);
+
+	            //If player is on top of water it allows him to stand on the water and also jump / do all things you can do on solid blocks
+	            if (world.getBlockState(playerPos).getBlock() == Blocks.WATER)
+	            {
+	                player.motionY = 0;
+	                player.onGround = true;
+
+	                //Checks if player is under water, and if thats the case it pushes him up
+	                if(player.isInWater())
+	                {
+	                    player.motionY = 0.2;
+	                }
+	            }
+	        }
+	}
+		
 		@Override
         @SideOnly(Side.CLIENT)
         public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {

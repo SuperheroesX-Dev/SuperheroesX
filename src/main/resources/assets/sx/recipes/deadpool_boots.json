@@ -3,12 +3,16 @@
 
     "pattern":
     [
-        "X X",      
+        "XSX",      
         "X X"
     ],
 "key": {
     "X": {
         "item": "sx:black_spandex"
+        },
+    "S": {
+        "item": "sx:ingot_titanium"
+
       }
   },
   "result": {

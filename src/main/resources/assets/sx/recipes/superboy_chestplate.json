@@ -12,10 +12,10 @@
       "item": "minecraft:emerald"
     },
     "R": {
-        "item": "sx:black_spandex"
+        "item": "sx:spandex_cloth_black"
           },
     "T": {
-        "item": "sx:yellow_spandex"
+        "item": "sx:spandex_cloth_yellow"
       }
   },
   "result": {

@@ -12,10 +12,10 @@
       "item": "sx:ingot_titanium"
     },
     "R": {
-        "item": "sx:red_spandex"
+        "item": "sx:spandex_cloth_red"
           },
     "T": {
-        "item": "sx:yellow_spandex"
+        "item": "sx:spandex_cloth_yellow"
       }
   },
   "result": {

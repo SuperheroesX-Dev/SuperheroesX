@@ -12,10 +12,10 @@
       "item": "sx:ingot_titanium"
     },
     "Y": {
-        "item": "sx:yellow_spandex"
+        "item": "sx:spandex_cloth_yellow"
       },
     "S": {
-        "item": "sx:red_spandex"
+        "item": "sx:spandex_cloth_red"
     },
     "L": {
         "item": "sx:kidflash_logo"

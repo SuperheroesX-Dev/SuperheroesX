@@ -45,7 +45,7 @@ public class BlockBase extends Block implements IHasModel, IOreDict<BlockBase> {
     }
 
     @Override
-    public Boolean hasOreDictName() {
+    public boolean hasOreDictName() {
         return this.hasOreDictName;
     }
 }

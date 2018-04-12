@@ -19,11 +19,20 @@ import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = Reference.MODID, name = Reference.NAME, version = Reference.MOD_VERSION, acceptedMinecraftVersions = Reference.MC_VERSION, dependencies = Reference.DEPENDENCIES)
+import static mini.SuperheroesX.SuperheroesX.MOD_VERSION;
+
+@Mod(modid = Reference.MODID, name = Reference.NAME, version = MOD_VERSION, acceptedMinecraftVersions = Reference.MC_VERSION, dependencies = Reference.DEPENDENCIES)
 public class SuperheroesX {
     public static final CreativeTabs SUPERHEROES_X_TAB = new SuperheroesXTab();
+
+
+    public static final String MOD_VERSION = "@VERSION@";
+
+
     @Instance(Reference.MODID)
     public static SuperheroesX INSTANCE;
+
+
     @SidedProxy(modId = Reference.MODID, clientSide = Reference.CLIENT, serverSide = Reference.COMMON)
     public static CommonProxy PROXY;
 

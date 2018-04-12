@@ -117,9 +117,11 @@ public class RegistryHandler {
         }
         for (Block block : BlockInit.BLOCKS) {
             if (block instanceof IOreDict && ((IOreDict) block).hasOreDictName()) {
-                OreDictionary.registerOre(((IOreDict) block).getOreDictName(), block); }
+                OreDictionary.registerOre(((IOreDict) block).getOreDictName(), block);
+            }
         }
     }
+
     public static void registerRecipes() {
 
     }

@@ -90,9 +90,12 @@ public class RecipeHandler {
             GameData.register_impl(recipe);
         }
 
-        public static void addShapedOreRecipe(ItemStack output, Object... input) {
-
+        static void addShapedOreRecipe(ItemStack output, Object... input) {
             ResourceLocation location = getNameForRecipe(output);
+            addShapedOreRecipeWithCustomName(location, output, input);
+        }
+
+        static void addShapedOreRecipeWithCustomName(ResourceLocation location, ItemStack output, Object... input) {
             ShapedOreRecipe recipe = new ShapedOreRecipe(location, output, input);
             recipe.setRegistryName(location);
             GameData.register_impl(recipe);
@@ -339,7 +342,6 @@ public class RecipeHandler {
         static void addBrewing(String potionInName, Item ingredientIn, String potionOutName) {
             addBrewing(new ResourceLocation(Reference.MODID, potionInName), ingredientIn, new ResourceLocation(Reference.MODID, potionOutName));
         }
-
 
     }
 }

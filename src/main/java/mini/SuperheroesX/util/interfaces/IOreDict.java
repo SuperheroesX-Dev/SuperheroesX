@@ -6,7 +6,9 @@ public interface IOreDict<T> {
 
     String getOreDictName();
 
-    Boolean hasOreDictName();
+    default boolean hasOreDictName() {
+        return false;
+    }
 }
 
 

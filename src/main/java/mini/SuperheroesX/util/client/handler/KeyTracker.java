@@ -6,6 +6,7 @@ import mini.SuperheroesX.util.config.Config;
 import mini.SuperheroesX.util.handlers.PacketHandler;
 import mini.SuperheroesX.util.handlers.SyncHandler;
 import mini.SuperheroesX.util.network.message.MessageKeyBind;
+import mini.SuperheroesX.util.network.message.MessageKeyboardSync;
 import mini.SuperheroesX.util.network.message.MessageMouseSync;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
@@ -44,10 +45,6 @@ public class KeyTracker {
 
     private static KeyBinding hoverKey;
 
-    private static KeyBinding chargerKey;
-
-    private static KeyBinding emergencyHoverKey;
-
     private static ArrayList<KeyBinding> keys = new ArrayList<>();
 
     public KeyTracker() {
@@ -57,11 +54,6 @@ public class KeyTracker {
         hoverKey = new KeyBinding(Reference.PREFIX + "keybind.hover", Keyboard.KEY_L, Reference.PREFIX + "category.simplyjetpacks");
         ClientRegistry.registerKeyBinding(hoverKey);
 
-        chargerKey = new KeyBinding(Reference.PREFIX + "keybind.charger", Keyboard.KEY_P, Reference.PREFIX + "category.simplyjetpacks");
-        ClientRegistry.registerKeyBinding(chargerKey);
-
-        emergencyHoverKey = new KeyBinding(Reference.PREFIX + "keybind.emergencyhover", Keyboard.KEY_R, Reference.PREFIX + "category.simplyjetpacks");
-        ClientRegistry.registerKeyBinding(emergencyHoverKey);
     }
 
     @SubscribeEvent
@@ -72,6 +64,7 @@ public class KeyTracker {
 
         for (KeyBinding keyBindings : keys) {
             int button = keyBindings.getKeyCode();
+            System.out.println(button);
             if (button < 0 && keyBindings.isPressed()) {
                 if (chestItem instanceof ChestplateIronMan) {
                     ChestplateIronMan jetpack = (ChestplateIronMan) chestItem;
@@ -120,6 +113,7 @@ public class KeyTracker {
                 lastRightState = rightState;
                 lastRightClickState = rightClickState;
                 PacketHandler.instance.sendToServer(new MessageMouseSync(rightClickState));
+                PacketHandler.instance.sendToServer(new MessageKeyboardSync(flyState, descendState, forwardState, backwardState, leftState, rightState));
                 SyncHandler.processKeyUpdate(mc.player, flyState, descendState, forwardState, backwardState, leftState, rightState);
                 SyncHandler.processMouseUpdate(mc.player, rightClickState);
             }
@@ -136,8 +130,6 @@ public class KeyTracker {
     public static void addKeys() {
         keys.add(engineKey);
         keys.add(hoverKey);
-        keys.add(chargerKey);
-        keys.add(emergencyHoverKey);
     }
 
     public static void updateCustomKeybinds(String flyKeyName, String descendKeyName) {

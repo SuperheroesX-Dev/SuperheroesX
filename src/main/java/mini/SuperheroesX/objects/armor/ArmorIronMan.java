@@ -245,6 +245,11 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         }
 
         @Override
+        public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn) {
+            this.capacity = this.getArmorMaterial().getDurability(this.armorType) * multiplier;
+        }
+
+        @Override
         public void addHUDInfo(List<String> list, ItemStack stack, boolean showFuel, boolean showState) {
             if (showFuel || SuperheroesX.DEBUG) {
                 list.add(this.getHUDEnergyInfo(stack, this));

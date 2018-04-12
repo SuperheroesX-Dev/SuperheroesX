@@ -8,7 +8,7 @@ import net.minecraft.item.Item;
 
 public class ItemBase extends Item implements IHasModel, IOreDict<ItemBase> {
     private String oreDictName;
-    private Boolean hasOreDictName;
+    private boolean hasOreDictName;
 
     public ItemBase(String name)
 	{
@@ -41,7 +41,7 @@ public class ItemBase extends Item implements IHasModel, IOreDict<ItemBase> {
     }
 
     @Override
-    public Boolean hasOreDictName() {
+    public boolean hasOreDictName() {
         return this.hasOreDictName;
     }
 }

@@ -4,7 +4,6 @@ public class Reference
 {
 	public static final String MODID = "sx";
 	public static final String NAME = "Superheroes X";
-    public static final String MOD_VERSION = "@VERSION@";
 	public static final String CLIENT = "mini.SuperheroesX.proxy.ClientProxy";
 	public static final String COMMON = "mini.SuperheroesX.proxy.CommonProxy";
     public static final String PREFIX = MODID + ".";

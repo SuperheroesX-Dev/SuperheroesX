@@ -1,18 +1,22 @@
 package mini.SuperheroesX.util.misc;
 
-public class Element<T> {
+public class Element<O> {
 
-    private T obj;
+    private O obj;
 
     public Element() {
         this.obj = null;
     }
 
-    public T getObj() {
+    public O getObj() {
         return this.obj;
     }
 
-    public void setObj(T obj) {
+    public void setObj(O obj) {
         this.obj = obj;
+    }
+
+    public boolean test() {
+        return obj == null;
     }
 }

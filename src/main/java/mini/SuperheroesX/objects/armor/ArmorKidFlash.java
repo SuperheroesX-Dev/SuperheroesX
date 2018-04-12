@@ -58,10 +58,11 @@ public class ArmorKidFlash extends ItemArmor implements IHasModel
 			 player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 0, 1, true, false));
 			 player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 0, 2, true, false));
 	 }
-
-
-			}
-		
+                if(player.isInWater())
+                {
+                    player.motionY = 0.2;
+                }
+            }		
 		private boolean isWearingFullSet(EntityPlayer player, Item helmetKidFlash, Item chestplateKidFlash, Item leggingsKidFlash,Item bootKidFlash) {
 			return
 					!player.inventory.armorItemInSlot(3).isEmpty() && player.inventory.armorItemInSlot(3).getItem() == helmetKidFlash
@@ -74,32 +75,6 @@ public class ArmorKidFlash extends ItemArmor implements IHasModel
 		private void effectPlayer(EntityPlayer player, Potion potion, int duration, int amplifier) {
 	        if (player.getActivePotionEffect(potion) == null || player.getActivePotionEffect(potion).getDuration() <= 1) {
 	            player.addPotionEffect(new PotionEffect(potion, duration, amplifier, false, false)); }
-		}
-		
-		@SubscribeEvent
-	    public void WaterWalking(LivingUpdateEvent event)
-	    {
-	        if (event.getEntity() != null && event.getEntity() instanceof EntityPlayer)
-	        {
-	            EntityPlayer player = (EntityPlayer)event.getEntity();
-
-	            World world = player.world;
-
-	            BlockPos playerPos = new BlockPos(player);
-
-	            //If player is on top of water it allows him to stand on the water and also jump / do all things you can do on solid blocks
-	            if (world.getBlockState(playerPos).getBlock() == Blocks.WATER)
-	            {
-	                player.motionY = 0;
-	                player.onGround = true;
-
-	                //Checks if player is under water, and if thats the case it pushes him up
-	                if(player.isInWater())
-	                {
-	                    player.motionY = 0.2;
-	                }
-	            }
-	        }
 	}
 		
 		@Override

@@ -31,12 +31,11 @@ public class RecipeHandler {
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.MINI_ARC_REACTOR_BASE, 1), "XXX", "B B", "XXX", 'X', "ingotIron", 'B', cloneStack(ItemInit.CIRCUIT, 1));
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.MINI_ARC_REACTOR_MK1, 1), "XXX", "XBX", "XXX", 'X', "ingotPalladium", 'B', cloneStack(ItemInit.MINI_ARC_REACTOR_BASE, 1));
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.MINI_ARC_REACTOR_MK2, 1), "XXX", "XBX", "XXX", 'X', "ingotVibranium", 'B', cloneStack(ItemInit.MINI_ARC_REACTOR_MK1, 1));
-        RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.CIRCUIT, 1), "RRR", "GGG", 'G', "ingotGold", 'R', "dustRedstone");
+        RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.CIRCUIT, 1), "RRR", "GGG", 'G', "plateGold", 'R', "dustRedstone");
         ArmorIronMan.ChestplateIronMan item = ItemInit.CHESTPLATE_IRONMAN.setMultiplier(1);
         RecipeHelper.addShapedOreRecipe(ArmorIronMan.ChestplateIronMan.setDefaultMaxEnergyTag(cloneStack(item, 1), item.getArmorMaterial().getDurability(item.getEquipmentSlot())), "P P", "PAP", "PPP", 'P', "plateTitanogold", 'A', cloneStack(ItemInit.MINI_ARC_REACTOR_MK1, 1));
         item = item.setMultiplier(2);
         RecipeHelper.addShapedOreRecipe(ArmorIronMan.ChestplateIronMan.setDefaultMaxEnergyTag(cloneStack(item, 1), item.getArmorMaterial().getDurability(item.getEquipmentSlot()) * 2), "P P", "PAP", "PPP", 'P', "plateTitanogold", 'A', cloneStack(ItemInit.MINI_ARC_REACTOR_MK2, 1));
-        RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.PLATE_GOLD, 1), "GG", "GG", 'G', "ingotGold");
 
         if (Loader.isModLoaded("thermalexpansion")) {
             SmelterManager.addAlloyRecipe(1000, cloneStack(OreDictionary.getOres("ingotTitanium").get(0)), cloneStack(OreDictionary.getOres("ingotGold").get(0)), cloneStack(ItemInit.INGOT_TITANOGOLD, 1));
@@ -45,6 +44,7 @@ public class RecipeHandler {
             RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.PLATE_TITANOGOLD, 1), "TT", "TT", 'T', "ingotTitanogold");
             RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.PLATE_TITANIUM, 1), "TT", "TT", 'T', "ingotTitanium");
             RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.PLATE_VIBRANIUM, 1), "VV", "VV", 'V', "ingotVibranium");
+            RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.PLATE_GOLD, 1), "GG", "GG", 'G', "ingotGold");
         }
 
 

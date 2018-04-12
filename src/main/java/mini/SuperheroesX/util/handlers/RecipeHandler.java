@@ -29,13 +29,14 @@ public class RecipeHandler {
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.MINI_ARC_REACTOR_MK1, 1), "XXX", "XBX", "XXX", 'X', "ingotPalladium", 'B', cloneStack(ItemInit.MINI_ARC_REACTOR_BASE, 1));
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.MINI_ARC_REACTOR_MK2, 1), "XXX", "XBX", "XXX", 'X', "ingotVibranium", 'B', cloneStack(ItemInit.MINI_ARC_REACTOR_MK1, 1));
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.CIRCUIT, 1), "IGI", "GRG", "IGI", 'I', "ingotIron", 'G', "ingotGold", 'R', "dustRedstone");
-        RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.CHESTPLATE_IRONMAN, 1), "P P", "PAP", "PPP", 'P', "plateTitanogold", 'A', cloneStack(ItemInit.MINI_ARC_REACTOR_MK1, 1));
+        RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.CHESTPLATE_IRONMAN.setMultiplier(1), 1), "P P", "PAP", "PPP", 'P', "plateTitanogold", 'A', cloneStack(ItemInit.MINI_ARC_REACTOR_MK1, 1));
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.CHESTPLATE_IRONMAN.setMultiplier(2), 1), "P P", "PAP", "PPP", 'P', "plateTitanogold", 'A', cloneStack(ItemInit.MINI_ARC_REACTOR_MK2, 1));
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.PLATE_GOLD, 1), "GG", "GG", 'G', "ingotGold");
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.PLATE_TITANIUM, 1), "TT", "TT", 'T', "ingotTitanium");
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.PLATE_VIBRANIUM, 1), "VV", "VV", 'V', "ingotVibranium");
         RecipeHelper.addShapelessOreRecipe(cloneStack(ItemInit.INGOT_TITANOGOLD, 2), "ingotTitanium", "ingotGold");
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.PLATE_TITANOGOLD, 1), "TT", "TT", 'T', "ingotTitanogold");
+        RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.LOGO_KID_FLASH, 1), "TTT", "TST", "TTT", 'T', "ingotTitanium", 'S', cloneStack(ItemInit.SPANDEX_CLOTH_RED, 1));
 
         RecipeHelper.addSmallStorageRecipe(cloneStack(ItemInit.SPANDEX_CLOTH_BLACK, 1), cloneStack(ItemInit.SPANDEX_BLACK, 1));
         RecipeHelper.addSmallStorageRecipe(cloneStack(ItemInit.SPANDEX_CLOTH_RED, 1), cloneStack(ItemInit.SPANDEX_RED, 1));

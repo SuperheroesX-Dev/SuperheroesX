@@ -64,7 +64,6 @@ public class KeyTracker {
 
         for (KeyBinding keyBindings : keys) {
             int button = keyBindings.getKeyCode();
-            System.out.println(button);
             if (button < 0 && keyBindings.isPressed()) {
                 if (chestItem instanceof ChestplateIronMan) {
                     ChestplateIronMan jetpack = (ChestplateIronMan) chestItem;

@@ -241,13 +241,23 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         public ChestplateIronMan() {
             super("chestplate_ironman", 1, EntityEquipmentSlot.CHEST);
             this.setMultiplier(1);
-            this.capacity = this.getArmorMaterial().getDurability(this.armorType) * this.multiplier;
             setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB);
         }
 
+        public static ItemStack setDefaultMaxEnergyTag(ItemStack container, int maxEnergy) {
+
+            if (!container.hasTagCompound()) {
+                container.setTagCompound(new NBTTagCompound());
+            }
+            container.getTagCompound().setInteger("MaxEnergy", maxEnergy);
+
+            return container;
+        }
+
         @Override
-        public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn) {
-            this.capacity = this.getArmorMaterial().getDurability(this.armorType) * this.multiplier;
+        public void onCreated(ItemStack container, World worldIn, EntityPlayer playerIn) {
+            this.capacity = this.getArmorMaterial().getDurability(this.getEquipmentSlot()) * multiplier;
+            setDefaultMaxEnergyTag(container, this.capacity);
         }
 
         @Override
@@ -278,49 +288,9 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         boolean flag = false;
 
         @Override
-        public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
-            if (cooldown == 0) {
-                if (player.onGround && getEnergyStored(stack) != getMaxEnergyStored(stack)) {
-                    receiveEnergy(stack, 100 * multiplier, false);
-                }
-            } else {
-                cooldown--;
-            }
-            if (ArmorIronMan.fullSetEquipped(player)) {
-                flyUser(player, stack, this, false);
-                if (SyncHandler.isRightClickDown(player)) {
-                    shootEnergyBlast(player, this);
-                }
-                super.onArmorTick(world, player, stack);
-                player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 0, 3, true, false));
-            }
-            if (timer > 20) {
-                for (ItemStack stack1 : player.getArmorInventoryList()) {
-                    if ((!stack1.isEmpty() && !(stack1.getItem() instanceof ArmorIronMan))) {
-                        timer = 0;
-                        flag = true;
-                        player.inventory.removeStackFromSlot(EntityEquipmentSlot.CHEST.getSlotIndex());
-                        player.inventory.addItemStackToInventory(stack);
-                        player.sendStatusMessage(new TextComponentString("You need an empty armor inventory to equip this"), false);
-                        return;
-                    }
-                }
-                Item[] items = {ItemInit.BOOTS_IRONMAN, ItemInit.LEGGINGS_IRONMAN, ItemInit.HELMET_IRONMAN};
-                int[] ints = {0, 1, 3};
-                ItemStack itemStackBuffer;
-                NBTTagCompound nbt;
-                for (int i = 0; i < items.length; i++) {
-                    Item item = items[i];
-                    itemStackBuffer = new ItemStack(item);
-                    itemStackBuffer.addEnchantment(Enchantments.BINDING_CURSE, 1);
-                    itemStackBuffer.addEnchantment(Enchantments.VANISHING_CURSE, 1);
-                    nbt = itemStackBuffer.getTagCompound();
-                    nbt.setInteger("HideFlags", 1);
-                    itemStackBuffer.setTagCompound(nbt);
-                    player.inventory.armorInventory.set(ints[i], itemStackBuffer);
-                }
-            }
-            timer++;
+        public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+            this.capacity = this.getArmorMaterial().getDurability(this.getEquipmentSlot()) * multiplier;
+            setDefaultMaxEnergyTag(stack, this.capacity);
         }
 
         private void shootEnergyBlast(EntityPlayer player, ChestplateIronMan item) {
@@ -408,8 +378,51 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         }
 
         @Override
-        public int getMaxEnergyStored(ItemStack container) {
-            return capacity;
+        public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
+            if (ArmorIronMan.fullSetEquipped(player)) {
+                if (cooldown == 0) {
+                    if (player.onGround && getEnergyStored(stack) != getMaxEnergyStored(stack)) {
+                        receiveEnergy(stack, 100 * this.multiplier, false);
+                    }
+                } else {
+                    cooldown--;
+                }
+                flyUser(player, stack, this, false);
+                if (SyncHandler.isRightClickDown(player)) {
+                    shootEnergyBlast(player, this);
+                }
+                super.onArmorTick(world, player, stack);
+                player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 0, 3, true, false));
+            }
+            if (timer > 20) {
+                for (ItemStack stack1 : player.getArmorInventoryList()) {
+                    if ((!stack1.isEmpty() && !(stack1.getItem() instanceof ArmorIronMan))) {
+                        System.out.println(stack + "" + stack1);
+                        timer = 0;
+                        flag = true;
+                        ItemStack stack2 = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
+                        player.inventory.armorInventory.set(EntityEquipmentSlot.CHEST.getIndex(), ItemStack.EMPTY);
+                        player.inventory.addItemStackToInventory(stack2);
+                        player.sendStatusMessage(new TextComponentString("You need an empty armor inventory to equip this"), false);
+                        return;
+                    }
+                }
+                Item[] items = {ItemInit.BOOTS_IRONMAN, ItemInit.LEGGINGS_IRONMAN, ItemInit.HELMET_IRONMAN};
+                int[] ints = {0, 1, 3};
+                ItemStack itemStackBuffer;
+                NBTTagCompound nbt;
+                for (int i = 0; i < items.length; i++) {
+                    Item item = items[i];
+                    itemStackBuffer = new ItemStack(item);
+                    itemStackBuffer.addEnchantment(Enchantments.BINDING_CURSE, 1);
+                    itemStackBuffer.addEnchantment(Enchantments.VANISHING_CURSE, 1);
+                    nbt = itemStackBuffer.getTagCompound();
+                    nbt.setInteger("HideFlags", 1);
+                    itemStackBuffer.setTagCompound(nbt);
+                    player.inventory.armorInventory.set(ints[i], itemStackBuffer);
+                }
+            }
+            timer++;
         }
 
         public static ItemStack setDefaultEnergyTag(ItemStack container, int energy) {
@@ -420,6 +433,14 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
             container.getTagCompound().setInteger("Energy", energy);
 
             return container;
+        }
+
+        @Override
+        public int getMaxEnergyStored(ItemStack container) {
+            if (container.getTagCompound() == null) {
+                setDefaultMaxEnergyTag(container, capacity);
+            }
+            return container.getTagCompound().getInteger("MaxEnergy");
         }
 
         @Override

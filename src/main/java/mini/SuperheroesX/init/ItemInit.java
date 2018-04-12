@@ -7,6 +7,7 @@ import mini.SuperheroesX.objects.items.ItemBase;
 import mini.SuperheroesX.objects.items.TestItem;
 import mini.SuperheroesX.objects.tools.ToolSword;
 import mini.SuperheroesX.util.Reference;
+import mini.SuperheroesX.util.misc.Element;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -31,7 +32,7 @@ public class ItemInit
     public static final ArmorMaterial ARMOR_ROBIN1 = EnumHelper.addArmorMaterial("armor_robin1", Reference.RESOURCE_PREFIX + "robin1", 370, new int[]{4, 7, 9, 4}, 9, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 2.4F);
 
 
-    public static final Item TEST_ITEM;
+    public static final Element<Item> TEST_ITEM = new Element<>();
 
 	//Items
     public static final Item SPANDEX_RED;
@@ -173,7 +174,7 @@ public class ItemInit
 
 
         if (SuperheroesX.DEBUG) {
-            TEST_ITEM = new TestItem();
+            TEST_ITEM.setObj(new TestItem());
         }
     }
 }

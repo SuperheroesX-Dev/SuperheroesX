@@ -177,15 +177,13 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         @Override
         @SideOnly(Side.CLIENT)
         public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
-               ModelBiped armorModel = null;
+            ModelBiped armorModel;
 
             if (itemStack != null) {
                armorModel = new ModelBiped(0.5F);
 
-               if (armorModel != null) {
-                  armorModel.setModelAttributes(_default);
-                    return armorModel;
-                }
+                armorModel.setModelAttributes(_default);
+                return armorModel;
             }
 
             return super.getArmorModel(entityLiving, itemStack, armorSlot, _default);
@@ -227,7 +225,6 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         private double sprintFuelModifier = 6.0D;
         private double speedVerticalHover = 0.45D;
         private double speedVerticalHoverSlow = 0.0D;
-        private int capacity;
         private int maxTransfer = Integer.MAX_VALUE;
         private int fuelUsage = 10;
         private int energyPerShot = 200;
@@ -235,12 +232,11 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         private float defaultSpeedSideways = 0.21F;
         private float sprintSpeedModifier = 2.4F;
         private float damagePerHit = 5;
-        private int multiplier;
+        public int multiplier;
 
 
-        public ChestplateIronMan() {
-            super("chestplate_ironman", 1, EntityEquipmentSlot.CHEST);
-            this.setMultiplier(1);
+        public ChestplateIronMan(String name) {
+            super("chestplate_ironman" + name, 1, EntityEquipmentSlot.CHEST);
             setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB);
         }
 
@@ -256,8 +252,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
 
         @Override
         public void onCreated(ItemStack container, World worldIn, EntityPlayer playerIn) {
-            this.capacity = this.getArmorMaterial().getDurability(this.getEquipmentSlot()) * multiplier;
-            setDefaultMaxEnergyTag(container, this.capacity);
+            setDefaultMaxEnergyTag(container, getMaxEnergyStored(container));
         }
 
         @Override
@@ -289,8 +284,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
 
         @Override
         public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-            this.capacity = this.getArmorMaterial().getDurability(this.getEquipmentSlot()) * multiplier;
-            setDefaultMaxEnergyTag(stack, this.capacity);
+            setDefaultMaxEnergyTag(stack, this.getArmorMaterial().getDurability(this.getEquipmentSlot()) * multiplier);
         }
 
         private void shootEnergyBlast(EntityPlayer player, ChestplateIronMan item) {
@@ -330,7 +324,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
 
             if (stack.getTagCompound() == null) {
                 setDefaultEnergyTag(stack, 0);
-                setDefaultMaxEnergyTag(stack, this.capacity);
+                setDefaultMaxEnergyTag(stack, this.getArmorMaterial().getDurability(this.getEquipmentSlot()) * multiplier);
             }
             return 1D - (double) stack.getTagCompound().getInteger("Energy") / (double) getMaxEnergyStored(stack);
         }
@@ -439,7 +433,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         @Override
         public int getMaxEnergyStored(ItemStack container) {
             if (container.getTagCompound() == null) {
-                setDefaultMaxEnergyTag(container, capacity);
+                setDefaultMaxEnergyTag(container, this.getArmorMaterial().getDurability(this.getEquipmentSlot()) * multiplier);
             }
             return container.getTagCompound().getInteger("MaxEnergy");
         }
@@ -602,10 +596,6 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
             cooldown = COOLDOWN_MAX;
         }
 
-        public ChestplateIronMan setMultiplier(int multiplier) {
-            this.multiplier = multiplier;
-            return this;
-        }
 
         public static final class StackUtil {
 

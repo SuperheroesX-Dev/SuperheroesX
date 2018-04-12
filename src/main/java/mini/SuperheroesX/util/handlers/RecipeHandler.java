@@ -3,7 +3,6 @@ package mini.SuperheroesX.util.handlers;
 import mini.SuperheroesX.init.BlockInit;
 import mini.SuperheroesX.init.ItemInit;
 import mini.SuperheroesX.init.PotionInit;
-import mini.SuperheroesX.objects.armor.ArmorIronMan;
 import mini.SuperheroesX.util.Reference;
 import mini.SuperheroesX.util.misc.MaterialTripplet;
 import net.minecraft.block.Block;
@@ -32,10 +31,8 @@ public class RecipeHandler {
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.MINI_ARC_REACTOR_MK2, 1), "XXX", "XBX", "XXX", 'X', "ingotVibranium", 'B', cloneStack(ItemInit.MINI_ARC_REACTOR_MK1, 1));
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.CIRCUIT, 1), "RRR", "GGG", 'G', "plateGold", 'R', "dustRedstone");
 
-        ArmorIronMan.ChestplateIronMan item = ItemInit.CHESTPLATE_IRONMAN.setMultiplier(1);
-        RecipeHelper.addShapedOreRecipe(ArmorIronMan.ChestplateIronMan.setDefaultMaxEnergyTag(cloneStack(item, 1), item.getArmorMaterial().getDurability(item.getEquipmentSlot())), "P P", "PAP", "PPP", 'P', "plateTitanogold", 'A', cloneStack(ItemInit.MINI_ARC_REACTOR_MK1, 1));
-        item = item.setMultiplier(2);
-        RecipeHelper.addShapedOreRecipe(ArmorIronMan.ChestplateIronMan.setDefaultMaxEnergyTag(cloneStack(item, 1), item.getArmorMaterial().getDurability(item.getEquipmentSlot()) * 2), "P P", "PAP", "PPP", 'P', "plateTitanogold", 'A', cloneStack(ItemInit.MINI_ARC_REACTOR_MK2, 1));
+        RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.CHESTPLATE_IRONMAN[0], 1), "P P", "PAP", "PPP", 'P', "plateTitanogold", 'A', cloneStack(ItemInit.MINI_ARC_REACTOR_MK1, 1));
+        RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.CHESTPLATE_IRONMAN[1], 1), "P P", "PAP", "PPP", 'P', "plateTitanogold", 'A', cloneStack(ItemInit.MINI_ARC_REACTOR_MK2, 1));
 
         if (Loader.isModLoaded("thermalexpansion")) {
             cofh.thermalexpansion.util.managers.machine.SmelterManager.addAlloyRecipe(1000, cloneStack(OreDictionary.getOres("ingotTitanium").get(0)), cloneStack(OreDictionary.getOres("ingotGold").get(0)), cloneStack(ItemInit.INGOT_TITANOGOLD, 1));

@@ -1,6 +1,5 @@
 package mini.SuperheroesX.init;
 
-import mini.SuperheroesX.objects.blocks.BlockAtomFuser;
 import mini.SuperheroesX.objects.blocks.BlockPalladiumOre;
 import mini.SuperheroesX.objects.blocks.BlockVibraniumOre;
 import net.minecraft.block.Block;

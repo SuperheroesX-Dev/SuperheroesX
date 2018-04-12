@@ -51,7 +51,7 @@ public class MessageIronmanArmorSync implements IMessage, IMessageHandler<Messag
     public void handleMessage(MessageIronmanArmorSync msg, MessageContext ctx) {
 
         Entity entity = FMLClientHandler.instance().getClient().world.getEntityByID(msg.entityId);
-        if (entity != null && entity instanceof EntityLivingBase && entity != FMLClientHandler.instance().getClient().player) {
+        if (entity instanceof EntityLivingBase && entity != FMLClientHandler.instance().getClient().player) {
             if (msg.particleId >= 0) {
                 EnumHandler.ParticleType particle = EnumHandler.ParticleType.values()[msg.particleId];
                 SyncHandler.processIronmanUpdate(msg.entityId, particle);

@@ -7,7 +7,6 @@ import mini.SuperheroesX.util.interfaces.IHasModel;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -16,10 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -80,15 +76,13 @@ public class ArmorKidFlash extends ItemArmor implements IHasModel
 		@Override
         @SideOnly(Side.CLIENT)
         public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
-               ModelBiped armorModel = null;
+            ModelBiped armorModel;
 
             if (itemStack != null) {
                armorModel = new ModelBiped(0.5F);
 
-               if (armorModel != null) {
-                  armorModel.setModelAttributes(_default);
-                    return armorModel;
-                }
+                armorModel.setModelAttributes(_default);
+                return armorModel;
             }
 
             return super.getArmorModel(entityLiving, itemStack, armorSlot, _default);

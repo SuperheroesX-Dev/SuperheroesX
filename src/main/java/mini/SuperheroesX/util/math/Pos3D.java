@@ -12,6 +12,7 @@ import net.minecraft.util.math.*;
  *
  * @author aidancbrady
  */
+@SuppressWarnings("MethodDoesntCallSuperMethod")
 public class Pos3D extends Vec3d {
     public Pos3D() {
         this(0, 0, 0);
@@ -316,6 +317,7 @@ public class Pos3D extends Vec3d {
         return new Pos3D(Math.floor(x), Math.floor(y), Math.floor(z));
     }
 
+    @SuppressWarnings("MethodDoesntCallSuperMethod")
     @Override
     public Pos3D clone() {
         return new Pos3D(x, y, z);

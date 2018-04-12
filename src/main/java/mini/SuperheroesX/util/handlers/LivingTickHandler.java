@@ -1,6 +1,7 @@
 package mini.SuperheroesX.util.handlers;
 
 import mini.SuperheroesX.SuperheroesX;
+import mini.SuperheroesX.init.ItemInit;
 import mini.SuperheroesX.objects.armor.ArmorIronMan;
 import mini.SuperheroesX.util.network.message.MessageIronmanArmorSync;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -39,7 +40,7 @@ public class LivingTickHandler {
             ItemStack armor = evt.getEntityLiving().getItemStackFromSlot(EntityEquipmentSlot.CHEST);
             ArmorIronMan.ChestplateIronMan jetpack = null;
             if (armor != null && armor.getItem() instanceof ArmorIronMan.ChestplateIronMan) {
-                jetpack = new ArmorIronMan.ChestplateIronMan();
+                jetpack = new ArmorIronMan.ChestplateIronMan(ItemInit.CHESTPLATE_IRONMAN[0].getUnlocalizedName());
                 if (jetpack != null) {
                     jetpackState = EnumHandler.ParticleType.DEFAULT;
                 }

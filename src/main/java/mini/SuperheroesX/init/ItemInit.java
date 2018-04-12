@@ -96,7 +96,7 @@ public class ItemInit
     public static final Item BOOTS_ROBIN1;
 
     public static final Item HELMET_IRONMAN;
-    public static final ChestplateIronMan CHESTPLATE_IRONMAN;
+    public static final ChestplateIronMan[] CHESTPLATE_IRONMAN;
     public static final Item LEGGINGS_IRONMAN;
     public static final Item BOOTS_IRONMAN;
 
@@ -121,8 +121,17 @@ public class ItemInit
         BOOTS_BLACKPANTHER = new ArmorBlackPanther("blackpanther_boots", ARMOR_BLACKPANTHER, 1, EntityEquipmentSlot.FEET);
 
         HELMET_IRONMAN = new ArmorIronMan("helmet_ironman", 1, EntityEquipmentSlot.HEAD);
-        ChestplateIronMan tmp = new ChestplateIronMan().setMultiplier(1);
-        CHESTPLATE_IRONMAN = (ChestplateIronMan) ChestplateIronMan.setDefaultMaxEnergyTag(ChestplateIronMan.setDefaultEnergyTag(new ItemStack(tmp, 1), 0), tmp.getArmorMaterial().getDurability(tmp.getEquipmentSlot())).getItem();
+        CHESTPLATE_IRONMAN = new ChestplateIronMan[2];
+        ChestplateIronMan tmp;
+
+        tmp = new ChestplateIronMan("");
+        tmp.multiplier = 1;
+        CHESTPLATE_IRONMAN[0] = (ChestplateIronMan) ChestplateIronMan.setDefaultMaxEnergyTag(ChestplateIronMan.setDefaultEnergyTag(new ItemStack(tmp, 1), 0), tmp.getArmorMaterial().getDurability(tmp.getEquipmentSlot())).getItem();
+
+        tmp = new ChestplateIronMan("_" + 1);
+        tmp.multiplier = 2;
+        CHESTPLATE_IRONMAN[1] = (ChestplateIronMan) ChestplateIronMan.setDefaultMaxEnergyTag(ChestplateIronMan.setDefaultEnergyTag(new ItemStack(tmp, 1), 0), (tmp.getArmorMaterial().getDurability(tmp.getEquipmentSlot()) * 2)).getItem();
+
         LEGGINGS_IRONMAN = new ArmorIronMan("leggings_ironman", 2, EntityEquipmentSlot.LEGS);
         BOOTS_IRONMAN = new ArmorIronMan("boots_ironman", 1, EntityEquipmentSlot.FEET);
 

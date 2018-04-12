@@ -1,7 +1,6 @@
 package mini.SuperheroesX.objects.blocks;
 
 import mini.SuperheroesX.init.BlockInit;
-import mini.SuperheroesX.init.ItemInit;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

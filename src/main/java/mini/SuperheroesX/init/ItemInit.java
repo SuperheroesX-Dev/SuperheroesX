@@ -13,6 +13,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
 
 import java.util.ArrayList;
@@ -120,7 +121,8 @@ public class ItemInit
         BOOTS_BLACKPANTHER = new ArmorBlackPanther("blackpanther_boots", ARMOR_BLACKPANTHER, 1, EntityEquipmentSlot.FEET);
 
         HELMET_IRONMAN = new ArmorIronMan("helmet_ironman", 1, EntityEquipmentSlot.HEAD);
-        CHESTPLATE_IRONMAN = new ChestplateIronMan();
+        ChestplateIronMan tmp = new ChestplateIronMan().setMultiplier(1);
+        CHESTPLATE_IRONMAN = (ChestplateIronMan) ChestplateIronMan.setDefaultMaxEnergyTag(ChestplateIronMan.setDefaultEnergyTag(new ItemStack(tmp, 1), 0), tmp.getArmorMaterial().getDurability(tmp.getEquipmentSlot())).getItem();
         LEGGINGS_IRONMAN = new ArmorIronMan("leggings_ironman", 2, EntityEquipmentSlot.LEGS);
         BOOTS_IRONMAN = new ArmorIronMan("boots_ironman", 1, EntityEquipmentSlot.FEET);
 

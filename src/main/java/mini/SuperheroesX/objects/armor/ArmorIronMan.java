@@ -235,18 +235,19 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         private float defaultSpeedSideways = 0.21F;
         private float sprintSpeedModifier = 2.4F;
         private float damagePerHit = 5;
-        private int multiplier = 1;
+        private int multiplier;
 
 
         public ChestplateIronMan() {
             super("chestplate_ironman", 1, EntityEquipmentSlot.CHEST);
+            this.setMultiplier(1);
             this.capacity = this.getArmorMaterial().getDurability(this.armorType) * multiplier;
             setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB);
         }
 
         @Override
         public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn) {
-            this.capacity = this.getArmorMaterial().getDurability(this.armorType) * multiplier;
+            this.capacity = this.getArmorMaterial().getDurability(this.armorType) * this.multiplier;
         }
 
         @Override

@@ -66,7 +66,7 @@ public class ArmorRobin1 extends ItemArmor implements IHasModel {
         ModelBiped armorModel = null;
 
         if (itemStack != null) {
-            armorModel = new ModelBiped(0.5F);
+            armorModel = new ModelBiped(0.4F);
 
             if (armorModel != null) {
                 armorModel.setModelAttributes(_default);

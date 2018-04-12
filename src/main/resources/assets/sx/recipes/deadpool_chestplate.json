@@ -4,15 +4,18 @@
     "pattern":
     [
         "B B",
-        "XBX",      
+        "XTX",      
         "XBX"
     ],
 "key": {
     "B": {
-      "item": "sx:red_spandex"
+      "item": "sx:spandex_cloth_red"
     },
     "X": {
-        "item": "sx:black_spandex"
+        "item": "sx:spandex_cloth_black" 
+  },
+    "T": {
+        "item": "sx:ingot_titanium"
       }
   },
   "result": {

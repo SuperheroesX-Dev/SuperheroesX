@@ -3,19 +3,21 @@
 
     "pattern":
     [
-        "GTG",    
-        "G G"
+        "TTT",    
+        "TIT"
+        "TTT"
     ],
 "key": {
     "T": {
       "item": "sx:ingot_titanium"
     },
-    "G": {
-        "item": "sx:black_spandex"
+    "I": {
+    
+        "item": "minecraft:iron_sword"
         }
   },
   "result": {
-    "item": "sx:robin1_boots",
+    "item": "sx:deadpool_katana",
      "count": 1
   }
 }

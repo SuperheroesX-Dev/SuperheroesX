@@ -37,6 +37,8 @@ public class RecipeHandler {
         RecipeHelper.addShapelessOreRecipe(cloneStack(ItemInit.INGOT_TITANOGOLD, 2), "ingotTitanium", "ingotGold");
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.PLATE_TITANOGOLD, 1), "TT", "TT", 'T', "ingotTitanogold");
 
+        RecipeHelper.addShapedOreRecipe(cloneStack(null));
+
         RecipeHelper.addShapelessOreRecipe(cloneStack(ItemInit.SPANDEX_BLACK, 1), "string", "string", "string", "dyeBlack");
         RecipeHelper.addShapelessOreRecipe(cloneStack(ItemInit.SPANDEX_GREEN, 1), "string", "string", "string", "dyeGreen");
         RecipeHelper.addShapelessOreRecipe(cloneStack(ItemInit.SPANDEX_RED, 1), "string", "string", "string", "dyeRed");

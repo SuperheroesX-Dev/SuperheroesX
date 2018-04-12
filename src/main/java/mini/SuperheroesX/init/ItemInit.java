@@ -39,6 +39,13 @@ public class ItemInit
     public static final Item SPANDEX_YELLOW;
     public static final Item SPANDEX_WHITE;
     public static final Item SPANDEX_GREEN;
+
+    public static final Item SPANDEX_CLOTH_RED;
+    public static final Item SPANDEX_CLOTH_BLACK;
+    public static final Item SPANDEX_CLOTH_YELLOW;
+    public static final Item SPANDEX_CLOTH_WHITE;
+    public static final Item SPANDEX_CLOTH_GREEN;
+
     public static final Item LOGO_KID_FLASH;
 
 
@@ -59,7 +66,7 @@ public class ItemInit
 
 	
 	//Tools
-    public static final Item KATANA_DEADPOOL = new ToolSword("deadpool_katana", TOOL_DEADPOOL);
+    public static final Item KATANA_DEADPOOL;
 
     //Armor
     public static final Item HELMET_DEADPOOL;
@@ -123,6 +130,8 @@ public class ItemInit
         LEGGINGS_DEADPOOL = new ArmorDeadpool("deadpool_leggings", ARMOR_DEADPOOL, 2, EntityEquipmentSlot.LEGS);
         BOOTS_DEADPOOL = new ArmorDeadpool("deadpool_boots", ARMOR_DEADPOOL, 1, EntityEquipmentSlot.FEET);
 
+        KATANA_DEADPOOL = new ToolSword("deadpool_katana", TOOL_DEADPOOL);
+
 
         //DC
         LOGO_KID_FLASH = new ItemBase("kidflash_logo");
@@ -145,11 +154,17 @@ public class ItemInit
 
 
         //Materials
-        SPANDEX_GREEN = new ItemBase("green_spandex");
-        SPANDEX_WHITE = new ItemBase("white_spandex");
-        SPANDEX_YELLOW = new ItemBase("yellow_spandex");
-        SPANDEX_BLACK = new ItemBase("black_spandex");
-        SPANDEX_RED = new ItemBase("red_spandex");
+        SPANDEX_GREEN = new ItemBase("spandex_green");
+        SPANDEX_WHITE = new ItemBase("spandex_white");
+        SPANDEX_YELLOW = new ItemBase("spandex_yellow");
+        SPANDEX_BLACK = new ItemBase("spandex_black");
+        SPANDEX_RED = new ItemBase("spandex_red");
+
+        SPANDEX_CLOTH_GREEN = new ItemBase("spandex_cloth_green");
+        SPANDEX_CLOTH_WHITE = new ItemBase("spandex_cloth_white");
+        SPANDEX_CLOTH_YELLOW = new ItemBase("spandex_cloth_yellow");
+        SPANDEX_CLOTH_BLACK = new ItemBase("spandex_cloth_black");
+        SPANDEX_CLOTH_RED = new ItemBase("spandex_cloth_red");
 
         INGOT_TITANIUM = new ItemBase("ingot_titanium").setOreDictName("ingotTitanium");
         PLATE_GOLD = new ItemBase("plate_gold").setOreDictName("plateGold");

@@ -34,8 +34,20 @@ public class RecipeHandler {
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.PLATE_GOLD, 1), "GG", "GG", 'G', "ingotGold");
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.PLATE_TITANIUM, 1), "TT", "TT", 'T', "ingotTitanium");
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.PLATE_VIBRANIUM, 1), "VV", "VV", 'V', "ingotVibranium");
-        RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.INGOT_TITANOGOLD, 2), "TG", 'T', "ingotTitanium", 'G', "ingotGold");
+        RecipeHelper.addShapelessOreRecipe(cloneStack(ItemInit.INGOT_TITANOGOLD, 2), "ingotTitanium", "ingotGold");
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.PLATE_TITANOGOLD, 1), "TT", "TT", 'T', "ingotTitanogold");
+
+        RecipeHelper.addSmallStorageRecipe(cloneStack(ItemInit.SPANDEX_CLOTH_BLACK, 1), cloneStack(ItemInit.SPANDEX_BLACK, 1));
+        RecipeHelper.addSmallStorageRecipe(cloneStack(ItemInit.SPANDEX_CLOTH_RED, 1), cloneStack(ItemInit.SPANDEX_RED, 1));
+        RecipeHelper.addSmallStorageRecipe(cloneStack(ItemInit.SPANDEX_CLOTH_GREEN, 1), cloneStack(ItemInit.SPANDEX_GREEN, 1));
+        RecipeHelper.addSmallStorageRecipe(cloneStack(ItemInit.SPANDEX_CLOTH_WHITE, 1), cloneStack(ItemInit.SPANDEX_WHITE, 1));
+        RecipeHelper.addSmallStorageRecipe(cloneStack(ItemInit.SPANDEX_CLOTH_YELLOW, 1), cloneStack(ItemInit.SPANDEX_YELLOW, 1));
+
+        RecipeHelper.addShapelessOreRecipe(cloneStack(ItemInit.SPANDEX_BLACK, 1), "string", "string", "string", "dyeBlack");
+        RecipeHelper.addShapelessOreRecipe(cloneStack(ItemInit.SPANDEX_GREEN, 1), "string", "string", "string", "dyeGreen");
+        RecipeHelper.addShapelessOreRecipe(cloneStack(ItemInit.SPANDEX_RED, 1), "string", "string", "string", "dyeRed");
+        RecipeHelper.addShapelessOreRecipe(cloneStack(ItemInit.SPANDEX_WHITE, 1), "string", "string", "string", "dyeWhite");
+        RecipeHelper.addShapelessOreRecipe(cloneStack(ItemInit.SPANDEX_YELLOW, 1), "string", "string", "string", "dyeYellow");
 
         /* smelting */
         RecipeHelper.addSmelting(BlockInit.ORE_PALLADIUM, cloneStack(ItemInit.INGOT_PALLADIUM, 1), 1F);

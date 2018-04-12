@@ -241,7 +241,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         public ChestplateIronMan() {
             super("chestplate_ironman", 1, EntityEquipmentSlot.CHEST);
             this.setMultiplier(1);
-            this.capacity = this.getArmorMaterial().getDurability(this.armorType) * multiplier;
+            this.capacity = this.getArmorMaterial().getDurability(this.armorType) * this.multiplier;
             setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB);
         }
 

@@ -4,6 +4,7 @@ import mini.SuperheroesX.init.BlockInit;
 import mini.SuperheroesX.init.ItemInit;
 import mini.SuperheroesX.init.PotionInit;
 import mini.SuperheroesX.util.Reference;
+import mini.SuperheroesX.util.integration.TEIntegration;
 import mini.SuperheroesX.util.misc.MaterialTripplet;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -16,7 +17,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.ModContainer;
-import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import net.minecraftforge.registries.GameData;
@@ -35,7 +35,7 @@ public class RecipeHandler {
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.CHESTPLATE_IRONMAN[1], 1), "P P", "PAP", "PPP", 'P', "plateTitanogold", 'A', cloneStack(ItemInit.MINI_ARC_REACTOR_MK2, 1));
 
         if (Loader.isModLoaded("thermalexpansion")) {
-            cofh.thermalexpansion.util.managers.machine.SmelterManager.addAlloyRecipe(1000, cloneStack(OreDictionary.getOres("ingotTitanium").get(0)), cloneStack(OreDictionary.getOres("ingotGold").get(0)), cloneStack(ItemInit.INGOT_TITANOGOLD, 1));
+            TEIntegration.addTERecipes();
         } else {
             RecipeHelper.addShapelessOreRecipe(cloneStack(ItemInit.INGOT_TITANOGOLD, 2), "ingotTitanium", "ingotGold");
             RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.PLATE_TITANOGOLD, 1), "TT", "TT", 'T', "ingotTitanogold");

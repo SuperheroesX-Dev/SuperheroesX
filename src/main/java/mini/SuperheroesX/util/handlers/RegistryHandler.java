@@ -30,83 +30,44 @@ import net.minecraftforge.oredict.OreDictionary;
 
 
 @EventBusSubscriber
-
 public class RegistryHandler {
 
-
-
     @SubscribeEvent
-
     public static void onItemRegister(RegistryEvent.Register<Item> event) {
-
         event.getRegistry().registerAll(ItemInit.ITEMS.toArray(new Item[0]));
-
     }
 
-
-
     @SubscribeEvent
-
     public static void onBlockRegister(RegistryEvent.Register<Block> event) {
-
         event.getRegistry().registerAll(BlockInit.BLOCKS.toArray(new Block[0]));
-
     }
 
-
-
     @SubscribeEvent
-
     public static void registerPotions(RegistryEvent.Register<Potion> event) {
-
         event.getRegistry().registerAll(PotionInit.POTIONS.toArray(new Potion[0]));
-
     }
 
-
-
     @SubscribeEvent
-
     public static void registerPotionTypes(RegistryEvent.Register<PotionType> event) {
-
         PotionInit.POTION_ITEMS.add(new PotionType(new PotionEffect(PotionInit.GLIDE, 3600, 0)).setRegistryName(Reference.MODID, "fly"));
-
         event.getRegistry().registerAll(PotionInit.POTION_ITEMS.toArray(new PotionType[0]));
-
         for (PotionType potion : PotionInit.POTION_ITEMS) {
-
             PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), potion);
-
         }
-
     }
 
-
-
     @SubscribeEvent
-
     public static void onModelRegister(ModelRegistryEvent event) {
-
         for (Item item : ItemInit.ITEMS) {
-
             if (item instanceof IHasModel) {
-
                 ((IHasModel) item).registerModels();
-
             }
-
         }
-
         for (Block block : BlockInit.BLOCKS) {
-
             if (block instanceof IHasModel) {
-
                 ((IHasModel) block).registerModels();
-
             }
-
         }
-
     }
 
     public static void registerOres() {
@@ -122,40 +83,22 @@ public class RegistryHandler {
         }
     }
 
-    public static void registerRecipes() {
-
-    }
-
-
-
     public static void preInitRegistries() {
-
         EntityInit.registerEntities();
-
         RenderHandler.registerEntityRenders();
-
         GameRegistry.registerWorldGenerator(new WorldGenCustomOres(), 0);
 
     }
-
-
 
     public static void initRegistries() {
     	registerOres();
     }
 
-
-
     public static void postInitRegistries() {
-
-        RecipeHandler.addStandardRecipes();
-
     }
 
-
-
+    @SubscribeEvent
     public static void serverRegistries(FMLServerStartingEvent event) {
-
     }
 
 

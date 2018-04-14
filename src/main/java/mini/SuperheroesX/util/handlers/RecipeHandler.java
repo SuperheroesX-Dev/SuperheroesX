@@ -3,6 +3,8 @@ package mini.SuperheroesX.util.handlers;
 import mini.SuperheroesX.init.BlockInit;
 import mini.SuperheroesX.init.ItemInit;
 import mini.SuperheroesX.init.PotionInit;
+import mini.SuperheroesX.objects.blocks.BlockBase;
+import mini.SuperheroesX.objects.items.ItemBase;
 import mini.SuperheroesX.util.Reference;
 import mini.SuperheroesX.util.integration.TEIntegration;
 import mini.SuperheroesX.util.misc.MaterialTripplet;
@@ -44,7 +46,9 @@ public class RecipeHandler {
             RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.PLATE_GOLD, 1), "GG", "GG", 'G', "ingotGold");
         }
 
-
+        RecipeHelper.addTwoWayStorageRecipe((BlockBase) BlockInit.BLOCK_PALLADIUM, (ItemBase) ItemInit.INGOT_PALLADIUM);
+        RecipeHelper.addTwoWayStorageRecipe((BlockBase) BlockInit.BLOCK_VIBRANIUM, (ItemBase) ItemInit.INGOT_VIBRANIUM);
+        RecipeHelper.addTwoWayStorageRecipe((BlockBase) BlockInit.BLOCK_TITANIUM, (ItemBase) ItemInit.INGOT_TITANIUM);
 
 
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.LOGO_KID_FLASH, 1), "TTT", "TST", "TTT", 'T', "ingotTitanium", 'S', cloneStack(ItemInit.SPANDEX_CLOTH_RED, 1));
@@ -192,6 +196,10 @@ public class RecipeHandler {
 
             addStorageRecipe(one, nine_ore);
             addReverseStorageRecipe(nine, one_ore);
+        }
+
+        public static void addTwoWayStorageRecipe(BlockBase block, ItemBase item) {
+            addTwoWayStorageRecipe(cloneStack(block, 1), block.getOreDictName(), cloneStack(item, 1), item.getOreDictName());
         }
 
         public static void addSmallTwoWayStorageRecipe(ItemStack one, ItemStack four) {

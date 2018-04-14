@@ -5,6 +5,7 @@ import mini.SuperheroesX.tabs.SuperheroesXTab;
 import mini.SuperheroesX.util.Reference;
 import mini.SuperheroesX.util.config.Config;
 import mini.SuperheroesX.util.handlers.PacketHandler;
+import mini.SuperheroesX.util.handlers.RecipeHandler;
 import mini.SuperheroesX.util.handlers.RegistryHandler;
 import mini.SuperheroesX.util.handlers.SyncHandler;
 import net.minecraft.creativetab.CreativeTabs;
@@ -60,7 +61,7 @@ public class SuperheroesX {
 
     @EventHandler
     public static void postInit(FMLPostInitializationEvent event) {
-        RegistryHandler.registerRecipes();
+        RecipeHandler.addStandardRecipes();
         RegistryHandler.postInitRegistries();
     }
 

@@ -11,10 +11,14 @@ import static mini.SuperheroesX.util.handlers.RecipeHandler.cloneStack;
 public class TEIntegration {
 
     public static void addTERecipes() {
+        addOredictSmelterRecipe(4000, "ingotTitanium", "ingotGold", cloneStack(ItemInit.INGOT_TITANOGOLD, 1));
 
-        for (ItemStack stack1 : OreDictionary.getOres("ingotTitanium")) {
-            for (ItemStack stack2 : OreDictionary.getOres("ingotGold")) {
-                addSmelterRecipe(4000, cloneStack(stack1, 1), cloneStack(stack2, 1), cloneStack(ItemInit.INGOT_TITANOGOLD, 1), ItemStack.EMPTY, 0);
+    }
+
+    public static void addOredictSmelterRecipe(int energy, String input1, String input2, ItemStack output) {
+        for (ItemStack stack1 : OreDictionary.getOres(input1)) {
+            for (ItemStack stack2 : OreDictionary.getOres(input2)) {
+                addSmelterRecipe(energy, cloneStack(stack1, 1), cloneStack(stack2, 1), output, ItemStack.EMPTY, 0);
             }
         }
     }

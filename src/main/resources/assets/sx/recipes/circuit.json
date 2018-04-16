@@ -12,7 +12,7 @@
       "item": "minecraft:iron_ingot"
     },
     "G": {
-        "item": "minecraft:gold_ingot"
+        "item": "sx:plate_gold"
       },
     "R": {
         "item": "minecraft:redstone"

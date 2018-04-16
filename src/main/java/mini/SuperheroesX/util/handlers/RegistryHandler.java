@@ -97,7 +97,6 @@ public class RegistryHandler {
     public static void postInitRegistries() {
     }
 
-    @SubscribeEvent
     public static void serverRegistries(FMLServerStartingEvent event) {
     }
 

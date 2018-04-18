@@ -7,6 +7,7 @@ buildscript {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
+
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
@@ -46,7 +47,8 @@ repositories {
 }
 
 dependencies {
-    deobfProvided "cofh:ThermalExpansion:1.12.2-5.3.9.9:universal"
+    //deobfProvided "cofh:ThermalExpansion:1.12.2-5.3.9.9:universal"
+    deobfProvided "cofh:RedstoneFlux:1.12-2.0.1.2:universal"
     // compile against the JEI API but do not include it at runtime
     deobfProvided "mezz.jei:jei_${mc_version}:${jei_version}:api"
     // at runtime, use the full JEI jar
@@ -54,7 +56,7 @@ dependencies {
 }
 
 minecraft {
-    version = "1.12.2-14.23.2.2654"
+    version = "1.12.2-14.23.3.2655"
     runDir = "run"
     
     // the mappings can be changed at any time, and must be in the following format.

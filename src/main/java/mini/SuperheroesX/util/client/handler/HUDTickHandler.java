@@ -22,7 +22,7 @@ public class HUDTickHandler {
         if (mc.player != null) {
             if ((mc.currentScreen == null || Config.showHUDWhileChatting && mc.currentScreen instanceof GuiChat) && !mc.gameSettings.hideGUI && !mc.gameSettings.showDebugInfo) {
                 ItemStack chestplate = mc.player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
-                if (chestplate != null && chestplate.getItem() instanceof IHUDInfoProvider) {
+                if (chestplate.getItem() instanceof IHUDInfoProvider) {
                     IHUDInfoProvider provider = (IHUDInfoProvider) chestplate.getItem();
 
                     List<String> info = new ArrayList<String>();
@@ -49,7 +49,7 @@ public class HUDTickHandler {
 
     @SubscribeEvent
     public static void onRenderTick(RenderTickEvent evt) {
-        if (evt.phase == Phase.END && (Config.enableFuelHUD || Config.enableStateHUD)) {
+        if (evt.phase == Phase.END /*&& (Config.enableFuelHUD || Config.enableStateHUD)*/) {
             tickEnd();
         }
     }

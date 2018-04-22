@@ -25,6 +25,7 @@ import org.lwjgl.input.Keyboard;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("Duplicates")
 @Mod.EventBusSubscriber
 public class KeyTracker {
 
@@ -154,10 +155,6 @@ public class KeyTracker {
                     if (keyBindings.getKeyDescription().equals(Reference.PREFIX + "keybind.hover")) {
                         jetpack.toggleState(jetpack.isHoverModeOn(chestStack), chestStack, "hoverMode", ChestplateIronMan.TAG_HOVERMODE_ON, player, true);
                         PacketHandler.instance.sendToServer(new MessageKeyBind(MessageKeyBind.JetpackPacket.HOVER));
-                    }
-                    if (keyBindings.getKeyDescription().equals(Reference.PREFIX + "keybind.emergencyhover")) {
-                        jetpack.toggleState(jetpack.isEHoverModeOn(chestStack), chestStack, "emergencyHoverMode", ChestplateIronMan.TAG_EHOVER_ON, player, true);
-                        PacketHandler.instance.sendToServer(new MessageKeyBind(MessageKeyBind.JetpackPacket.E_HOVER));
                     }
                 }
             }

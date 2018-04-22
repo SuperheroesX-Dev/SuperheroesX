@@ -58,12 +58,7 @@ public class MessageKeyboardSync implements IMessage, IMessageHandler<MessageKey
         EntityPlayerMP entityPlayerMP = ctx.getServerHandler().player;
         WorldServer worldServer = entityPlayerMP.getServerWorld();
 
-        worldServer.addScheduledTask(new Runnable() {
-            @Override
-            public void run() {
-                handleMessage(msg, ctx);
-            }
-        });
+        worldServer.addScheduledTask(() -> handleMessage(msg, ctx));
 
         return null;
     }

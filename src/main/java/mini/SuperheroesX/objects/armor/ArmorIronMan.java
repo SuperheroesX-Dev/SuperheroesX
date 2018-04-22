@@ -241,7 +241,6 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         }
 
         public static ItemStack setDefaultMaxEnergyTag(ItemStack container, int maxEnergy) {
-
             if (!container.hasTagCompound()) {
                 container.setTagCompound(new NBTTagCompound());
             }
@@ -275,7 +274,6 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
 
         @Override
         public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
-
             return super.shouldCauseReequipAnimation(oldStack, newStack, slotChanged) && (slotChanged || getEnergyStored(oldStack) > 0 != getEnergyStored(newStack) > 0);
         }
 
@@ -315,7 +313,6 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
 
         @Override
         public int getRGBDurabilityForDisplay(ItemStack stack) {
-
             return new Color(0x74C6D0).getRGB();
         }
 
@@ -455,8 +452,8 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
                 double currentAccel = this.accelVertical * (user.motionY < 0.3D ? 2.5D : 1.0D);
                 double currentSpeedVertical = this.speedVertical * (user.isInWater() ? 0.4D : 1.0D);
 
-                if (flyKeyDown || hoverMode && !user.onGround) {
-                    item.extractEnergy(stack, (int) (user.isSprinting() ? Math.round(this.fuelUsage * this.sprintFuelModifier) : this.fuelUsage), false);
+                if (flyKeyDown || (hoverMode && !user.onGround)) {
+                    jetpack.extractEnergy(stack, (int) (user.isSprinting() ? Math.round(this.fuelUsage * this.sprintFuelModifier) : this.fuelUsage), false);
 
                     if (item.getEnergyStored(stack) > 0) {
                         if (flyKeyDown) {
@@ -571,7 +568,9 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         }
 
         public void toggleState(boolean on, ItemStack stack, String type, String tag, EntityPlayer player, boolean showInChat) {
-            NBTHelper.setBoolean(stack, tag, !on);
+            if (tag.equals(TAG_HOVERMODE_ON) || tag.equals(TAG_ON))
+                //NBTHelper.setBoolean(stack, tag, !on);
+                stack.getTagCompound().setBoolean(tag, !on);
 
             if (player != null && showInChat) {
                 String color = on ? TextFormatting.RED.toString() : TextFormatting.GREEN.toString();

@@ -48,7 +48,7 @@ public class HUDTickHandler {
     }
 
     @SubscribeEvent
-    public static void onRenderTick(RenderTickEvent evt) {
+    public void onRenderTick(RenderTickEvent evt) {
         if (evt.phase == Phase.END /*&& (Config.enableFuelHUD || Config.enableStateHUD)*/) {
             tickEnd();
         }

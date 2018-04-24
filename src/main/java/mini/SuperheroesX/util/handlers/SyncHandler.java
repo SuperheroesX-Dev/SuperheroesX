@@ -18,6 +18,7 @@ public class SyncHandler {
     private static final Map<EntityPlayer, Boolean> backwardKeyState = new HashMap<EntityPlayer, Boolean>();
     private static final Map<EntityPlayer, Boolean> leftKeyState = new HashMap<EntityPlayer, Boolean>();
     private static final Map<EntityPlayer, Boolean> rightKeyState = new HashMap<EntityPlayer, Boolean>();
+
     private static final Map<EntityPlayer, Boolean> rightClickState = new HashMap<EntityPlayer, Boolean>();
 
     private static final Map<Integer, ParticleType> jetpackState = new HashMap<Integer, ParticleType>();

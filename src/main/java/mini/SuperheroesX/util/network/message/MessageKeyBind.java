@@ -1,6 +1,7 @@
 package mini.SuperheroesX.util.network.message;
 
 import io.netty.buffer.ByteBuf;
+import mini.SuperheroesX.objects.armor.ArmorIronMan.ChestplateIronMan;
 import mini.SuperheroesX.util.handlers.PacketHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -37,12 +38,7 @@ public class MessageKeyBind implements IMessage, IMessageHandler<MessageKeyBind,
         EntityPlayerMP entityPlayerMP = ctx.getServerHandler().player;
         WorldServer worldServer = entityPlayerMP.getServerWorld();
 
-        worldServer.addScheduledTask(new Runnable() {
-            @Override
-            public void run() {
-                handleMessage(msg, ctx);
-            }
-        });
+        worldServer.addScheduledTask(() -> handleMessage(msg, ctx));
 
         return null;
     }
@@ -50,12 +46,22 @@ public class MessageKeyBind implements IMessage, IMessageHandler<MessageKeyBind,
     public void handleMessage(MessageKeyBind msg, MessageContext ctx) {
         EntityPlayer player = PacketHandler.getPlayer(ctx);
         ItemStack stack = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
+        if (msg.packetType == JetpackPacket.ENGINE) {
+            if (stack.getItem() instanceof ChestplateIronMan) {
+                ChestplateIronMan jetpack = (ChestplateIronMan) stack.getItem();
+                ((ChestplateIronMan) stack.getItem()).toggleState(jetpack.isOn(stack), stack, null, ChestplateIronMan.TAG_ON, player, false);
+            }
+        }
+        if (msg.packetType == JetpackPacket.HOVER) {
+            if (stack.getItem() instanceof ChestplateIronMan) {
+                ChestplateIronMan jetpack = (ChestplateIronMan) stack.getItem();
+                ((ChestplateIronMan) stack.getItem()).toggleState(jetpack.isHoverModeOn(stack), stack, null, ChestplateIronMan.TAG_HOVERMODE_ON, player, false);
+            }
+        }
     }
 
     public enum JetpackPacket {
         ENGINE,
-        HOVER,
-        CHARGER,
-        E_HOVER
+        HOVER
     }
 }

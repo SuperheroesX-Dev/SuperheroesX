@@ -16,7 +16,7 @@ public class BlockTitaniumOre extends BlockBase {
         setSoundType(SoundType.STONE);
         setHardness(5.0F);
         setResistance(12.0F);
-        setHarvestLevel("pickaxe", 3);
+        setHarvestLevel("pickaxe", 2);
 
         BlockInit.BLOCKS.add(this);
     }

@@ -7,16 +7,18 @@ import net.minecraft.item.Item;
 
 import java.util.Random;
 
-public class BlockVibraniumOre extends BlockBase
+import mini.SuperheroesX.objects.blocks.BlockBase;
+
+public class BlockPalladium extends BlockBase
 {
 
-	public BlockVibraniumOre(String name, Material material) 
+	public BlockPalladium(String name, Material material) 
 	{
 		
 		super(name, material);
 	
 		setSoundType(SoundType.STONE);
-		setHardness(8.0F);
+		setHardness(7.0F);
 		setResistance(15.0F);
 		setHarvestLevel("pickaxe", 2);
 	}

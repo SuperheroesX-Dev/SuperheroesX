@@ -63,13 +63,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         setUnlocalizedName(name);
         setRegistryName(name);
 
-        if (this instanceof ChestplateIronMan) {
-            ChestplateIronMan tmp = ((ChestplateIronMan) this);
-            tmp.multiplier = 2;
-            ItemInit.ITEMS.add(tmp);
-            tmp.multiplier = 1;
-            ItemInit.ITEMS.add(tmp);
-        } else ItemInit.ITEMS.add(this);
+        ItemInit.ITEMS.add(this);
     }
 
     @Override
@@ -218,6 +212,10 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
 
     @Override
     public void registerModels() {
+        if (this instanceof ChestplateIronMan) {
+            SuperheroesX.PROXY.registerVariantRenderer(this, this.getMetadata(new ItemStack(this)), "chestplate_ironman", "inventory")/*registerItemRenderer(this, 0, "inventory")*/;
+
+        }
         SuperheroesX.PROXY.registerItemRenderer(this, 0, "inventory");
     }
 
@@ -232,13 +230,13 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         private double accelVertical = 0.5D;//0.15D
         private double speedVertical = 0.9D;
         private double sprintFuelModifier = 6.0D;
-        private double speedVerticalHover = 0.45D;
+        private double speedVerticalHover = 0.55D;
         private double speedVerticalHoverSlow = 0.0D;
         private int maxTransfer = Integer.MAX_VALUE;
         private int fuelUsage = 10;
         private int energyPerShot = 200;
         private int cooldown;
-        private float defaultSpeedSideways = 0.21F;
+        private float defaultSpeedSideways = 0.8F;
         private float sprintSpeedModifier = 2.4F;
         private float damagePerHit = 5;
         public int multiplier;
@@ -406,8 +404,38 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
                         timer = 0;
                         flag = true;
                         ItemStack stack2 = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
+                        int count = 0, count2 = 0;
+                        for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
+                            if (player.inventory.getStackInSlot(i).getItem() instanceof ChestplateIronMan) {
+                                count++;
+                            }
+                        }
                         player.inventory.armorInventory.set(EntityEquipmentSlot.CHEST.getIndex(), ItemStack.EMPTY);
-                        player.inventory.addItemStackToInventory(stack2);
+                        for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
+                            if (player.inventory.getStackInSlot(i).getItem() instanceof ChestplateIronMan) {
+                                count2++;
+                            }
+                        }
+                        if ((count - 1) == (count2)) {
+                            player.inventory.addItemStackToInventory(stack2);
+                        }
+                        count2 = 0;
+                        for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
+                            if (player.inventory.getStackInSlot(i).getItem() instanceof ChestplateIronMan) {
+                                count2++;
+                            }
+                        }
+                        if (count > count2) {
+                            while (count > count2) {
+                                player.inventory.addItemStackToInventory(stack2);
+                                count2++;
+                            }
+                        } else if (count < count2) {
+                            while (count < count2) {
+                                player.inventory.removeStackFromSlot(player.inventory.getSlotFor(stack2));
+                                count2--;
+                            }
+                        }
                         player.sendStatusMessage(new TextComponentString("You need an empty armor inventory to equip this"), false);
                         return;
                     }
@@ -607,10 +635,10 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
             cooldown = COOLDOWN_MAX;
         }
 
-        @Override
+        /*@Override
         public int getMetadata(ItemStack stack) {
             return getMultiplier(stack) - 1;
-        }
+        }*/
 
         public void setMultiplier(ItemStack container, int multiplier) {
             if (container.getTagCompound() == null) {
@@ -648,7 +676,11 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         }
 
         public ItemStack getTieredItemStack(int tier) {
-            return setDefaultMaxEnergyTag(setDefaultEnergyTag(setDefaultMultiplierTag(new ItemStack(this, 1), tier), 0), this.getArmorMaterial().getDurability(this.getEquipmentSlot()) * tier);
+            ItemStack stack = new ItemStack(this, 1);
+            setDefaultMaxEnergyTag(setDefaultEnergyTag(setDefaultMultiplierTag(stack, tier), 0), this.getArmorMaterial().getDurability(this.getEquipmentSlot()) * tier);
+            stack.getTagCompound().setBoolean(TAG_HOVERMODE_ON, false);
+            stack.getTagCompound().setBoolean(TAG_ON, true);
+            return stack;
         }
 
         @Override

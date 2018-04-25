@@ -4,6 +4,7 @@ import mini.SuperheroesX.SuperheroesX;
 import mini.SuperheroesX.objects.armor.*;
 import mini.SuperheroesX.objects.armor.ArmorIronMan.ChestplateIronMan;
 import mini.SuperheroesX.objects.items.ItemBase;
+import mini.SuperheroesX.objects.items.ShieldCaptainAmerica;
 import mini.SuperheroesX.objects.items.TestItem;
 import mini.SuperheroesX.objects.tools.ToolSword;
 import mini.SuperheroesX.util.Reference;
@@ -48,6 +49,8 @@ public class ItemInit
 
     public static final Item LOGO_KID_FLASH;
 
+    public static final Item SHIELD_HANDLE;
+
 
     public static final Item INGOT_VIBRANIUM;
     public static final Item INGOT_PALLADIUM;
@@ -61,12 +64,13 @@ public class ItemInit
     public static final Item MINI_ARC_REACTOR_BASE;
     public static final Item MINI_ARC_REACTOR_MK1;
     public static final Item MINI_ARC_REACTOR_MK2;
-
+    public static final Item SHIELD_CAPTAIN_AMERICA_UNCOLORED;
 
 
 	
 	//Tools
     public static final Item KATANA_DEADPOOL;
+    public static final Item SHIELD_CAPTAIN_AMERICA;
 
     //Armor
     public static final Item HELMET_DEADPOOL;
@@ -99,6 +103,7 @@ public class ItemInit
     public static final Item BOOTS_IRONMAN;
 
 
+
     static {
 
 
@@ -120,10 +125,12 @@ public class ItemInit
 
         HELMET_IRONMAN = new ArmorIronMan("helmet_ironman", 1, EntityEquipmentSlot.HEAD);
         CHESTPLATE_IRONMAN = new ChestplateIronMan();//(ChestplateIronMan) ChestplateIronMan.setDefaultMaxEnergyTag(ChestplateIronMan.setDefaultEnergyTag(new ItemStack(tmp, 1), 0), tmp.getArmorMaterial().getDurability(tmp.getEquipmentSlot())).getItem();
-
         LEGGINGS_IRONMAN = new ArmorIronMan("leggings_ironman", 2, EntityEquipmentSlot.LEGS);
         BOOTS_IRONMAN = new ArmorIronMan("boots_ironman", 1, EntityEquipmentSlot.FEET);
 
+        SHIELD_CAPTAIN_AMERICA = new ShieldCaptainAmerica();
+        SHIELD_CAPTAIN_AMERICA_UNCOLORED = new ItemBase("shield_captain_america_uncolored");
+        SHIELD_HANDLE = new ItemBase("shield_handle");
 
         //XMen
         HELMET_DEADPOOL = new ArmorDeadpool("deadpool_helmet", ARMOR_DEADPOOL, 1, EntityEquipmentSlot.HEAD);

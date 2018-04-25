@@ -9,6 +9,7 @@ import mini.SuperheroesX.util.Reference;
 import mini.SuperheroesX.util.integration.TEIntegration;
 import mini.SuperheroesX.util.misc.MaterialTripplet;
 import net.minecraft.block.Block;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;
@@ -33,6 +34,9 @@ public class RecipeHandler {
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.MINI_ARC_REACTOR_MK2, 1), "XXX", "XBX", "XXX", 'X', "ingotVibranium", 'B', cloneStack(ItemInit.MINI_ARC_REACTOR_MK1, 1));
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.CHESTPLATE_IRONMAN.getTieredItemStack(1), 1), "P P", "PAP", "PPP", 'P', "plateTitanogold", 'A', cloneStack(ItemInit.MINI_ARC_REACTOR_MK1, 1));
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.CHESTPLATE_IRONMAN.getTieredItemStack(2), 1), "P P", "PAP", "PPP", 'P', "plateTitanogold", 'A', cloneStack(ItemInit.MINI_ARC_REACTOR_MK2, 1));
+        RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.SHIELD_CAPTAIN_AMERICA_UNCOLORED, 1), "PPP", "PHP", "PPP", 'P', "plateVibranium", 'H', cloneStack(ItemInit.SHIELD_HANDLE, 1));
+        RecipeHelper.addShapedRecipe(cloneStack(ItemInit.SHIELD_HANDLE, 1), "L L", "L L", "L L", 'L', Items.LEATHER);
+        RecipeHelper.addShapelessOreRecipe(cloneStack(ItemInit.SHIELD_CAPTAIN_AMERICA, 1), "dyeBlue", "dyeWhite", "dyeRed", cloneStack(ItemInit.SHIELD_CAPTAIN_AMERICA_UNCOLORED, 1));
 
         if (Loader.isModLoaded("thermalexpansion")) {
             TEIntegration.addTERecipes();

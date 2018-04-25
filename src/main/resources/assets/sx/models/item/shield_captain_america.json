@@ -1,0 +1,14 @@
+{
+  "parent": "mfm:item/shield",
+  "textures": {
+    "layer0": "mfm:items/shield_captain_america"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "blocking": 1
+      },
+      "model": "mfm:item/shield_captain_america_blocking"
+    }
+  ]
+}

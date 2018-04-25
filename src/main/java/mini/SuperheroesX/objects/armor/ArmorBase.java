@@ -32,8 +32,6 @@ public class ArmorBase extends ItemArmor implements IHasModel
 
 		setRegistryName(name);
 
-        setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB);
-
 		
 
 		ItemInit.ITEMS.add(this);

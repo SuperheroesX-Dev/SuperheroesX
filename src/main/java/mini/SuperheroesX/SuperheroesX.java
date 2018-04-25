@@ -1,7 +1,7 @@
 package mini.SuperheroesX;
 
 import mini.SuperheroesX.proxy.CommonProxy;
-import mini.SuperheroesX.tabs.SuperheroesXTab;
+import mini.SuperheroesX.tabs.SuperheroesXTabs;
 import mini.SuperheroesX.util.Reference;
 import mini.SuperheroesX.util.config.Config;
 import mini.SuperheroesX.util.handlers.PacketHandler;
@@ -24,7 +24,9 @@ import static mini.SuperheroesX.SuperheroesX.MOD_VERSION;
 
 @Mod(modid = Reference.MODID, name = Reference.NAME, version = MOD_VERSION, acceptedMinecraftVersions = Reference.MC_VERSION, dependencies = Reference.DEPENDENCIES)
 public class SuperheroesX {
-    public static final CreativeTabs SUPERHEROES_X_TAB = new SuperheroesXTab();
+    public static final CreativeTabs SUPERHEROES_X_TAB_MATERIALS = new SuperheroesXTabs.Materials();
+    public static final CreativeTabs SUPERHEROES_X_TAB_MARVEL = new SuperheroesXTabs.MARVEL();
+    public static final CreativeTabs SUPERHEROES_X_TAB_DC = new SuperheroesXTabs.DC();
 
 
     public static final String MOD_VERSION = "@VERSION@";

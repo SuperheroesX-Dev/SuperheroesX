@@ -14,7 +14,6 @@ public class ItemBase extends Item implements IHasModel, IOreDict<ItemBase> {
 	{
 		setUnlocalizedName(name);
 		setRegistryName(name);
-        setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB);
 		
 		ItemInit.ITEMS.add(this);
 	}

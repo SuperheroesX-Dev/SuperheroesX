@@ -25,7 +25,6 @@ public class ArmorBlackPanther extends ItemArmor implements IHasModel {
 
 			setUnlocalizedName(name);
 			setRegistryName(name);
-        setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB);
 
 			ItemInit.ITEMS.add(this);
 		}

@@ -19,7 +19,7 @@ public class ToolSword extends ItemSword implements IHasModel
 
 		setRegistryName(name);
 
-        setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB);
+        setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
 
 		
 

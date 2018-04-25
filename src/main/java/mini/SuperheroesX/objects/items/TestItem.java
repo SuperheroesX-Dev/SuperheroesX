@@ -1,6 +1,7 @@
 package mini.SuperheroesX.objects.items;
 
 
+import mini.SuperheroesX.SuperheroesX;
 import mini.SuperheroesX.objects.armor.ArmorIronMan;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -12,6 +13,7 @@ import net.minecraft.world.World;
 public class TestItem extends ItemBase {
     public TestItem() {
         super("test");
+        setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
     }
 
     @Override

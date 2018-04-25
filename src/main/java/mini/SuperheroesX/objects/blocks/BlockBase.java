@@ -19,7 +19,7 @@ public class BlockBase extends Block implements IHasModel, IOreDict<BlockBase> {
 		super(material);
 		setUnlocalizedName(name);
 		setRegistryName(name);
-        setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB);
+        setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
 		
 		BlockInit.BLOCKS.add(this);
 		ItemInit.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName())); 

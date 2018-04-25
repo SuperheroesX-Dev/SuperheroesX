@@ -244,7 +244,6 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
 
         public ChestplateIronMan() {
             super("chestplate_ironman", 1, EntityEquipmentSlot.CHEST);
-            setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB);
             this.setHasSubtypes(true);
             this.setMaxDamage(0);
             setMultiplier(new ItemStack(this), this.multiplier < 1 ? 1 : this.multiplier);
@@ -669,7 +668,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         @Override
         @SideOnly(Side.CLIENT)
         public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-            if (tab == SuperheroesX.SUPERHEROES_X_TAB) {
+            if (tab == SuperheroesX.SUPERHEROES_X_TAB_MATERIALS) {
                 items.add(getTieredItemStack(1));
                 items.add(getTieredItemStack(2));
             }

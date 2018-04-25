@@ -24,7 +24,7 @@ public class ArmorRobin1 extends ItemArmor implements IHasModel {
 
         setUnlocalizedName(name);
         setRegistryName(name);
-        setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB);
+        setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
 
         ItemInit.ITEMS.add(this);
     }

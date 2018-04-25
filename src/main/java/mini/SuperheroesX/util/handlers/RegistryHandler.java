@@ -1,15 +1,13 @@
 package mini.SuperheroesX.util.handlers;
 
 
-import mini.SuperheroesX.init.BlockInit;
-import mini.SuperheroesX.init.EntityInit;
-import mini.SuperheroesX.init.ItemInit;
-import mini.SuperheroesX.init.PotionInit;
+import mini.SuperheroesX.init.*;
 import mini.SuperheroesX.util.Reference;
 import mini.SuperheroesX.util.interfaces.IHasModel;
 import mini.SuperheroesX.util.interfaces.IOreDict;
 import mini.SuperheroesX.world.gen.WorldGenCustomOres;
 import net.minecraft.block.Block;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -43,12 +41,17 @@ public class RegistryHandler {
     }
 
     @SubscribeEvent
-    public static void registerPotions(RegistryEvent.Register<Potion> event) {
+    public static void onPotionRegister(RegistryEvent.Register<Potion> event) {
         event.getRegistry().registerAll(PotionInit.POTIONS.toArray(new Potion[0]));
     }
 
     @SubscribeEvent
-    public static void registerPotionTypes(RegistryEvent.Register<PotionType> event) {
+    public static void onEnchantmentRegister(RegistryEvent.Register<Enchantment> event) {
+        event.getRegistry().registerAll(EnchantmentInit.ENCHANTMENTS.toArray(new Enchantment[0]));
+    }
+
+    @SubscribeEvent
+    public static void onPotionTypeRegister(RegistryEvent.Register<PotionType> event) {
         PotionInit.POTION_ITEMS.add(new PotionType(new PotionEffect(PotionInit.GLIDE, 3600, 0)).setRegistryName(Reference.MODID, "fly"));
         event.getRegistry().registerAll(PotionInit.POTION_ITEMS.toArray(new PotionType[0]));
         for (PotionType potion : PotionInit.POTION_ITEMS) {

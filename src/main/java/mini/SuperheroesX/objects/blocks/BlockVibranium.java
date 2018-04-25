@@ -7,10 +7,12 @@ import net.minecraft.item.Item;
 
 import java.util.Random;
 
-public class BlockVibraniumOre extends BlockBase
+import mini.SuperheroesX.objects.blocks.BlockBase;
+
+public class BlockVibranium extends BlockBase
 {
 
-	public BlockVibraniumOre(String name, Material material) 
+	public BlockVibranium(String name, Material material) 
 	{
 		
 		super(name, material);

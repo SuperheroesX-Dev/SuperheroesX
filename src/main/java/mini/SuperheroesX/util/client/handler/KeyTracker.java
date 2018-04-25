@@ -54,7 +54,6 @@ public class KeyTracker {
 
         hoverKey = new KeyBinding(Reference.PREFIX + "keybind.hover", Keyboard.KEY_L, Reference.PREFIX + "category.simplyjetpacks");
         ClientRegistry.registerKeyBinding(hoverKey);
-
     }
 
     @SubscribeEvent
@@ -149,6 +148,7 @@ public class KeyTracker {
                 if (chestItem instanceof ChestplateIronMan) {
                     ChestplateIronMan jetpack = (ChestplateIronMan) chestItem;
                     if (keyBindings.getKeyDescription().equals(Reference.PREFIX + "keybind.engine")) {
+                        System.out.println(jetpack.isOn(chestStack));
                         jetpack.toggleState(jetpack.isOn(chestStack), chestStack, null, ChestplateIronMan.TAG_ON, player, true);
                         PacketHandler.instance.sendToServer(new MessageKeyBind(MessageKeyBind.JetpackPacket.ENGINE));
                     }

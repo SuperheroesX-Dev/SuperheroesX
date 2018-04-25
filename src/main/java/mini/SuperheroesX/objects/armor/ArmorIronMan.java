@@ -15,6 +15,7 @@ import mini.SuperheroesX.util.interfaces.IHUDInfoProvider;
 import mini.SuperheroesX.util.interfaces.IHasModel;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -29,6 +30,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextComponentString;
@@ -61,7 +63,13 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         setUnlocalizedName(name);
         setRegistryName(name);
 
-        ItemInit.ITEMS.add(this);
+        if (this instanceof ChestplateIronMan) {
+            ChestplateIronMan tmp = ((ChestplateIronMan) this);
+            tmp.multiplier = 2;
+            ItemInit.ITEMS.add(tmp);
+            tmp.multiplier = 1;
+            ItemInit.ITEMS.add(tmp);
+        } else ItemInit.ITEMS.add(this);
     }
 
     @Override
@@ -219,6 +227,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         public static final String TAG_HOVERMODE_ON = "HoverModeOn";
         public static final String TAG_ON = "On";
         public static final String TAG_EHOVER_ON = "EHoverOn";
+        public static final String TAG_MULTIPLIER = "Multiplier";
         private static final int COOLDOWN_MAX = 20;
         private double accelVertical = 0.5D;//0.15D
         private double speedVertical = 0.9D;
@@ -235,9 +244,13 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         public int multiplier;
 
 
-        public ChestplateIronMan(String name) {
-            super("chestplate_ironman" + name, 1, EntityEquipmentSlot.CHEST);
+        public ChestplateIronMan() {
+            super("chestplate_ironman", 1, EntityEquipmentSlot.CHEST);
             setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB);
+            this.setHasSubtypes(true);
+            this.setMaxDamage(0);
+            setMultiplier(new ItemStack(this), this.multiplier < 1 ? 1 : this.multiplier);
+            setDefaultMaxEnergyTag(ChestplateIronMan.setDefaultEnergyTag(new ItemStack(this, 1), 0), this.getArmorMaterial().getDurability(this.getEquipmentSlot()));
         }
 
         public static ItemStack setDefaultMaxEnergyTag(ItemStack container, int maxEnergy) {
@@ -282,7 +295,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
 
         @Override
         public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-            setDefaultMaxEnergyTag(stack, this.getArmorMaterial().getDurability(this.getEquipmentSlot()) * multiplier);
+            setDefaultMaxEnergyTag(stack, this.getArmorMaterial().getDurability(this.getEquipmentSlot()) * (getMultiplier(stack)));
         }
 
         private void shootEnergyBlast(EntityPlayer player, ChestplateIronMan item) {
@@ -321,7 +334,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
 
             if (stack.getTagCompound() == null) {
                 setDefaultEnergyTag(stack, 0);
-                setDefaultMaxEnergyTag(stack, this.getArmorMaterial().getDurability(this.getEquipmentSlot()) * multiplier);
+                setDefaultMaxEnergyTag(stack, this.getArmorMaterial().getDurability(this.getEquipmentSlot()) * (getMultiplier(stack)));
             }
             return 1D - (double) stack.getTagCompound().getInteger("Energy") / (double) getMaxEnergyStored(stack);
         }
@@ -374,7 +387,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
             if (ArmorIronMan.fullSetEquipped(player)) {
                 if (cooldown == 0) {
                     if (player.onGround && getEnergyStored(stack) != getMaxEnergyStored(stack)) {
-                        receiveEnergy(stack, 100 * this.multiplier, false);
+                        receiveEnergy(stack, 100 * (this.getMultiplier(stack)), false);
                     }
                 } else {
                     cooldown--;
@@ -430,7 +443,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         @Override
         public int getMaxEnergyStored(ItemStack container) {
             if (container.getTagCompound() == null) {
-                setDefaultMaxEnergyTag(container, this.getArmorMaterial().getDurability(this.getEquipmentSlot()) * multiplier);
+                setDefaultMaxEnergyTag(container, this.getArmorMaterial().getDurability(this.getEquipmentSlot()) * (getMultiplier(container)));
             }
             return container.getTagCompound().getInteger("MaxEnergy");
         }
@@ -569,8 +582,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
 
         public void toggleState(boolean on, ItemStack stack, String type, String tag, EntityPlayer player, boolean showInChat) {
             if (tag.equals(TAG_HOVERMODE_ON) || tag.equals(TAG_ON))
-                //NBTHelper.setBoolean(stack, tag, !on);
-                stack.getTagCompound().setBoolean(tag, !on);
+                NBTHelper.setBoolean(stack, tag, (!on));
 
             if (player != null && showInChat) {
                 String color = on ? TextFormatting.RED.toString() : TextFormatting.GREEN.toString();
@@ -595,6 +607,54 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
             cooldown = COOLDOWN_MAX;
         }
 
+        @Override
+        public int getMetadata(ItemStack stack) {
+            return getMultiplier(stack) - 1;
+        }
+
+        public void setMultiplier(ItemStack container, int multiplier) {
+            if (container.getTagCompound() == null) {
+                setDefaultMultiplierTag(container, 1);
+            }
+            this.multiplier = multiplier;
+            container.getTagCompound().setInteger(TAG_MULTIPLIER, multiplier);
+        }
+
+        public int getMultiplier(ItemStack container) {
+            if (container.getTagCompound() == null) {
+                setDefaultMultiplierTag(container, 1);
+            }
+            int multiplier = container.getTagCompound().getInteger(TAG_MULTIPLIER);
+            this.multiplier = multiplier;
+            return multiplier;
+        }
+
+        private ItemStack setDefaultMultiplierTag(ItemStack container, int multiplier) {
+            if (!container.hasTagCompound()) {
+                container.setTagCompound(new NBTTagCompound());
+            }
+            container.getTagCompound().setInteger(TAG_MULTIPLIER, multiplier);
+            return container;
+        }
+
+        @SuppressWarnings("PointlessArithmeticExpression")
+        @Override
+        @SideOnly(Side.CLIENT)
+        public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+            if (tab == SuperheroesX.SUPERHEROES_X_TAB) {
+                items.add(getTieredItemStack(1));
+                items.add(getTieredItemStack(2));
+            }
+        }
+
+        public ItemStack getTieredItemStack(int tier) {
+            return setDefaultMaxEnergyTag(setDefaultEnergyTag(setDefaultMultiplierTag(new ItemStack(this, 1), tier), 0), this.getArmorMaterial().getDurability(this.getEquipmentSlot()) * tier);
+        }
+
+        @Override
+        public String getUnlocalizedName(ItemStack stack) {
+            return super.getUnlocalizedName(stack) + "_" + getMultiplier(stack);
+        }
 
         public static final class StackUtil {
 

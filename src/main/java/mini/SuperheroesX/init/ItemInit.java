@@ -137,7 +137,7 @@ public class ItemInit
 
         HELMET_IRONMAN = new ArmorIronMan("helmet_ironman", 1, EntityEquipmentSlot.HEAD);
         CHESTPLATE_IRONMAN = (ChestplateIronMan) new ChestplateIronMan().
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);//(ChestplateIronMan) ChestplateIronMan.setDefaultMaxEnergyTag(ChestplateIronMan.setDefaultEnergyTag(new ItemStack(tmp, 1), 0), tmp.getArmorMaterial().getDurability(tmp.getEquipmentSlot())).getItem();
+                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
         LEGGINGS_IRONMAN = new ArmorIronMan("leggings_ironman", 2, EntityEquipmentSlot.LEGS);
         BOOTS_IRONMAN = new ArmorIronMan("boots_ironman", 1, EntityEquipmentSlot.FEET);
 

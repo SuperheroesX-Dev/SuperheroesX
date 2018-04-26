@@ -141,9 +141,12 @@ public class ItemInit
         LEGGINGS_IRONMAN = new ArmorIronMan("leggings_ironman", 2, EntityEquipmentSlot.LEGS);
         BOOTS_IRONMAN = new ArmorIronMan("boots_ironman", 1, EntityEquipmentSlot.FEET);
 
-        SHIELD_CAPTAIN_AMERICA = new ShieldCaptainAmerica().setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-        SHIELD_CAPTAIN_AMERICA_UNCOLORED = new ItemBase("shield_captain_america_uncolored").setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        SHIELD_HANDLE = new ItemBase("shield_handle").setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+        SHIELD_CAPTAIN_AMERICA = new ShieldCaptainAmerica().
+                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+        SHIELD_CAPTAIN_AMERICA_UNCOLORED = new ItemBase("shield_captain_america_uncolored").
+                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+        SHIELD_HANDLE = new ItemBase("shield_handle").
+                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
 
         //XMen
         HELMET_DEADPOOL = new ArmorDeadpool("deadpool_helmet", ARMOR_DEADPOOL, 1, EntityEquipmentSlot.HEAD).

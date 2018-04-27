@@ -1,6 +1,7 @@
 package mini.SuperheroesX.objects.items;
 
 import com.google.common.base.Strings;
+import mini.SuperheroesX.objects.tools.ToolSword;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,13 +20,16 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nullable;
 
-public class ShieldBase extends ItemBase implements IShield {
+@SuppressWarnings("Duplicates")
+public class WeaponizedShield extends ToolSword {
+
     private int blockTime;
     private int enchantability;
     private String repairIngot;
 
-    public ShieldBase(String name, int blockTime, int enchantability, int maxDamage, String repairIngot) {
-        super(name);
+
+    public WeaponizedShield(String name, int blockTime, int enchantability, int maxDamage, String repairIngot, ToolMaterial material) {
+        super(name, material);
         this.blockTime = blockTime;
         this.enchantability = enchantability;
         this.repairIngot = repairIngot;
@@ -83,6 +87,4 @@ public class ShieldBase extends ItemBase implements IShield {
     public int getItemEnchantability() {
         return this.enchantability;
     }
-
-
 }

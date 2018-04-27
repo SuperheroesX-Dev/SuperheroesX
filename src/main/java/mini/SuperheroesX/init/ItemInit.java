@@ -25,7 +25,9 @@ public class ItemInit
     public static final List<Item> ITEMS = new ArrayList<>();
 	
 	//Materials
-	public static final ToolMaterial TOOL_DEADPOOL = EnumHelper.addToolMaterial("tool_deadpool", 0, 10000, 1.0F, 5.0F, 5);
+    public static final ToolMaterial TOOL_DEADPOOL = EnumHelper.addToolMaterial("tool_deadpool", 0, 10000, 1.0F, 5.0F, 5);
+    public static final ToolMaterial MATERIAL_SHIELD_CAPTAIN_AMERICA = EnumHelper.addToolMaterial("MATERIAL_SHIELD_CAPTAIN_AMERICA".toLowerCase(), 0, 0, 1.0F, 5.0F, 10);
+
     public static final ArmorMaterial ARMOR_DEADPOOL = EnumHelper.addArmorMaterial("armor_deadpool", Reference.RESOURCE_PREFIX + "deadpool", 500, new int[]{5, 8, 10, 5}, 10, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 3.0F);
     public static final ArmorMaterial ARMOR_SUPERBOY = EnumHelper.addArmorMaterial("armor_superboy", Reference.RESOURCE_PREFIX + "superboy", 550, new int[]{10, 10, 10}, 12, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 4.0F);
     public static final ArmorMaterial ARMOR_KIDFLASH = EnumHelper.addArmorMaterial("armor_kidflash", Reference.RESOURCE_PREFIX + "kidflash", 400, new int[]{4, 7, 10, 4}, 9, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 2.5F);
@@ -121,7 +123,7 @@ public class ItemInit
                 setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
         PLATE_VIBRANIUM = new ItemBase("plate_vibranium").setOreDictName("plateVibranium").
                 setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        //TODO: dusts
+        //TODO: dusts and nuggets
 
         MINI_ARC_REACTOR_BASE = new ItemBase("mini_arc_reactor_base").
                 setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);

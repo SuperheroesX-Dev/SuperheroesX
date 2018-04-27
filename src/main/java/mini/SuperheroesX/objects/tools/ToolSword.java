@@ -9,34 +9,19 @@ public class ToolSword extends ItemSword implements IHasModel
 
 {
 
-	public ToolSword(String name, ToolMaterial material) 
-
+    public ToolSword(String name, ToolMaterial material)
 	{
-
 		super(material);
 
 		setUnlocalizedName(name);
-
 		setRegistryName(name);
 
-        setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-
-		
-
 		ItemInit.ITEMS.add(this);
-
 	}
-
-
 
 	@Override
-
-	public void registerModels() 
-
+    public void registerModels()
 	{
-
         SuperheroesX.PROXY.registerItemRenderer(this, 0, "inventory");
-
 	}
-
 }

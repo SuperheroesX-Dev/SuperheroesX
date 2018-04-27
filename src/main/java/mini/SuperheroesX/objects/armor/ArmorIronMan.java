@@ -219,7 +219,6 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         SuperheroesX.PROXY.registerItemRenderer(this, 0, "inventory");
     }
 
-
     public static class ChestplateIronMan extends ArmorIronMan implements IEnergyContainerItem, IHUDInfoProvider {
 
         public static final String TAG_HOVERMODE_ON = "HoverModeOn";
@@ -668,15 +667,21 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         @Override
         @SideOnly(Side.CLIENT)
         public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-            if (tab == SuperheroesX.SUPERHEROES_X_TAB_MATERIALS) {
-                items.add(getTieredItemStack(1));
-                items.add(getTieredItemStack(2));
+            if (tab == SuperheroesX.SUPERHEROES_X_TAB_MARVEL) {
+                items.add(getTieredItemStack(1, false));
+                items.add(getTieredItemStack(1, true));
+                items.add(getTieredItemStack(2, false));
+                items.add(getTieredItemStack(2, true));
             }
         }
 
-        public ItemStack getTieredItemStack(int tier) {
+        public ItemStack getTieredItemStack(int tier, boolean full) {
             ItemStack stack = new ItemStack(this, 1);
-            setDefaultMaxEnergyTag(setDefaultEnergyTag(setDefaultMultiplierTag(stack, tier), 0), this.getArmorMaterial().getDurability(this.getEquipmentSlot()) * tier);
+            setDefaultMaxEnergyTag(
+                    setDefaultEnergyTag(
+                            setDefaultMultiplierTag(stack, tier),
+                            full ? this.getArmorMaterial().getDurability(this.getEquipmentSlot()) * tier : 0),
+                    this.getArmorMaterial().getDurability(this.getEquipmentSlot()) * tier);
             stack.getTagCompound().setBoolean(TAG_HOVERMODE_ON, false);
             stack.getTagCompound().setBoolean(TAG_ON, true);
             return stack;

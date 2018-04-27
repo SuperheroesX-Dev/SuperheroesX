@@ -26,7 +26,6 @@ public class ItemInit
 	
 	//Materials
     public static final ToolMaterial TOOL_DEADPOOL = EnumHelper.addToolMaterial("tool_deadpool", 0, 10000, 1.0F, 5.0F, 5);
-    public static final ToolMaterial MATERIAL_SHIELD_CAPTAIN_AMERICA = EnumHelper.addToolMaterial("MATERIAL_SHIELD_CAPTAIN_AMERICA".toLowerCase(), 0, 0, 1.0F, 5.0F, 10);
 
     public static final ArmorMaterial ARMOR_DEADPOOL = EnumHelper.addArmorMaterial("armor_deadpool", Reference.RESOURCE_PREFIX + "deadpool", 500, new int[]{5, 8, 10, 5}, 10, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 3.0F);
     public static final ArmorMaterial ARMOR_SUPERBOY = EnumHelper.addArmorMaterial("armor_superboy", Reference.RESOURCE_PREFIX + "superboy", 550, new int[]{10, 10, 10}, 12, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 4.0F);

@@ -5,8 +5,7 @@ import mini.SuperheroesX.init.ItemInit;
 import mini.SuperheroesX.util.interfaces.IHasModel;
 import net.minecraft.item.ItemSword;
 
-public class ToolSword extends ItemSword implements IHasModel 
-
+public class ToolSword extends ItemSword implements IHasModel
 {
 
     public ToolSword(String name, ToolMaterial material)

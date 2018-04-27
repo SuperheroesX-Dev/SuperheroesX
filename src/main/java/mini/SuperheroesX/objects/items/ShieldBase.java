@@ -19,7 +19,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nullable;
 
-public class ShieldBase extends ItemBase implements IShield {
+public class ShieldBase extends ItemBase {
     private int blockTime;
     private int enchantability;
     private String repairIngot;

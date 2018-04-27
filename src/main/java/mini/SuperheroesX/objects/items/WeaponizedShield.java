@@ -1,90 +1,31 @@
 package mini.SuperheroesX.objects.items;
 
-import com.google.common.base.Strings;
-import mini.SuperheroesX.objects.tools.ToolSword;
-import net.minecraft.block.BlockDispenser;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumAction;
-import net.minecraft.item.IItemPropertyGetter;
-import net.minecraft.item.ItemArmor;
+import com.google.common.collect.Multimap;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.oredict.OreDictionary;
-
-import javax.annotation.Nullable;
 
 @SuppressWarnings("Duplicates")
-public class WeaponizedShield extends ToolSword {
+public class WeaponizedShield extends ShieldBase {
 
-    private int blockTime;
-    private int enchantability;
-    private String repairIngot;
+    private final double attackDamage;
+    private final double attackSpeed;
 
-
-    public WeaponizedShield(String name, int blockTime, int enchantability, int maxDamage, String repairIngot, ToolMaterial material) {
-        super(name, material);
-        this.blockTime = blockTime;
-        this.enchantability = enchantability;
-        this.repairIngot = repairIngot;
-        setMaxStackSize(1);
-        setMaxDamage(maxDamage);
-        addPropertyOverride(new ResourceLocation("blocking"), new IItemPropertyGetter() {
-            @SideOnly(Side.CLIENT)
-            public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
-
-                return entityIn != null && entityIn.isHandActive() && entityIn.getActiveItemStack() == stack ? 1.0F : 0.0F;
-            }
-        });
-        BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(this, ItemArmor.DISPENSER_BEHAVIOR);
+    public WeaponizedShield(String name, int blockTime, double attackDamage, double attackSpeed, int enchantability, int maxDamage, String repairIngot) {
+        super(name, blockTime, enchantability, maxDamage, repairIngot);
+        this.attackDamage = attackDamage;
+        this.attackSpeed = attackSpeed;
     }
 
     @Override
-    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
-        String oreName;
-        int id;
-        int[] ids = OreDictionary.getOreIDs(repair);
-        if (ids != null && ids.length >= 1) {
-            oreName = OreDictionary.getOreName(ids[0]);
-        } else
-            oreName = "";
+    public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
+        Multimap<String, AttributeModifier> multimap = super.getAttributeModifiers(slot, stack);
+        if (slot == EntityEquipmentSlot.MAINHAND) {
+            multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", this.attackDamage, 0));
+            multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", this.attackSpeed, 0));
+        }
 
-        if (Strings.isNullOrEmpty(oreName)) {
-            id = -1;
-        } else
-            id = OreDictionary.getOreID(oreName);
-        return OreDictionary.getOreName(id).equals(this.repairIngot);
-    }
-
-    @Override
-    public EnumAction getItemUseAction(ItemStack stack) {
-        return EnumAction.BLOCK;
-    }
-
-    @Override
-    public int getMaxItemUseDuration(ItemStack stack) {
-        return this.blockTime;
-    }
-
-    @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-        playerIn.setActiveHand(handIn);
-        return new ActionResult<>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
-    }
-
-    @Override
-    public boolean isShield(ItemStack stack, @Nullable EntityLivingBase entity) {
-        return true;
-    }
-
-    @Override
-    public int getItemEnchantability() {
-        return this.enchantability;
+        return multimap;
     }
 }

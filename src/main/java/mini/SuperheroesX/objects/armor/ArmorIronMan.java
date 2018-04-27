@@ -380,60 +380,18 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
 
         @Override
         public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
-            if (ArmorIronMan.fullSetEquipped(player)) {
-                if (cooldown == 0) {
-                    if (player.onGround && getEnergyStored(stack) != getMaxEnergyStored(stack)) {
-                        receiveEnergy(stack, 100 * (this.getMultiplier(stack)), false);
-                    }
-                } else {
-                    cooldown--;
-                }
-                flyUser(player, stack, this, false);
-                if (SyncHandler.isRightClickDown(player)) {
-                    shootEnergyBlast(player, this);
-                }
-                super.onArmorTick(world, player, stack);
-                player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 0, 3, true, false));
-            }
             if (timer > 20) {
                 for (ItemStack stack1 : player.getArmorInventoryList()) {
                     if ((!stack1.isEmpty() && !(stack1.getItem() instanceof ArmorIronMan))) {
                         System.out.println(stack + "" + stack1);
                         timer = 0;
-                        flag = true;
-                        ItemStack stack2 = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
-                        int count = 0, count2 = 0;
-                        for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
-                            if (player.inventory.getStackInSlot(i).getItem() instanceof ChestplateIronMan) {
-                                count++;
-                            }
+                        if (!flag) {
+                            ItemStack chest = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
+                            flag = true;
+                            player.addItemStackToInventory(chest.copy());
+                            chest.setCount(0);
                         }
-                        player.inventory.armorInventory.set(EntityEquipmentSlot.CHEST.getIndex(), ItemStack.EMPTY);
-                        for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
-                            if (player.inventory.getStackInSlot(i).getItem() instanceof ChestplateIronMan) {
-                                count2++;
-                            }
-                        }
-                        if ((count - 1) == (count2)) {
-                            player.inventory.addItemStackToInventory(stack2);
-                        }
-                        count2 = 0;
-                        for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
-                            if (player.inventory.getStackInSlot(i).getItem() instanceof ChestplateIronMan) {
-                                count2++;
-                            }
-                        }
-                        if (count > count2) {
-                            while (count > count2) {
-                                player.inventory.addItemStackToInventory(stack2);
-                                count2++;
-                            }
-                        } else if (count < count2) {
-                            while (count < count2) {
-                                player.inventory.removeStackFromSlot(player.inventory.getSlotFor(stack2));
-                                count2--;
-                            }
-                        }
+
                         player.sendStatusMessage(new TextComponentString("You need an empty armor inventory to equip this"), false);
                         return;
                     }
@@ -454,6 +412,22 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
                 }
             }
             timer++;
+            flag = false;
+            if (ArmorIronMan.fullSetEquipped(player)) {
+                if (cooldown == 0) {
+                    if (player.onGround && getEnergyStored(stack) != getMaxEnergyStored(stack)) {
+                        receiveEnergy(stack, 100 * (this.getMultiplier(stack)), false);
+                    }
+                } else {
+                    cooldown--;
+                }
+                flyUser(player, stack, this, false);
+                if (SyncHandler.isRightClickDown(player)) {
+                    shootEnergyBlast(player, this);
+                }
+                super.onArmorTick(world, player, stack);
+                player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 0, 3, true, false));
+            }
         }
 
         public static ItemStack setDefaultEnergyTag(ItemStack container, int energy) {

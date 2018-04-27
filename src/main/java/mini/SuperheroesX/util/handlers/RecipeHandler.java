@@ -32,8 +32,9 @@ public class RecipeHandler {
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.MINI_ARC_REACTOR_BASE, 1), "XXX", "B B", "XXX", 'X', "ingotIron", 'B', cloneStack(ItemInit.CIRCUIT, 1));
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.MINI_ARC_REACTOR_MK1, 1), "XXX", "XBX", "XXX", 'X', "ingotPalladium", 'B', cloneStack(ItemInit.MINI_ARC_REACTOR_BASE, 1));
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.MINI_ARC_REACTOR_MK2, 1), "XXX", "XBX", "XXX", 'X', "ingotVibranium", 'B', cloneStack(ItemInit.MINI_ARC_REACTOR_MK1, 1));
-        RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.CHESTPLATE_IRONMAN.getTieredItemStack(1), 1), "P P", "PAP", "PPP", 'P', "plateTitanogold", 'A', cloneStack(ItemInit.MINI_ARC_REACTOR_MK1, 1));
-        RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.CHESTPLATE_IRONMAN.getTieredItemStack(2), 1), "P P", "PAP", "PPP", 'P', "plateTitanogold", 'A', cloneStack(ItemInit.MINI_ARC_REACTOR_MK2, 1));
+        RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.CHESTPLATE_IRONMAN.getTieredItemStack(1, false), 1), "P P", "PAP", "PPP", 'P', "plateTitanogold", 'A', cloneStack(ItemInit.MINI_ARC_REACTOR_MK1, 1));
+        RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.CHESTPLATE_IRONMAN.getTieredItemStack(2, false), 1), "P P", "PAP", "PPP", 'P', "plateTitanogold", 'A', cloneStack(ItemInit.MINI_ARC_REACTOR_MK2, 1));
+        RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.CIRCUIT, 1), "RRR", "GGG", 'R', Items.REDSTONE, 'G', "plateGold");
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.SHIELD_CAPTAIN_AMERICA_UNCOLORED, 1), "PPP", "PHP", "PPP", 'P', "plateVibranium", 'H', cloneStack(ItemInit.SHIELD_HANDLE, 1));
         RecipeHelper.addShapedRecipe(cloneStack(ItemInit.SHIELD_HANDLE, 1), "L L", "L L", "L L", 'L', Items.LEATHER);
         RecipeHelper.addShapelessOreRecipe(cloneStack(ItemInit.SHIELD_CAPTAIN_AMERICA, 1), "dyeBlue", "dyeWhite", "dyeRed", cloneStack(ItemInit.SHIELD_CAPTAIN_AMERICA_UNCOLORED, 1));
@@ -53,7 +54,7 @@ public class RecipeHandler {
         RecipeHelper.addTwoWayStorageRecipe((BlockBase) BlockInit.BLOCK_TITANIUM, (ItemBase) ItemInit.INGOT_TITANIUM);
 
 
-        RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.LOGO_KID_FLASH, 1), "TTT", "TST", "TTT", 'T', "ingotTitanium", 'S', cloneStack(ItemInit.SPANDEX_CLOTH_RED, 1));
+        RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.LOGO_KID_FLASH, 1), "TTT", "TST", "TTT", 'T', "plateTitanium", 'S', cloneStack(ItemInit.SPANDEX_CLOTH_RED, 1));
 
         RecipeHelper.addSmallStorageRecipe(cloneStack(ItemInit.SPANDEX_CLOTH_BLACK, 1), cloneStack(ItemInit.SPANDEX_BLACK, 1));
         RecipeHelper.addSmallStorageRecipe(cloneStack(ItemInit.SPANDEX_CLOTH_RED, 1), cloneStack(ItemInit.SPANDEX_RED, 1));

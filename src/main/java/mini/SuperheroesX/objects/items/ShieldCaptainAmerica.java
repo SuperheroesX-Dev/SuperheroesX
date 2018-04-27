@@ -5,12 +5,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import static mini.SuperheroesX.init.ItemInit.MATERIAL_SHIELD_CAPTAIN_AMERICA;
 
 public class ShieldCaptainAmerica extends WeaponizedShield {
 
     public ShieldCaptainAmerica() {
-        super("shield_captain_america", Integer.MAX_VALUE, 10, 0, "", MATERIAL_SHIELD_CAPTAIN_AMERICA);
+        super("shield_captain_america", Integer.MAX_VALUE, 8, -2.4000000953674316D, 10, 0, "");
     }
 
     @SubscribeEvent

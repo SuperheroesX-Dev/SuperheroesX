@@ -1,6 +1,6 @@
 {
-  "parent": "mfm:item/shield_blocking",
+  "parent": "sx:item/shield_blocking",
   "textures": {
-    "layer0": "mfm:items/shield_captain_america"
+    "layer0": "sx:items/shield_captain_america"
   }
 }

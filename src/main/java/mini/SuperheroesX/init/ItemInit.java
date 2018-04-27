@@ -14,6 +14,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -119,6 +121,8 @@ public class ItemInit
                 setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
         PLATE_VIBRANIUM = new ItemBase("plate_vibranium").setOreDictName("plateVibranium").
                 setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+        //TODO: dusts
+
         MINI_ARC_REACTOR_BASE = new ItemBase("mini_arc_reactor_base").
                 setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
         MINI_ARC_REACTOR_MK1 = new ItemBase("mini_arc_reactor_mk1").
@@ -217,9 +221,16 @@ public class ItemInit
         SPANDEX_CLOTH_RED = new ItemBase("spandex_cloth_red").
                 setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
 
+
+        if (!Loader.isModLoaded("thermalfoundation")) {
+            PLATE_GOLD = new ItemBase("plate_gold").setOreDictName("plateGold").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+        } else {
+            PLATE_GOLD = OreDictionary.getOres("plateGold").get(0).getItem();
+        }
+
+
         INGOT_TITANIUM = new ItemBase("ingot_titanium").setOreDictName("ingotTitanium").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        PLATE_GOLD = new ItemBase("plate_gold").setOreDictName("plateGold").
                 setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
         PLATE_TITANIUM = new ItemBase("plate_titanium").setOreDictName("plateTitanium").
                 setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);

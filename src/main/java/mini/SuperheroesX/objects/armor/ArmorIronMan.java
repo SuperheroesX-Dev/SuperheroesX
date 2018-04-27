@@ -380,39 +380,6 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
 
         @Override
         public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
-            if (timer > 20) {
-                for (ItemStack stack1 : player.getArmorInventoryList()) {
-                    if ((!stack1.isEmpty() && !(stack1.getItem() instanceof ArmorIronMan))) {
-                        System.out.println(stack + "" + stack1);
-                        timer = 0;
-                        if (!flag) {
-                            ItemStack chest = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
-                            flag = true;
-                            player.addItemStackToInventory(chest.copy());
-                            chest.setCount(0);
-                        }
-
-                        player.sendStatusMessage(new TextComponentString("You need an empty armor inventory to equip this"), false);
-                        return;
-                    }
-                }
-                Item[] items = {ItemInit.BOOTS_IRONMAN, ItemInit.LEGGINGS_IRONMAN, ItemInit.HELMET_IRONMAN};
-                int[] ints = {0, 1, 3};
-                ItemStack itemStackBuffer;
-                NBTTagCompound nbt;
-                for (int i = 0; i < items.length; i++) {
-                    Item item = items[i];
-                    itemStackBuffer = new ItemStack(item);
-                    itemStackBuffer.addEnchantment(Enchantments.BINDING_CURSE, 1);
-                    itemStackBuffer.addEnchantment(Enchantments.VANISHING_CURSE, 1);
-                    nbt = itemStackBuffer.getTagCompound();
-                    nbt.setInteger("HideFlags", 1);
-                    itemStackBuffer.setTagCompound(nbt);
-                    player.inventory.armorInventory.set(ints[i], itemStackBuffer);
-                }
-            }
-            timer++;
-            flag = false;
             if (ArmorIronMan.fullSetEquipped(player)) {
                 if (cooldown == 0) {
                     if (player.onGround && getEnergyStored(stack) != getMaxEnergyStored(stack)) {
@@ -427,6 +394,42 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
                 }
                 super.onArmorTick(world, player, stack);
                 player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 0, 3, true, false));
+
+            } else {
+                if (timer > 20) {
+                    for (ItemStack stack1 : player.getArmorInventoryList()) {
+                        if ((!stack1.isEmpty() && !(stack1.getItem() instanceof ArmorIronMan))) {
+                            System.out.println(stack + "" + stack1);
+                            timer = 0;
+                            if (!flag) {
+                                ItemStack chest = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
+                                flag = true;
+                                player.addItemStackToInventory(chest.copy());
+                                chest.setCount(0);
+                            }
+
+                            player.sendStatusMessage(new TextComponentString("You need an empty armor inventory to equip this"), false);
+                            return;
+                        }
+                    }
+                    Item[] items = {ItemInit.BOOTS_IRONMAN, ItemInit.LEGGINGS_IRONMAN, ItemInit.HELMET_IRONMAN};
+                    int[] ints = {0, 1, 3};
+                    ItemStack itemStackBuffer;
+                    NBTTagCompound nbt;
+                    for (int i = 0; i < items.length; i++) {
+                        Item item = items[i];
+                        itemStackBuffer = new ItemStack(item);
+                        itemStackBuffer.addEnchantment(Enchantments.BINDING_CURSE, 1);
+                        itemStackBuffer.addEnchantment(Enchantments.VANISHING_CURSE, 1);
+                        nbt = itemStackBuffer.getTagCompound();
+                        nbt.setInteger("HideFlags", 1);
+                        itemStackBuffer.setTagCompound(nbt);
+                        player.inventory.armorInventory.set(ints[i], itemStackBuffer);
+                    }
+                    return;
+                }
+                timer++;
+                flag = false;
             }
         }
 

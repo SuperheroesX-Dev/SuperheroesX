@@ -106,8 +106,15 @@ public class ItemInit
     public static final Item BOOTS_IRONMAN;
 
 
+    //LOGOS
+    public static final Item LOGO_DC;
+    public static final Item LOGO_MARVEL;
+
 
     static {
+
+        LOGO_DC = new ItemBase("logo_dc");
+        LOGO_MARVEL = new ItemBase("logo_marvel");
 
 
         //MARVEL

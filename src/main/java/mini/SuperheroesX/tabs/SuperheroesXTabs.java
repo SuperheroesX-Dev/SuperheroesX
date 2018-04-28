@@ -27,7 +27,7 @@ public abstract class SuperheroesXTabs extends CreativeTabs {
         }
 
         public ItemStack getTabIconItem() {
-            return new ItemStack(ItemInit.HELMET_DEADPOOL);//TODO: change to DC logo or batman's logo
+            return new ItemStack(ItemInit.LOGO_DC);
         }
     }
 
@@ -37,7 +37,7 @@ public abstract class SuperheroesXTabs extends CreativeTabs {
         }
 
         public ItemStack getTabIconItem() {
-            return new ItemStack(ItemInit.HELMET_DEADPOOL);//TODO: change to marvel logo
+            return new ItemStack(ItemInit.LOGO_MARVEL);
         }
     }
 

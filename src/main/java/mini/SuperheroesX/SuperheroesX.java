@@ -24,6 +24,7 @@ import static mini.SuperheroesX.SuperheroesX.MOD_VERSION;
 
 @Mod(modid = Reference.MODID, name = Reference.NAME, version = MOD_VERSION, acceptedMinecraftVersions = Reference.MC_VERSION, dependencies = Reference.DEPENDENCIES)
 public class SuperheroesX {
+
     public static final CreativeTabs SUPERHEROES_X_TAB_MATERIALS = new SuperheroesXTabs.Materials();
     public static final CreativeTabs SUPERHEROES_X_TAB_MARVEL = new SuperheroesXTabs.MARVEL();
     public static final CreativeTabs SUPERHEROES_X_TAB_DC = new SuperheroesXTabs.DC();

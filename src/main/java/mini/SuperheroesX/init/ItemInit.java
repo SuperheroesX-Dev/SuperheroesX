@@ -8,6 +8,7 @@ import mini.SuperheroesX.objects.items.ShieldCaptainAmerica;
 import mini.SuperheroesX.objects.items.TestItem;
 import mini.SuperheroesX.objects.tools.ToolSword;
 import mini.SuperheroesX.util.Reference;
+import mini.SuperheroesX.util.config.Config;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -118,132 +119,207 @@ public class ItemInit
 
 
         //MARVEL
-        //MCU
-        INGOT_PALLADIUM = new ItemBase("ingot_palladium").setOreDictName("ingotPalladium").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        INGOT_VIBRANIUM = new ItemBase("ingot_vibranium").setOreDictName("ingotVibranium").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        INGOT_TITANOGOLD = new ItemBase("ingot_titanogold").setOreDictName("ingotTitanogold").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        PLATE_TITANOGOLD = new ItemBase("plate_titanogold").setOreDictName("plateTitanogold").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        PLATE_VIBRANIUM = new ItemBase("plate_vibranium").setOreDictName("plateVibranium").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        //TODO: dusts and nuggets
-
-        MINI_ARC_REACTOR_BASE = new ItemBase("mini_arc_reactor_base").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        MINI_ARC_REACTOR_MK1 = new ItemBase("mini_arc_reactor_mk1").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        MINI_ARC_REACTOR_MK2 = new ItemBase("mini_arc_reactor_mk2").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-
-        HELMET_BLACKPANTHER = new ArmorBlackPanther("blackpanther_helmet", ARMOR_BLACKPANTHER, 1, EntityEquipmentSlot.HEAD).
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-        CHESTPLATE_BLACKPANTHER = new ArmorBlackPanther("blackpanther_chestplate", ARMOR_BLACKPANTHER, 1, EntityEquipmentSlot.CHEST).
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-        LEGGINGS_BLACKPANTHER = new ArmorBlackPanther("blackpanther_leggings", ARMOR_BLACKPANTHER, 2, EntityEquipmentSlot.LEGS).
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-        BOOTS_BLACKPANTHER = new ArmorBlackPanther("blackpanther_boots", ARMOR_BLACKPANTHER, 1, EntityEquipmentSlot.FEET).
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-
-        HELMET_IRONMAN = new ArmorIronMan("helmet_ironman", 1, EntityEquipmentSlot.HEAD);
-        CHESTPLATE_IRONMAN = (ChestplateIronMan) new ChestplateIronMan().
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-        LEGGINGS_IRONMAN = new ArmorIronMan("leggings_ironman", 2, EntityEquipmentSlot.LEGS);
-        BOOTS_IRONMAN = new ArmorIronMan("boots_ironman", 1, EntityEquipmentSlot.FEET);
-
-        SHIELD_CAPTAIN_AMERICA = new ShieldCaptainAmerica().
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-        SHIELD_CAPTAIN_AMERICA_UNCOLORED = new ItemBase("shield_captain_america_uncolored").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        SHIELD_HANDLE = new ItemBase("shield_handle").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-
-        //XMen
-        HELMET_DEADPOOL = new ArmorDeadpool("deadpool_helmet", ARMOR_DEADPOOL, 1, EntityEquipmentSlot.HEAD).
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-        CHESTPLATE_DEADPOOL = new ArmorDeadpool("deadpool_chestplate", ARMOR_DEADPOOL, 1, EntityEquipmentSlot.CHEST).
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-        LEGGINGS_DEADPOOL = new ArmorDeadpool("deadpool_leggings", ARMOR_DEADPOOL, 2, EntityEquipmentSlot.LEGS).
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-        BOOTS_DEADPOOL = new ArmorDeadpool("deadpool_boots", ARMOR_DEADPOOL, 1, EntityEquipmentSlot.FEET).
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-
-        KATANA_DEADPOOL = new ToolSword("deadpool_katana", TOOL_DEADPOOL).
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-
-
-        //DC
-        LOGO_KID_FLASH = new ItemBase("kidflash_logo").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
-
-        CHESTPLATE_SUPERBOY = new ArmorBase("superboy_chestplate", ARMOR_SUPERBOY, 1, EntityEquipmentSlot.CHEST).
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
-        LEGGINGS_SUPERBOY = new ArmorBase("superboy_leggings", ARMOR_SUPERBOY, 1, EntityEquipmentSlot.LEGS).
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
-        BOOTS_SUPERBOY = new ArmorBase("superboy_boots", ARMOR_SUPERBOY, 1, EntityEquipmentSlot.FEET).
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
-
-        //CW
-        HELMET_KIDFLASH = new ArmorKidFlash("kidflash_helmet", ARMOR_KIDFLASH, 1, EntityEquipmentSlot.HEAD).
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
-        CHESTPLATE_KIDFLASH = new ArmorKidFlash("kidflash_chestplate", ARMOR_KIDFLASH, 1, EntityEquipmentSlot.CHEST).
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
-        LEGGINGS_KIDFLASH = new ArmorKidFlash("kidflash_leggings", ARMOR_KIDFLASH, 2, EntityEquipmentSlot.LEGS).
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
-        BOOTS_KIDFLASH = new ArmorKidFlash("kidflash_boots", ARMOR_KIDFLASH, 1, EntityEquipmentSlot.FEET).
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
-
-        //Teen Titans
-        HELMET_ROBIN1 = new ArmorRobin1("robin1_helmet", ARMOR_ROBIN1, 1, EntityEquipmentSlot.HEAD).
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
-        CHESTPLATE_ROBIN1 = new ArmorRobin1("robin1_chestplate", ARMOR_ROBIN1, 1, EntityEquipmentSlot.CHEST).
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
-        LEGGINGS_ROBIN1 = new ArmorRobin1("robin1_leggings", ARMOR_ROBIN1, 2, EntityEquipmentSlot.LEGS).
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
-        BOOTS_ROBIN1 = new ArmorRobin1("robin1_boots", ARMOR_ROBIN1, 1, EntityEquipmentSlot.FEET).
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
-
-
-        //Materials
-        SPANDEX_GREEN = new ItemBase("spandex_green").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        SPANDEX_WHITE = new ItemBase("spandex_white").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        SPANDEX_YELLOW = new ItemBase("spandex_yellow").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        SPANDEX_BLACK = new ItemBase("spandex_black").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        SPANDEX_RED = new ItemBase("spandex_red").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-
-        SPANDEX_CLOTH_GREEN = new ItemBase("spandex_cloth_green").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        SPANDEX_CLOTH_WHITE = new ItemBase("spandex_cloth_white").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        SPANDEX_CLOTH_YELLOW = new ItemBase("spandex_cloth_yellow").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        SPANDEX_CLOTH_BLACK = new ItemBase("spandex_cloth_black").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        SPANDEX_CLOTH_RED = new ItemBase("spandex_cloth_red").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-
-
-        if (!Loader.isModLoaded("thermalfoundation")) {
-            PLATE_GOLD = new ItemBase("plate_gold").setOreDictName("plateGold").
+        if (Config.marvelItems) {
+            //MCU
+            INGOT_PALLADIUM = new ItemBase("ingot_palladium").setOreDictName("ingotPalladium").
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+            INGOT_VIBRANIUM = new ItemBase("ingot_vibranium").setOreDictName("ingotVibranium").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+            INGOT_TITANOGOLD = new ItemBase("ingot_titanogold").setOreDictName("ingotTitanogold").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+            PLATE_TITANOGOLD = new ItemBase("plate_titanogold").setOreDictName("plateTitanogold").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+            PLATE_VIBRANIUM = new ItemBase("plate_vibranium").setOreDictName("plateVibranium").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+            //TODO: dusts and nuggets
+
+            MINI_ARC_REACTOR_BASE = new ItemBase("mini_arc_reactor_base").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+            MINI_ARC_REACTOR_MK1 = new ItemBase("mini_arc_reactor_mk1").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+            MINI_ARC_REACTOR_MK2 = new ItemBase("mini_arc_reactor_mk2").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+
+            HELMET_BLACKPANTHER = new ArmorBlackPanther("blackpanther_helmet", ARMOR_BLACKPANTHER, 1, EntityEquipmentSlot.HEAD).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+            CHESTPLATE_BLACKPANTHER = new ArmorBlackPanther("blackpanther_chestplate", ARMOR_BLACKPANTHER, 1, EntityEquipmentSlot.CHEST).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+            LEGGINGS_BLACKPANTHER = new ArmorBlackPanther("blackpanther_leggings", ARMOR_BLACKPANTHER, 2, EntityEquipmentSlot.LEGS).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+            BOOTS_BLACKPANTHER = new ArmorBlackPanther("blackpanther_boots", ARMOR_BLACKPANTHER, 1, EntityEquipmentSlot.FEET).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+
+            HELMET_IRONMAN = new ArmorIronMan("helmet_ironman", 1, EntityEquipmentSlot.HEAD);
+            CHESTPLATE_IRONMAN = (ChestplateIronMan) new ChestplateIronMan().
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+            LEGGINGS_IRONMAN = new ArmorIronMan("leggings_ironman", 2, EntityEquipmentSlot.LEGS);
+            BOOTS_IRONMAN = new ArmorIronMan("boots_ironman", 1, EntityEquipmentSlot.FEET);
+
+            SHIELD_CAPTAIN_AMERICA = new ShieldCaptainAmerica().
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+            SHIELD_CAPTAIN_AMERICA_UNCOLORED = new ItemBase("shield_captain_america_uncolored").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+            SHIELD_HANDLE = new ItemBase("shield_handle").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+
+            //XMen
+            HELMET_DEADPOOL = new ArmorDeadpool("deadpool_helmet", ARMOR_DEADPOOL, 1, EntityEquipmentSlot.HEAD).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+            CHESTPLATE_DEADPOOL = new ArmorDeadpool("deadpool_chestplate", ARMOR_DEADPOOL, 1, EntityEquipmentSlot.CHEST).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+            LEGGINGS_DEADPOOL = new ArmorDeadpool("deadpool_leggings", ARMOR_DEADPOOL, 2, EntityEquipmentSlot.LEGS).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+            BOOTS_DEADPOOL = new ArmorDeadpool("deadpool_boots", ARMOR_DEADPOOL, 1, EntityEquipmentSlot.FEET).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+
+            KATANA_DEADPOOL = new ToolSword("deadpool_katana", TOOL_DEADPOOL).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
         } else {
-            PLATE_GOLD = OreDictionary.getOres("plateGold").get(0).getItem();
+            INGOT_PALLADIUM = null;
+            INGOT_VIBRANIUM = null;
+            INGOT_TITANOGOLD = null;
+            PLATE_TITANOGOLD = null;
+            PLATE_VIBRANIUM = null;
+            //TODO: dusts and nuggets
+
+            MINI_ARC_REACTOR_BASE = null;
+            MINI_ARC_REACTOR_MK1 = null;
+            MINI_ARC_REACTOR_MK2 = null;
+
+            HELMET_BLACKPANTHER = null;
+            CHESTPLATE_BLACKPANTHER = null;
+            LEGGINGS_BLACKPANTHER = null;
+            BOOTS_BLACKPANTHER = null;
+
+            HELMET_IRONMAN = null;
+            CHESTPLATE_IRONMAN = null;
+            LEGGINGS_IRONMAN = null;
+            BOOTS_IRONMAN = null;
+
+            SHIELD_CAPTAIN_AMERICA = null;
+            SHIELD_CAPTAIN_AMERICA_UNCOLORED = null;
+            SHIELD_HANDLE = null;
+
+            //XMen
+            HELMET_DEADPOOL = null;
+            CHESTPLATE_DEADPOOL = null;
+            LEGGINGS_DEADPOOL = null;
+            BOOTS_DEADPOOL = null;
+
+            KATANA_DEADPOOL = null;
         }
 
+        //DC
+        if (Config.dcItems) {
+            LOGO_KID_FLASH = new ItemBase("kidflash_logo").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
 
-        INGOT_TITANIUM = new ItemBase("ingot_titanium").setOreDictName("ingotTitanium").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        PLATE_TITANIUM = new ItemBase("plate_titanium").setOreDictName("plateTitanium").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        CIRCUIT = new ItemBase("circuit").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+            CHESTPLATE_SUPERBOY = new ArmorBase("superboy_chestplate", ARMOR_SUPERBOY, 1, EntityEquipmentSlot.CHEST).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
+            LEGGINGS_SUPERBOY = new ArmorBase("superboy_leggings", ARMOR_SUPERBOY, 1, EntityEquipmentSlot.LEGS).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
+            BOOTS_SUPERBOY = new ArmorBase("superboy_boots", ARMOR_SUPERBOY, 1, EntityEquipmentSlot.FEET).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
+
+            //CW
+            HELMET_KIDFLASH = new ArmorKidFlash("kidflash_helmet", ARMOR_KIDFLASH, 1, EntityEquipmentSlot.HEAD).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
+            CHESTPLATE_KIDFLASH = new ArmorKidFlash("kidflash_chestplate", ARMOR_KIDFLASH, 1, EntityEquipmentSlot.CHEST).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
+            LEGGINGS_KIDFLASH = new ArmorKidFlash("kidflash_leggings", ARMOR_KIDFLASH, 2, EntityEquipmentSlot.LEGS).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
+            BOOTS_KIDFLASH = new ArmorKidFlash("kidflash_boots", ARMOR_KIDFLASH, 1, EntityEquipmentSlot.FEET).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
+
+            //Teen Titans
+            HELMET_ROBIN1 = new ArmorRobin1("robin1_helmet", ARMOR_ROBIN1, 1, EntityEquipmentSlot.HEAD).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
+            CHESTPLATE_ROBIN1 = new ArmorRobin1("robin1_chestplate", ARMOR_ROBIN1, 1, EntityEquipmentSlot.CHEST).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
+            LEGGINGS_ROBIN1 = new ArmorRobin1("robin1_leggings", ARMOR_ROBIN1, 2, EntityEquipmentSlot.LEGS).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
+            BOOTS_ROBIN1 = new ArmorRobin1("robin1_boots", ARMOR_ROBIN1, 1, EntityEquipmentSlot.FEET).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
+        } else {
+            LOGO_KID_FLASH = null;
+
+            CHESTPLATE_SUPERBOY = null;
+            LEGGINGS_SUPERBOY = null;
+            BOOTS_SUPERBOY = null;
+
+            //CW
+            HELMET_KIDFLASH = null;
+            CHESTPLATE_KIDFLASH = null;
+            LEGGINGS_KIDFLASH = null;
+            BOOTS_KIDFLASH = null;
+
+            //Teen Titans
+            HELMET_ROBIN1 = null;
+            CHESTPLATE_ROBIN1 = null;
+            LEGGINGS_ROBIN1 = null;
+            BOOTS_ROBIN1 = null;
+        }
+
+        //Materials
+        if (Config.marvelItems||Config.dcItems) {
+            SPANDEX_GREEN = new ItemBase("spandex_green").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+            SPANDEX_WHITE = new ItemBase("spandex_white").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+            SPANDEX_YELLOW = new ItemBase("spandex_yellow").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+            SPANDEX_BLACK = new ItemBase("spandex_black").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+            SPANDEX_RED = new ItemBase("spandex_red").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+
+            SPANDEX_CLOTH_GREEN = new ItemBase("spandex_cloth_green").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+            SPANDEX_CLOTH_WHITE = new ItemBase("spandex_cloth_white").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+            SPANDEX_CLOTH_YELLOW = new ItemBase("spandex_cloth_yellow").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+            SPANDEX_CLOTH_BLACK = new ItemBase("spandex_cloth_black").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+            SPANDEX_CLOTH_RED = new ItemBase("spandex_cloth_red").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+
+
+            if (!Loader.isModLoaded("thermalfoundation")) {
+                PLATE_GOLD = new ItemBase("plate_gold").setOreDictName("plateGold").
+                        setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+            } else {
+                PLATE_GOLD = OreDictionary.getOres("plateGold").get(0).getItem();
+            }
+
+
+            INGOT_TITANIUM = new ItemBase("ingot_titanium").setOreDictName("ingotTitanium").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+            PLATE_TITANIUM = new ItemBase("plate_titanium").setOreDictName("plateTitanium").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+            CIRCUIT = new ItemBase("circuit").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+        } else {
+            SPANDEX_GREEN = null;
+            SPANDEX_WHITE = null;
+            SPANDEX_YELLOW = null;
+            SPANDEX_BLACK = null;
+            SPANDEX_RED = null;
+
+            SPANDEX_CLOTH_GREEN = null;
+            SPANDEX_CLOTH_WHITE = null;
+            SPANDEX_CLOTH_YELLOW = null;
+            SPANDEX_CLOTH_BLACK = null;
+            SPANDEX_CLOTH_RED = null;
+
+
+            PLATE_GOLD = null;
+
+
+            INGOT_TITANIUM = null;
+            PLATE_TITANIUM = null;
+            CIRCUIT = null;
+        }
 
 
         if (SuperheroesX.DEBUG) {

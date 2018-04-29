@@ -9,7 +9,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderKryptonian extends RenderLiving<EntityKryptonian>
 {
-	public static final ResourceLocation TEXTURES = new ResourceLocation(Reference.MODID + ":textures/entity/kryptonian.png");
+    public static final ResourceLocation TEXTURES = new ResourceLocation(Reference.MODID + ":textures/entitys/kryptonian.png");
 	
 	public RenderKryptonian(RenderManager manager) 
 	{

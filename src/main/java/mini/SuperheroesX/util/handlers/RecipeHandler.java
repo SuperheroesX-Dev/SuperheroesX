@@ -3,6 +3,7 @@ package mini.SuperheroesX.util.handlers;
 import mini.SuperheroesX.init.BlockInit;
 import mini.SuperheroesX.init.ItemInit;
 import mini.SuperheroesX.init.PotionInit;
+import mini.SuperheroesX.objects.armor.ArmorBase;
 import mini.SuperheroesX.objects.blocks.BlockBase;
 import mini.SuperheroesX.objects.items.ItemBase;
 import mini.SuperheroesX.util.Reference;
@@ -20,6 +21,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.ModContainer;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import net.minecraftforge.registries.GameData;
@@ -39,6 +41,7 @@ public class RecipeHandler {
         RecipeHelper.addShapedRecipe(cloneStack(ItemInit.SHIELD_HANDLE, 1), "L L", "L L", "L L", 'L', Items.LEATHER);
         RecipeHelper.addShapelessOreRecipe(cloneStack(ItemInit.SHIELD_CAPTAIN_AMERICA, 1), "dyeBlue", "dyeWhite", "dyeRed", cloneStack(ItemInit.SHIELD_CAPTAIN_AMERICA_UNCOLORED, 1));
 
+
         if (Loader.isModLoaded("thermalexpansion")) {
             TEIntegration.addTERecipes();
         } else {
@@ -49,10 +52,16 @@ public class RecipeHandler {
             RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.PLATE_GOLD, 1), "GG", "GG", 'G', "ingotGold");
         }
 
-        RecipeHelper.addTwoWayStorageRecipe((BlockBase) BlockInit.BLOCK_PALLADIUM, (ItemBase) ItemInit.INGOT_PALLADIUM);
-        RecipeHelper.addTwoWayStorageRecipe((BlockBase) BlockInit.BLOCK_VIBRANIUM, (ItemBase) ItemInit.INGOT_VIBRANIUM);
-        RecipeHelper.addTwoWayStorageRecipe((BlockBase) BlockInit.BLOCK_TITANIUM, (ItemBase) ItemInit.INGOT_TITANIUM);
+        RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.CLOTH, 1), "SSS", "S S", "SSS", 'S', cloneStack(Items.STRING, 1));
+        RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.STRENGTHENED_CLOTH, 1), "CCC", "ITI", "CCC", 'C', cloneStack(ItemInit.CLOTH, 1), 'I', "ingotIron", 'T', "ingotTitanium");
 
+        RecipeHelper.addArmorRecipe(ItemInit.ARMOR_CAPTAIN_AMERICA, cloneStack(ItemInit.STRENGTHENED_CLOTH, 1));
+
+
+        RecipeHelper.addTwoWayStorageRecipe((BlockBase) BlockInit.BLOCK_VIBRANIUM, (ItemBase) ItemInit.INGOT_VIBRANIUM);
+
+        RecipeHelper.addMaterialStorageRecipe(new MaterialTripplet(BlockInit.BLOCK_PALLADIUM, ItemInit.INGOT_PALLADIUM, ItemInit.NUGGET_PALLADIUM));
+        RecipeHelper.addMaterialStorageRecipe(new MaterialTripplet(BlockInit.BLOCK_TITANIUM, ItemInit.INGOT_TITANIUM, ItemInit.NUGGET_TITANIUM));
 
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.LOGO_KID_FLASH, 1), "TTT", "TST", "TTT", 'T', "plateTitanium", 'S', cloneStack(ItemInit.SPANDEX_CLOTH_RED, 1));
 
@@ -72,6 +81,9 @@ public class RecipeHandler {
         RecipeHelper.addSmelting(BlockInit.ORE_PALLADIUM, cloneStack(ItemInit.INGOT_PALLADIUM, 1), 1F);
         RecipeHelper.addSmelting(BlockInit.ORE_TITANIUM, cloneStack(ItemInit.INGOT_TITANIUM, 1), 1F);
         RecipeHelper.addSmelting(BlockInit.ORE_VIBRANIUM, cloneStack(ItemInit.INGOT_VIBRANIUM, 1), 1F);
+        RecipeHelper.addSmelting("dustPalladium", cloneStack(ItemInit.INGOT_PALLADIUM, 1), 1F);
+        RecipeHelper.addSmelting("dustTitanium", cloneStack(ItemInit.INGOT_TITANIUM, 1), 1F);
+        RecipeHelper.addSmelting("dustVibranium", cloneStack(ItemInit.INGOT_VIBRANIUM, 1), 1F);
 
         /* brewing */
 
@@ -202,7 +214,8 @@ public class RecipeHandler {
         }
 
         public static void addTwoWayStorageRecipe(BlockBase block, ItemBase item) {
-            addTwoWayStorageRecipe(cloneStack(block, 1), block.getOreDictName(), cloneStack(item, 1), item.getOreDictName());
+            if (block.hasOreDictName() && item.hasOreDictName())
+                addTwoWayStorageRecipe(cloneStack(block, 1), block.getOreDictName(), cloneStack(item, 1), item.getOreDictName());
         }
 
         public static void addSmallTwoWayStorageRecipe(ItemStack one, ItemStack four) {
@@ -218,8 +231,15 @@ public class RecipeHandler {
         }
 
         public static void addMaterialStorageRecipe(MaterialTripplet mat) {
-            addTwoWayStorageRecipe(cloneStack(mat.getBlock(), 1), cloneStack(mat.getIngot(), 1));
-            addTwoWayStorageRecipe(cloneStack(mat.getIngot(), 1), cloneStack(mat.getNugget(), 1));
+            if (mat.getBlock() instanceof BlockBase && mat.getIngot() instanceof ItemBase &&
+                    mat.getNugget() instanceof ItemBase && ((BlockBase) mat.getBlock()).hasOreDictName() &&
+                    ((ItemBase) mat.getIngot()).hasOreDictName() && ((ItemBase) mat.getNugget()).hasOreDictName()) {
+                addTwoWayStorageRecipe(cloneStack(mat.getBlock(), 1), ((BlockBase) mat.getBlock()).getOreDictName(), cloneStack(mat.getIngot(), 1), ((ItemBase) mat.getIngot()).getOreDictName());
+                addTwoWayStorageRecipe(cloneStack(mat.getIngot(), 1), ((ItemBase) mat.getIngot()).getOreDictName(), cloneStack(mat.getNugget(), 1), ((ItemBase) mat.getNugget()).getOreDictName());
+            } else {
+                addTwoWayStorageRecipe(cloneStack(mat.getBlock(), 1), cloneStack(mat.getIngot(), 1));
+                addTwoWayStorageRecipe(cloneStack(mat.getIngot(), 1), cloneStack(mat.getNugget(), 1));
+            }
         }
 
         /* TOOLS */
@@ -330,6 +350,12 @@ public class RecipeHandler {
             FurnaceRecipes.instance().addSmeltingRecipe(input, output, xp);
         }
 
+        static void addSmelting(String input, ItemStack output, float xp) {
+            for (ItemStack in : OreDictionary.getOres(input)) {
+                addSmelting(in, output, xp);
+            }
+        }
+
         public static void addSmelting(ItemStack input, ItemStack output) {
 
             addSmelting(input, output, 0F);
@@ -378,5 +404,12 @@ public class RecipeHandler {
             addBrewing(new ResourceLocation(Reference.MODID, potionInName), ingredientIn, new ResourceLocation(Reference.MODID, potionOutName));
         }
 
+
+        public static void addArmorRecipe(ArmorBase.Set armor, ItemStack stack) {
+            addShapedOreRecipe(cloneStack(armor.helmet, 1), "XXX", "X X", 'X', stack);
+            addShapedOreRecipe(cloneStack(armor.chestplate, 1), "X X", "XXX", "XXX", 'X', stack);
+            addShapedOreRecipe(cloneStack(armor.leggings, 1), "XXX", "X X", "X X", 'X', stack);
+            addShapedOreRecipe(cloneStack(armor.boots, 1), "X X", "X X", 'X', stack);
+        }
     }
 }

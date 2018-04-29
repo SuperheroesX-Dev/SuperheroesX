@@ -16,6 +16,7 @@ public abstract class SuperheroesXTabs extends CreativeTabs {
             super("materials");
         }
 
+        @Override
         public ItemStack getTabIconItem() {
             return new ItemStack(BlockInit.ORE_TITANIUM);
         }
@@ -26,6 +27,7 @@ public abstract class SuperheroesXTabs extends CreativeTabs {
             super("dc");
         }
 
+        @Override
         public ItemStack getTabIconItem() {
             return new ItemStack(ItemInit.LOGO_DC);
         }
@@ -36,6 +38,7 @@ public abstract class SuperheroesXTabs extends CreativeTabs {
             super("marvel");
         }
 
+        @Override
         public ItemStack getTabIconItem() {
             return new ItemStack(ItemInit.LOGO_MARVEL);
         }

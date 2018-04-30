@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+
+    "pattern":
+    [
+        "TTT",
+        "TRT",      
+        "TTT"
+    ],
+"key": {
+    "T": {
+      "item": "sx:ingot_palladium"
+    },
+    "R": {
+        "item": "sx:mini_arc_reactor_base"
+      }
+  },
+  "result": {
+    "item": "sx:mini_arc_reactor_mk1",
+     "count": 1
+  }
+}

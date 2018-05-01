@@ -413,10 +413,10 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
 
             } else {
                 if (!world.isRemote && timer > 20) {
-                    System.out.println("test");
+                    if (SuperheroesX.DEBUG) System.out.println("test");
                     for (ItemStack stack1 : player.getArmorInventoryList()) {
                         if ((!stack1.isEmpty() && !(stack1.getItem() instanceof ArmorIronMan))) {
-                            System.out.println(stack + "" + stack1);
+                            if (SuperheroesX.DEBUG) System.out.println(stack + "" + stack1);
                             timer = 0;
                             if (!flag) {
                                 ItemStack chest = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);

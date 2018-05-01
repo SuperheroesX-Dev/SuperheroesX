@@ -49,10 +49,10 @@ public class KeyTracker {
     private static ArrayList<KeyBinding> keys = new ArrayList<>();
 
     public KeyTracker() {
-        engineKey = new KeyBinding(Reference.PREFIX + "keybind.engine", Keyboard.KEY_G, Reference.PREFIX + "category.simplyjetpacks");
+        engineKey = new KeyBinding(Reference.PREFIX + "keybind.engine", Keyboard.KEY_G, Reference.PREFIX + "category.ironman");
         ClientRegistry.registerKeyBinding(engineKey);
 
-        hoverKey = new KeyBinding(Reference.PREFIX + "keybind.hover", Keyboard.KEY_L, Reference.PREFIX + "category.simplyjetpacks");
+        hoverKey = new KeyBinding(Reference.PREFIX + "keybind.hover", Keyboard.KEY_L, Reference.PREFIX + "category.ironman");
         ClientRegistry.registerKeyBinding(hoverKey);
     }
 

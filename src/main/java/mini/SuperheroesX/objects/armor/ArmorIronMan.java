@@ -29,8 +29,7 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.NonNullList;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextComponentString;
@@ -239,6 +238,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         private float sprintSpeedModifier = 2.4F;
         private float damagePerHit = 5;
         public int multiplier;
+        private boolean rightClickMoved;
 
 
         public ChestplateIronMan() {
@@ -260,6 +260,9 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
 
         @Override
         public void onCreated(ItemStack container, World worldIn, EntityPlayer playerIn) {
+            if (playerIn.getName().toLowerCase().equals("minecraftschurli")) {
+                setDefaultMultiplierTag(container, 4);
+            }
             setDefaultMaxEnergyTag(container, getMaxEnergyStored(container));
         }
 
@@ -379,6 +382,19 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
         }
 
         @Override
+        public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+            ItemStack itemstack = playerIn.getHeldItem(handIn);
+            for (ItemStack itemstack1 : playerIn.inventory.armorInventory) {
+                if (!itemstack1.isEmpty()) {
+                    return new ActionResult(EnumActionResult.FAIL, itemstack);
+                }
+            }
+            playerIn.setItemStackToSlot(EntityEquipmentSlot.CHEST, itemstack.copy());
+            itemstack.setCount(0);
+            return new ActionResult(EnumActionResult.SUCCESS, itemstack);
+        }
+
+        @Override
         public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
             if (ArmorIronMan.fullSetEquipped(player)) {
                 if (cooldown == 0) {
@@ -396,7 +412,8 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
                 player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 0, 3, true, false));
 
             } else {
-                if (timer > 20) {
+                if (!world.isRemote && timer > 20) {
+                    System.out.println("test");
                     for (ItemStack stack1 : player.getArmorInventoryList()) {
                         if ((!stack1.isEmpty() && !(stack1.getItem() instanceof ArmorIronMan))) {
                             System.out.println(stack + "" + stack1);

@@ -6,9 +6,16 @@
   "overrides": [
     {
       "predicate": {
-        "blocking": 1
+        "blocking": 1,
+        "throwing": 0
       },
       "model": "sx:item/shield_captain_america_blocking"
+    },
+    {
+      "predicate": {
+        "throwing": 1
+      },
+      "model": "sx:item/shield_captain_america_throwing"
     }
   ]
 }

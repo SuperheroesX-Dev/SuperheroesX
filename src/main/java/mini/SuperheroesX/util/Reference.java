@@ -12,4 +12,5 @@ public class Reference
     public static final String DEPENDENCIES = "required-after:redstoneflux@[2.0.1,2.1.0);after:thermalexpansion;";
 	
 	public static final int ENTITY_KRYPTONIAN = 1;
+    public static final int ENTITY_SHIELD = 2;
 }

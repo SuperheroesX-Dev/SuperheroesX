@@ -13,6 +13,7 @@ public class EntityInit
     public static void registerEntities()
 	{
 		registerEntity("kryptonian", EntityKryptonian.class, Reference.ENTITY_KRYPTONIAN, 89, 000000, 49152);
+        //EntityRegistry.registerModEntity(new ResourceLocation(Reference.RESOURCE_PREFIX+"shield_cap"),EntityCaptainAmericasShield.class,"shield_cap",Reference.ENTITY_SHIELD,SuperheroesX.INSTANCE,0,1,true);
 	}
 
     private static void registerEntity(String name, Class<? extends Entity> entity, int id, int range, int color1, int color2)

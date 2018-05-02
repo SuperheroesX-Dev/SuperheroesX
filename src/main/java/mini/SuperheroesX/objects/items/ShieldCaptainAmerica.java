@@ -1,6 +1,7 @@
 package mini.SuperheroesX.objects.items;
 
 
+import mini.SuperheroesX.SuperheroesX;
 import mini.SuperheroesX.entity.EntityCaptainAmericasShield;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -37,7 +38,7 @@ public class ShieldCaptainAmerica extends WeaponizedShield {
     public void onUsingTick(ItemStack stack, EntityLivingBase player, int count) {
         if (!player.world.isRemote) {
             this.ticks = -(count - Integer.MAX_VALUE);
-            System.out.println(ticks);
+            if (SuperheroesX.DEBUG) System.out.println(ticks);
         }
     }
 

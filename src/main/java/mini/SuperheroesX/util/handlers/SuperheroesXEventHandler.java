@@ -11,7 +11,7 @@ public class SuperheroesXEventHandler {
     public void onFly(TickEvent.PlayerTickEvent event) {
         boolean fly = false;
 
-        if (event.player.isPotionActive(PotionInit.GLIDE))
+        if (event.player.isPotionActive(PotionInit.INV_GLIDE))
             fly = true;
 
         if (fly || event.player.isCreative() || event.player.isSpectator()) {

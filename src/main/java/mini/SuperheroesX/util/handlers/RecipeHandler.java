@@ -58,6 +58,8 @@ public class RecipeHandler {
 
 
         RecipeHelper.addTwoWayStorageRecipe((BlockBase) BlockInit.BLOCK_VIBRANIUM, (ItemBase) ItemInit.INGOT_VIBRANIUM);
+        RecipeHelper.addTwoWayStorageRecipe((BlockBase) BlockInit.BLOCK_TITANIUM, (ItemBase) ItemInit.INGOT_TITANIUM);
+        RecipeHelper.addTwoWayStorageRecipe((BlockBase) BlockInit.BLOCK_PALLADIUM, (ItemBase) ItemInit.INGOT_PALLADIUM);
 
         //RecipeHelper.addMaterialStorageRecipe(new MaterialTripplet(BlockInit.BLOCK_PALLADIUM, ItemInit.INGOT_PALLADIUM, ItemInit.NUGGET_PALLADIUM));
         //RecipeHelper.addMaterialStorageRecipe(new MaterialTripplet(BlockInit.BLOCK_TITANIUM, ItemInit.INGOT_TITANIUM, ItemInit.NUGGET_TITANIUM));

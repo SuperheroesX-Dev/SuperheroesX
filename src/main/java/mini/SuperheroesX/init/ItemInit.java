@@ -1,17 +1,8 @@
 package mini.SuperheroesX.init;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import mini.SuperheroesX.SuperheroesX;
-import mini.SuperheroesX.objects.armor.ArmorBase;
-import mini.SuperheroesX.objects.armor.ArmorBlackPanther;
-import mini.SuperheroesX.objects.armor.ArmorCaptainAmerica;
-import mini.SuperheroesX.objects.armor.ArmorDeadpool;
-import mini.SuperheroesX.objects.armor.ArmorIronMan;
+import mini.SuperheroesX.objects.armor.*;
 import mini.SuperheroesX.objects.armor.ArmorIronMan.ChestplateIronMan;
-import mini.SuperheroesX.objects.armor.ArmorKidFlash;
-import mini.SuperheroesX.objects.armor.ArmorRobin1;
 import mini.SuperheroesX.objects.items.ItemBase;
 import mini.SuperheroesX.objects.items.ShieldCaptainAmerica;
 import mini.SuperheroesX.objects.items.TestItem;
@@ -23,10 +14,12 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ItemInit 
 {
@@ -190,17 +183,14 @@ public class ItemInit
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
             SHIELD_HANDLE = new ItemBase("shield_handle").
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+
             HELMET_CAPTAIN_AMERICA = new ArmorCaptainAmerica("captain_america_helmet", ARMOR_CAPTAIN_AMERICA, 1, EntityEquipmentSlot.HEAD).
-                    setRepairItem(new ItemStack(STRENGTHENED_CLOTH)).
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
             CHESTPLATE_CAPTAIN_AMERICA = new ArmorCaptainAmerica("captain_america_chestplate", ARMOR_CAPTAIN_AMERICA, 1, EntityEquipmentSlot.HEAD).
-                    setRepairItem(new ItemStack(STRENGTHENED_CLOTH)).
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
             LEGGINGS_CAPTAIN_AMERICA = new ArmorCaptainAmerica("captain_america_leggings", ARMOR_CAPTAIN_AMERICA, 1, EntityEquipmentSlot.HEAD).
-                    setRepairItem(new ItemStack(STRENGTHENED_CLOTH)).
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
             BOOTS_CAPTAIN_AMERICA = new ArmorCaptainAmerica("captain_america_boots", ARMOR_CAPTAIN_AMERICA, 1, EntityEquipmentSlot.HEAD).
-                    setRepairItem(new ItemStack(STRENGTHENED_CLOTH)).
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
 
 

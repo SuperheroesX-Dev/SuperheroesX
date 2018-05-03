@@ -63,13 +63,13 @@ public class ItemInit
     public static final Item INGOT_VIBRANIUM;
     public static final Item INGOT_PALLADIUM;
     public static final Item INGOT_TITANIUM;
-    public static final Item NUGGET_PALLADIUM;
-    public static final Item NUGGET_TITANIUM;
+   // public static final Item NUGGET_PALLADIUM;
+   // public static final Item NUGGET_TITANIUM;
     public static final Item PLATE_VIBRANIUM;
     public static final Item PLATE_TITANIUM;
     public static final Item PLATE_GOLD;
-    public static final Item DUST_PALLADIUM;
-    public static final Item DUST_TITANIUM;
+    //public static final Item DUST_PALLADIUM;
+    //public static final Item DUST_TITANIUM;
     public static final Item INGOT_TITANOGOLD;
     public static final Item PLATE_TITANOGOLD;
     public static final Item CIRCUIT;
@@ -144,10 +144,10 @@ public class ItemInit
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
             PLATE_VIBRANIUM = new ItemBase("plate_vibranium").setOreDictName("plateVibranium").
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-            DUST_PALLADIUM = new ItemBase("dust_palladium").setOreDictName("dustPalladium").
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-            NUGGET_PALLADIUM = new ItemBase("nugget_palladium").setOreDictName("nuggetPalladium").
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+            //DUST_PALLADIUM = new ItemBase("dust_palladium").setOreDictName("dustPalladium").
+                    //setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+            //NUGGET_PALLADIUM = new ItemBase("nugget_palladium").setOreDictName("nuggetPalladium").
+                    //setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
 
 
             CLOTH_VIBRANIUM = new ItemBase("cloth_vibranium").
@@ -188,7 +188,7 @@ public class ItemInit
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
             CHESTPLATE_CAPTAIN_AMERICA = new ArmorCaptainAmerica("captain_america_chestplate", ARMOR_CAPTAIN_AMERICA, 1, EntityEquipmentSlot.CHEST).
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-            LEGGINGS_CAPTAIN_AMERICA = new ArmorCaptainAmerica("captain_america_leggings", ARMOR_CAPTAIN_AMERICA, 1, EntityEquipmentSlot.LEGS).
+            LEGGINGS_CAPTAIN_AMERICA = new ArmorCaptainAmerica("captain_america_leggings", ARMOR_CAPTAIN_AMERICA, 2, EntityEquipmentSlot.LEGS).
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
             BOOTS_CAPTAIN_AMERICA = new ArmorCaptainAmerica("captain_america_boots", ARMOR_CAPTAIN_AMERICA, 1, EntityEquipmentSlot.FEET).
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
@@ -214,8 +214,8 @@ public class ItemInit
             PLATE_TITANOGOLD = null;
             PLATE_VIBRANIUM = null;
 
-            DUST_PALLADIUM = null;
-            NUGGET_PALLADIUM = null;
+           // DUST_PALLADIUM = null;
+            //NUGGET_PALLADIUM = null;
 
 
             CLOTH_VIBRANIUM = null;
@@ -342,10 +342,10 @@ public class ItemInit
                 setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
         PLATE_TITANIUM = new ItemBase("plate_titanium").setOreDictName("plateTitanium").
                 setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        NUGGET_TITANIUM = new ItemBase("nugget_titanium").setOreDictName("nuggetTitanium").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        DUST_TITANIUM = new ItemBase("dust_titanium").setOreDictName("dustTitanium").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+        //NUGGET_TITANIUM = new ItemBase("nugget_titanium").setOreDictName("nuggetTitanium").
+                //setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+        //DUST_TITANIUM = new ItemBase("dust_titanium").setOreDictName("dustTitanium").
+                //setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
 
         CIRCUIT = new ItemBase("circuit").
                 setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);

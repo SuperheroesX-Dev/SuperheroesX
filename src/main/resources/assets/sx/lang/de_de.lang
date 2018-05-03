@@ -1,4 +1,8 @@
 # made by Minecraftschurli
+item.cloth.name=Stoff
+item.strengthened_cloth.name=Verstärkter Stoff
+item.cloth_vibranium.name=Vibranium Stoff
+
 item.spandex_red.name=Roter Elastan Faden
 item.spandex_black.name=Schwarzer Elastan Faden
 item.spandex_yellow.name=Gelber Elastan Faden
@@ -19,6 +23,11 @@ item.deadpool_helmet.name=Deadpool's Maske
 item.deadpool_chestplate.name=Deadpool's Brustplatte
 item.deadpool_leggings.name=Deadpool's Hose
 item.deadpool_boots.name=Deadpool's Schuhe
+
+item.helmet_captain_america.name=Captain America's Helmet
+item.chestplate_captain_america.name=Captain America's Chestplate
+item.leggings_captain_america.name=Captain America's Leggings
+item.boots_captain_america.name=Captain America's Boots
 
 item.deadpool_katana.name=Deadpool's Katana
 
@@ -82,14 +91,12 @@ sx.gui.hud.fuel.depleted=Leer Laden...
 sx.tooltip.holdShift=Halte Shift für Informationen
 sx.tooltip.state=Schubdüsen
 sx.tooltip.hoverMode=Schwebemodus
+sx.tooltip.state:=Engine State
 sx.tooltip.on=An
 sx.tooltip.off=Off
 sx.tooltip.disabled=Auß
 sx.tooltip.enabled=An
 
-item.cloth.name=Stoff
-item.cloth_vibranium.name=Vibranium Stoff
-item.strengthened_cloth.name=Verstärkter Stoff
 
 item.robin1_helmet.name=Robin's Maske (Dick Grayson)
 item.robin1_chestplate.name=Robin's Brustplatte (Dick Grayson WIP)
@@ -105,6 +112,8 @@ item.spandex_cloth_white.name=Weißes Elastan
 item.shield_captain_america_uncolored.name=Vibranium Schild
 item.shield_captain_america.name=Captain America's Schild [WIP]
 item.shield_handle.name=Schildgriff
+
+
 item.dust_palladium.name=Palladium Pulver
 item.dust_titanium.name=Titanium Pulver
 item.nugget_palladium.name=Palladium Nugget

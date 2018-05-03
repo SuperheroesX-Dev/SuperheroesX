@@ -1,4 +1,4 @@
-#made by Minecraftschurli
+# made by Minecraftschurli
 item.spandex_red.name=Roter Elastan Faden
 item.spandex_black.name=Schwarzer Elastan Faden
 item.spandex_yellow.name=Gelber Elastan Faden
@@ -17,12 +17,12 @@ item.superboy_boots.name=Superboy's Schuhe
 
 item.deadpool_helmet.name=Deadpool's Maske
 item.deadpool_chestplate.name=Deadpool's Brustplatte
-item.deadpool_leggings.name=Deadpool's Hose        
+item.deadpool_leggings.name=Deadpool's Hose
 item.deadpool_boots.name=Deadpool's Schuhe
 
 item.deadpool_katana.name=Deadpool's Katana
 
-entity.kryptonian.name=Kryptonier (WIP) 
+entity.kryptonian.name=Kryptonier (WIP)
 
 tile.atomfuser.name=Atom Fusionierer (WIP)
 
@@ -30,22 +30,17 @@ item.kidflash_helmet.name=Kid Flash's Maske
 item.kidflash_chestplate.name=Kid Flash's Brustplatte
 item.kidflash_leggings.name=Kid Flash's Hose
 item.kidflash_boots.name=Kid Flash's Schuhe
-
-potion.effect.fly=Flug Trank (WIP) 
+potion.effect.fly=Flug Trank (WIP)
 splash_potion.effect.fly=Flug Wurftrank (WIP)
 lingering_potion.effect.fly=Lingering Trank des Flugs (WIP)
 
+item.ingot_vibranium.name=Vibranium Barren
 item.ingot_palladium.name=Palladium Barren
-item.dust_palladium.name=Palladium Pulver
-item.nugget_palladium.name=Palladium Nugget
-item.plate_titanium.name=Titanium Platte
 item.ingot_titanium.name=Titanium Barren
-item.nugget_titanium.name=Titanium Nugget
-item.dust_titanium.name=Titanium Pulver
 item.circuit.name=Schaltkreis
 item.plate_vibranium.name=Vibranium Platte
-item.ingot_vibranium.name=Vibranium Barren
 item.plate_gold.name=Gold Platte
+item.plate_titanium.name=Titanium Platte
 item.plate_titanogold.name=Titanogold Platte
 item.ingot_titanogold.name=Titanogold Barren
 
@@ -80,11 +75,21 @@ sx.chat.enabled=An
 sx.chat.disabled=Auß
 sx.chat.item.chestplate_ironman.hoverMode.on=Schwebemodus
 sx.chat.item.chestplate_ironman.on=Schubdüsen
+sx.gui.hud.state.engine=Schubdüsen
+sx.gui.hud.state.hover=Schwebemodus
+sx.gui.hud.item.chestplate_ironman.fuel=Lade Kapazität
+sx.gui.hud.fuel.depleted=Leer Laden...
 sx.tooltip.holdShift=Halte Shift für Informationen
 sx.tooltip.state=Schubdüsen
 sx.tooltip.hoverMode=Schwebemodus
 sx.tooltip.on=An
+sx.tooltip.off=Off
 sx.tooltip.disabled=Auß
+sx.tooltip.enabled=An
+
+item.cloth.name=Stoff
+item.cloth_vibranium.name=Vibranium Stoff
+item.strengthened_cloth.name=Verstärkter Stoff
 
 item.robin1_helmet.name=Robin's Maske (Dick Grayson)
 item.robin1_chestplate.name=Robin's Brustplatte (Dick Grayson WIP)
@@ -97,10 +102,10 @@ item.spandex_cloth_yellow.name=Gelbes Elastan
 item.spandex_cloth_green.name=Grünes Elastan
 item.spandex_cloth_white.name=Weißes Elastan
 
-item.cloth.name=Stoff
-item.cloth_vibranium.name=Vibranium Stoff
-item.strengthened_cloth.name=Verstärkter Stoff
-
 item.shield_captain_america_uncolored.name=Vibranium Schild
 item.shield_captain_america.name=Captain America's Schild [WIP]
 item.shield_handle.name=Schildgriff
+item.dust_palladium.name=Palladium Pulver
+item.dust_titanium.name=Titanium Pulver
+item.nugget_palladium.name=Palladium Nugget
+item.nugget_titanium.name=Titanium Nugget

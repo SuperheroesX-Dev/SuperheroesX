@@ -3,6 +3,7 @@ package mini.SuperheroesX.objects.armor;
 import mini.SuperheroesX.SuperheroesX;
 import mini.SuperheroesX.init.ItemInit;
 import mini.SuperheroesX.init.PotionInit;
+import mini.SuperheroesX.objects.armor.ArmorBase.Set;
 import mini.SuperheroesX.util.interfaces.IHasModel;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.creativetab.CreativeTabs;
@@ -13,17 +14,18 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ArmorBase extends ItemArmor implements IHasModel
+public class ArmorCaptainAmerica extends ItemArmor implements IHasModel
 
 {
 
-	public ArmorBase(String name, ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) 
+	public ArmorCaptainAmerica(String name, ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) 
 
 	{
 
@@ -41,24 +43,23 @@ public class ArmorBase extends ItemArmor implements IHasModel
 
 	@Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
-		if (this.isWearingFullSet(player, ItemInit.CHESTPLATE_SUPERBOY, ItemInit.LEGGINGS_SUPERBOY, ItemInit.BOOTS_SUPERBOY)) {
-            super.onArmorTick(world, player, stack);
+		if (this.isWearingFullSet(player, ItemInit.HELMET_CAPTAIN_AMERICA, ItemInit.CHESTPLATE_CAPTAIN_AMERICA, ItemInit.LEGGINGS_CAPTAIN_AMERICA,
+				ItemInit.BOOTS_CAPTAIN_AMERICA)) {
+		super.onArmorTick(world, player, stack); 
 
             player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 0, 1, false, false));
 		player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 0, 4, false, false));
-		player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 0, 2, false, false));
-		player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, 0, 2, false, false));
-		player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 0, 4, false, false)); }
-
+		player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 0, 1, false, false));
+		player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, 0, 2, false, false)); }
 
 		}
 	
-	private boolean isWearingFullSet(EntityPlayer player, Item chestplateSuperboy, Item leggingsSuperboy,
-			Item bootsSuperboy) {
-		return
-				!player.inventory.armorItemInSlot(2).isEmpty() && player.inventory.armorItemInSlot(2).getItem() == chestplateSuperboy
-						&& !player.inventory.armorItemInSlot(1).isEmpty() && player.inventory.armorItemInSlot(1).getItem() == leggingsSuperboy
-						&& !player.inventory.armorItemInSlot(0).isEmpty() && player.inventory.armorItemInSlot(0).getItem() == bootsSuperboy;
+	private boolean isWearingFullSet(EntityPlayer player, Item helmetCaptain_America, Item chestplateCaptain_America, Item leggingsCaptain_America, Item bootsCaptain_America) {
+        return
+                !player.inventory.armorItemInSlot(3).isEmpty() && player.inventory.armorItemInSlot(3).getItem() == helmetCaptain_America
+                        && !player.inventory.armorItemInSlot(2).isEmpty() && player.inventory.armorItemInSlot(2).getItem() == chestplateCaptain_America
+                        && !player.inventory.armorItemInSlot(1).isEmpty() && player.inventory.armorItemInSlot(1).getItem() == leggingsCaptain_America
+                        && !player.inventory.armorItemInSlot(0).isEmpty() && player.inventory.armorItemInSlot(0).getItem() == bootsCaptain_America;
 	}
 
 	
@@ -93,15 +94,15 @@ public class ArmorBase extends ItemArmor implements IHasModel
 
 	}
 
-    public static class Set {
+	public static class Set {
 
-        public final ArmorBase helmet, chestplate, leggings, boots;
+        public final ArmorCaptainAmerica helmet, chestplate, leggings, boots;
 
         public Set(String name, ArmorMaterial material) {
-            helmet = new ArmorBase("helmet_" + name, material, 1, EntityEquipmentSlot.HEAD);
-            chestplate = new ArmorBase("chestplate_" + name, material, 1, EntityEquipmentSlot.CHEST);
-            leggings = new ArmorBase("leggings_" + name, material, 2, EntityEquipmentSlot.LEGS);
-            boots = new ArmorBase("boots_" + name, material, 1, EntityEquipmentSlot.FEET);
+            helmet = new ArmorCaptainAmerica("helmet_" + name, material, 1, EntityEquipmentSlot.HEAD);
+            chestplate = new ArmorCaptainAmerica("chestplate_" + name, material, 1, EntityEquipmentSlot.CHEST);
+            leggings = new ArmorCaptainAmerica("leggings_" + name, material, 2, EntityEquipmentSlot.LEGS);
+            boots = new ArmorCaptainAmerica("boots_" + name, material, 1, EntityEquipmentSlot.FEET);
         }
 
         public Set setCreativeTab(CreativeTabs tab) {
@@ -116,6 +117,6 @@ public class ArmorBase extends ItemArmor implements IHasModel
             helmet.getArmorMaterial().setRepairItem(item);
             return this;
         }
-    }
+	}
 
 }

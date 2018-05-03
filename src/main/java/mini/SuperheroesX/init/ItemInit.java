@@ -186,11 +186,11 @@ public class ItemInit
 
             HELMET_CAPTAIN_AMERICA = new ArmorCaptainAmerica("captain_america_helmet", ARMOR_CAPTAIN_AMERICA, 1, EntityEquipmentSlot.HEAD).
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-            CHESTPLATE_CAPTAIN_AMERICA = new ArmorCaptainAmerica("captain_america_chestplate", ARMOR_CAPTAIN_AMERICA, 1, EntityEquipmentSlot.HEAD).
+            CHESTPLATE_CAPTAIN_AMERICA = new ArmorCaptainAmerica("captain_america_chestplate", ARMOR_CAPTAIN_AMERICA, 1, EntityEquipmentSlot.CHEST).
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-            LEGGINGS_CAPTAIN_AMERICA = new ArmorCaptainAmerica("captain_america_leggings", ARMOR_CAPTAIN_AMERICA, 1, EntityEquipmentSlot.HEAD).
+            LEGGINGS_CAPTAIN_AMERICA = new ArmorCaptainAmerica("captain_america_leggings", ARMOR_CAPTAIN_AMERICA, 1, EntityEquipmentSlot.LEGS).
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-            BOOTS_CAPTAIN_AMERICA = new ArmorCaptainAmerica("captain_america_boots", ARMOR_CAPTAIN_AMERICA, 1, EntityEquipmentSlot.HEAD).
+            BOOTS_CAPTAIN_AMERICA = new ArmorCaptainAmerica("captain_america_boots", ARMOR_CAPTAIN_AMERICA, 1, EntityEquipmentSlot.FEET).
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
 
 

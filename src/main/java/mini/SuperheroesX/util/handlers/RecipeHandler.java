@@ -59,8 +59,8 @@ public class RecipeHandler {
 
         RecipeHelper.addTwoWayStorageRecipe((BlockBase) BlockInit.BLOCK_VIBRANIUM, (ItemBase) ItemInit.INGOT_VIBRANIUM);
 
-        RecipeHelper.addMaterialStorageRecipe(new MaterialTripplet(BlockInit.BLOCK_PALLADIUM, ItemInit.INGOT_PALLADIUM, ItemInit.NUGGET_PALLADIUM));
-        RecipeHelper.addMaterialStorageRecipe(new MaterialTripplet(BlockInit.BLOCK_TITANIUM, ItemInit.INGOT_TITANIUM, ItemInit.NUGGET_TITANIUM));
+        //RecipeHelper.addMaterialStorageRecipe(new MaterialTripplet(BlockInit.BLOCK_PALLADIUM, ItemInit.INGOT_PALLADIUM, ItemInit.NUGGET_PALLADIUM));
+        //RecipeHelper.addMaterialStorageRecipe(new MaterialTripplet(BlockInit.BLOCK_TITANIUM, ItemInit.INGOT_TITANIUM, ItemInit.NUGGET_TITANIUM));
 
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.LOGO_KID_FLASH, 1), "TTT", "TST", "TTT", 'T', "plateTitanium", 'S', cloneStack(ItemInit.SPANDEX_CLOTH_RED, 1));
 

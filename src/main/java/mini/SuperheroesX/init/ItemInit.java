@@ -1,8 +1,17 @@
 package mini.SuperheroesX.init;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import mini.SuperheroesX.SuperheroesX;
-import mini.SuperheroesX.objects.armor.*;
+import mini.SuperheroesX.objects.armor.ArmorBase;
+import mini.SuperheroesX.objects.armor.ArmorBlackPanther;
+import mini.SuperheroesX.objects.armor.ArmorCaptainAmerica;
+import mini.SuperheroesX.objects.armor.ArmorDeadpool;
+import mini.SuperheroesX.objects.armor.ArmorIronMan;
 import mini.SuperheroesX.objects.armor.ArmorIronMan.ChestplateIronMan;
+import mini.SuperheroesX.objects.armor.ArmorKidFlash;
+import mini.SuperheroesX.objects.armor.ArmorRobin1;
 import mini.SuperheroesX.objects.items.ItemBase;
 import mini.SuperheroesX.objects.items.ShieldCaptainAmerica;
 import mini.SuperheroesX.objects.items.TestItem;
@@ -19,9 +28,6 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.oredict.OreDictionary;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ItemInit 
 {
     public static final List<Item> ITEMS = new ArrayList<>();
@@ -35,7 +41,7 @@ public class ItemInit
     public static final ArmorMaterial ARMOR_BLACKPANTHER = EnumHelper.addArmorMaterial("armor_blackpanther", Reference.RESOURCE_PREFIX + "blackpanther", 1000, new int[]{8, 10, 9, 6}, 14, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 4.5F);
     public static final ArmorMaterial ARMOR_IRONMAN = EnumHelper.addArmorMaterial("armor_ironman", Reference.RESOURCE_PREFIX + "ironman", 16000, new int[]{7, 9, 8, 5}, 0, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 3.7F);
     public static final ArmorMaterial ARMOR_ROBIN1 = EnumHelper.addArmorMaterial("armor_robin1", Reference.RESOURCE_PREFIX + "robin1", 370, new int[]{4, 7, 9, 4}, 9, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 2.4F);
-    public static final ArmorMaterial ARMOR_MATERIAL_CAPTAIN_AMERICA = EnumHelper.addArmorMaterial("armor_captain_america", Reference.RESOURCE_PREFIX + "captain_america", 500, new int[]{4, 7, 10, 4}, 11, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 2.8F);
+    public static final ArmorMaterial ARMOR_CAPTAIN_AMERICA = EnumHelper.addArmorMaterial("armor_captain_america", Reference.RESOURCE_PREFIX + "captain_america", 500, new int[]{4, 7, 10, 4}, 11, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 2.8F);
 
     public static final Item TEST_ITEM;
 
@@ -115,7 +121,10 @@ public class ItemInit
     public static final Item LEGGINGS_IRONMAN;
     public static final Item BOOTS_IRONMAN;
 
-    public static final ArmorBase.Set ARMOR_CAPTAIN_AMERICA;
+    public static final Item HELMET_CAPTAIN_AMERICA;
+    public static final Item CHESTPLATE_CAPTAIN_AMERICA;
+    public static final Item LEGGINGS_CAPTAIN_AMERICA;
+    public static final Item BOOTS_CAPTAIN_AMERICA;
 
 
     //LOGOS
@@ -181,9 +190,20 @@ public class ItemInit
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
             SHIELD_HANDLE = new ItemBase("shield_handle").
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-            ARMOR_CAPTAIN_AMERICA = new ArmorBase.Set("captain_america", ARMOR_MATERIAL_CAPTAIN_AMERICA).
+            HELMET_CAPTAIN_AMERICA = new ArmorCaptainAmerica("captain_america_helmet", ARMOR_CAPTAIN_AMERICA, 1, EntityEquipmentSlot.HEAD).
                     setRepairItem(new ItemStack(STRENGTHENED_CLOTH)).
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+            CHESTPLATE_CAPTAIN_AMERICA = new ArmorCaptainAmerica("captain_america_chestplate", ARMOR_CAPTAIN_AMERICA, 1, EntityEquipmentSlot.HEAD).
+                    setRepairItem(new ItemStack(STRENGTHENED_CLOTH)).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+            LEGGINGS_CAPTAIN_AMERICA = new ArmorCaptainAmerica("captain_america_leggings", ARMOR_CAPTAIN_AMERICA, 1, EntityEquipmentSlot.HEAD).
+                    setRepairItem(new ItemStack(STRENGTHENED_CLOTH)).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+            BOOTS_CAPTAIN_AMERICA = new ArmorCaptainAmerica("captain_america_boots", ARMOR_CAPTAIN_AMERICA, 1, EntityEquipmentSlot.HEAD).
+                    setRepairItem(new ItemStack(STRENGTHENED_CLOTH)).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+
+
 
             //XMen
             HELMET_DEADPOOL = new ArmorDeadpool("deadpool_helmet", ARMOR_DEADPOOL, 1, EntityEquipmentSlot.HEAD).
@@ -228,7 +248,11 @@ public class ItemInit
             SHIELD_CAPTAIN_AMERICA = null;
             SHIELD_CAPTAIN_AMERICA_UNCOLORED = null;
             SHIELD_HANDLE = null;
-            ARMOR_CAPTAIN_AMERICA = null;
+            
+            HELMET_CAPTAIN_AMERICA = null;
+            CHESTPLATE_CAPTAIN_AMERICA = null;
+            LEGGINGS_CAPTAIN_AMERICA = null;
+            BOOTS_CAPTAIN_AMERICA = null;
 
             //XMen
             HELMET_DEADPOOL = null;

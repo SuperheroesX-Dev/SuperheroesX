@@ -1,6 +1,13 @@
 {
+<<<<<<< HEAD
     "parent": "item/generated",
     "textures": {
         "layer0": "sx:items/chestplate_captain_america"
     }
+=======
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "sx:items/chestplate_captain_america"
+  }
+>>>>>>> 6e1d998392ed6a9aa1fcae0cc1d80f4e79377cea
 }

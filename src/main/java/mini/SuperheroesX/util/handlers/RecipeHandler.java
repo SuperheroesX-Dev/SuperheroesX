@@ -3,7 +3,6 @@ package mini.SuperheroesX.util.handlers;
 import mini.SuperheroesX.init.BlockInit;
 import mini.SuperheroesX.init.ItemInit;
 import mini.SuperheroesX.init.PotionInit;
-import mini.SuperheroesX.objects.armor.ArmorBase;
 import mini.SuperheroesX.objects.blocks.BlockBase;
 import mini.SuperheroesX.objects.items.ItemBase;
 import mini.SuperheroesX.util.Reference;
@@ -55,7 +54,7 @@ public class RecipeHandler {
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.CLOTH, 1), "SSS", "S S", "SSS", 'S', cloneStack(Items.STRING, 1));
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.STRENGTHENED_CLOTH, 1), "CCC", "ITI", "CCC", 'C', cloneStack(ItemInit.CLOTH, 1), 'I', "ingotIron", 'T', "ingotTitanium");
 
-        RecipeHelper.addArmorRecipe(ItemInit.ARMOR_CAPTAIN_AMERICA, cloneStack(ItemInit.STRENGTHENED_CLOTH, 1));
+        RecipeHelper.addArmorRecipe(ItemInit.HELMET_CAPTAIN_AMERICA, ItemInit.HELMET_CAPTAIN_AMERICA, ItemInit.HELMET_CAPTAIN_AMERICA, ItemInit.HELMET_CAPTAIN_AMERICA, cloneStack(ItemInit.STRENGTHENED_CLOTH, 1));
 
 
         RecipeHelper.addTwoWayStorageRecipe((BlockBase) BlockInit.BLOCK_VIBRANIUM, (ItemBase) ItemInit.INGOT_VIBRANIUM);
@@ -405,11 +404,11 @@ public class RecipeHandler {
         }
 
 
-        public static void addArmorRecipe(ArmorBase.Set armor, ItemStack stack) {
-            addShapedOreRecipe(cloneStack(armor.helmet, 1), "XXX", "X X", 'X', stack);
-            addShapedOreRecipe(cloneStack(armor.chestplate, 1), "X X", "XXX", "XXX", 'X', stack);
-            addShapedOreRecipe(cloneStack(armor.leggings, 1), "XXX", "X X", "X X", 'X', stack);
-            addShapedOreRecipe(cloneStack(armor.boots, 1), "X X", "X X", 'X', stack);
+        public static void addArmorRecipe(Item helmet, Item chestplate, Item leggings, Item boots, ItemStack stack) {
+            addShapedOreRecipe(cloneStack(helmet, 1), "XXX", "X X", 'X', stack);
+            addShapedOreRecipe(cloneStack(chestplate, 1), "X X", "XXX", "XXX", 'X', stack);
+            addShapedOreRecipe(cloneStack(leggings, 1), "XXX", "X X", "X X", 'X', stack);
+            addShapedOreRecipe(cloneStack(boots, 1), "X X", "X X", 'X', stack);
         }
     }
 }

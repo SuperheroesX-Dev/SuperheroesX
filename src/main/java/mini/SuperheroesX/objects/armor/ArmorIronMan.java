@@ -3,9 +3,11 @@ package mini.SuperheroesX.objects.armor;
 
 import cofh.redstoneflux.api.IEnergyContainerItem;
 import cofh.redstoneflux.util.EnergyContainerItemWrapper;
+import mcp.MethodsReturnNonnullByDefault;
 import mini.SuperheroesX.SuperheroesX;
 import mini.SuperheroesX.init.ItemInit;
 import mini.SuperheroesX.init.PotionInit;
+import mini.SuperheroesX.util.Reference;
 import mini.SuperheroesX.util.config.Config;
 import mini.SuperheroesX.util.handlers.SyncHandler;
 import mini.SuperheroesX.util.helpers.NBTHelper;
@@ -44,15 +46,19 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.awt.*;
 import java.util.List;
 
 import static mini.SuperheroesX.util.handlers.LivingTickHandler.floatingTickCount;
 
-@EventBusSubscriber
+@SuppressWarnings({"WeakerAccess", "ConstantConditions"})
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
+@EventBusSubscriber(modid = Reference.MODID)
 public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor {
 
-    protected float reductionAmmount = 1F;
+    protected float reductionAmount = 1F;
     protected int energyPerDamage = 160;
 
     public ArmorIronMan(String name, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) {
@@ -113,10 +119,10 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor 
             ChestplateIronMan chestplateIronMan = (ChestplateIronMan) chestplate.getItem();
             if (source.isUnblockable()) {
                 int absorbMax = energyPerDamage > 0 ? 25 * chestplateIronMan.getEnergyStored(chestplate) / energyPerDamage : 0;
-                return new ArmorProperties(0, reductionAmmount * getArmorMaterial().getDamageReductionAmount(armorType) * 0.025, absorbMax);
+                return new ArmorProperties(0, reductionAmount * getArmorMaterial().getDamageReductionAmount(armorType) * 0.025, absorbMax);
             }
             int absorbMax = energyPerDamage > 0 ? 25 * chestplateIronMan.getEnergyStored(chestplate) / energyPerDamage : 0;
-            return new ArmorProperties(0, reductionAmmount * getArmorMaterial().getDamageReductionAmount(armorType) * 0.05, absorbMax);
+            return new ArmorProperties(0, reductionAmount * getArmorMaterial().getDamageReductionAmount(armorType) * 0.05, absorbMax);
             // 0.05 = 1 / 20 (max armor)
         }
         return new ArmorProperties(0, 0, Integer.MAX_VALUE);
@@ -156,8 +162,8 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor 
         EntityPlayer player = (EntityPlayer) event.getEntityLiving();
         ItemStack chestplate = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
         if (chestplate.getItem() instanceof ChestplateIronMan) {
-            if (((ChestplateIronMan) chestplate.getItem()).getEnergyStored(chestplate) - ((event.getAmount() - (event.getAmount() * reductionAmmount)) * energyPerDamage) > 0) {
-                event.setAmount(event.getAmount() * reductionAmmount);
+            if (((ChestplateIronMan) chestplate.getItem()).getEnergyStored(chestplate) - ((event.getAmount() - (event.getAmount() * reductionAmount)) * energyPerDamage) > 0) {
+                event.setAmount(event.getAmount() * reductionAmount);
             } else {
                 ChestplateIronMan chestplateIronMan = (ChestplateIronMan) chestplate.getItem();
                 for (; chestplateIronMan.getEnergyStored(chestplate) > 0; chestplateIronMan.gotDamaged(chestplate)) {
@@ -208,6 +214,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor 
 
     }
 
+    @SuppressWarnings("SpellCheckingInspection")
     @Override
     public void registerModels() {
         if (this instanceof ChestplateIronMan) {
@@ -217,6 +224,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor 
         SuperheroesX.PROXY.registerItemRenderer(this, 0, "inventory");
     }
 
+    @SuppressWarnings({"UnusedReturnValue", "SpellCheckingInspection"})
     public static class ChestplateIronMan extends ArmorIronMan implements IEnergyContainerItem, IHUDInfoProvider {
 
         public static final String TAG_HOVERMODE_ON = "HoverModeOn";
@@ -231,13 +239,13 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor 
         private double speedVerticalHoverSlow = 0.0D;
         private int maxTransfer = Integer.MAX_VALUE;
         private int fuelUsage = 10;
-        private int energyPerShot = 200;
+        //private int energyPerShot = 200;
         private int cooldown;
         private float defaultSpeedSideways = 0.8F;
         private float sprintSpeedModifier = 2.4F;
         private float damagePerHit = 5;
         public int multiplier;
-        private boolean rightClickMoved;
+        //private boolean rightClickMoved;
 
 
         public ChestplateIronMan() {
@@ -296,7 +304,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor 
             setDefaultMaxEnergyTag(stack, this.getArmorMaterial().getDurability(this.getEquipmentSlot()) * (getMultiplier(stack)));
         }
 
-        private void shootEnergyBlast(EntityPlayer player, ChestplateIronMan item) {
+        private void shootEnergyBlast(EntityPlayer player, @SuppressWarnings("unused") ChestplateIronMan item) {
             if (player.getHeldItemMainhand().isEmpty() && player.getHeldItemOffhand().isEmpty()) {
                 //do the shot
                 RayTraceResult pew = player.rayTrace(Double.MAX_VALUE, 10);
@@ -380,6 +388,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor 
             return Math.min(container.getTagCompound().getInteger("Energy"), getMaxEnergyStored(container));
         }
 
+        @SuppressWarnings("unchecked")
         @Override
         public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
             ItemStack itemstack = playerIn.getHeldItem(handIn);
@@ -468,7 +477,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor 
         }
 
         @Override
-        public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt) {
+        public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt) {
 
             return new EnergyContainerItemWrapper(stack, this);
         }
@@ -599,7 +608,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor 
             return SXStringHelper.getHUDStateText(engine, hover, null);
         }
 
-        public void toggleState(boolean on, ItemStack stack, String type, String tag, EntityPlayer player, boolean showInChat) {
+        public void toggleState(boolean on, ItemStack stack, @Nullable String type, String tag, EntityPlayer player, boolean showInChat) {
             if (tag.equals(TAG_HOVERMODE_ON) || tag.equals(TAG_ON))
                 NBTHelper.setBoolean(stack, tag, (!on));
 

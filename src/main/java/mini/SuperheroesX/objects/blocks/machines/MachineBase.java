@@ -33,8 +33,7 @@ import java.util.Random;
 @SuppressWarnings({"unused", "WeakerAccess", "NullableProblems"})
 public final class MachineBase {
 
-    private MachineBase() {
-    }
+    private MachineBase(){}
 
     public static abstract class BlockMachine extends BlockBase implements ITileEntityProvider {
 

@@ -56,7 +56,6 @@ public class RecipeHandler {
 
         RecipeHelper.addArmorRecipe(ItemInit.HELMET_CAPTAIN_AMERICA, ItemInit.CHESTPLATE_CAPTAIN_AMERICA, ItemInit.LEGGINGS_CAPTAIN_AMERICA, ItemInit.BOOTS_CAPTAIN_AMERICA, cloneStack(ItemInit.STRENGTHENED_CLOTH, 1));
 
-
         RecipeHelper.addTwoWayStorageRecipe((BlockBase) BlockInit.BLOCK_VIBRANIUM, (ItemBase) ItemInit.INGOT_VIBRANIUM);
         RecipeHelper.addTwoWayStorageRecipe((BlockBase) BlockInit.BLOCK_TITANIUM, (ItemBase) ItemInit.INGOT_TITANIUM);
         RecipeHelper.addTwoWayStorageRecipe((BlockBase) BlockInit.BLOCK_PALLADIUM, (ItemBase) ItemInit.INGOT_PALLADIUM);

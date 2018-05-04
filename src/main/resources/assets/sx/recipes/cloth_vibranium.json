@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+
+    "pattern":
+    [
+        "XBX",
+        "BBB",      
+        "XBX"
+    ],
+"key": {
+    "B": {
+      "item": "sx:plate_vibranium"
+    },
+    "X": {
+        "item": "sx:cloth"
+      }
+  },
+  "result": {
+    "item": "sx:cloth_vibranium",
+     "count": 1
+  }
+}

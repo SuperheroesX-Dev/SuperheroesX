@@ -19,9 +19,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+
 public class ArmorCaptainAmerica extends ItemArmor implements IHasModel {
 
     public ArmorCaptainAmerica(String name, ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) {
+
 		super(materialIn, renderIndexIn, equipmentSlotIn);
 
 		setUnlocalizedName(name);

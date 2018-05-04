@@ -19,11 +19,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ArmorCaptainAmerica extends ItemArmor implements IHasModel
-{
 
-    public ArmorCaptainAmerica(String name, ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn)
-	{
+public class ArmorCaptainAmerica extends ItemArmor implements IHasModel {
+
+    public ArmorCaptainAmerica(String name, ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) {
+
 		super(materialIn, renderIndexIn, equipmentSlotIn);
 
 		setUnlocalizedName(name);
@@ -77,12 +77,8 @@ public class ArmorCaptainAmerica extends ItemArmor implements IHasModel
     }
 	@Override
 
-	public void registerModels() 
-
-	{
-
+    public void registerModels() {
         SuperheroesX.PROXY.registerItemRenderer(this, 0, "inventory");
-
 	}
 
 	public static class Set {

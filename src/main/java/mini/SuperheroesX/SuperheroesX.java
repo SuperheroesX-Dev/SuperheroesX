@@ -39,9 +39,9 @@ public class SuperheroesX {
 
     public static Logger LOGGER = LogManager.getLogger(Reference.MODID);
 
-    //====================Debug Variable====================//
-    /*====*/public static final boolean DEBUG = false;/*====*/
-    //======================================================//
+    /*==================Debug Variable==================*/
+    /*==*/public static final boolean DEBUG = false;/*==*/
+    /*==================================================*/
 	
 	@EventHandler
     public static void preInit(FMLPreInitializationEvent event) {

@@ -3,7 +3,6 @@ package mini.SuperheroesX.objects.armor;
 import mini.SuperheroesX.SuperheroesX;
 import mini.SuperheroesX.init.ItemInit;
 import mini.SuperheroesX.init.PotionInit;
-import mini.SuperheroesX.objects.armor.ArmorBase.Set;
 import mini.SuperheroesX.util.interfaces.IHasModel;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.creativetab.CreativeTabs;
@@ -14,7 +13,6 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
@@ -22,23 +20,16 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ArmorCaptainAmerica extends ItemArmor implements IHasModel
-
 {
 
-	public ArmorCaptainAmerica(String name, ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) 
-
+    public ArmorCaptainAmerica(String name, ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn)
 	{
-
 		super(materialIn, renderIndexIn, equipmentSlotIn);
 
 		setUnlocalizedName(name);
-
 		setRegistryName(name);
 
-		
-
 		ItemInit.ITEMS.add(this);
-
 	}
 
 	@Override

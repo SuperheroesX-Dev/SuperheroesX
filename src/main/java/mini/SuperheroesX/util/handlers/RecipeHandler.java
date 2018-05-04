@@ -54,7 +54,7 @@ public class RecipeHandler {
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.CLOTH, 1), "SSS", "S S", "SSS", 'S', cloneStack(Items.STRING, 1));
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.STRENGTHENED_CLOTH, 1), "CCC", "ITI", "CCC", 'C', cloneStack(ItemInit.CLOTH, 1), 'I', "ingotIron", 'T', "ingotTitanium");
 
-        RecipeHelper.addArmorRecipe(ItemInit.HELMET_CAPTAIN_AMERICA, ItemInit.HELMET_CAPTAIN_AMERICA, ItemInit.HELMET_CAPTAIN_AMERICA, ItemInit.HELMET_CAPTAIN_AMERICA, cloneStack(ItemInit.STRENGTHENED_CLOTH, 1));
+        RecipeHelper.addArmorRecipe(ItemInit.HELMET_CAPTAIN_AMERICA, ItemInit.CHESTPLATE_CAPTAIN_AMERICA, ItemInit.LEGGINGS_CAPTAIN_AMERICA, ItemInit.BOOTS_CAPTAIN_AMERICA, cloneStack(ItemInit.STRENGTHENED_CLOTH, 1));
 
 
         RecipeHelper.addTwoWayStorageRecipe((BlockBase) BlockInit.BLOCK_VIBRANIUM, (ItemBase) ItemInit.INGOT_VIBRANIUM);
@@ -406,7 +406,7 @@ public class RecipeHandler {
         }
 
 
-        public static void addArmorRecipe(Item helmet, Item chestplate, Item leggings, Item boots, ItemStack stack) {
+        static void addArmorRecipe(Item helmet, Item chestplate, Item leggings, Item boots, ItemStack stack) {
             addShapedOreRecipe(cloneStack(helmet, 1), "XXX", "X X", 'X', stack);
             addShapedOreRecipe(cloneStack(chestplate, 1), "X X", "XXX", "XXX", 'X', stack);
             addShapedOreRecipe(cloneStack(leggings, 1), "XXX", "X X", "X X", 'X', stack);

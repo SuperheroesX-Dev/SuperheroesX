@@ -13,7 +13,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
-version = pullVersion() + "." + (System.getenv("BUILD_NUMBER") ?: "1")
+version = pullVersion()
 
 
 group = "mini.SuperheroesX" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -90,6 +90,10 @@ processResources {
 }
 
 version = "${project.minecraft.version}-${project.version}"
+
+jar {
+    classifier = 'universal'
+}
 
 def pullVersion() {
     def file = file("src/main/java/mini/SuperheroesX/util/Reference.java")

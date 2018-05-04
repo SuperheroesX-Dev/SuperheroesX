@@ -50,8 +50,7 @@ import java.util.List;
 import static mini.SuperheroesX.util.handlers.LivingTickHandler.floatingTickCount;
 
 @EventBusSubscriber
-public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor
-{
+public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor {
 
     protected float reductionAmmount = 1F;
     protected int energyPerDamage = 160;

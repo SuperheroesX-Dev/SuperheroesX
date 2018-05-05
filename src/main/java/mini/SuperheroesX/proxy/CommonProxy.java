@@ -1,11 +1,9 @@
 package mini.SuperheroesX.proxy;
 
 import mini.SuperheroesX.SuperheroesX;
-import mini.SuperheroesX.objects.armor.IronManArmorModel_NOTUSING;
 import mini.SuperheroesX.util.handlers.EnumHandler;
 import mini.SuperheroesX.util.handlers.LivingTickHandler;
 import mini.SuperheroesX.util.handlers.SyncHandler;
-import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -13,10 +11,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
+//import mini.SuperheroesX.objects.armor.IronManArmorModel_NOTUSING;
+
 public class CommonProxy 
 {
-    private static final IronManArmorModel_NOTUSING ironManArmorModelCest = new IronManArmorModel_NOTUSING(1.0f);
-    private static final IronManArmorModel_NOTUSING ironManArmorModel = new IronManArmorModel_NOTUSING(0.5f);
+    /*private static final IronManArmorModel_NOTUSING ironManArmorModelCest = new IronManArmorModel_NOTUSING(1.0f);
+    private static final IronManArmorModel_NOTUSING ironManArmorModel = new IronManArmorModel_NOTUSING(0.5f);*/
 
 	public void registerItemRenderer(Item item, int meta, String id) {}
 	public void registerVariantRenderer(Item item, int meta, String filename, String id) {}
@@ -37,7 +37,7 @@ public class CommonProxy
         MinecraftForge.EVENT_BUS.register(new LivingTickHandler());
     }
 
-    public ModelBiped getArmorModel(int id) {
+    /*public ModelBiped getArmorModel(int id) {
         switch (id) {
             case 0:
                 return ironManArmorModelCest;
@@ -45,7 +45,7 @@ public class CommonProxy
                 return ironManArmorModel;
         }
         return null;
-    }
+    }*/
 
     public void initKeys() {
     }

@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 public abstract class SuperheroesXTabs extends CreativeTabs {
     public SuperheroesXTabs(String label) {
         super("superheroesx_" + label);
-        this.setBackgroundImageName("superheroesx.png");
+        //this.setBackgroundImageName("superheroesx.png");
     }
 
     public static class Materials extends SuperheroesXTabs {

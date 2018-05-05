@@ -6,7 +6,7 @@ package mini.SuperheroesX.objects.armor;
 // Keep in mind that you still need to fill in some blanks
 // - ZeuX
 
-
+/*
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -162,4 +162,4 @@ public class IronManArmorModel_WIP extends ModelBiped {
         model.rotateAngleZ = z;
     }
 
-}
+}*/

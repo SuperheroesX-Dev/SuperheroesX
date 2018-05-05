@@ -1,5 +1,6 @@
 package mini.SuperheroesX.objects.armor;
 
+/*
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -7,7 +8,7 @@ import net.minecraft.entity.Entity;
 /**
  * ModelPlayer - Either Mojang or a mod author
  * Created using Tabula 7.0.0
- */
+ *
 public class IronManArmorModel_NOTUSING extends ModelBiped {
     public ModelRenderer LeftArm2;
     public ModelRenderer RightLeg2;
@@ -96,7 +97,7 @@ public class IronManArmorModel_NOTUSING extends ModelBiped {
 
     /**
      * This is a helper function from Tabula to set the rotation of model parts
-     */
+     *
     public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
@@ -106,4 +107,4 @@ public class IronManArmorModel_NOTUSING extends ModelBiped {
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
     }
-}
+}*/

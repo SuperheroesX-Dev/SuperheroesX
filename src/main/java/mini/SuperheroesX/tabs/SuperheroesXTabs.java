@@ -1,10 +1,12 @@
 package mini.SuperheroesX.tabs;
 
+import mcp.MethodsReturnNonnullByDefault;
 import mini.SuperheroesX.init.BlockInit;
 import mini.SuperheroesX.init.ItemInit;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 
+@MethodsReturnNonnullByDefault
 public abstract class SuperheroesXTabs extends CreativeTabs {
     public SuperheroesXTabs(String label) {
         super("superheroesx_" + label);

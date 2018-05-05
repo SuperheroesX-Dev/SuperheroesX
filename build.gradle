@@ -92,7 +92,7 @@ processResources {
 version = "${project.minecraft.version}-${project.version}"
 
 jar {
-    classifier = 'alpha'
+    classifier = 'universal'
 }
 
 def pullVersion() {

@@ -17,6 +17,7 @@ import net.minecraftforge.common.MinecraftForge;
 
 import java.util.Random;
 
+
 public class ClientProxy extends CommonProxy
 {
     private static final Minecraft mc = Minecraft.getMinecraft();
@@ -38,7 +39,6 @@ public class ClientProxy extends CommonProxy
     @Override
     public void showJetpackParticles(World world, EntityLivingBase wearer, EnumHandler.ParticleType particle) {
         if (mc.gameSettings.particleSetting == 0 || mc.gameSettings.particleSetting == 1 && mc.world.getTotalWorldTime() % 4L == 0) {
-
             Random rand = new Random();
 
             Pos3D playerPos = new Pos3D(wearer).translate(0, 1.5, 0);

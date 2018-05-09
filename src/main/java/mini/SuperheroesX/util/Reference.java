@@ -13,9 +13,9 @@ public class Reference
     public static final String MC_VERSION = "[1.12.2]";
     public static final String DEPENDENCIES =
             "required-after:redstoneflux@[2.0.1,2.1.0);" +
-                    "required-after:forge@[14.23.3.2655,15.0.0.0);" +
-                    "required-after:minecraft;" +
-                    "after:thermalexpansion;";
+            "required-after:forge@[14.23.3.2655,15.0.0.0);" +
+            "required-after:minecraft;" +
+            "after:thermalexpansion;";
     public static final String VERSION = "0.1.3";
 	
 	public static final int ENTITY_KRYPTONIAN = 1;

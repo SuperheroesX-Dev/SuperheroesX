@@ -20,7 +20,6 @@ import java.util.Random;
 
 public class ClientProxy extends CommonProxy
 {
-    private static final Minecraft mc = Minecraft.getMinecraft();
 
     @Override
     public void registerItemRenderer(Item item, int meta, String id)
@@ -38,6 +37,7 @@ public class ClientProxy extends CommonProxy
 
     @Override
     public void showJetpackParticles(World world, EntityLivingBase wearer, EnumHandler.ParticleType particle) {
+        Minecraft mc = Minecraft.getMinecraft();
         if (mc.gameSettings.particleSetting == 0 || mc.gameSettings.particleSetting == 1 && mc.world.getTotalWorldTime() % 4L == 0) {
             Random rand = new Random();
 

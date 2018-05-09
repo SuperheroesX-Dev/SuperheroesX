@@ -10,5 +10,3 @@ public interface IOreDict<T> {
         return false;
     }
 }
-
-

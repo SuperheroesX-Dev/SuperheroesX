@@ -9,6 +9,7 @@ import mini.SuperheroesX.objects.items.TestItem;
 import mini.SuperheroesX.objects.tools.ToolSword;
 import mini.SuperheroesX.util.Reference;
 import mini.SuperheroesX.util.config.Config;
+import mini.SuperheroesX.util.interfaces.IOreDict;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -23,6 +24,7 @@ import java.util.List;
 
 public class ItemInit 
 {
+    public static final List<IOreDict> MOD_ORE_DICT = new ArrayList<>();
     public static final List<Item> ITEMS = new ArrayList<>();
 	
 	//Materials

@@ -12,7 +12,7 @@ import net.minecraft.item.ItemBlock;
 
 public class BlockBase extends Block implements IHasModel, IOreDict<BlockBase> {
     private String oreDictName;
-    private Boolean hasOreDictName;
+    private boolean hasOreDictName;
 
     public BlockBase(String name, Material material)
 	{
@@ -39,6 +39,7 @@ public class BlockBase extends Block implements IHasModel, IOreDict<BlockBase> {
     @Override
     public BlockBase setOreDictName(String oreDictName) {
         this.oreDictName = oreDictName;
+        ItemInit.MOD_ORE_DICT.add(this);
         this.hasOreDictName = true;
 
         return this;
@@ -47,5 +48,10 @@ public class BlockBase extends Block implements IHasModel, IOreDict<BlockBase> {
     @Override
     public boolean hasOreDictName() {
         return this.hasOreDictName;
+    }
+
+    @Override
+    public BlockBase getEntry() {
+        return this;
     }
 }

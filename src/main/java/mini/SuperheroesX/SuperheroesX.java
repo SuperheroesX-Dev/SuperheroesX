@@ -8,6 +8,7 @@ import mini.SuperheroesX.util.handlers.PacketHandler;
 import mini.SuperheroesX.util.handlers.RecipeHandler;
 import mini.SuperheroesX.util.handlers.RegistryHandler;
 import mini.SuperheroesX.util.handlers.SyncHandler;
+import mini.SuperheroesX.util.integration.Integrations;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -20,13 +21,16 @@ import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = Reference.MODID, name = Reference.NAME, version = Reference.VERSION, acceptedMinecraftVersions = Reference.MC_VERSION, dependencies = Reference.DEPENDENCIES)
+@Mod(modid = Reference.MODID,
+        name = Reference.NAME,
+        version = Reference.VERSION,
+        acceptedMinecraftVersions = Reference.MC_VERSION,
+        dependencies = Reference.DEPENDENCIES)
 public class SuperheroesX {
 
     public static final CreativeTabs SUPERHEROES_X_TAB_MATERIALS = new SuperheroesXTabs.Materials();
     public static final CreativeTabs SUPERHEROES_X_TAB_MARVEL = new SuperheroesXTabs.MARVEL();
     public static final CreativeTabs SUPERHEROES_X_TAB_DC = new SuperheroesXTabs.DC();
-
 
 
     @Instance(Reference.MODID)
@@ -46,13 +50,14 @@ public class SuperheroesX {
 	@EventHandler
     public static void preInit(FMLPreInitializationEvent event) {
         RegistryHandler.preInitRegistries();
-
+        Integrations.preInitIntegrations();
         Config.preInit(event);
     }
 
 	@EventHandler
     public static void init(FMLInitializationEvent event) {
         RegistryHandler.initRegistries();
+        Integrations.initIntegrations();
         PROXY.registerHandlers();
         PROXY.initKeys();
         PacketHandler.init();

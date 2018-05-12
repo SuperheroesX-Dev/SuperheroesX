@@ -3,6 +3,8 @@ package mini.SuperheroesX.objects.items;
 
 import mini.SuperheroesX.SuperheroesX;
 import mini.SuperheroesX.entity.EntityCaptainAmericasShield;
+import mini.SuperheroesX.init.EnchantmentInit;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
@@ -55,6 +57,7 @@ public class ShieldCaptainAmerica extends WeaponizedShield {
     }
 
     private void throwShield(EntityPlayer player, ItemStack stack, World worldIn) {
+        int range = EnchantmentHelper.getEnchantmentLevel(EnchantmentInit.THROWING_RANGE, stack);
         player.getCooldownTracker().setCooldown(stack.getItem(), 0x70ffffff);
         EntityCaptainAmericasShield shield = new EntityCaptainAmericasShield(worldIn, player, stack);
         shield.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 2F, 0);

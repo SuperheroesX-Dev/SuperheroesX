@@ -23,7 +23,6 @@ public class ItemBase extends Item implements IHasModel, IOreDict<ItemBase> {
 	public void registerModels() 
 	{
         SuperheroesX.PROXY.registerItemRenderer(this, 0, "inventory");
-		
 	}
 
     @Override
@@ -34,6 +33,7 @@ public class ItemBase extends Item implements IHasModel, IOreDict<ItemBase> {
     @Override
     public ItemBase setOreDictName(String oreDictName) {
         this.oreDictName = oreDictName;
+        ItemInit.MOD_ORE_DICT.add(this);
         this.hasOreDictName = true;
 
         return this;
@@ -42,5 +42,10 @@ public class ItemBase extends Item implements IHasModel, IOreDict<ItemBase> {
     @Override
     public boolean hasOreDictName() {
         return this.hasOreDictName;
+    }
+
+    @Override
+    public ItemBase getEntry() {
+        return this;
     }
 }

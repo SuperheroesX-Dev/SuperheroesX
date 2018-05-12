@@ -9,4 +9,6 @@ public interface IOreDict<T> {
     default boolean hasOreDictName() {
         return false;
     }
+
+    T getEntry();
 }

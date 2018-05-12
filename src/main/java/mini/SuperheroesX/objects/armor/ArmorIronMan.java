@@ -241,7 +241,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor 
         private int fuelUsage = 10;
         //private int energyPerShot = 200;
         private int cooldown;
-        private float defaultSpeedSideways = 0.8F;
+        private float defaultSpeedSideways = 1.5F;
         private float sprintSpeedModifier = 2.4F;
         private float damagePerHit = 5;
         public int multiplier;

@@ -65,8 +65,9 @@ public class SuperheroesX {
 
     @EventHandler
     public static void postInit(FMLPostInitializationEvent event) {
-        RecipeHandler.addStandardRecipes();
         RegistryHandler.postInitRegistries();
+        Integrations.postInitIntegrations();
+        RecipeHandler.addStandardRecipes();
     }
 
     @EventHandler

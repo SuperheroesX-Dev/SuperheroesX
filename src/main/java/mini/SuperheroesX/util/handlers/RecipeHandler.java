@@ -7,7 +7,6 @@ import mini.SuperheroesX.objects.blocks.BlockBase;
 import mini.SuperheroesX.objects.items.ItemBase;
 import mini.SuperheroesX.util.Reference;
 import mini.SuperheroesX.util.integration.Integrations;
-import mini.SuperheroesX.util.integration.TEIntegration;
 import mini.SuperheroesX.util.misc.MaterialTripplet;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
@@ -42,10 +41,10 @@ public class RecipeHandler {
         RecipeHelper.addShapelessOreRecipe(cloneStack(ItemInit.SHIELD_CAPTAIN_AMERICA, 1), "dyeBlue", "dyeWhite", "dyeRed", cloneStack(ItemInit.SHIELD_CAPTAIN_AMERICA_UNCOLORED, 1));
 
 
-        if (Integrations.TE) {
-            TEIntegration.addTERecipes();
-        } else {
-            RecipeHelper.addShapelessOreRecipe(cloneStack(ItemInit.INGOT_TITANOGOLD, 2), "ingotTitanium", "ingotGold");
+        if (!Integrations.TE) {
+            if (!Integrations.TC) {
+                RecipeHelper.addShapelessOreRecipe(cloneStack(ItemInit.INGOT_TITANOGOLD, 2), "ingotTitanium", "ingotGold");
+            }
             RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.PLATE_TITANOGOLD, 1), "TT", "TT", 'T', "ingotTitanogold");
             RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.PLATE_TITANIUM, 1), "TT", "TT", 'T', "ingotTitanium");
             RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.PLATE_VIBRANIUM, 1), "VV", "VV", 'V', "ingotVibranium");

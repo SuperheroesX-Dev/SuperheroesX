@@ -69,4 +69,9 @@ class TCMaterial extends Material {
         }
         return this;
     }
+
+    public TCMaterial setFluidTemp(int temp) {
+        this.fluid.setTemperature(temp);
+        return this;
+    }
 }

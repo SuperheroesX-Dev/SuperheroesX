@@ -8,6 +8,7 @@ public class Integrations {
 
     public static final boolean TC = Loader.isModLoaded("tconstruct");
     public static final boolean TE = Loader.isModLoaded("thermalexpansion");
+    public static final boolean TF = Loader.isModLoaded("thermalfoundation");
 
     public static void preInitIntegrations() {
         if (TC) {

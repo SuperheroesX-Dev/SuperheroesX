@@ -1,7 +1,9 @@
 package mini.SuperheroesX.util.integration.TC;
 
 
+import cofh.thermalfoundation.init.TFFluids;
 import mini.SuperheroesX.init.ItemInit;
+import mini.SuperheroesX.util.integration.Integrations;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import slimeknights.mantle.util.RecipeMatch;
@@ -88,6 +90,7 @@ public class TCIntegration {
         }
         TinkerRegistry.registerAlloy(new FluidStack(TITANOGOLD.getFluid(), 2), new FluidStack(TITANIUM.getFluid(), 1), new FluidStack(TinkerFluids.gold, 1));
         TinkerRegistry.registerTableCasting(new CastingRecipe(new ItemStack(ItemInit.SHIELD_CAPTAIN_AMERICA_UNCOLORED, 1), RecipeMatch.ofNBT(new ItemStack(ItemInit.SHIELD_HANDLE, 1)), VIBRANIUM.getFluid(), Material.VALUE_Ingot * 8, true, false));
+        if (Integrations.TF)TinkerRegistry.registerSmelteryFuel(new FluidStack(TFFluids.fluidPyrotheum,1),1000);
     }
 
     public static void postInit() {

@@ -2,6 +2,8 @@ package mini.SuperheroesX.init;
 
 import mini.SuperheroesX.SuperheroesX;
 import mini.SuperheroesX.objects.blocks.*;
+import mini.SuperheroesX.objects.multiblockStructures.NidawellirForge.MoldNidawellir;
+import mini.SuperheroesX.objects.multiblockStructures.NidawellirForge.NidawellirForge;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
@@ -13,6 +15,12 @@ public class BlockInit
     public static final List<Block> BLOCKS = new ArrayList<>();
 	
 	//public static final Block Atom_Fuser = new BlockAtomFuser("atomfuser");
+
+    public static final Block MOLD_NIDAWELLIR = new MoldNidawellir()
+            .setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+
+    public static final Block HEART_OF_A_DIEING_STAR = new BlockBase("HEART_OF_A_DIEING_STAR".toLowerCase(), Material.IRON)
+            .setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
 
     public static final Block ORE_VIBRANIUM = new BlockVibraniumOre("ore_vibranium", Material.ROCK)
             .setOreDictName("oreVibranium")
@@ -34,4 +42,6 @@ public class BlockInit
             .setOreDictName("blockTitanium")
             .setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
 
+    public static final Block LENS_NIDAWELLIR = new NidawellirForge()
+            .setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
 }

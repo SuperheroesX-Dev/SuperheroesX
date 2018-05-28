@@ -2,6 +2,7 @@ package mini.SuperheroesX.objects.multiblockStructures.NidawellirForge;
 
 import mini.SuperheroesX.init.BlockInit;
 import mini.SuperheroesX.objects.blocks.BlockBase;
+import mini.SuperheroesX.objects.multiblockStructures.IMultiblock;
 import mini.SuperheroesX.util.misc.Structure;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -15,7 +16,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class NidawellirForge extends BlockBase implements ITileEntityProvider {
+public class NidawellirForge extends BlockBase implements ITileEntityProvider, IMultiblock {
 
     private final Structure structure;
 
@@ -93,13 +94,8 @@ public class NidawellirForge extends BlockBase implements ITileEntityProvider {
 
     @Nullable
     @Override
-    public TileEntity createNewTileEntity(World world, int i) {
+    public TileEntity createNewTileEntity(World world, int meta) {
         return new TileEntityNidawellir(world);
-    }
-
-    public boolean checkMultiblock(World world, BlockPos pos, EnumFacing horizontalFacing) {
-        BlockPos start = pos.offset(EnumFacing.DOWN, 3).offset(horizontalFacing.rotateY(), 3);
-        return structure.checkInWorld(world, start, horizontalFacing);
     }
 
     @Override
@@ -107,6 +103,11 @@ public class NidawellirForge extends BlockBase implements ITileEntityProvider {
         if (checkMultiblock(worldIn, pos, placer.getHorizontalFacing())) {
             System.out.println("test");
         }
+    }
 
+    @Override
+    public boolean checkMultiblock(World world, BlockPos pos, EnumFacing facing) {
+        BlockPos start = pos.offset(EnumFacing.DOWN, 3).offset(facing.rotateY(), 3);
+        return structure.checkInWorld(world, start, facing);
     }
 }

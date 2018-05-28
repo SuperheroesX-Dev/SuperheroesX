@@ -23,7 +23,6 @@ public class SuperheroesXEventHandler {
             event.player.capabilities.allowFlying = false;
         }
     }
-    
 }
 
 

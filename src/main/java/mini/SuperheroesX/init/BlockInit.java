@@ -2,6 +2,7 @@ package mini.SuperheroesX.init;
 
 import mini.SuperheroesX.SuperheroesX;
 import mini.SuperheroesX.objects.blocks.*;
+import mini.SuperheroesX.objects.multiblockStructures.Bifrost.BifrostCore;
 import mini.SuperheroesX.objects.multiblockStructures.NidawellirForge.MoldNidawellir;
 import mini.SuperheroesX.objects.multiblockStructures.NidawellirForge.NidawellirForge;
 import net.minecraft.block.Block;
@@ -43,5 +44,8 @@ public class BlockInit
             .setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
 
     public static final Block LENS_NIDAWELLIR = new NidawellirForge()
+            .setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+
+    public static final Block BIFROST_CORE = new BifrostCore()
             .setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
 }

@@ -19,37 +19,31 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ArmorDeadpool extends ItemArmor implements IHasModel
-
 {
 
-	public ArmorDeadpool(String name, ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) 
-
+    public ArmorDeadpool(String name, ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn)
 	{
 
 		super(materialIn, renderIndexIn, equipmentSlotIn);
 
 		setUnlocalizedName(name);
-
 		setRegistryName(name);
-
         setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
 
-		
 
 		ItemInit.ITEMS.add(this);
-
 	}
 
 	@Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
 		if (this.isWearingFullSet(player, ItemInit.HELMET_DEADPOOL, ItemInit.CHESTPLATE_DEADPOOL, ItemInit.LEGGINGS_DEADPOOL,
 				ItemInit.BOOTS_DEADPOOL)) {
-		super.onArmorTick(world, player, stack); 
-		
-		player.addPotionEffect(new PotionEffect(MobEffects.SATURATION, 0, 1, true, false));
-		player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 0, 1, true, false));
-			player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 0, 1, true, false));
-		player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 0, 2, true, false));
+		super.onArmorTick(world, player, stack);
+
+            player.addPotionEffect(new PotionEffect(MobEffects.SATURATION, 5, 1, true, false));
+            player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 5, 1, true, false));
+            player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 5, 1, true, false));
+            player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 5, 2, true, false));
  }
 
 

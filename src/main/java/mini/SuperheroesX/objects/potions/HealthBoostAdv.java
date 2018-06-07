@@ -1,33 +1,21 @@
 package mini.SuperheroesX.objects.potions;
 
-
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.potion.PotionHealthBoost;
 
-
-
-public class PotionAdv extends Potion {
-
-
+public class HealthBoostAdv extends PotionHealthBoost {
 
     private final boolean visible;
 
-
-    public PotionAdv(boolean isBadEffectIn, int liquidColorIn, boolean visible) {
-
-        super(isBadEffectIn, liquidColorIn);
-
+    public HealthBoostAdv(boolean visible) {
+        super(false, 16284963);
         this.visible = visible;
-
     }
-
-
 
     @Override
     public boolean shouldRender(PotionEffect effect) {
         return super.shouldRender(effect) && visible;
     }
-
 
 
     @Override
@@ -36,14 +24,8 @@ public class PotionAdv extends Potion {
     }
 
 
-
     @Override
     public boolean shouldRenderInvText(PotionEffect effect) {
         return super.shouldRenderInvText(effect) && visible;
-    }
-
-    @Override
-    public Potion setEffectiveness(double effectivenessIn) {
-        return super.setEffectiveness(effectivenessIn);
     }
 }

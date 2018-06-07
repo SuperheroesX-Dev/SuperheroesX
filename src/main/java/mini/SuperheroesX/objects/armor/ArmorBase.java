@@ -23,8 +23,7 @@ public class ArmorBase extends ItemArmor implements IHasModel
 
 {
 
-	public ArmorBase(String name, ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) 
-
+    public ArmorBase(String name, ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn)
 	{
 
 		super(materialIn, renderIndexIn, equipmentSlotIn);
@@ -44,11 +43,12 @@ public class ArmorBase extends ItemArmor implements IHasModel
 		if (this.isWearingFullSet(player, ItemInit.CHESTPLATE_SUPERBOY, ItemInit.LEGGINGS_SUPERBOY, ItemInit.BOOTS_SUPERBOY)) {
             super.onArmorTick(world, player, stack);
 
-            player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 0, 1, false, false));
-		player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 0, 4, false, false));
-		player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 0, 2, false, false));
-		player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, 0, 2, false, false));
-		player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 0, 4, false, false)); }
+            player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 3, 1, false, false));
+            player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 3, 4, false, false));
+            player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 3, 2, false, false));
+            player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, 3, 2, false, false));
+            player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 3, 4, false, false));
+        }
 
 
 		}

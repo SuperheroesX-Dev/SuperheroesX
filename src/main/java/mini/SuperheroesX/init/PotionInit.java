@@ -37,13 +37,13 @@ public class PotionInit {
             new ItemStack(Items.MILK_BUCKET)
     );
 
-    public static final Potion INVISIBLE_SPEED = new PotionAdv(false, 8171462, false).setPotionName("effect.moveSpeed").registerPotionAttributeModifier(SharedMonsterAttributes.MOVEMENT_SPEED, "91AEAA56-376B-4498-935B-2F7F68070635", 0.20000000298023224D, 2).setBeneficial();
+    public static final Potion INVISIBLE_SPEED = new PotionAdv("inv_speed", false, 8171462, false).setPotionName("effect.moveSpeed").registerPotionAttributeModifier(SharedMonsterAttributes.MOVEMENT_SPEED, "91AEAA56-376B-4498-935B-2F7F68070635", 0.20000000298023224D, 2).setBeneficial();
 
-    public static final Potion INVISIBLE_JUMP_BOOST = new PotionAdv(false, 2293580, false).setPotionName("effect.jump").setBeneficial();
+    public static final Potion INVISIBLE_JUMP_BOOST = new PotionAdv("inv_jump_boost", false, 2293580, false).setPotionName("effect.jump").setBeneficial();
 
     public static final Potion INVISIBLE_HEALTH_BOOST = new HealthBoostAdv(false).setPotionName("effect.healthBoost").registerPotionAttributeModifier(SharedMonsterAttributes.MAX_HEALTH, "5D6F0BA2-1186-46AC-B896-C61C5CEE99CC", 4.0D, 0).setBeneficial();
 
-    public static final Potion INVISIBLE_REGENERATION = new PotionAdv(false, 13458603, false).setEffectiveness(0.25D).setPotionName("effect.regeneration").setBeneficial();
+    public static final Potion INVISIBLE_REGENERATION = new PotionAdv("inv_regeneration", false, 13458603, false).setEffectiveness(0.25D).setPotionName("effect.regeneration").setBeneficial();
 
     //public static final Potion INVISIBLE_SATURATION = new PotionHealth(false, 16262179).setPotionName("effect.saturation").setBeneficial());
 

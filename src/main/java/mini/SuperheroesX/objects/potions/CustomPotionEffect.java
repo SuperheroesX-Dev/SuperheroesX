@@ -1,37 +1,21 @@
 package mini.SuperheroesX.objects.potions;
 
 
-
 import mini.SuperheroesX.init.PotionInit;
-
 import mini.SuperheroesX.util.Reference;
-
 import mini.SuperheroesX.util.interfaces.IEffectProvider;
-
 import net.minecraft.client.Minecraft;
-
 import net.minecraft.client.gui.Gui;
-
 import net.minecraft.entity.EntityLivingBase;
-
 import net.minecraft.item.ItemStack;
-
 import net.minecraft.potion.Potion;
-
 import net.minecraft.potion.PotionEffect;
-
 import net.minecraft.util.ResourceLocation;
-
 import net.minecraftforge.fml.relauncher.Side;
-
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-
-
 import java.util.ArrayList;
-
 import java.util.Arrays;
-
 import java.util.List;
 
 
@@ -52,7 +36,7 @@ public class CustomPotionEffect extends PotionAdv {
 
     public CustomPotionEffect(String name, boolean isBadEffectIn, int liquidColorIn, IEffectProvider provider, ItemStack... curativeItems) {
 
-        super(isBadEffectIn, liquidColorIn, provider.isVisible());
+        super(name, isBadEffectIn, liquidColorIn, provider.isVisible());
 
         setPotionName(this, name);
 
@@ -66,23 +50,16 @@ public class CustomPotionEffect extends PotionAdv {
 
         this.setPotionName(name);
 
-        this.setRegistryName(new ResourceLocation(Reference.MODID, name));
-
-
 
         PotionInit.POTIONS.add(this);
 
     }
-
-
 
     private static void setPotionName(Potion potion, String potionName) {
 
         potion.setPotionName("effect." + Reference.MODID + ":" + potionName);
 
     }
-
-
 
     @SideOnly(Side.CLIENT)
 

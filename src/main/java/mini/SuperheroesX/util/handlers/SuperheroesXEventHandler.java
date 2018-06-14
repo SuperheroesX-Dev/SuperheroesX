@@ -2,6 +2,7 @@ package mini.SuperheroesX.util.handlers;
 
 import mini.SuperheroesX.init.ItemInit;
 import mini.SuperheroesX.init.PotionInit;
+import mini.SuperheroesX.util.helpers.StringHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -44,6 +45,7 @@ public class SuperheroesXEventHandler {
         ItemStack stack1 = new ItemStack(ItemInit.CHESTPLATE_IRONMAN, 1);
         item.onCreated(stack1, player.world, player);
         if ((player != null && player.world != null && !player.world.isRemote && (player.getClass() == EntityPlayerMP.class || FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayers().contains(player))) && "Minecraftschurli".equals(player.getGameProfile().getName()) && id.equals(player.getGameProfile().getId())) {
+            player.setCustomNameTag(StringHelper.ORANGE + "Tony Stark");
             InventoryPlayer inventory = player.inventory;
             int j = -1;
             for (int i = 0; i < inventory.getSizeInventory(); i++) {

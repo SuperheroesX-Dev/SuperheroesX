@@ -38,6 +38,8 @@ public class ItemInit
     public static final ArmorMaterial ARMOR_IRONMAN = EnumHelper.addArmorMaterial("armor_ironman", Reference.RESOURCE_PREFIX + "ironman", 16000, new int[]{7, 9, 8, 5}, 0, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 3.7F);
     public static final ArmorMaterial ARMOR_ROBIN1 = EnumHelper.addArmorMaterial("armor_robin1", Reference.RESOURCE_PREFIX + "robin1", 370, new int[]{4, 7, 9, 4}, 9, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 2.4F);
     public static final ArmorMaterial ARMOR_CAPTAIN_AMERICA = EnumHelper.addArmorMaterial("armor_captain_america", Reference.RESOURCE_PREFIX + "captain_america", 500, new int[]{4, 7, 10, 4}, 11, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 2.8F);
+    public static final ArmorMaterial ARMOR_REDHOOD = EnumHelper.addArmorMaterial("armor_redhood", Reference.RESOURCE_PREFIX + "redhood", 500, new int[]{4, 7, 10, 4}, 11, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 2.8F);
+
 
     public static final Item TEST_ITEM;
 
@@ -121,6 +123,11 @@ public class ItemInit
     public static final Item CHESTPLATE_CAPTAIN_AMERICA;
     public static final Item LEGGINGS_CAPTAIN_AMERICA;
     public static final Item BOOTS_CAPTAIN_AMERICA;
+    
+    public static final Item HELMET_REDHOOD;
+    public static final Item CHESTPLATE_REDHOOD;
+    public static final Item LEGGINGS_REDHOOD;
+    public static final Item BOOTS_REDHOOD;
 
 
     //LOGOS
@@ -165,6 +172,7 @@ public class ItemInit
             MINI_ARC_REACTOR_MK2 = new ItemBase("mini_arc_reactor_mk2").
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
 
+            //MCU
             HELMET_BLACKPANTHER = new ArmorBlackPanther("blackpanther_helmet", ARMOR_BLACKPANTHER, 1, EntityEquipmentSlot.HEAD).
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
             CHESTPLATE_BLACKPANTHER = new ArmorBlackPanther("blackpanther_chestplate", ARMOR_BLACKPANTHER, 1, EntityEquipmentSlot.CHEST).
@@ -173,7 +181,7 @@ public class ItemInit
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
             BOOTS_BLACKPANTHER = new ArmorBlackPanther("blackpanther_boots", ARMOR_BLACKPANTHER, 1, EntityEquipmentSlot.FEET).
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-
+            
             HELMET_IRONMAN = new ArmorIronMan("helmet_ironman", 1, EntityEquipmentSlot.HEAD);
             CHESTPLATE_IRONMAN = (ChestplateIronMan) new ChestplateIronMan().
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
@@ -210,6 +218,8 @@ public class ItemInit
 
             KATANA_DEADPOOL = new ToolSword("deadpool_katana", TOOL_DEADPOOL).
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+            
+            
         } else {
             INGOT_PALLADIUM = null;
             INGOT_VIBRANIUM = null;
@@ -260,12 +270,21 @@ public class ItemInit
         if (Config.dcItems) {
             LOGO_KID_FLASH = new ItemBase("kidflash_logo").
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
-
+            
             CHESTPLATE_SUPERBOY = new ArmorBase("superboy_chestplate", ARMOR_SUPERBOY, 1, EntityEquipmentSlot.CHEST).
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
             LEGGINGS_SUPERBOY = new ArmorBase("superboy_leggings", ARMOR_SUPERBOY, 1, EntityEquipmentSlot.LEGS).
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
             BOOTS_SUPERBOY = new ArmorBase("superboy_boots", ARMOR_SUPERBOY, 1, EntityEquipmentSlot.FEET).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
+            
+            HELMET_REDHOOD = new ArmorRedHood("helmet_redhood", ARMOR_REDHOOD, 1, EntityEquipmentSlot.HEAD).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
+            CHESTPLATE_REDHOOD = new ArmorRedHood("chestplate_redhood", ARMOR_REDHOOD, 1, EntityEquipmentSlot.CHEST).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
+            LEGGINGS_REDHOOD = new ArmorRedHood("leggings_redhood", ARMOR_REDHOOD, 2, EntityEquipmentSlot.LEGS).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
+            BOOTS_REDHOOD = new ArmorRedHood("boots_redhood", ARMOR_REDHOOD, 1, EntityEquipmentSlot.FEET).
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
 
             //CW
@@ -290,9 +309,15 @@ public class ItemInit
         } else {
             LOGO_KID_FLASH = null;
 
+            //DC
             CHESTPLATE_SUPERBOY = null;
             LEGGINGS_SUPERBOY = null;
             BOOTS_SUPERBOY = null;
+            
+            HELMET_REDHOOD = null;
+            CHESTPLATE_REDHOOD = null;
+            LEGGINGS_REDHOOD = null;
+            BOOTS_REDHOOD = null;
 
             //CW
             HELMET_KIDFLASH = null;

@@ -21,6 +21,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 
 import java.util.ArrayList;
@@ -31,7 +33,9 @@ public class KeyTracker {
 
     public static final KeyTracker instance = new KeyTracker();
 
+    @SideOnly(Side.CLIENT)
     static final Minecraft mc = Minecraft.getMinecraft();
+
     private static int flyKey;
     private static int descendKey;
     private static boolean lastFlyState = false;

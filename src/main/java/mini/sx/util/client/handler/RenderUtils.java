@@ -4,8 +4,11 @@ import mini.sx.util.handlers.EnumHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class RenderUtils {
+    @SideOnly(Side.CLIENT)
     private static final Minecraft mc = Minecraft.getMinecraft();
 
     public static void drawStringLeft(String string, FontRenderer fontRenderer, int x, int y, int color, boolean shadow) {

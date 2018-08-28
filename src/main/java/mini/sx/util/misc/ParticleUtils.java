@@ -6,8 +6,11 @@ import net.minecraft.client.particle.ParticleFlame;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class ParticleUtils {
+    @SideOnly(Side.CLIENT)
     private static final Minecraft mc = Minecraft.getMinecraft();
 
     public static void spawnParticle(ParticleType particle, World world, double posX, double posY, double posZ, double velX, double velY, double velZ) {
@@ -21,6 +24,7 @@ public abstract class ParticleUtils {
 }
 
 class EntityCustomFlameFX extends ParticleFlame {
+    @SideOnly(Side.CLIENT)
     private static final Minecraft mc = Minecraft.getMinecraft();
 
     public EntityCustomFlameFX(World world, double posX, double posY, double posZ, double velX, double velY, double velZ) {

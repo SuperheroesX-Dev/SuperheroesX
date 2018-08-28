@@ -9,6 +9,8 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class MessageConfigSync implements IMessage, IMessageHandler<MessageConfigSync, IMessage> {
     public NBTTagCompound recv;
@@ -19,10 +21,6 @@ public class MessageConfigSync implements IMessage, IMessageHandler<MessageConfi
         NBTTagCompound toSend = new NBTTagCompound();
 
         Configuration toSendTest = new Configuration();
-        //Jetpack.loadAllConfigs(toSendTest);
-        //PackBase.writeAllConfigsToNBT(toSend);
-        //Jetpack.writeAllConfigsToNBT(toSend);
-        //Fluxpack.writeAllConfigsToNBT(toSend);
         ByteBufUtils.writeTag(buf, toSend);
     }
 
@@ -31,22 +29,15 @@ public class MessageConfigSync implements IMessage, IMessageHandler<MessageConfi
         this.recv = ByteBufUtils.readTag(buf);
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public IMessage onMessage(MessageConfigSync msg, MessageContext ctx) {
-        Minecraft.getMinecraft().addScheduledTask(new Runnable() {
-            @Override
-            public void run() {
-                handleMessage(msg, ctx);
-            }
-        });
+        Minecraft.getMinecraft().addScheduledTask(() -> handleMessage(msg, ctx));
 
         return null;
     }
 
     public void handleMessage(MessageConfigSync msg, MessageContext ctx) {
-        //Jetpack.readAllConfigsFromNBT(msg.recv);
-        //Jetpack.loadAllConfigs(msg.test);
-        //Fluxpack.readAllConfigsFromNBT(msg.recv);
         SuperheroesX.LOGGER.info("Received server configuration");
     }
 }

@@ -60,10 +60,12 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor 
 
     protected float reductionAmount = 1F;
     protected int energyPerDamage = 160;
+    protected final EntityEquipmentSlot entityEquipmentSlot;
 
     public ArmorIronMan(String name, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) {
         super(ItemInit.ARMOR_IRONMAN, renderIndexIn, equipmentSlotIn);
 
+        entityEquipmentSlot = equipmentSlotIn;
         setUnlocalizedName(name);
         setRegistryName(name);
 
@@ -253,7 +255,7 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor 
             this.setHasSubtypes(true);
             this.setMaxDamage(0);
             setMultiplier(new ItemStack(this), this.multiplier < 1 ? 1 : this.multiplier);
-            setDefaultMaxEnergyTag(ChestplateIronMan.setDefaultEnergyTag(new ItemStack(this, 1), 0), this.getArmorMaterial().getDurability(this.getEquipmentSlot()));
+            setDefaultMaxEnergyTag(ChestplateIronMan.setDefaultEnergyTag(new ItemStack(this, 1), 0), this.getArmorMaterial().getDurability(this.entityEquipmentSlot));
         }
 
         public static ItemStack setDefaultMaxEnergyTag(ItemStack container, int maxEnergy) {
@@ -682,8 +684,8 @@ public class ArmorIronMan extends ItemArmor implements IHasModel, ISpecialArmor 
             setDefaultMaxEnergyTag(
                     setDefaultEnergyTag(
                             setDefaultMultiplierTag(stack, tier),
-                            full ? this.getArmorMaterial().getDurability(this.getEquipmentSlot()) * tier : 0),
-                    this.getArmorMaterial().getDurability(this.getEquipmentSlot()) * tier);
+                            full ? this.getArmorMaterial().getDurability(this.entityEquipmentSlot) * tier : 0),
+                    this.getArmorMaterial().getDurability(this.entityEquipmentSlot) * tier);
             stack.getTagCompound().setBoolean(TAG_HOVERMODE_ON, false);
             stack.getTagCompound().setBoolean(TAG_ON, true);
             return stack;

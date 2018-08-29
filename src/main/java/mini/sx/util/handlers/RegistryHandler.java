@@ -22,8 +22,10 @@ import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.oredict.OreDictionary;
 
 
@@ -102,10 +104,12 @@ public class RegistryHandler {
         }
     }
 
-    public static void preInitRegistries() {
+    public static void preInitRegistries(FMLPreInitializationEvent event) {
         EntityInit.registerEntities();
-        RenderHandler.registerEntityRenders();
-        GameRegistry.registerWorldGenerator(new WorldGenCustomOres(), 0);
+        if (event.getSide() == Side.CLIENT) {
+            RenderHandler.registerEntityRenders();
+            GameRegistry.registerWorldGenerator(new WorldGenCustomOres(), 0);
+        }
     }
 
     public static void initRegistries() {

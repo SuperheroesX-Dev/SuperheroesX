@@ -49,7 +49,7 @@ public class SuperheroesX {
 	
 	@EventHandler
     public static void preInit(FMLPreInitializationEvent event) {
-        RegistryHandler.preInitRegistries();
+        RegistryHandler.preInitRegistries(event);
         Integrations.preInitIntegrations();
         Config.preInit(event);
     }

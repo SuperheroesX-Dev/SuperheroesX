@@ -5,12 +5,14 @@ import mini.sx.entity.EntityKryptonian;
 import mini.sx.entity.render.RenderCaptainAmericasShield;
 import mini.sx.entity.render.RenderKryptonian;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class RenderHandler 
 {
-	public static void registerEntityRenders()
-	{
-        RenderingRegistry.registerEntityRenderingHandler(EntityCaptainAmericasShield.class, RenderCaptainAmericasShield::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityKryptonian.class, RenderKryptonian::new);
+	public static void registerEntityRenders() {
+		RenderingRegistry.registerEntityRenderingHandler(EntityCaptainAmericasShield.class, RenderCaptainAmericasShield::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityKryptonian.class, RenderKryptonian::new);
 	}
 }

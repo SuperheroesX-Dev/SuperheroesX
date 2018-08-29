@@ -28,7 +28,7 @@ import org.lwjgl.input.Keyboard;
 import java.util.ArrayList;
 
 @SuppressWarnings("Duplicates")
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(value = Side.CLIENT)
 public class KeyTracker {
 
     public static final KeyTracker instance = new KeyTracker();
@@ -88,7 +88,6 @@ public class KeyTracker {
 
 
     private static void tickStart() {
-
         if (mc.player != null) {
             boolean flyState;
             boolean descendState;
@@ -125,7 +124,7 @@ public class KeyTracker {
 
     @SubscribeEvent
     public static void onClientTick(TickEvent.ClientTickEvent evt) {
-        if (evt.phase == TickEvent.Phase.START) {
+        if (evt.phase == TickEvent.Phase.START && evt.side == Side.CLIENT) {
             tickStart();
         }
     }

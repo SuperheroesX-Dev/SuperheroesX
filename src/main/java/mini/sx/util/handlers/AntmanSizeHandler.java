@@ -81,7 +81,18 @@ public class AntmanSizeHandler {
             if (fullSet(player)) {
                 float scalingFactor = ((ArmorAntman.ChestplateAntman) player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem()).getScalingFactor();
                 if (scalingFactor == 1) return;
+                GL11.glPushMatrix();
                 GL11.glScalef(scalingFactor, scalingFactor, scalingFactor);
+            }
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public void postRender(RenderLivingEvent.Post event) {
+        if (event.getEntity() instanceof AbstractClientPlayer) {
+            if (fullSet((EntityPlayer) event.getEntity())) {
+                GL11.glPopMatrix();
             }
         }
     }

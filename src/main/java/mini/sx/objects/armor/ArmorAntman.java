@@ -15,11 +15,15 @@ public class ArmorAntman extends ArmorBase {
 
         public ChestplateAntman(String name, ArmorMaterial armorMaterial, int renderIndex, EntityEquipmentSlot entityEquipmentSlot) {
             super(name, armorMaterial, renderIndex, entityEquipmentSlot);
-            scalingFactor = 0.5F;
+            scalingFactor = 1F;
         }
 
         public float getScalingFactor() {
             return scalingFactor;
+        }
+
+        public void setScalingFactor(float scalingFactor) {
+            if (scalingFactor >= 0.1F && scalingFactor <= 10F) this.scalingFactor = scalingFactor;
         }
     }
 }

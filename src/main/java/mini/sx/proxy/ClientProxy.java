@@ -3,6 +3,7 @@ package mini.sx.proxy;
 import mini.sx.util.Reference;
 import mini.sx.util.client.handler.HUDTickHandler;
 import mini.sx.util.client.handler.KeyTracker;
+import mini.sx.util.handlers.AntmanSizeHandler;
 import mini.sx.util.handlers.EnumHandler;
 import mini.sx.util.math.Pos3D;
 import mini.sx.util.misc.ParticleUtils;
@@ -68,6 +69,7 @@ public class ClientProxy extends CommonProxy
 
         MinecraftForge.EVENT_BUS.register(KeyTracker.instance);
         MinecraftForge.EVENT_BUS.register(new HUDTickHandler());
+        MinecraftForge.EVENT_BUS.register(new AntmanSizeHandler());
     }
 
     @Override

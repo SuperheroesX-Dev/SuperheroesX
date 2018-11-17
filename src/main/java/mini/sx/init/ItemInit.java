@@ -39,6 +39,7 @@ public class ItemInit
     public static final ArmorMaterial ARMOR_ROBIN1 = EnumHelper.addArmorMaterial("armor_robin1", Reference.RESOURCE_PREFIX + "robin1", 370, new int[]{4, 7, 9, 4}, 9, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 2.4F);
     public static final ArmorMaterial ARMOR_CAPTAIN_AMERICA = EnumHelper.addArmorMaterial("armor_captain_america", Reference.RESOURCE_PREFIX + "captain_america", 500, new int[]{4, 7, 10, 4}, 11, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 2.8F);
     public static final ArmorMaterial ARMOR_REDHOOD = EnumHelper.addArmorMaterial("armor_redhood", Reference.RESOURCE_PREFIX + "redhood", 500, new int[]{4, 7, 10, 4}, 11, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 2.8F);
+    public static final ArmorMaterial ARMOR_ANTMAN = EnumHelper.addArmorMaterial("armor_antman", Reference.RESOURCE_PREFIX + "antman", 500, new int[]{2, 3, 5, 2}, 5, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 1.5F);
 
 
     public static final Item TEST_ITEM;
@@ -129,6 +130,10 @@ public class ItemInit
     public static final Item LEGGINGS_REDHOOD;
     public static final Item BOOTS_REDHOOD;
 
+    public static final Item HELMET_ANTMAN;
+    public static final Item CHESTPLATE_ANTMAN;
+    public static final Item LEGGINGS_ANTMAN;
+    public static final Item BOOTS_ANTMAN;
 
     //LOGOS
     public static final Item LOGO_DC;
@@ -204,6 +209,15 @@ public class ItemInit
             BOOTS_CAPTAIN_AMERICA = new ArmorCaptainAmerica("captain_america_boots", ARMOR_CAPTAIN_AMERICA, 1, EntityEquipmentSlot.FEET).
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
 
+            HELMET_ANTMAN = new ArmorAntman("antman_helmet", ARMOR_ANTMAN, 1, EntityEquipmentSlot.HEAD).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+            CHESTPLATE_ANTMAN = new ArmorAntman.ChestplateAntman("antman_chestplate", ARMOR_ANTMAN, 1, EntityEquipmentSlot.CHEST).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+            LEGGINGS_ANTMAN = new ArmorAntman("antman_leggings", ARMOR_ANTMAN, 2, EntityEquipmentSlot.LEGS).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+            BOOTS_ANTMAN = new ArmorAntman("antman_boots", ARMOR_ANTMAN, 1, EntityEquipmentSlot.FEET).
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+
 
 
             //XMen
@@ -256,6 +270,11 @@ public class ItemInit
             CHESTPLATE_CAPTAIN_AMERICA = null;
             LEGGINGS_CAPTAIN_AMERICA = null;
             BOOTS_CAPTAIN_AMERICA = null;
+
+            HELMET_ANTMAN = null;
+            CHESTPLATE_ANTMAN = null;
+            LEGGINGS_ANTMAN = null;
+            BOOTS_ANTMAN = null;
 
             //XMen
             HELMET_DEADPOOL = null;

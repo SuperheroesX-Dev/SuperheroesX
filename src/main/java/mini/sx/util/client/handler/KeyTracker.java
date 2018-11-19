@@ -1,5 +1,6 @@
 package mini.sx.util.client.handler;
 
+import mini.sx.objects.armor.ArmorAntman;
 import mini.sx.objects.armor.ArmorIronMan.ChestplateIronMan;
 import mini.sx.util.Reference;
 import mini.sx.util.config.Config;
@@ -47,8 +48,9 @@ public class KeyTracker {
     private static boolean lastRightClickState = false;
 
     private static KeyBinding engineKey;
-
     private static KeyBinding hoverKey;
+    private static KeyBinding shrinkKey;
+    private static KeyBinding growKey;
 
     private static ArrayList<KeyBinding> keys = new ArrayList<>();
 
@@ -58,6 +60,12 @@ public class KeyTracker {
 
         hoverKey = new KeyBinding(Reference.PREFIX + "keybind.hover", Keyboard.KEY_L, Reference.PREFIX + "category.ironman");
         ClientRegistry.registerKeyBinding(hoverKey);
+
+        shrinkKey = new KeyBinding(Reference.PREFIX + "keybind.shrink", Keyboard.KEY_C, Reference.PREFIX + "category.antman");
+        ClientRegistry.registerKeyBinding(shrinkKey);
+
+        growKey = new KeyBinding(Reference.PREFIX + "keybind.grow", Keyboard.KEY_V, Reference.PREFIX + "category.antman");
+        ClientRegistry.registerKeyBinding(growKey);
     }
 
     @SubscribeEvent
@@ -74,11 +82,22 @@ public class KeyTracker {
 
                     if (keyBindings.getKeyDescription().equals(Reference.PREFIX + "keybind.engine")) {
                         jetpack.toggleState(jetpack.isOn(chestStack), chestStack, null, ChestplateIronMan.TAG_ON, player, true);
-                        PacketHandler.instance.sendToServer(new MessageKeyBind(MessageKeyBind.JetpackPacket.ENGINE));
+                        PacketHandler.instance.sendToServer(new MessageKeyBind(MessageKeyBind.IronmanPacket.ENGINE));
                     }
                     if (keyBindings.getKeyDescription().equals(Reference.PREFIX + "keybind.hover")) {
                         jetpack.toggleState(jetpack.isHoverModeOn(chestStack), chestStack, "hoverMode", ChestplateIronMan.TAG_HOVERMODE_ON, player, true);
-                        PacketHandler.instance.sendToServer(new MessageKeyBind(MessageKeyBind.JetpackPacket.HOVER));
+                        PacketHandler.instance.sendToServer(new MessageKeyBind(MessageKeyBind.IronmanPacket.HOVER));
+                    }
+                } else if (chestItem instanceof ArmorAntman.ChestplateAntman) {
+                    ArmorAntman.ChestplateAntman chestplateAntman = (ArmorAntman.ChestplateAntman) chestItem;
+
+                    if (keyBindings.getKeyDescription().equals(Reference.PREFIX + "keybind.shrink")) {
+                        chestplateAntman.shrink();
+                        PacketHandler.instance.sendToServer(new MessageKeyBind(MessageKeyBind.AntmanPacket.SHRINK));
+                    }
+                    if (keyBindings.getKeyDescription().equals(Reference.PREFIX + "keybind.grow")) {
+                        chestplateAntman.grow();
+                        PacketHandler.instance.sendToServer(new MessageKeyBind(MessageKeyBind.AntmanPacket.GROW));
                     }
                 }
             }
@@ -132,6 +151,8 @@ public class KeyTracker {
     public static void addKeys() {
         keys.add(engineKey);
         keys.add(hoverKey);
+        keys.add(shrinkKey);
+        keys.add(growKey);
     }
 
     public static void updateCustomKeybinds(String flyKeyName, String descendKeyName) {
@@ -153,11 +174,22 @@ public class KeyTracker {
                     if (keyBindings.getKeyDescription().equals(Reference.PREFIX + "keybind.engine")) {
                         System.out.println(jetpack.isOn(chestStack));
                         jetpack.toggleState(jetpack.isOn(chestStack), chestStack, null, ChestplateIronMan.TAG_ON, player, true);
-                        PacketHandler.instance.sendToServer(new MessageKeyBind(MessageKeyBind.JetpackPacket.ENGINE));
+                        PacketHandler.instance.sendToServer(new MessageKeyBind(MessageKeyBind.IronmanPacket.ENGINE));
                     }
                     if (keyBindings.getKeyDescription().equals(Reference.PREFIX + "keybind.hover")) {
                         jetpack.toggleState(jetpack.isHoverModeOn(chestStack), chestStack, "hoverMode", ChestplateIronMan.TAG_HOVERMODE_ON, player, true);
-                        PacketHandler.instance.sendToServer(new MessageKeyBind(MessageKeyBind.JetpackPacket.HOVER));
+                        PacketHandler.instance.sendToServer(new MessageKeyBind(MessageKeyBind.IronmanPacket.HOVER));
+                    }
+                } else if (chestItem instanceof ArmorAntman.ChestplateAntman) {
+                    ArmorAntman.ChestplateAntman chestplateAntman = (ArmorAntman.ChestplateAntman) chestItem;
+
+                    if (keyBindings.getKeyDescription().equals(Reference.PREFIX + "keybind.shrink")) {
+                        chestplateAntman.shrink();
+                        PacketHandler.instance.sendToServer(new MessageKeyBind(MessageKeyBind.AntmanPacket.SHRINK));
+                    }
+                    if (keyBindings.getKeyDescription().equals(Reference.PREFIX + "keybind.grow")) {
+                        chestplateAntman.grow();
+                        PacketHandler.instance.sendToServer(new MessageKeyBind(MessageKeyBind.AntmanPacket.GROW));
                     }
                 }
             }

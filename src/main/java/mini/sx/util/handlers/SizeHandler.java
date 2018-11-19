@@ -31,7 +31,8 @@ public abstract class SizeHandler {
                     axisalignedbb.minY + entity.height,
                     axisalignedbb.minZ + entity.width));
             if (entity.width > oldWidth && (entity.ticksExisted > 1) && !entity.world.isRemote) {
-                entity.move(MoverType.SELF, (oldWidth - entity.width), 0.0D, (oldWidth - entity.width));
+                double val = oldWidth - entity.width;
+                entity.move(MoverType.SELF, (val), 0.0D, (val));
             }
         }
     }

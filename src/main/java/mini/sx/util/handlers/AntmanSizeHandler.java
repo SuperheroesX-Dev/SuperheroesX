@@ -54,8 +54,13 @@ public class AntmanSizeHandler extends SizeHandler {
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void postRender(RenderLivingEvent.Post event) {
-        if (event.getEntity() instanceof AbstractClientPlayer && fullSet((EntityPlayer) event.getEntity())) {
-            GL11.glPopMatrix();
+        if (event.getEntity() instanceof AbstractClientPlayer) {
+            EntityPlayer player = (EntityPlayer) event.getEntity();
+            if (fullSet(player)) {
+                float scalingFactor = ((ArmorAntman.ChestplateAntman) player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem()).getScalingFactor();
+                if (scalingFactor == 1) return;
+                GL11.glPopMatrix();
+            }
         }
     }
 

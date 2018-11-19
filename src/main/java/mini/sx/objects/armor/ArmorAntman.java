@@ -22,7 +22,20 @@ public class ArmorAntman extends ArmorBase {
             return scalingFactor;
         }
 
-        public void setScalingFactor(float scalingFactor) {
+        public void shrink() {
+            if (scalingFactor < 1) return;
+            if (scalingFactor == 1) setScalingFactor(0.2F);
+            else setScalingFactor(1);
+        }
+
+        public void grow() {
+            if (!(scalingFactor > 1)) {
+                setScalingFactor(1);
+            }
+            //else if (scalingFactor == 1) setScalingFactor(10);
+        }
+
+        private void setScalingFactor(float scalingFactor) {
             if (scalingFactor >= 0.1F && scalingFactor <= 10F) this.scalingFactor = scalingFactor;
         }
     }

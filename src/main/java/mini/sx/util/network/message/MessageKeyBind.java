@@ -1,6 +1,7 @@
 package mini.sx.util.network.message;
 
 import io.netty.buffer.ByteBuf;
+import mini.sx.objects.armor.ArmorAntman;
 import mini.sx.objects.armor.ArmorIronMan.ChestplateIronMan;
 import mini.sx.util.handlers.PacketHandler;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,23 +15,26 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class MessageKeyBind implements IMessage, IMessageHandler<MessageKeyBind, IMessage> {
 
-    public JetpackPacket packetType;
+    public IPacketType packetType;
 
     public MessageKeyBind() {
     }
 
-    public MessageKeyBind(JetpackPacket type) {
+    public MessageKeyBind(IPacketType type) {
         packetType = type;
     }
 
     @Override
     public void toBytes(ByteBuf dataStream) {
-        dataStream.writeInt(packetType.ordinal());
+        if (packetType.getClass().isEnum()) {
+            dataStream.writeInt(((Enum) packetType).ordinal());
+        }
+
     }
 
     @Override
     public void fromBytes(ByteBuf dataStream) {
-        packetType = JetpackPacket.values()[dataStream.readInt()];
+        packetType = IronmanPacket.values()[dataStream.readInt()];
     }
 
     @Override
@@ -46,22 +50,42 @@ public class MessageKeyBind implements IMessage, IMessageHandler<MessageKeyBind,
     public void handleMessage(MessageKeyBind msg, MessageContext ctx) {
         EntityPlayer player = PacketHandler.getPlayer(ctx);
         ItemStack stack = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
-        if (msg.packetType == JetpackPacket.ENGINE) {
+        if (msg.packetType == IronmanPacket.ENGINE) {
             if (stack.getItem() instanceof ChestplateIronMan) {
-                ChestplateIronMan jetpack = (ChestplateIronMan) stack.getItem();
-                ((ChestplateIronMan) stack.getItem()).toggleState(jetpack.isOn(stack), stack, null, ChestplateIronMan.TAG_ON, player, false);
+                ChestplateIronMan chestplateIronMan = (ChestplateIronMan) stack.getItem();
+                chestplateIronMan.toggleState(chestplateIronMan.isOn(stack), stack, null, ChestplateIronMan.TAG_ON, player, false);
             }
         }
-        if (msg.packetType == JetpackPacket.HOVER) {
+        if (msg.packetType == IronmanPacket.HOVER) {
             if (stack.getItem() instanceof ChestplateIronMan) {
-                ChestplateIronMan jetpack = (ChestplateIronMan) stack.getItem();
-                ((ChestplateIronMan) stack.getItem()).toggleState(jetpack.isHoverModeOn(stack), stack, null, ChestplateIronMan.TAG_HOVERMODE_ON, player, false);
+                ChestplateIronMan chestplateIronMan = (ChestplateIronMan) stack.getItem();
+                chestplateIronMan.toggleState(chestplateIronMan.isHoverModeOn(stack), stack, null, ChestplateIronMan.TAG_HOVERMODE_ON, player, false);
+            }
+        }
+        if (msg.packetType == AntmanPacket.SHRINK) {
+            if (stack.getItem() instanceof ArmorAntman.ChestplateAntman) {
+                ArmorAntman.ChestplateAntman chestplateAntman = (ArmorAntman.ChestplateAntman) stack.getItem();
+                chestplateAntman.shrink();
+            }
+        }
+        if (msg.packetType == AntmanPacket.GROW) {
+            if (stack.getItem() instanceof ArmorAntman.ChestplateAntman) {
+                ArmorAntman.ChestplateAntman chestplateAntman = (ArmorAntman.ChestplateAntman) stack.getItem();
+                chestplateAntman.grow();
             }
         }
     }
 
-    public enum JetpackPacket {
+    public enum IronmanPacket implements IPacketType {
         ENGINE,
         HOVER
+    }
+
+    public enum AntmanPacket implements IPacketType {
+        SHRINK,
+        GROW
+    }
+
+    public interface IPacketType {
     }
 }

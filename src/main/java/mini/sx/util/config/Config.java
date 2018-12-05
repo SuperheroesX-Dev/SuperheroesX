@@ -86,16 +86,13 @@ public class Config {
     }
 
     private static void processConfig() {
-
-        marvelItems = configClient.get(sectionItems.name,"Enable MARVEL Items",Defaults.marvelItems,"When disabled MARVEL Items will not be available").getBoolean(Defaults.marvelItems);
-        dcItems = configClient.get(sectionItems.name,"Enable DC Items",Defaults.dcItems,"When disabled DC Items will not be available").getBoolean(Defaults.dcItems);
+        marvelItems = config.get(sectionItems.name, "Enable MARVEL Items", Defaults.marvelItems, "When disabled MARVEL Items will not be available").getBoolean(Defaults.marvelItems);
+        dcItems = config.get(sectionItems.name, "Enable DC Items", Defaults.dcItems, "When disabled DC Items will not be available").getBoolean(Defaults.dcItems);
 
         customControls = configClient.get(sectionControls.name, "Custom controls", Defaults.customControls, "When enabled, the key codes specified here will be used for the fly and descend keys. Otherwise, the vanilla jump and sneak keys will be used.").getBoolean(Defaults.customControls);
         flyKey = configClient.get(sectionControls.name, "Custom Fly key", Defaults.flyKey, "The name of the Fly key when custom controls are enabled.").getString();
         descendKey = configClient.get(sectionControls.name, "Custom Descend key", Defaults.descendKey, "The name of the Descend key when custom controls are enabled.").getString();
         doubleTapSprintInAir = configClient.get(sectionControls.name, "Allow double-tap sprinting while flying", Defaults.doubleTapSprintInAir, "When enabled, sprinting by double-tapping the forward key will work while flying with a jetpack. Can be used as an easier way to activate a jetpack's boost while airborne (the sprint key also works).").getBoolean(Defaults.doubleTapSprintInAir);
-
-
     }
 
     @SubscribeEvent

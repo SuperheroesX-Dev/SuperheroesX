@@ -1,4 +1,4 @@
-package mini.sx.util.integration;
+package mini.sx.util.integration.TE;
 
 import mini.sx.init.ItemInit;
 import mini.sx.util.Reference;
@@ -15,7 +15,7 @@ import java.util.List;
 import static mini.sx.util.handlers.RecipeHandler.cloneStack;
 
 @SuppressWarnings({"WeakerAccess", "unused", "Duplicates", "SpellCheckingInspection"})
-public final class TEIntegration {
+public final class TEHelper {
 
     public static final String ADD_FURNACE_RECIPE = "addfurnacerecipe";
     public static final String ADD_PULVERIZER_RECIPE = "addpulverizerrecipe";

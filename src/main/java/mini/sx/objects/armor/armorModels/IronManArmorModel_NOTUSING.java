@@ -1,4 +1,4 @@
-package mini.sx.objects.armor;
+package mini.sx.objects.armor.armorModels;
 
 /*
 import net.minecraft.client.model.ModelBiped;

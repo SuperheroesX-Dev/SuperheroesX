@@ -2,70 +2,34 @@ package mini.sx.objects.armor;
 
 import mini.sx.SuperheroesX;
 import mini.sx.init.ItemInit;
-import mini.sx.init.PotionInit;
 import mini.sx.util.interfaces.IHasModel;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ArmorBase extends ItemArmor implements IHasModel
+public class ArmorBase extends ItemArmor implements IHasModel {
 
-{
-
-    public ArmorBase(String name, ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn)
-	{
-
+    public ArmorBase(String name, ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) {
 		super(materialIn, renderIndexIn, equipmentSlotIn);
-
 		setUnlocalizedName(name);
-
 		setRegistryName(name);
-
-		
 
 		ItemInit.ITEMS.add(this);
 
 	}
 
-	@Override
-    public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
-		if (this.isWearingFullSet(player, ItemInit.CHESTPLATE_SUPERBOY, ItemInit.LEGGINGS_SUPERBOY, ItemInit.BOOTS_SUPERBOY)) {
-            super.onArmorTick(world, player, stack);
-
-            player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 3, 1, false, false));
-            player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 3, 4, false, false));
-            player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 3, 2, false, false));
-            player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, 3, 2, false, false));
-            player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 3, 4, false, false));
-        }
-
-
-		}
-	
-	private boolean isWearingFullSet(EntityPlayer player, Item chestplateSuperboy, Item leggingsSuperboy,
-			Item bootsSuperboy) {
-		return
-				!player.inventory.armorItemInSlot(2).isEmpty() && player.inventory.armorItemInSlot(2).getItem() == chestplateSuperboy
-						&& !player.inventory.armorItemInSlot(1).isEmpty() && player.inventory.armorItemInSlot(1).getItem() == leggingsSuperboy
-						&& !player.inventory.armorItemInSlot(0).isEmpty() && player.inventory.armorItemInSlot(0).getItem() == bootsSuperboy;
-	}
-
-	
-	private void effectPlayer(EntityPlayer player, Potion potion, int duration, int amplifier) {
-        if (player.getActivePotionEffect(potion) == null || player.getActivePotionEffect(potion).getDuration() <= 1) {
-            player.addPotionEffect(new PotionEffect(potion, duration, amplifier, false, false)); }
-	}
+    protected boolean isWearingFullSet(EntityPlayer player) {
+        for (ItemStack i : player.getArmorInventoryList())
+            if (i.getItem().getClass() != this.getClass())
+                return false;
+        return true;
+    }
 
     @Override
     @SideOnly(Side.CLIENT)
@@ -83,14 +47,10 @@ public class ArmorBase extends ItemArmor implements IHasModel
 
         return super.getArmorModel(entityLiving, itemStack, armorSlot, _default);
     }
+
 	@Override
-
-	public void registerModels() 
-
-	{
-
+    public void registerModels() {
         SuperheroesX.PROXY.registerItemRenderer(this, 0, "inventory");
-
 	}
 
     public static class Set {

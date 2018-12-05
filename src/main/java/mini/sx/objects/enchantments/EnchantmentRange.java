@@ -10,8 +10,8 @@ public class EnchantmentRange extends Enchantment {
 
     public EnchantmentRange() {
         super(Rarity.RARE, EnchantmentInit.THROWABLE_SHIELD, new EntityEquipmentSlot[]{EntityEquipmentSlot.FEET});
-        this.setName("devils_feet");
-        this.setRegistryName(new ResourceLocation(Reference.RESOURCE_PREFIX + "throwing_range"));
+        this.setName("throwing_range");
+        this.setRegistryName(new ResourceLocation(Reference.MODID, "throwing_range"));
 
         EnchantmentInit.ENCHANTMENTS.add(this);
     }

@@ -1,4 +1,4 @@
-package mini.sx.objects.armor;
+package mini.sx.objects.armor.armorModels;
 
 // Date: 4/9/2018 10:42:15 PM
 // Template version 1.1

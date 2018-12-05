@@ -40,15 +40,15 @@ public class SuperheroesX {
     /*==================Debug Variable==================*/
     /*==*/public static final boolean DEBUG = false;/*==*/
     /*==================================================*/
-	
-	@EventHandler
+
+    @EventHandler
     public static void preInit(FMLPreInitializationEvent event) {
         RegistryHandler.preInitRegistries(event);
         Integrations.preInitIntegrations();
         Config.preInit(event);
     }
 
-	@EventHandler
+    @EventHandler
     public static void init(FMLInitializationEvent event) {
         RegistryHandler.initRegistries();
         Integrations.initIntegrations();

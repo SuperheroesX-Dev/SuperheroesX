@@ -8,8 +8,7 @@ import net.minecraft.util.text.TextFormatting;
 import java.text.DecimalFormat;
 import java.util.List;
 
-import static net.minecraft.util.text.translation.I18n.translateToLocal;
-import static net.minecraft.util.text.translation.I18n.translateToLocalFormatted;
+import static net.minecraft.client.resources.I18n.format;
 
 public abstract class SXStringHelper {
     private static final DecimalFormat formatter = new DecimalFormat("###,###");
@@ -117,9 +116,9 @@ public abstract class SXStringHelper {
     public static String localize(String unlocalized, boolean prefix, Object... args) {
         String toLocalize = (prefix ? Reference.PREFIX : "") + unlocalized;
         if (args != null && args.length > 0) {
-            return translateToLocalFormatted(toLocalize, args);
+            return format(toLocalize, args);
         } else {
-            return translateToLocal(toLocalize);
+            return format(toLocalize);
         }
     }
 
@@ -127,7 +126,7 @@ public abstract class SXStringHelper {
         int i = 1;
         while (true) {
             String unlocalized = Reference.PREFIX + "tooltip." + base + ".description." + i;
-            String localized = translateToLocal(unlocalized);
+            String localized = format(unlocalized);
             if (unlocalized.equals(localized)) {
                 break;
             }

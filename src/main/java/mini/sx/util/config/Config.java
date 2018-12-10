@@ -1,8 +1,8 @@
 package mini.sx.util.config;
 
-import jline.internal.Log;
 import mini.sx.SuperheroesX;
 import mini.sx.util.Reference;
+import mini.sx.util.handlers.EnumHandler;
 import mini.sx.util.handlers.PacketHandler;
 import mini.sx.util.network.message.MessageConfigSync;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -13,6 +13,7 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent.OnConfigChangedEve
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
+import org.jline.utils.Log;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -20,9 +21,11 @@ import java.util.List;
 
 public class Config {
     public static final List<Section> configSections = new ArrayList<>();
+    private static final Section sectionHUD = new Section(true, "HUD Settings", "hud");
+    public static Configuration config;
+
     private static final Section sectionItems = new Section(false, "Item Settings", "item");
     private static final Section sectionControls = new Section(true, "Controls Settings", "controls");
-    public static Configuration config;
     public static Configuration configClient;
 
     // items
@@ -92,7 +95,16 @@ public class Config {
         customControls = configClient.get(sectionControls.name, "Custom controls", Defaults.customControls, "When enabled, the key codes specified here will be used for the fly and descend keys. Otherwise, the vanilla jump and sneak keys will be used.").getBoolean(Defaults.customControls);
         flyKey = configClient.get(sectionControls.name, "Custom Fly key", Defaults.flyKey, "The name of the Fly key when custom controls are enabled.").getString();
         descendKey = configClient.get(sectionControls.name, "Custom Descend key", Defaults.descendKey, "The name of the Descend key when custom controls are enabled.").getString();
-        doubleTapSprintInAir = configClient.get(sectionControls.name, "Allow double-tap sprinting while flying", Defaults.doubleTapSprintInAir, "When enabled, sprinting by double-tapping the forward key will work while flying with a jetpack. Can be used as an easier way to activate a jetpack's boost while airborne (the sprint key also works).").getBoolean(Defaults.doubleTapSprintInAir);
+        doubleTapSprintInAir = configClient.get(sectionControls.name, "Allow double-tap sprinting while flying", Defaults.doubleTapSprintInAir, "When enabled, sprinting by double-tapping the forward key will work while flying with an Ironman Suit. Can be used as an easier way to activate Ironman's boost while airborne (the sprint key also works).").getBoolean(Defaults.doubleTapSprintInAir);
+
+        StringBuilder hudPosDesc = new StringBuilder();
+        for (EnumHandler.HUDPositions h : EnumHandler.HUDPositions.values()) {
+            hudPosDesc.append('\n').append(h.name()).append('=').append(h.ordinal());
+        }
+        HUDPosition = configClient.get(sectionHUD.name, "HUD Position", Defaults.HUDPosition, "The position of the HUD " + hudPosDesc, EnumHandler.HUDPositions.TOP_LEFT.ordinal(), EnumHandler.HUDPositions.BOTTOM_RIGHT.ordinal()).getInt(Defaults.HUDPosition);
+        HUDScale = configClient.get(sectionHUD.name, "HUD Size", Defaults.HUDScale, "The Size of the HUD").getDouble(Defaults.HUDScale);
+        HUDOffsetX = configClient.get(sectionHUD.name, "HUD Offset X", Defaults.HUDOffsetX, "The X offset of the HUD").getInt(Defaults.HUDOffsetX);
+        HUDOffsetY = configClient.get(sectionHUD.name, "HUD Offset Y", Defaults.HUDOffsetY, "The Y offset of the HUD").getInt(Defaults.HUDOffsetY);
     }
 
     @SubscribeEvent

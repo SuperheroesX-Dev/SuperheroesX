@@ -38,7 +38,7 @@ public class SuperheroesX {
     public static Logger LOGGER = LogManager.getLogger(Reference.MODID);
 
     /*==================Debug Variable==================*/
-    /*==*/public static final boolean DEBUG = false;/*==*/
+    /*==*/public static final boolean DEBUG = true;/*==*/
     /*==================================================*/
 
     @EventHandler

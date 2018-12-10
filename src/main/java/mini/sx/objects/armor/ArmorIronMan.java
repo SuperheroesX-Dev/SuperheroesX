@@ -3,6 +3,7 @@ package mini.sx.objects.armor;
 
 import cofh.redstoneflux.api.IEnergyContainerItem;
 import cofh.redstoneflux.util.EnergyContainerItemWrapper;
+import com.google.common.collect.Multimap;
 import mcp.MethodsReturnNonnullByDefault;
 import mini.sx.SuperheroesX;
 import mini.sx.init.ItemInit;
@@ -20,6 +21,8 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -48,7 +51,9 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.awt.*;
 import java.util.List;
+import java.util.UUID;
 
+import static mini.sx.SuperheroesX.DEBUG;
 import static mini.sx.util.handlers.LivingTickHandler.floatingTickCount;
 
 @SuppressWarnings({"WeakerAccess", "ConstantConditions"})
@@ -57,8 +62,9 @@ import static mini.sx.util.handlers.LivingTickHandler.floatingTickCount;
 @EventBusSubscriber(modid = Reference.MODID)
 public class ArmorIronMan extends ArmorBase implements ISpecialArmor {
 
-    protected float reductionAmount = 1F;
-    protected int energyPerDamage = 160;
+    protected static float reductionAmount = 1F;
+    protected static int energyPerDamage = 160;
+    protected double absorbRatio = 1D;
     protected final EntityEquipmentSlot entityEquipmentSlot;
 
     public ArmorIronMan(String name, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) {
@@ -95,9 +101,36 @@ public class ArmorIronMan extends ArmorBase implements ISpecialArmor {
         return 0;
     }
 
+    @SubscribeEvent
+    public static void onGetHurt(LivingHurtEvent event) {
+        if (DEBUG) System.out.println("<---------------------------->");
+        if (!(event.getEntityLiving() instanceof EntityPlayer)) {
+            return;
+        }
+        if (DEBUG) System.out.println("<---------------------------->");
+        EntityPlayer player = (EntityPlayer) event.getEntityLiving();
+        ItemStack chestplate = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
+        if (chestplate.getItem() instanceof ChestplateIronMan) {
+            if (event.getSource() == DamageSource.FALL) {
+                event.setAmount(0);
+                return;
+            }
+            int energy = (int) (event.getAmount() * energyPerDamage);
+            if (((ChestplateIronMan) chestplate.getItem()).extractEnergy(chestplate, energy, true) == energy) {
+                event.setAmount(event.getAmount() - (event.getAmount() * reductionAmount));
+                ((ChestplateIronMan) chestplate.getItem()).extractEnergy(chestplate, energy, false);
+            } else {
+                ChestplateIronMan chestplateIronMan = (ChestplateIronMan) chestplate.getItem();
+                for (; chestplateIronMan.getEnergyStored(chestplate) > 0; chestplateIronMan.gotDamaged(chestplate)) {
+                    event.setAmount(event.getAmount() - 1);
+                }
+            }
+        }
+    }
+
     @Override
     public void damageArmor(EntityLivingBase entity, ItemStack armor, DamageSource source, int damage, int slot) {
-        if (SuperheroesX.DEBUG) System.out.println(">---damageArmor---<");
+        if (DEBUG) System.out.println(">---damageArmor---<");
         ItemStack chestplate = entity.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
         if (chestplate.getItem() instanceof ChestplateIronMan && entity instanceof EntityPlayer && isWearingFullSet((EntityPlayer) entity)) {
             if (entity.world.rand.nextInt(3) >= 3) {
@@ -105,23 +138,6 @@ public class ArmorIronMan extends ArmorBase implements ISpecialArmor {
             }
             ((ChestplateIronMan) chestplate.getItem()).extractEnergy(chestplate, damage * energyPerDamage, false);
         }
-    }
-
-    @Override
-    public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot) {
-        if (SuperheroesX.DEBUG) System.out.println(">---getProperties---<");
-        ItemStack chestplate = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
-        if (chestplate.getItem() instanceof ChestplateIronMan) {
-            ChestplateIronMan chestplateIronMan = (ChestplateIronMan) chestplate.getItem();
-            if (source.isUnblockable()) {
-                int absorbMax = energyPerDamage > 0 ? 25 * chestplateIronMan.getEnergyStored(chestplate) / energyPerDamage : 0;
-                return new ArmorProperties(0, reductionAmount * getArmorMaterial().getDamageReductionAmount(armorType) * 0.025, absorbMax);
-            }
-            int absorbMax = energyPerDamage > 0 ? 25 * chestplateIronMan.getEnergyStored(chestplate) / energyPerDamage : 0;
-            return new ArmorProperties(0, reductionAmount * getArmorMaterial().getDamageReductionAmount(armorType) * 0.05, absorbMax);
-            // 0.05 = 1 / 20 (max armor)
-        }
-        return new ArmorProperties(0, 0, Integer.MAX_VALUE);
     }
 
     @Override
@@ -147,27 +163,23 @@ public class ArmorIronMan extends ArmorBase implements ISpecialArmor {
         return player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() instanceof ChestplateIronMan;
     }
 
-
-    @SubscribeEvent
-    public void onGetHurt(LivingHurtEvent event) {
-        if (SuperheroesX.DEBUG) System.out.println("<---------------------------->");
-        if (!(event.getEntityLiving() instanceof EntityPlayer)) {
-            return;
-        }
-        if (SuperheroesX.DEBUG) System.out.println("<---------------------------->");
-        event.setCanceled(true);
-        EntityPlayer player = (EntityPlayer) event.getEntityLiving();
+    @Override
+    public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot) {
+        if (DEBUG) System.out.println(">---getProperties---<");
         ItemStack chestplate = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
         if (chestplate.getItem() instanceof ChestplateIronMan) {
-            if (((ChestplateIronMan) chestplate.getItem()).getEnergyStored(chestplate) - ((event.getAmount() - (event.getAmount() * reductionAmount)) * energyPerDamage) > 0) {
-                event.setAmount(event.getAmount() * reductionAmount);
-            } else {
-                ChestplateIronMan chestplateIronMan = (ChestplateIronMan) chestplate.getItem();
-                for (; chestplateIronMan.getEnergyStored(chestplate) > 0; chestplateIronMan.gotDamaged(chestplate)) {
-                    event.setAmount(event.getAmount() - 1);
-                }
+            ChestplateIronMan chestplateIronMan = (ChestplateIronMan) chestplate.getItem();
+            if (source.damageType.equals("fall")) {
+                return new ArmorProperties(0, absorbRatio, Integer.MAX_VALUE);
             }
+            /*if (source.isUnblockable()) {
+                int absorbMax = energyPerDamage > 0 ? 25 * chestplateIronMan.getEnergyStored(chestplate) / energyPerDamage : 0;
+                return new ArmorProperties(0, reductionAmount * getArmorMaterial().getDamageReductionAmount(armorType) * 0.025, absorbMax);
+            }*/
+            int absorbMax = energyPerDamage > 0 ? 25 * chestplateIronMan.getEnergyStored(armor) / energyPerDamage : 0;
+            return new ArmorProperties(0, absorbRatio * getArmorMaterial().getDamageReductionAmount(armorType) * 0.05, absorbMax);
         }
+        return new ArmorProperties(0, 0, Integer.MAX_VALUE);
     }
 
     @Override
@@ -193,10 +205,13 @@ public class ArmorIronMan extends ArmorBase implements ISpecialArmor {
     @Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
         if (!isChestplateEquipped(player)) {
-            if (SuperheroesX.DEBUG) System.out.println("<---------------------------->");
+            if (DEBUG) System.out.println("<---------------------------->");
             //player.inventory.removeStackFromSlot(this.armorType.getSlotIndex());
             //System.out.println(stack.getEnchantmentTagList().toString());
             stack.setCount(0);
+        }
+        if (!world.isRemote) {
+
         }
     }
 
@@ -213,6 +228,14 @@ public class ArmorIronMan extends ArmorBase implements ISpecialArmor {
             SuperheroesX.PROXY.registerVariantRenderer(this, this.getMetadata(new ItemStack(this)), "chestplate_ironman", "inventory")/*registerItemRenderer(this, 0, "inventory")*/;
         }
         SuperheroesX.PROXY.registerItemRenderer(this, 0, "inventory");
+    }
+
+    @Override
+    protected boolean isWearingFullSet(EntityPlayer player) {
+        for (ItemStack stack : player.getArmorInventoryList())
+            if (!(stack.getItem() instanceof ArmorIronMan))
+                return false;
+        return true;
     }
 
     @SuppressWarnings({"UnusedReturnValue", "SpellCheckingInspection"})
@@ -232,8 +255,8 @@ public class ArmorIronMan extends ArmorBase implements ISpecialArmor {
         private int fuelUsage = 10;
         //private int energyPerShot = 200;
         private int cooldown;
-        private float defaultSpeedSideways = 1.5F * 2;
-        private float sprintSpeedModifier = 2.4F * 2;
+        private float defaultSpeedSideways = 0.55F;
+        private float sprintSpeedModifier = 5F;
         private float damagePerHit = 5;
         public int multiplier;
         //private boolean rightClickMoved;
@@ -266,10 +289,10 @@ public class ArmorIronMan extends ArmorBase implements ISpecialArmor {
 
         @Override
         public void addHUDInfo(List<String> list, ItemStack stack, boolean showFuel, boolean showState) {
-            if (showFuel || SuperheroesX.DEBUG) {
+            if (showFuel || DEBUG) {
                 list.add(this.getHUDEnergyInfo(stack, this));
             }
-            if (showState || SuperheroesX.DEBUG) {
+            if (showState || DEBUG) {
                 list.add(this.getHUDStatesInfo(stack));
             }
         }
@@ -302,18 +325,27 @@ public class ArmorIronMan extends ArmorBase implements ISpecialArmor {
                 Entity e = pew.entityHit;
                 if (pew.entityHit instanceof EntityLivingBase) {
                     EntityLivingBase hit = (EntityLivingBase) e;
-                    hit.attackEntityFrom(new DamageSource("energy-blast").setProjectile(), damagePerHit);
+                    hit.attackEntityFrom(new DamageSource("energy-blast"), damagePerHit);
                 }
-                if (SuperheroesX.DEBUG) System.out.println("==both==");
+                if (DEBUG) System.out.println("==both==");
             } else if (player.getHeldItemMainhand().isEmpty()) {
                 //do the shot
-                if (SuperheroesX.DEBUG) System.out.println("==main==");
+                if (DEBUG) System.out.println("==main==");
             } else if (player.getHeldItemOffhand().isEmpty()) {
                 //do the shot
-                if (SuperheroesX.DEBUG) System.out.println("==off==");
+                if (DEBUG) System.out.println("==off==");
+            }
+        }
+
+        @Override
+        public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
+            Multimap<String, AttributeModifier> multimap = super.getAttributeModifiers(slot, stack);
+
+            if (slot == this.armorType) {
+                multimap.put(SharedMonsterAttributes.KNOCKBACK_RESISTANCE.getName(), new AttributeModifier(UUID.randomUUID(), "generic.knockbackResistance", 0.25, 0));
             }
 
-
+            return multimap;
         }
 
         @Override
@@ -328,7 +360,6 @@ public class ArmorIronMan extends ArmorBase implements ISpecialArmor {
 
         @Override
         public double getDurabilityForDisplay(ItemStack stack) {
-
             if (stack.getTagCompound() == null) {
                 setDefaultEnergyTag(stack, 0);
                 setDefaultMaxEnergyTag(stack, this.getArmorMaterial().getDurability(this.getEquipmentSlot()) * (getMultiplier(stack)));
@@ -338,8 +369,6 @@ public class ArmorIronMan extends ArmorBase implements ISpecialArmor {
 
         @Override
         public int receiveEnergy(ItemStack container, int maxReceive, boolean simulate) {
-            if (SuperheroesX.DEBUG) System.out.println(">---receiveEnergy---<");
-
             if (container.getTagCompound() == null) {
                 setDefaultEnergyTag(container, 0);
             }
@@ -355,8 +384,6 @@ public class ArmorIronMan extends ArmorBase implements ISpecialArmor {
 
         @Override
         public int extractEnergy(ItemStack container, int maxExtract, boolean simulate) {
-            if (SuperheroesX.DEBUG) System.out.println(">---extractEnergy---<");
-
             if (container.getTagCompound() == null) {
                 setDefaultEnergyTag(container, 0);
             }
@@ -372,7 +399,6 @@ public class ArmorIronMan extends ArmorBase implements ISpecialArmor {
 
         @Override
         public int getEnergyStored(ItemStack container) {
-
             if (container.getTagCompound() == null) {
                 setDefaultEnergyTag(container, 0);
             }
@@ -412,10 +438,10 @@ public class ArmorIronMan extends ArmorBase implements ISpecialArmor {
 
             } else {
                 if (!world.isRemote && timer > 20) {
-                    if (SuperheroesX.DEBUG) System.out.println("test");
+                    if (DEBUG) System.out.println("test");
                     for (ItemStack stack1 : player.getArmorInventoryList()) {
                         if ((!stack1.isEmpty() && !(stack1.getItem() instanceof ArmorIronMan))) {
-                            if (SuperheroesX.DEBUG) System.out.println(stack + "" + stack1);
+                            if (DEBUG) System.out.println(stack + "" + stack1);
                             timer = 0;
                             if (!flag) {
                                 ItemStack chest = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
@@ -469,7 +495,6 @@ public class ArmorIronMan extends ArmorBase implements ISpecialArmor {
 
         @Override
         public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt) {
-
             return new EnergyContainerItemWrapper(stack, this);
         }
 
@@ -506,6 +531,7 @@ public class ArmorIronMan extends ArmorBase implements ISpecialArmor {
                         float speedSideways = user.isSneaking() ? this.defaultSpeedSideways * 0.5F : this.defaultSpeedSideways;
                         float speedForward = user.isSprinting() ? speedSideways * this.sprintSpeedModifier : speedSideways;
                         if (SyncHandler.isForwardKeyDown(user)) {
+                            if (DEBUG) System.out.println("forward " + speedForward);
                             user.moveRelative(0, speedForward, speedForward, 0);
                         }
                         if (SyncHandler.isBackwardKeyDown(user)) {
@@ -600,7 +626,7 @@ public class ArmorIronMan extends ArmorBase implements ISpecialArmor {
         }
 
         public void toggleState(boolean on, ItemStack stack, @Nullable String type, String tag, EntityPlayer player, boolean showInChat) {
-            if (tag.equals(TAG_HOVERMODE_ON) || tag.equals(TAG_ON))
+            if (tag.equals(TAG_HOVERMODE_ON) || tag.equals(TAG_ON) || tag.equals(TAG_EHOVER_ON))
                 NBTHelper.setBoolean(stack, tag, (!on));
 
             if (player != null && showInChat) {
@@ -616,8 +642,7 @@ public class ArmorIronMan extends ArmorBase implements ISpecialArmor {
             NBTHelper.setBoolean(armor, TAG_HOVERMODE_ON, true);
 
             if (user instanceof EntityPlayer) {
-
-                ((EntityPlayer) user).sendStatusMessage(new TextComponentString(StringHelper.LIGHT_RED + SXStringHelper.localize("chat.itemJetpack.emergencyHoverMode.msg")), false);
+                ((EntityPlayer) user).sendStatusMessage(new TextComponentString(StringHelper.LIGHT_RED + SXStringHelper.localize("chat.item.chestplate_ironman.emergencyHoverMode.msg")), false);
             }
         }
 

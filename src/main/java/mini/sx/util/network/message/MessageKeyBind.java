@@ -62,6 +62,12 @@ public class MessageKeyBind implements IMessage, IMessageHandler<MessageKeyBind,
                 chestplateIronMan.toggleState(chestplateIronMan.isHoverModeOn(stack), stack, null, ChestplateIronMan.TAG_HOVERMODE_ON, player, false);
             }
         }
+        if (msg.packetType == IronmanPacket.EHOVER) {
+            if (stack.getItem() instanceof ChestplateIronMan) {
+                ChestplateIronMan chestplateIronMan = (ChestplateIronMan) stack.getItem();
+                chestplateIronMan.toggleState(chestplateIronMan.isEHoverModeOn(stack), stack, null, ChestplateIronMan.TAG_EHOVER_ON, player, false);
+            }
+        }
         if (msg.packetType == AntmanPacket.SHRINK) {
             if (stack.getItem() instanceof ArmorAntman.ChestplateAntman) {
                 ArmorAntman.ChestplateAntman chestplateAntman = (ArmorAntman.ChestplateAntman) stack.getItem();
@@ -78,7 +84,8 @@ public class MessageKeyBind implements IMessage, IMessageHandler<MessageKeyBind,
 
     public enum IronmanPacket implements IPacketType {
         ENGINE,
-        HOVER
+        HOVER,
+        EHOVER
     }
 
     public enum AntmanPacket implements IPacketType {

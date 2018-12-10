@@ -24,10 +24,10 @@ public class ArmorCaptainAmerica extends ArmorBase {
     public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
         if (this.isWearingFullSet(player)) {
             super.onArmorTick(world, player, stack);
-            player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 3, 1, true, false));
-            player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 3, 4, true, false));
-            player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 3, 1, true, false));
-            player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, 3, 2, true, false));
+            player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 10, 1, true, false));
+            player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 10, 4, true, false));
+            player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 10, 1, true, false));
+            player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, 10, 2, true, false));
         }
     }
 

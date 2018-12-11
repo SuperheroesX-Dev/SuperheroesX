@@ -1,6 +1,5 @@
 package mini.sx.objects.armor;
 
-import mini.sx.SuperheroesX;
 import mini.sx.init.PotionInit;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
@@ -47,9 +46,4 @@ public class ArmorCaptainAmerica extends ArmorBase {
 
         return super.getArmorModel(entityLiving, itemStack, armorSlot, _default);
     }
-	@Override
-
-    public void registerModels() {
-        SuperheroesX.PROXY.registerItemRenderer(this, 0, "inventory");
-	}
 }

@@ -1,5 +1,6 @@
 package mini.sx.util.config;
 
+import jline.internal.Log;
 import mini.sx.SuperheroesX;
 import mini.sx.util.Reference;
 import mini.sx.util.handlers.EnumHandler;
@@ -13,7 +14,6 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent.OnConfigChangedEve
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
-import org.jline.utils.Log;
 
 import java.io.File;
 import java.util.ArrayList;

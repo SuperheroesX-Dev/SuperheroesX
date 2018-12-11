@@ -2,24 +2,14 @@ package mini.sx.util.handlers;
 
 import mini.sx.init.ItemInit;
 import mini.sx.init.PotionInit;
-import mini.sx.util.helpers.StringHelper;
-import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.AdvancementList;
-import net.minecraft.advancements.AdvancementManager;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.stats.StatBase;
 import net.minecraft.stats.StatList;
-import net.minecraft.stats.StatisticsManager;
 import net.minecraft.stats.StatisticsManagerServer;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
@@ -42,9 +32,7 @@ public class SuperheroesXEventHandler {
             container.setTagCompound(new NBTTagCompound());
         }
         container.getTagCompound().setInteger("Multiplier", 4);
-        ArrayList<ItemStack> list = new ArrayList<>();
-        list.add(container);
-        eastereggs.put(Pair.of("Minecraftschurli",UUID.fromString("e057bfa8-bfe4-4725-9b5f-89f38906c2b2")),list);
+        eastereggs.put(Pair.of("Minecraftschurli", UUID.fromString("e057bfa8-bfe4-4725-9b5f-89f38906c2b2")), Collections.singletonList(container));
     }
 
     @SubscribeEvent

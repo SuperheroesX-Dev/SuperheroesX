@@ -16,7 +16,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.ArrayList;
@@ -244,7 +243,6 @@ public class ItemInit
            // DUST_PALLADIUM = null;
             //NUGGET_PALLADIUM = null;
 
-
             CLOTH_VIBRANIUM = null;
             STRENGTHENED_CLOTH = null;
 
@@ -377,7 +375,7 @@ public class ItemInit
                 setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
 
 
-        if (!Loader.isModLoaded("thermalfoundation")) {
+        if (!OreDictionary.doesOreNameExist("plateGold")) {
             PLATE_GOLD = new ItemBase("plate_gold").setOreDictName("plateGold").
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
         } else {

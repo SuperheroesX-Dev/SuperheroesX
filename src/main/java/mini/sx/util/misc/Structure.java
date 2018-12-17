@@ -32,9 +32,9 @@ public class Structure {
 
     public boolean checkInWorld(World world, BlockPos start, EnumFacing facing) {
         BlockPos p;
-        for (int i = 0; i < 7; i++) {
-            for (int j = 0; j < 7; j++) {
-                for (int k = 0; k < 7; k++) {
+        for (int i = 0; i < area.length; i++) {
+            for (int j = 0; j < area[i].length; j++) {
+                for (int k = 0; k < area[i][j].length; k++) {
                     p = start.offset(facing, j).offset(facing.rotateY().getOpposite(), k).offset(EnumFacing.UP, i);
                     if (area[i][j][k] != null) {
                         if (world.getBlockState(p) != area[i][j][k]) {

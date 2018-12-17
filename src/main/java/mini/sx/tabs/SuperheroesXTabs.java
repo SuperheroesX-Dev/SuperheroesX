@@ -5,6 +5,9 @@ import mini.sx.init.BlockInit;
 import mini.sx.init.ItemInit;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
+
+import javax.annotation.ParametersAreNonnullByDefault;
 
 @MethodsReturnNonnullByDefault
 public abstract class SuperheroesXTabs extends CreativeTabs {
@@ -35,9 +38,26 @@ public abstract class SuperheroesXTabs extends CreativeTabs {
         }
     }
 
+    @ParametersAreNonnullByDefault
     public static class MARVEL extends SuperheroesXTabs {
         public MARVEL() {
             super("marvel");
+        }
+
+        @Override
+        public void displayAllRelevantItems(NonNullList<ItemStack> items) {
+            super.displayAllRelevantItems(items);
+            /*items.sort((item1, item2) -> {
+                if (item1.getItem() instanceof ItemArmor && item2.getItem() instanceof ItemArmor && ((ItemArmor) item1.getItem()).getArmorMaterial() == ((ItemArmor) item2.getItem()).getArmorMaterial()){
+                    int i = ((ItemArmor) item1.getItem()).armorType.getIndex() - ((ItemArmor) item1.getItem()).armorType.getIndex();
+                    if (i == 0){
+                        i = item1.getItem().getUnlocalizedName(item1).compareTo(item2.getItem().getUnlocalizedName(item2));
+                    }
+                    return i;
+                } else {
+                    return item1.getItem().getUnlocalizedName(item1).compareTo(item2.getItem().getUnlocalizedName(item2));
+                }
+            });*/
         }
 
         @Override

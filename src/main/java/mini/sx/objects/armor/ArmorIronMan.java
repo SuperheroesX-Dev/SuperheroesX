@@ -187,20 +187,20 @@ public class ArmorIronMan extends ArmorBase implements ISpecialArmor {
         return false;
     }
 
-        @Override
-        @SideOnly(Side.CLIENT)
-        public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
-            ModelBiped armorModel;
+    @Override
+    @SideOnly(Side.CLIENT)
+    public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
+        ModelBiped armorModel;
 
-            if (itemStack != null) {
-               armorModel = new ModelBiped(0.5F);
+        if (itemStack != null) {
+            armorModel = new ModelBiped(0.5F);
 
-                armorModel.setModelAttributes(_default);
-                return armorModel;
-            }
-
-            return super.getArmorModel(entityLiving, itemStack, armorSlot, _default);
+            armorModel.setModelAttributes(_default);
+            return armorModel;
         }
+
+        return super.getArmorModel(entityLiving, itemStack, armorSlot, _default);
+    }
 
     @Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
@@ -263,7 +263,7 @@ public class ArmorIronMan extends ArmorBase implements ISpecialArmor {
 
 
         public ChestplateIronMan() {
-            super("chestplate_ironman", 1, EntityEquipmentSlot.CHEST);
+            super("ironman_chestplate", 1, EntityEquipmentSlot.CHEST);
             this.setHasSubtypes(true);
             this.setMaxDamage(0);
             setMultiplier(new ItemStack(this), this.multiplier < 1 ? 1 : this.multiplier);

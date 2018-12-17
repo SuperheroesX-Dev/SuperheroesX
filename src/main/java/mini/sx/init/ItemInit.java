@@ -185,12 +185,12 @@ public class ItemInit
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
             BOOTS_BLACKPANTHER = new ArmorBlackPanther("blackpanther_boots", ARMOR_BLACKPANTHER, 1, EntityEquipmentSlot.FEET).
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-            
-            HELMET_IRONMAN = new ArmorIronMan("helmet_ironman", 1, EntityEquipmentSlot.HEAD);
+
+            HELMET_IRONMAN = new ArmorIronMan("ironman_helmet", 1, EntityEquipmentSlot.HEAD);
             CHESTPLATE_IRONMAN = (ChestplateIronMan) new ChestplateIronMan().
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-            LEGGINGS_IRONMAN = new ArmorIronMan("leggings_ironman", 2, EntityEquipmentSlot.LEGS);
-            BOOTS_IRONMAN = new ArmorIronMan("boots_ironman", 1, EntityEquipmentSlot.FEET);
+            LEGGINGS_IRONMAN = new ArmorIronMan("ironman_leggings", 2, EntityEquipmentSlot.LEGS);
+            BOOTS_IRONMAN = new ArmorIronMan("ironman_boots", 1, EntityEquipmentSlot.FEET);
 
             SHIELD_CAPTAIN_AMERICA = new ShieldCaptainAmerica().
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);

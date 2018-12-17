@@ -11,8 +11,8 @@ public abstract class SizeHandler {
             float oldWidth = entity.width;
             entity.width = width;
             entity.height = height;
+            double halfWidth = width / 2.0D;
             if (entity.width < oldWidth) {
-                double halfWidth = width / 2.0D;
                 entity.setEntityBoundingBox(new AxisAlignedBB(
                         entity.posX - halfWidth,
                         entity.posY,
@@ -24,12 +24,12 @@ public abstract class SizeHandler {
             }
             AxisAlignedBB axisalignedbb = entity.getEntityBoundingBox();
             entity.setEntityBoundingBox(new AxisAlignedBB(
-                    axisalignedbb.minX,
+                    axisalignedbb.minX - halfWidth,
                     axisalignedbb.minY,
-                    axisalignedbb.minZ,
-                    axisalignedbb.minX + entity.width,
+                    axisalignedbb.minZ - halfWidth,
+                    axisalignedbb.minX + halfWidth,
                     axisalignedbb.minY + entity.height,
-                    axisalignedbb.minZ + entity.width));
+                    axisalignedbb.minZ + halfWidth));
             if (entity.width > oldWidth && (entity.ticksExisted > 1) && !entity.world.isRemote) {
                 double val = oldWidth - entity.width;
                 entity.move(MoverType.SELF, (val), 0.0D, (val));

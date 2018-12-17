@@ -2,9 +2,6 @@ package mini.sx.init;
 
 import mini.sx.SuperheroesX;
 import mini.sx.objects.blocks.*;
-import mini.sx.objects.multiblockStructures.Bifrost.BifrostCore;
-import mini.sx.objects.multiblockStructures.NidawellirForge.MoldNidawellir;
-import mini.sx.objects.multiblockStructures.NidawellirForge.NidawellirForge;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
@@ -17,11 +14,11 @@ public class BlockInit
 	
 	//public static final Block Atom_Fuser = new BlockAtomFuser("atomfuser");
 
-    public static final Block MOLD_NIDAWELLIR = new MoldNidawellir()
-            .setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+    /*public static final Block MOLD_NIDAWELLIR = new MoldNidawellir()
+            .setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);*/
 
-    public static final Block HEART_OF_A_DIEING_STAR = new BlockBase("HEART_OF_A_DIEING_STAR".toLowerCase(), Material.IRON)
-            .setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+    /*public static final Block HEART_OF_A_DIEING_STAR = new BlockBase("HEART_OF_A_DIEING_STAR".toLowerCase(), Material.IRON)
+            .setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);*/
 
     public static final Block ORE_VIBRANIUM = new BlockVibraniumOre("ore_vibranium", Material.ROCK)
             .setOreDictName("oreVibranium")
@@ -43,9 +40,9 @@ public class BlockInit
             .setOreDictName("blockTitanium")
             .setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
 
-    public static final Block LENS_NIDAWELLIR = new NidawellirForge()
-            .setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+    /*public static final Block LENS_NIDAWELLIR = new NidawellirForge()
+            .setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);*/
 
-    public static final Block BIFROST_CORE = new BifrostCore()
-            .setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+    /*public static final Block BIFROST_CORE = new BifrostCore()
+            .setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);*/
 }

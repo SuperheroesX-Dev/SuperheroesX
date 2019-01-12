@@ -1,6 +1,6 @@
 package mini.sx.init;
 
-import mini.sx.objects.enchantments.EnchantmentRange;
+import mini.sx.objects.enchantments.EnchantmentThrowable;
 import mini.sx.objects.items.ShieldCaptainAmerica;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
@@ -14,5 +14,7 @@ public class EnchantmentInit {
 
     public static final EnumEnchantmentType THROWABLE_SHIELD = EnumHelper.addEnchantmentType("throwable_shield", input -> input instanceof ShieldCaptainAmerica);
 
-    public static final Enchantment THROWING_RANGE = new EnchantmentRange();
+    public static final Enchantment SHIELD_THROW_RANGE = new EnchantmentThrowable("shield_throw_range");
+    public static final Enchantment SHIELD_THROW_SPEED = new EnchantmentThrowable("shield_throw_speed");
+    public static final Enchantment SHIELD_THROW_DAMAGE = new EnchantmentThrowable("shield_throw_damage");
 }

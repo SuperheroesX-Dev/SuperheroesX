@@ -14,6 +14,7 @@ public class RenderCaptainAmericasShield extends Render<EntityCaptainAmericasShi
 
     public RenderCaptainAmericasShield(RenderManager renderManager) {
         super(renderManager);
+        bindTexture(TEXTURES);
     }
 
     @Override

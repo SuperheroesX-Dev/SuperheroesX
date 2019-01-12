@@ -6,12 +6,12 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.util.ResourceLocation;
 
-public class EnchantmentRange extends Enchantment {
+public class EnchantmentThrowable extends Enchantment {
 
-    public EnchantmentRange() {
-        super(Rarity.RARE, EnchantmentInit.THROWABLE_SHIELD, new EntityEquipmentSlot[]{EntityEquipmentSlot.FEET});
-        this.setName("throwing_range");
-        this.setRegistryName(new ResourceLocation(Reference.MODID, "throwing_range"));
+    public EnchantmentThrowable(String name) {
+        super(Rarity.RARE, EnchantmentInit.THROWABLE_SHIELD, new EntityEquipmentSlot[]{EntityEquipmentSlot.MAINHAND, EntityEquipmentSlot.OFFHAND});
+        this.setName(name);
+        this.setRegistryName(new ResourceLocation(Reference.MODID, name));
 
         EnchantmentInit.ENCHANTMENTS.add(this);
     }

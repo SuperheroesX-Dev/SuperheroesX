@@ -31,6 +31,11 @@ public class CommonProxy
     public void showJetpackParticles(World world, EntityLivingBase wearer, EnumHandler.ParticleType particle) {
     }
 
+    public <T> T nullifyOnServer(T object) {
+        return null;
+    }
+
+
     public void registerHandlers() {
         SuperheroesX.LOGGER.info("Registering handlers");
         MinecraftForge.EVENT_BUS.register(new SyncHandler());

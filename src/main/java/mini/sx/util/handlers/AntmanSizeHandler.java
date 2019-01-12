@@ -28,6 +28,7 @@ public class AntmanSizeHandler extends SizeHandler {
                 float scalingFactor = ((ArmorAntman.ChestplateAntman) player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem()).getScalingFactor();
                 setEntitySize(player, DEFAULT_WIDTH * scalingFactor, DEFAULT_HEIGHT * scalingFactor);
                 player.eyeHeight = player.getDefaultEyeHeight() * scalingFactor;
+
             } else {
                 player.eyeHeight = player.getDefaultEyeHeight();
             }

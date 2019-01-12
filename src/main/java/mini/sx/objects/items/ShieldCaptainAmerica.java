@@ -3,8 +3,6 @@ package mini.sx.objects.items;
 
 import mini.sx.SuperheroesX;
 import mini.sx.entity.EntityCaptainAmericasShield;
-import mini.sx.init.EnchantmentInit;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
@@ -19,6 +17,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.lang.ref.WeakReference;
+import java.util.WeakHashMap;
 
 
 public class ShieldCaptainAmerica extends WeaponizedShield {
@@ -44,24 +44,33 @@ public class ShieldCaptainAmerica extends WeaponizedShield {
         }
     }
 
+    public boolean canThrowShield(EntityPlayer playerIn, WeakHashMap<Object, WeakReference<EntityCaptainAmericasShield>> shieldCapOwners) {
+        if (playerIn != null && !playerIn.capabilities.isCreativeMode) {
+            WeakReference<EntityCaptainAmericasShield> reference = shieldCapOwners.get(playerIn);
+            if (reference != null) {
+                EntityCaptainAmericasShield shieldCap = reference.get();
+                return shieldCap == null || shieldCap.isDead;
+            }
+        }
+        return true;
+    }
+
     @Override
     public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBase entityLiving, int timeLeft) {
-        /*if (!worldIn.isRemote && entityLiving instanceof EntityPlayer && ticks <= 5 && ticks >= 0) {
-            this.throwShield((EntityPlayer) entityLiving, stack, worldIn);
-        }*/
+        if (!worldIn.isRemote && entityLiving instanceof EntityPlayer && ticks <= 5 && ticks >= 0) {
+            EntityPlayer playerIn = (EntityPlayer) entityLiving;
+            if (!canThrowShield(playerIn, EntityCaptainAmericasShield.shieldOwners))
+                return;
+
+            EntityCaptainAmericasShield shieldCap = new EntityCaptainAmericasShield(worldIn, playerIn, stack.copy());
+
+            worldIn.spawnEntity(shieldCap);
+        }
     }
 
     @Override
     public EnumAction getItemUseAction(ItemStack stack) {
-        return /*this.ticks > 5 ?*/ EnumAction.BLOCK /*: sx.DEBUG ? EnumHandler.THROW : EnumAction.NONE*/;//TODO TEST
-    }
-
-    private void throwShield(EntityPlayer player, ItemStack stack, World worldIn) {
-        int range = EnchantmentHelper.getEnchantmentLevel(EnchantmentInit.THROWING_RANGE, stack);
-        player.getCooldownTracker().setCooldown(stack.getItem(), 0x70ffffff);
-        EntityCaptainAmericasShield shield = new EntityCaptainAmericasShield(worldIn, player, stack);
-        shield.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 2F, 0);
-        worldIn.spawnEntity(shield);
+        return this.ticks > 5 ? EnumAction.BLOCK : /*SuperheroesX.DEBUG ? EnumHandler.THROW :*/ EnumAction.NONE;//TODO TEST
     }
 
     @SubscribeEvent

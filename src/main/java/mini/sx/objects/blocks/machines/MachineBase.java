@@ -1,6 +1,5 @@
 package mini.sx.objects.blocks.machines;
 
-import cofh.redstoneflux.api.IEnergyReceiver;
 import mini.sx.SuperheroesX;
 import mini.sx.objects.blocks.BlockBase;
 import mini.sx.util.Reference;
@@ -25,6 +24,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.energy.IEnergyStorage;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -216,10 +216,9 @@ public final class MachineBase {
         @Nonnull
         @Override
         public abstract NBTTagCompound writeToNBT(NBTTagCompound compound);
-
     }
 
-    public static abstract class TileEnergyMachine extends TileMachine implements IEnergyReceiver {
+    public static abstract class TileEnergyMachine extends TileMachine implements IEnergyStorage {
 
         private int maxTransfer;
         private int energyStored;
@@ -232,9 +231,9 @@ public final class MachineBase {
         }
 
         @Override
-        public int receiveEnergy(EnumFacing from, int maxReceive, boolean simulate) {
-            int stored = Math.min(getEnergyStored(from), getMaxEnergyStored(from));
-            int receive = Math.min(maxReceive, Math.min(getMaxEnergyStored(from) - stored, this.maxTransfer));
+        public int receiveEnergy(int maxReceive, boolean simulate) {
+            int stored = Math.min(getEnergyStored(), getMaxEnergyStored());
+            int receive = Math.min(maxReceive, Math.min(getMaxEnergyStored() - stored, this.maxTransfer));
 
             if (!simulate) {
                 stored += receive;
@@ -245,18 +244,14 @@ public final class MachineBase {
         }
 
         @Override
-        public int getEnergyStored(EnumFacing from) {
+        public int getEnergyStored() {
             return this.energyStored;
         }
 
         @Override
-        public int getMaxEnergyStored(EnumFacing from) {
+        public int getMaxEnergyStored() {
             return this.maxEnergyStored;
         }
-
-        @Override
-        public abstract boolean canConnectEnergy(EnumFacing from);
-
     }
 
     public static abstract class GuiMachine extends GuiContainer {

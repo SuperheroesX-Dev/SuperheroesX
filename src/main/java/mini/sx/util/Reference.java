@@ -15,7 +15,7 @@ public class Reference {
                     "required-after:forge@[14.23.3.2655,15.0.0.0);" +
                     "required-after:minecraft;" +
                     "after:thermalexpansion;";
-    public static final String VERSION = "0.2.3";
+    public static final String VERSION = "0.2.4";
 
     public static final int ENTITY_KRYPTONIAN = 1;
     public static final int ENTITY_SHIELD = 2;

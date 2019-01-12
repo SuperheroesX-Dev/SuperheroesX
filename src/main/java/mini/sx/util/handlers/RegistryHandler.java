@@ -113,13 +113,8 @@ public class RegistryHandler {
     }
 
     public static void initRegistries() {
-
     }
 
     public static void postInitRegistries() {
     }
-
-
-
-
 }

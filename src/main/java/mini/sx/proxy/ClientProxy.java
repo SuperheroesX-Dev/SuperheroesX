@@ -76,4 +76,9 @@ public class ClientProxy extends CommonProxy
     public void initKeys() {
         KeyTracker.addKeys();
     }
+
+    @Override
+    public <T> T nullifyOnServer(T object) {
+        return object;
+    }
 }

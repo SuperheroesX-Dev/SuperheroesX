@@ -19,8 +19,6 @@ public class BlockInit
 {
     public static final List<Block> BLOCKS = new ArrayList<>();
     public static final List<OreBase> ORES = new ArrayList<>();
-	
-	//public static final Block Atom_Fuser = new BlockAtomFuser("atomfuser");
 
     /*public static final Block MOLD_NIDAWELLIR = new MoldNidawellir()
             .setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);*/
@@ -50,4 +48,6 @@ public class BlockInit
 
     /*public static final Block BIFROST_CORE = new BifrostCore()
             .setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);*/
+
+
 }

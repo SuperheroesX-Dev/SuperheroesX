@@ -3,7 +3,6 @@ package mini.sx;
 import mini.sx.proxy.CommonProxy;
 import mini.sx.tabs.SuperheroesXTabs;
 import mini.sx.util.Reference;
-import mini.sx.util.config.Config;
 import mini.sx.util.handlers.PacketHandler;
 import mini.sx.util.handlers.RecipeHandler;
 import mini.sx.util.handlers.RegistryHandler;
@@ -45,7 +44,6 @@ public class SuperheroesX {
     public static void preInit(FMLPreInitializationEvent event) {
         RegistryHandler.preInitRegistries(event);
         Integrations.preInitIntegrations();
-        Config.preInit(event);
     }
 
     @EventHandler

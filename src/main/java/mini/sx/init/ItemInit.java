@@ -8,7 +8,7 @@ import mini.sx.objects.items.ShieldCaptainAmerica;
 import mini.sx.objects.items.TestItem;
 import mini.sx.objects.tools.ToolSword;
 import mini.sx.util.Reference;
-import mini.sx.util.config.Config;
+import mini.sx.util.config.ModConfig;
 import mini.sx.util.interfaces.IOreDict;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -68,13 +68,13 @@ public class ItemInit
     public static final Item INGOT_VIBRANIUM;
     public static final Item INGOT_PALLADIUM;
     public static final Item INGOT_TITANIUM;
-   // public static final Item NUGGET_PALLADIUM;
-   // public static final Item NUGGET_TITANIUM;
+    public static final Item NUGGET_PALLADIUM;
+    public static final Item NUGGET_TITANIUM;
     public static final Item PLATE_VIBRANIUM;
     public static final Item PLATE_TITANIUM;
     public static final Item PLATE_GOLD;
-    //public static final Item DUST_PALLADIUM;
-    //public static final Item DUST_TITANIUM;
+    public static final Item DUST_PALLADIUM;
+    public static final Item DUST_TITANIUM;
     public static final Item INGOT_TITANOGOLD;
     public static final Item PLATE_TITANOGOLD;
     public static final Item CIRCUIT;
@@ -146,7 +146,7 @@ public class ItemInit
 
 
         //MARVEL
-        if (Config.marvelItems) {
+        if (ModConfig.common.marvelItems) {
             //MCU
             INGOT_PALLADIUM = new ItemBase("ingot_palladium").setOreDictName("ingotPalladium").
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
@@ -158,10 +158,10 @@ public class ItemInit
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
             PLATE_VIBRANIUM = new ItemBase("plate_vibranium").setOreDictName("plateVibranium").
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-            //DUST_PALLADIUM = new ItemBase("dust_palladium").setOreDictName("dustPalladium").
-                    //setCreativeTab(sx.SUPERHEROES_X_TAB_MATERIALS);
-            //NUGGET_PALLADIUM = new ItemBase("nugget_palladium").setOreDictName("nuggetPalladium").
-                    //setCreativeTab(sx.SUPERHEROES_X_TAB_MATERIALS);
+            DUST_PALLADIUM = new ItemBase("dust_palladium").setOreDictName("dustPalladium").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+            NUGGET_PALLADIUM = new ItemBase("nugget_palladium").setOreDictName("nuggetPalladium").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
 
 
             CLOTH_VIBRANIUM = new ItemBase("cloth_vibranium").
@@ -240,8 +240,8 @@ public class ItemInit
             PLATE_TITANOGOLD = null;
             PLATE_VIBRANIUM = null;
 
-           // DUST_PALLADIUM = null;
-            //NUGGET_PALLADIUM = null;
+            DUST_PALLADIUM = null;
+            NUGGET_PALLADIUM = null;
 
             CLOTH_VIBRANIUM = null;
             STRENGTHENED_CLOTH = null;
@@ -284,7 +284,7 @@ public class ItemInit
         }
 
         //DC
-        if (Config.dcItems) {
+        if (ModConfig.common.dcItems) {
             LOGO_KID_FLASH = new ItemBase("kidflash_logo").
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
             
@@ -374,7 +374,6 @@ public class ItemInit
         CLOTH = new ItemBase("cloth").
                 setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
 
-
         if (!OreDictionary.doesOreNameExist("plateGold")) {
             PLATE_GOLD = new ItemBase("plate_gold").setOreDictName("plateGold").
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
@@ -382,15 +381,14 @@ public class ItemInit
             PLATE_GOLD = OreDictionary.getOres("plateGold").get(0).getItem();
         }
 
-
         INGOT_TITANIUM = new ItemBase("ingot_titanium").setOreDictName("ingotTitanium").
                 setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
         PLATE_TITANIUM = new ItemBase("plate_titanium").setOreDictName("plateTitanium").
                 setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        //NUGGET_TITANIUM = new ItemBase("nugget_titanium").setOreDictName("nuggetTitanium").
-                //setCreativeTab(sx.SUPERHEROES_X_TAB_MATERIALS);
-        //DUST_TITANIUM = new ItemBase("dust_titanium").setOreDictName("dustTitanium").
-                //setCreativeTab(sx.SUPERHEROES_X_TAB_MATERIALS);
+        NUGGET_TITANIUM = new ItemBase("nugget_titanium").setOreDictName("nuggetTitanium").
+                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+        DUST_TITANIUM = new ItemBase("dust_titanium").setOreDictName("dustTitanium").
+                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
 
         CIRCUIT = new ItemBase("circuit").
                 setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);

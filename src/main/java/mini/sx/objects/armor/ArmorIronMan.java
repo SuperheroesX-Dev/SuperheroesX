@@ -9,7 +9,7 @@ import mini.sx.SuperheroesX;
 import mini.sx.init.ItemInit;
 import mini.sx.init.PotionInit;
 import mini.sx.util.Reference;
-import mini.sx.util.config.Config;
+import mini.sx.util.config.ModConfig;
 import mini.sx.util.handlers.SyncHandler;
 import mini.sx.util.helpers.NBTHelper;
 import mini.sx.util.helpers.SXStringHelper;
@@ -209,9 +209,6 @@ public class ArmorIronMan extends ArmorBase implements ISpecialArmor {
             //player.inventory.removeStackFromSlot(this.armorType.getSlotIndex());
             //System.out.println(stack.getEnchantmentTagList().toString());
             stack.setCount(0);
-        }
-        if (!world.isRemote) {
-
         }
     }
 
@@ -503,7 +500,7 @@ public class ArmorIronMan extends ArmorBase implements ISpecialArmor {
             ChestplateIronMan jetpack = (ChestplateIronMan) chestItem;
             if (jetpack.isOn(stack)) {
                 boolean hoverMode = jetpack.isHoverModeOn(stack);
-                double hoverSpeed = Config.invertHoverSneakingBehavior == SyncHandler.isDescendKeyDown(user) ? this.speedVerticalHoverSlow : this.speedVerticalHover;
+                double hoverSpeed = ModConfig.client.controls.invertHoverSneakingBehavior == SyncHandler.isDescendKeyDown(user) ? this.speedVerticalHoverSlow : this.speedVerticalHover;
                 boolean flyKeyDown = force || SyncHandler.isFlyKeyDown(user);
                 boolean descendKeyDown = SyncHandler.isDescendKeyDown(user);
                 double currentAccel = this.accelVertical * (user.motionY < 0.3D ? 2.5D : 1.0D);
@@ -681,7 +678,6 @@ public class ArmorIronMan extends ArmorBase implements ISpecialArmor {
             return container;
         }
 
-        @SuppressWarnings("PointlessArithmeticExpression")
         @Override
         @SideOnly(Side.CLIENT)
         public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {

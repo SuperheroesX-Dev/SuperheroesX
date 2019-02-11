@@ -53,7 +53,7 @@ public class Config {
     public static boolean enableStateHUD = Defaults.enableStateHUD;
 
     public static void preInit(FMLPreInitializationEvent evt) {
-        MinecraftForge.EVENT_BUS.register(new Config());
+        MinecraftForge.EVENT_BUS.register(new ModConfig());
 
         config = new Configuration(new File(evt.getModConfigurationDirectory(), Reference.MODID + ".cfg"));
         configClient = new Configuration(new File(evt.getModConfigurationDirectory(), Reference.MODID + "-client.cfg"));

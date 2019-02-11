@@ -1,7 +1,7 @@
 package mini.sx.util.helpers;
 
 import mini.sx.util.Reference;
-import mini.sx.util.config.Config;
+import mini.sx.util.config.ModConfig;
 import mini.sx.util.handlers.EnumHandler;
 import net.minecraft.util.text.TextFormatting;
 
@@ -48,7 +48,7 @@ public abstract class SXStringHelper {
 
     public static String getHUDFuelText(String prefix, int percent, int fuel) {
         String text = "";
-        if (!Config.minimalFuelHUD) {
+        if (!ModConfig.client.hud.minimalFuelHUD) {
             text += localize("gui.hud." + prefix + ".fuel") + ": ";
         }
         if (percent > 0) {
@@ -56,7 +56,7 @@ public abstract class SXStringHelper {
         } else {
             text += TextFormatting.DARK_RED + localize("gui.hud.fuel.depleted");
         }
-        if (Config.showExactFuelInHUD) {
+        if (ModConfig.client.hud.showExactFuelInHUD) {
             text += " (" + getFormattedNumber(fuel) + "RF" + ")";
         }
         return text;
@@ -106,7 +106,7 @@ public abstract class SXStringHelper {
     }
 
     public static boolean canShowDetails() {
-        return !Config.holdShiftForDetails || StringHelper.isShiftKeyDown();
+        return !ModConfig.client.hud.holdShiftForDetails || StringHelper.isShiftKeyDown();
     }
 
     public static String localize(String unlocalized, Object... args) {

@@ -3,7 +3,7 @@ package mini.sx.util.client.handler;
 import mini.sx.objects.armor.ArmorAntman;
 import mini.sx.objects.armor.ArmorIronMan.ChestplateIronMan;
 import mini.sx.util.Reference;
-import mini.sx.util.config.Config;
+import mini.sx.util.config.ModConfig;
 import mini.sx.util.handlers.PacketHandler;
 import mini.sx.util.handlers.SyncHandler;
 import mini.sx.util.network.message.MessageKeyBind;
@@ -117,7 +117,7 @@ public class KeyTracker {
         if (mc.player != null) {
             boolean flyState;
             boolean descendState;
-            if (Config.customControls) {
+            if (ModConfig.client.controls.customControls) {
                 flyState = mc.inGameHasFocus && Keyboard.isKeyDown(flyKey);
                 descendState = mc.inGameHasFocus && Keyboard.isKeyDown(descendKey);
             } else {

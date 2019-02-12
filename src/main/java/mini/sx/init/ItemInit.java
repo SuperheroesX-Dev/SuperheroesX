@@ -134,6 +134,11 @@ public class ItemInit
     public static final Item LEGGINGS_ANTMAN;
     public static final Item BOOTS_ANTMAN;
 
+    public static final Item HELMET_THE_WASP;
+    public static final Item CHESTPLATE_THE_WASP;
+    public static final Item LEGGINGS_THE_WASP;
+    public static final Item BOOTS_THE_WASP;
+
     //LOGOS
     public static final Item LOGO_DC;
     public static final Item LOGO_MARVEL;
@@ -208,13 +213,22 @@ public class ItemInit
             BOOTS_CAPTAIN_AMERICA = new ArmorCaptainAmerica("captain_america_boots", ARMOR_CAPTAIN_AMERICA, 1, EntityEquipmentSlot.FEET).
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
 
-            HELMET_ANTMAN = new ArmorAntman("antman_helmet", ARMOR_ANTMAN, 1, EntityEquipmentSlot.HEAD).
+            HELMET_ANTMAN = new ArmorAntman("antman_helmet", ARMOR_ANTMAN, 1, EntityEquipmentSlot.HEAD, "antman").
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-            CHESTPLATE_ANTMAN = new ArmorAntman.ChestplateAntman("antman_chestplate", ARMOR_ANTMAN, 1, EntityEquipmentSlot.CHEST).
+            CHESTPLATE_ANTMAN = new ArmorAntman.ChestplateAntman("antman_chestplate", ARMOR_ANTMAN, 1, EntityEquipmentSlot.CHEST, "antman").
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-            LEGGINGS_ANTMAN = new ArmorAntman("antman_leggings", ARMOR_ANTMAN, 2, EntityEquipmentSlot.LEGS).
+            LEGGINGS_ANTMAN = new ArmorAntman("antman_leggings", ARMOR_ANTMAN, 2, EntityEquipmentSlot.LEGS, "antman").
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-            BOOTS_ANTMAN = new ArmorAntman("antman_boots", ARMOR_ANTMAN, 1, EntityEquipmentSlot.FEET).
+            BOOTS_ANTMAN = new ArmorAntman("antman_boots", ARMOR_ANTMAN, 1, EntityEquipmentSlot.FEET, "antman").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+
+            HELMET_THE_WASP = new ArmorAntman("the_wasp_helmet", ARMOR_ANTMAN, 1, EntityEquipmentSlot.HEAD, "the_wasp").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+            CHESTPLATE_THE_WASP = new ArmorAntman.ChestplateAntman("the_wasp_chestplate", ARMOR_ANTMAN, 1, EntityEquipmentSlot.CHEST, "the_wasp").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+            LEGGINGS_THE_WASP = new ArmorAntman("the_wasp_leggings", ARMOR_ANTMAN, 2, EntityEquipmentSlot.LEGS, "the_wasp").
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+            BOOTS_THE_WASP = new ArmorAntman("the_wasp_boots", ARMOR_ANTMAN, 1, EntityEquipmentSlot.FEET, "the_wasp").
                     setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
 
 
@@ -273,6 +287,11 @@ public class ItemInit
             CHESTPLATE_ANTMAN = null;
             LEGGINGS_ANTMAN = null;
             BOOTS_ANTMAN = null;
+
+            HELMET_THE_WASP = null;
+            CHESTPLATE_THE_WASP = null;
+            LEGGINGS_THE_WASP = null;
+            BOOTS_THE_WASP = null;
 
             //XMen
             HELMET_DEADPOOL = null;

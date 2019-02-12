@@ -31,10 +31,10 @@ item.antman_chestplate.name=Antman's Chestplate
 item.antman_leggings.name=Antman's Leggings
 item.antman_boots.name=Antman's Boots
 
-item.wasp_helmet.name=Wasp's Helmet
-item.wasp_chestplate.name=Wasp's Chestplate
-item.wasp_leggings.name=Wasp's Leggings
-item.wasp_boots.name=Wasp's Boots
+item.the_wasp_helmet.name=Wasp's Helmet
+item.the_wasp_chestplate.name=Wasp's Chestplate
+item.the_wasp_leggings.name=Wasp's Leggings
+item.the_wasp_boots.name=Wasp's Boots
 
 item.deadpool_helmet.name=Deadpool's Maske
 item.deadpool_chestplate.name=Deadpool's Brustplatte

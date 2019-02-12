@@ -1,25 +1,19 @@
 package mini.sx.objects.armor;
 
-import mini.sx.SuperheroesX;
-import mini.sx.util.Reference;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
-
-import javax.annotation.Nullable;
 
 public class ArmorAntman extends ArmorBase {
 
-    private static final int WASP = 1;
-    private static final int ANTMAN = 0;
+    private String type;
 
-    public ArmorAntman(String name, ItemArmor.ArmorMaterial armorMaterial, int renderIndex, EntityEquipmentSlot entityEquipmentSlot) {
+    public ArmorAntman(String name, ItemArmor.ArmorMaterial armorMaterial, int renderIndex, EntityEquipmentSlot entityEquipmentSlot, String type) {
         super(name, armorMaterial, renderIndex, entityEquipmentSlot);
+        this.type = type;
     }
 
     @Override
@@ -33,28 +27,9 @@ public class ArmorAntman extends ArmorBase {
     }
 
     @Override
-    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-        if (this.isInCreativeTab(tab)) {
-            items.add(new ItemStack(this, 1, ANTMAN));
-            items.add(new ItemStack(this, 1, WASP));
-        }
-    }
-
-    @Override
-    public void registerModels() {
-        SuperheroesX.PROXY.registerVariantRenderer(this, ANTMAN, "armor_antman", "inventory");
-        SuperheroesX.PROXY.registerVariantRenderer(this, WASP, "armor_wasp", "inventory");
-    }
-
-    @Override
     public boolean isWearingFullSet(EntityPlayer player) {
-        int meta = -1;
         for (ItemStack i : player.getArmorInventoryList()) {
-            if (!(i.getItem() instanceof ArmorAntman))
-                return false;
-            else if (meta == -1)
-                meta = i.getItemDamage();
-            else if (meta != i.getItemDamage())
+            if (!(i.getItem() instanceof ArmorAntman) || i.getItem().getRegistryName().toString().contains(this.type))
                 return false;
         }
         return true;
@@ -68,21 +43,6 @@ public class ArmorAntman extends ArmorBase {
     @Override
     public String getUnlocalizedName(ItemStack stack) {
         return super.getUnlocalizedName(stack) + "_" + getDamage(stack);
-    }
-
-    @Nullable
-    @Override
-    public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
-        String name = "";
-        switch (getDamage(stack)) {
-            case WASP:
-                name = "wasp";
-                break;
-            case ANTMAN:
-                name = "antman";
-                break;
-        }
-        return Reference.RESOURCE_PREFIX + name + "_" + ((slot == EntityEquipmentSlot.LEGS) ? "2" : "1");
     }
 
     public static class ChestplateAntman extends ArmorAntman {
@@ -103,8 +63,8 @@ public class ArmorAntman extends ArmorBase {
          * @param renderIndex         the render index of the armor item
          * @param entityEquipmentSlot the equipment slot of the armor item
          */
-        public ChestplateAntman(String name, ArmorMaterial armorMaterial, int renderIndex, EntityEquipmentSlot entityEquipmentSlot) {
-            super(name, armorMaterial, renderIndex, entityEquipmentSlot);
+        public ChestplateAntman(String name, ArmorMaterial armorMaterial, int renderIndex, EntityEquipmentSlot entityEquipmentSlot, String type) {
+            super(name, armorMaterial, renderIndex, entityEquipmentSlot, type);
             this.scalingFactor = SCALING_FACTOR_NORMAL;
         }
 

@@ -1,82 +1,132 @@
 # made by Minecraftschurli
-item.cloth.name=Stoff
-item.strengthened_cloth.name=Verstärkter Stoff
-item.cloth_vibranium.name=Vibranium Stoff
-
-item.spandex_red.name=Roter Elastan Faden
-item.spandex_black.name=Schwarzer Elastan Faden
-item.spandex_yellow.name=Gelber Elastan Faden
-item.spandex_green.name=Grüner Elastan Faden
-item.spandex_white.name=Weißer Elastan Faden
-item.kidflash_logo.name=Kid Flash's Logo
-
 itemGroup.superheroesx_dc=Superheroes X (DC)
 itemGroup.superheroesx_marvel=Superheroes X (Marvel)
 itemGroup.superheroesx_materials=Superheroes X Materials
 
-item.superboy_chestplate.name=Superboy's Brustplatte
-item.superboy_leggings.name=Superboy's Hose
-item.superboy_boots.name=Superboy's Schuhe
+potion.effect.fly=Flug Trank [WIP]
+splash_potion.effect.fly=Flug Wurftrank [WIP]
+lingering_potion.effect.fly=Lingering Trank des Flugs [WIP]
 
-item.deadpool_helmet.name=Deadpool's Maske
-item.deadpool_chestplate.name=Deadpool's Brustplatte
-item.deadpool_leggings.name=Deadpool's Hose
-item.deadpool_boots.name=Deadpool's Schuhe
-
+# MARVEL
 item.captain_america_helmet.name=Captain America's Helmet
 item.captain_america_chestplate.name=Captain America's Chestplate
 item.captain_america_leggings.name=Captain America's Leggings
 item.captain_america_boots.name=Captain America's Boots
 
-item.deadpool_katana.name=Deadpool's Katana
+item.shield_captain_america.name=Captain America's Schild [WIP]
 
-entity.kryptonian.name=Kryptonier (WIP)
-
-tile.atomfuser.name=Atom Fusionierer (WIP)
-
-item.kidflash_helmet.name=Kid Flash's Maske
-item.kidflash_chestplate.name=Kid Flash's Brustplatte
-item.kidflash_leggings.name=Kid Flash's Hose
-item.kidflash_boots.name=Kid Flash's Schuhe
-
-potion.effect.fly=Flug Trank (WIP)
-splash_potion.effect.fly=Flug Wurftrank (WIP)
-lingering_potion.effect.fly=Lingering Trank des Flugs (WIP)
-
-item.ingot_vibranium.name=Vibranium Barren
-item.ingot_palladium.name=Palladium Barren
-item.ingot_titanium.name=Titanium Barren
-item.circuit.name=Schaltkreis
-item.plate_vibranium.name=Vibranium Platte
-item.plate_gold.name=Gold Platte
-item.plate_titanium.name=Titanium Platte
-item.plate_titanogold.name=Titanogold Platte
-item.ingot_titanogold.name=Titanogold Barren
-
+item.ironman_helmet.name=Iron Man's Maske
+item.ironman_chestplate_2.name=Iron Man's Brustplatte [WIP]
+item.ironman_chestplate_1.name=Iron Man's Brustplatte [WIP]
+item.ironman_leggings.name=Iron Man's Hose
+item.ironman_boots.name=Iron Man's Schuhe
 
 item.blackpanther_helmet.name=Black Panther's Maske (MCU)
 item.blackpanther_chestplate.name=Black Panther's Brustplatte (MCU)
 item.blackpanther_leggings.name=Black Panther's Hose (MCU)
 item.blackpanther_boots.name=Black Panther's Schuhe (MCU)
 
+item.antman_helmet.name=Antman's Helmet
+item.antman_chestplate.name=Antman's Chestplate
+item.antman_leggings.name=Antman's Leggings
+item.antman_boots.name=Antman's Boots
+
+item.wasp_helmet.name=Wasp's Helmet
+item.wasp_chestplate.name=Wasp's Chestplate
+item.wasp_leggings.name=Wasp's Leggings
+item.wasp_boots.name=Wasp's Boots
+
+item.deadpool_helmet.name=Deadpool's Maske
+item.deadpool_chestplate.name=Deadpool's Brustplatte
+item.deadpool_leggings.name=Deadpool's Hose
+item.deadpool_boots.name=Deadpool's Schuhe
+
+item.deadpool_katana.name=Deadpool's Katana
+
+# DC
+item.robin1_helmet.name=Robin's Maske (Dick Grayson)
+item.robin1_chestplate.name=Robin's Brustplatte (Dick Grayson) [WIP]
+item.robin1_leggings.name=Robin's Hose (Dick Grayson)
+item.robin1_boots.name=Robin's Schuhe (Dick Grayson)
+
+item.kidflash_helmet.name=Kid Flash's Maske
+item.kidflash_chestplate.name=Kid Flash's Brustplatte
+item.kidflash_leggings.name=Kid Flash's Hose
+item.kidflash_boots.name=Kid Flash's Schuhe
+
+item.superboy_chestplate.name=Superboy's Brustplatte
+item.superboy_leggings.name=Superboy's Hose
+item.superboy_boots.name=Superboy's Schuhe
+
+# Materials
+
+# Ingots
+item.ingot_vibranium.name=Vibranium Barren
+item.ingot_palladium.name=Palladium Barren
+item.ingot_titanium.name=Titanium Barren
+item.ingot_titanogold.name=Titanogold Barren
+
+# Dust
+item.dust_palladium.name=Pulverisiertes Palladium
+item.dust_titanium.name=Pulverisiertes Titanium
+
+# Nuggets
+item.nugget_palladium.name=Palladium Nugget
+item.nugget_titanium.name=Titanium Nugget
+
+# Plates
+item.plate_vibranium.name=Vibranium Platte
+item.plate_gold.name=Gold Platte
+item.plate_titanium.name=Titanium Platte
+item.plate_titanogold.name=Titanogold Platte
+
+# Ores
 tile.ore_vibranium.name=Vibranium Erz
 tile.ore_palladium.name=Palladium Erz
 tile.ore_titanium.name=Titanium Erz
 
+# Blocks
 tile.block_vibranium.name=Vibranium Block
 tile.block_palladium.name=Palladium Block
 tile.block_titanium.name=Titanium Block
 
-item.helmet_ironman.name=Iron Man's Maske
-item.chestplate_ironman_2.name=Iron Man's Brustplatte (WIP)
-item.chestplate_ironman_1.name=Iron Man's Brustplatte (WIP)
-item.leggings_ironman.name=Iron Man's Hose
-item.boots_ironman.name=Iron Man's Schuhe
+# misc
+item.cloth.name=Stoff
+item.strengthened_cloth.name=Verstärkter Stoff
+item.cloth_vibranium.name=Vibranium Stoff
+
+item.spandex_cloth_red.name=Roter Elastan
+item.spandex_cloth_black.name=Schwarzser Elastan
+item.spandex_cloth_yellow.name=Gelbes Elastan
+item.spandex_cloth_green.name=Grünes Elastan
+item.spandex_cloth_white.name=Weißes Elastan
+
+item.spandex_red.name=Roter Elastan Faser
+item.spandex_black.name=Schwarzer Elastan Faser
+item.spandex_yellow.name=Gelber Elastan Faser
+item.spandex_green.name=Grüner Elastan Faser
+item.spandex_white.name=Weißer Elastan Faser
+
+item.kidflash_logo.name=Kid Flash's Logo
+
+item.circuit.name=Schaltkreis
+
+item.shield_captain_america_uncolored.name=Vibranium Schild (Crafting Item)
+item.shield_handle.name=Schildgriff
 
 item.mini_arc_reactor_mk1.name=Arc Reactor MK1
 item.mini_arc_reactor_mk2.name=Arc Reactor MK2
 item.mini_arc_reactor_base.name=Arc Reactor Basis
 
+
+# Integrations
+
+# TC
+material.vibranium.name=Vibranium
+modifier.unbreakable.name=Unzerstörbar
+
+
+# Other
 sx.category.ironman=Iron Man Steuerung
 sx.keybind.engine=Schubdüsen
 sx.keybind.hover=Schwebemodus
@@ -98,27 +148,3 @@ sx.tooltip.on=An
 sx.tooltip.off=Off
 sx.tooltip.disabled=Aus
 sx.tooltip.enabled=An
-
-item.robin1_helmet.name=Robin's Maske (Dick Grayson)
-item.robin1_chestplate.name=Robin's Brustplatte (Dick Grayson WIP)
-item.robin1_leggings.name=Robin's Hose (Dick Grayson)
-item.robin1_boots.name=Robin's Schuhe (Dick Grayson)
-
-item.spandex_cloth_red.name=Roter Elastan
-item.spandex_cloth_black.name=Schwarzser Elastan
-item.spandex_cloth_yellow.name=Gelbes Elastan
-item.spandex_cloth_green.name=Grünes Elastan
-item.spandex_cloth_white.name=Weißes Elastan
-
-item.shield_captain_america_uncolored.name=Vibranium Schild
-item.shield_captain_america.name=Captain America's Schild [WIP]
-item.shield_handle.name=Schildgriff
-
-item.dust_palladium.name=Pulverisiertes Palladium
-item.dust_titanium.name=Pulverisiertes Titanium
-item.nugget_palladium.name=Palladium Nugget
-item.nugget_titanium.name=Titanium Nugget
-
-material.vibranium.name=Vibranium
-
-modifier.unbreakable.name=Unzerstörbar

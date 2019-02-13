@@ -5,8 +5,8 @@ package sx_dev.sx.util;
 public class Reference {
     public static final String MODID = "sx";
     public static final String NAME = "Superheroes X";
-    public static final String CLIENT = "ClientProxy";
-    public static final String COMMON = "CommonProxy";
+    public static final String CLIENT = "sx_dev.sx.proxy.ClientProxy";
+    public static final String COMMON = "sx_dev.sx.proxy.CommonProxy";
     public static final String PREFIX = MODID + ".";
     public static final String RESOURCE_PREFIX = MODID + ":";
     public static final String CONFIG_LANG_PREFIX = PREFIX + "config.";

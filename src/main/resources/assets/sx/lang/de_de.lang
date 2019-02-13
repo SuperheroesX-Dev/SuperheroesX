@@ -123,6 +123,8 @@ item.mini_arc_reactor_base.name=Arc Reactor Basis
 
 # TC
 material.vibranium.name=Vibranium
+material.titanium.name=Titanium
+material.palladium.name=Palladium
 modifier.unbreakable.name=Unzerstörbar
 
 

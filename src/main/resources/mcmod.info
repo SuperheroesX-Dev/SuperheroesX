@@ -7,7 +7,9 @@
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["Mini_Me_Snipe","Minecraftschurli"],
+  "authorList": [
+    "Minecraftschurli"
+  ],
   "credits": "Team CoFH for the RF API, Tiviacz1337 For Deadpool Skin :D",
   "logoFile": "",
   "screenshots": [],

@@ -15,7 +15,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 
 version = pullData("VERSION")
 
-group = "mini." + pullData("MODID") // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = "sx_dev." + pullData("MODID") // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = pullData("NAME")
 
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
@@ -98,7 +98,7 @@ jar {
 }
 
 def pullData(String data) {
-    def file = file("src/main/java/mini/sx/util/Reference.java")
+    def file = file("src/main/java/sx_dev/sx/util/Reference.java")
     def version = ""
     def pattern = Pattern.compile(" {4}public static final String " + data + " = \"([\\d\\.]*)\";\$")
     file.eachLine { String s ->

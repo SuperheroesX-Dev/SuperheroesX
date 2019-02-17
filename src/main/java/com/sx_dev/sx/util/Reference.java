@@ -12,7 +12,7 @@ public class Reference {
     public static final String CONFIG_LANG_PREFIX = PREFIX + "config.";
     public static final String MC_VERSION = "[1.12.2]";
     public static final String DEPENDENCIES =
-            "required-after:redstoneflux@[2.0.1,2.1.0);" +
+                    "required-after:redstoneflux@[2.0.1,2.1.0);" +
                     "required-after:forge@[14.23.3.2655,14.23.4.2705];" +
                     "required-after:minecraft;" +
                     "after:thermalexpansion;";

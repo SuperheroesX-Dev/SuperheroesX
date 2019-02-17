@@ -12,9 +12,16 @@ apply plugin: 'net.minecraftforge.gradle'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 //apply plugin: 'eclipse'
 
-version = '1.0'
-group = 'com.sx_dev.sx' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'sx'
+class mod {
+    static id = 'sx'
+    static group_id = 'sx_dev'
+    static name = 'Superheroes X'
+    static version = '1.0'
+}
+
+version = mod.version
+group = 'com.' + mod.group_id + '.' + mod.id // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = mod.id
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
@@ -81,12 +88,12 @@ dependencies {
 // Example for how to get properties into the manifest for reading by the runtime..
 jar {
     manifest {
-        attributes(["Specification-Title": "examplemod",
-                    "Specification-Vendor": "examplemodsareus",
-                    "Specification-Version": "24.0", // We are version 1 of the modlauncher specification
+        attributes(["Specification-Title": "${mod.name}",
+                    "Specification-Vendor": "${mod.group_id}",
+                    "Specification-Version": "${mod.version}", // We are version 1 of the modlauncher specification
                     "Implementation-Title": project.name,
                     "Implementation-Version": "${version}",
-                    "Implementation-Vendor" :"examplemodsareus",
+                    "Implementation-Vendor" :"${mod.group_id}",
                     "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")],)
     }
 }

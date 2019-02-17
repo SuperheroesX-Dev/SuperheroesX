@@ -35,7 +35,7 @@ import net.minecraftforge.oredict.OreDictionary;*/
 public class RegistryHandler {
 
     @SubscribeEvent
-    public static void onItemRegister(Register<Item> event) {
+    public static void onItemRegister(final Register<Item> event) {
         event.getRegistry().registerAll(ItemInit.ITEMS.toArray(new Item[0]));
         /*for (IOreDict oreDictEntry : ItemInit.MOD_ORE_DICT) {
             if (oreDictEntry.hasOreDictName() && (oreDictEntry.getEntry() instanceof Item || oreDictEntry.getEntry() instanceof Block)) {
@@ -50,13 +50,13 @@ public class RegistryHandler {
     }
 
     @SubscribeEvent
-    public static void onBlockRegister(Register<Block> event) {
+    public static void onBlockRegister(final Register<Block> event) {
         event.getRegistry().registerAll(BlockInit.BLOCKS.toArray(new Block[0]));
 
         onFluidRegister(event);
     }
 
-    private static void onFluidRegister(Register<Block> event) {
+    private static void onFluidRegister(final Register<Block> event) {
         if (Integrations.TC) {
             FluidInit.FLUIDS.addAll(FluidInit.TC_FLUIDS);
         }

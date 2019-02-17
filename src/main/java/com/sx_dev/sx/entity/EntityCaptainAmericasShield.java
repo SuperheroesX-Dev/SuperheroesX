@@ -1,16 +1,12 @@
 package com.sx_dev.sx.entity;
 
 import com.google.common.collect.Iterables;
-import com.sx_dev.sx.SuperheroesX;
 import com.sx_dev.sx.init.EnchantmentInit;
-import com.sx_dev.sx.util.handlers.EnumHandler;
 import com.sx_dev.sx.util.helpers.ItemStackHelper;
 import com.sx_dev.sx.util.helpers.PlayerHelper;
 import com.sx_dev.sx.util.misc.DataWatcherItemStack;
-import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.particle.Particle;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
@@ -19,7 +15,6 @@ import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Particles;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
@@ -27,7 +22,6 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.network.play.server.SPacketChangeGameState;
-import net.minecraft.particles.ParticleType;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.EntityDamageSourceIndirect;
@@ -40,7 +34,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.IShearable;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.FakePlayerFactory;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
@@ -195,27 +188,27 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
 
     @Override
     protected void readAdditional(NBTTagCompound tag) {
-        if (tag.hasKey("Target_UUIDL")) {
+        if (tag.contains("Target_UUIDL")) {
             owner = new UUID(tag.getLong("Target_UUIDU"), tag.getLong("Target_UUIDL"));
         } else
             owner = null;
 
-        tag.setByte("OutFlag", dataManager.get(DATAWATCHER_OUT_FLAG));
-        tag.setTag("Home", dataManager.get(DATAWATCHER_HOME).writeToNBT());
-        tag.setInt("Owner", dataManager.get(DATAWATCHER_OWNER_ID));
+        tag.putByte("OutFlag", dataManager.get(DATAWATCHER_OUT_FLAG));
+        tag.put("Home", dataManager.get(DATAWATCHER_HOME).writeToNBT());
+        tag.putInt("Owner", dataManager.get(DATAWATCHER_OWNER_ID));
         ItemStack stack = DataWatcherItemStack.getStack(dataManager, DATAWATCHER_STACK);
         if (!ItemStackHelper.isNonNull(stack)) {
             NBTTagCompound t = new NBTTagCompound();
             stack.write(t);
-            tag.setTag("Stack", t);
+            tag.put("Stack", t);
         }
     }
 
     @Override
     protected void writeAdditional(@Nonnull NBTTagCompound tag) {
         if (owner != null) {
-            tag.setLong("Target_UUIDL", owner.getLeastSignificantBits());
-            tag.setLong("Target_UUIDU", owner.getMostSignificantBits());
+            tag.putLong("Target_UUIDL", owner.getLeastSignificantBits());
+            tag.putLong("Target_UUIDU", owner.getMostSignificantBits());
         }
         dataManager.set(DATAWATCHER_OUT_FLAG, tag.getByte("OutFlag"));
         dataManager.set(DATAWATCHER_HOME, new Rotations(tag.getList("Home", Constants.NBT.TAG_INT)));
@@ -334,7 +327,7 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
                 for (int k = 0; k < 4; ++k) {
                     double t = k / 4.0;
 
-                    world.spawnParticle(Particles.CRIT,this.posX + dx * t,this.posY + dy * t,this.posZ + dz * t, -dx,-dy + 0.2D, -dz);
+                    //world.spawnParticle(Particles.CRIT,this.posX + dx * t,this.posY + dy * t,this.posZ + dz * t, -dx,-dy + 0.2D, -dz);
                 }
 
                 if (potionColor != 0) {

@@ -1,18 +1,14 @@
 package com.sx_dev.sx;
 
-import com.sx_dev.sx.proxy.CommonProxy;
-import com.sx_dev.sx.tabs.SuperheroesXTabs;
 import com.sx_dev.sx.util.Reference;
-import com.sx_dev.sx.util.handlers.PacketHandler;
-import com.sx_dev.sx.util.handlers.RecipeHandler;
 import com.sx_dev.sx.util.handlers.RegistryHandler;
 import com.sx_dev.sx.util.handlers.SyncHandler;
 import com.sx_dev.sx.util.integration.Integrations;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -26,6 +22,7 @@ public class SuperheroesX {
     public SuperheroesX (){
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::serverStopping);
+        MinecraftForge.EVENT_BUS.register(this);
     }
 
     //@Instance(Reference.MODID)
@@ -42,6 +39,7 @@ public class SuperheroesX {
     /*==================================================*/
 
     private void setup(final FMLCommonSetupEvent event) {
+        LOGGER.info("HELLO");
         RegistryHandler.preInitRegistries(event);
         Integrations.preInitIntegrations();
     }

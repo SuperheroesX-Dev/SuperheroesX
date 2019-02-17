@@ -29,7 +29,7 @@ public class SuperheroesXEventHandler {
         if (!container.hasTag()) {
             container.setTag(new NBTTagCompound());
         }
-        container.getTag().setInt("Multiplier", 4);
+        container.getTag().putInt("Multiplier", 4);
         eastereggs.put(Pair.of("Minecraftschurli", UUID.fromString("e057bfa8-bfe4-4725-9b5f-89f38906c2b2")), Collections.singletonList(container));
     }
 

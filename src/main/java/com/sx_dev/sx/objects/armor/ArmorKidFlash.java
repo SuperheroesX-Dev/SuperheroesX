@@ -5,7 +5,6 @@ import net.minecraft.client.renderer.entity.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
-import net.minecraft.init.Particles;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemStack;
@@ -26,7 +25,7 @@ public class ArmorKidFlash extends ArmorBase {
             super.onArmorTick(stack, world, player);
             if (player.isSprinting()) {
                 player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 0, 50, false, false));
-                world.spawnParticle(Particles.DRAGON_BREATH, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), 1, 1, 0);
+                //world.spawnParticle(Particles.DRAGON_BREATH, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), 1, 1, 0);
             }
             player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 0, 4, false, false));
             player.addPotionEffect(new PotionEffect(MobEffects.HASTE, 0, 2, false, false));

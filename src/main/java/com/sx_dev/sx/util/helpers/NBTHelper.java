@@ -2,8 +2,6 @@ package com.sx_dev.sx.util.helpers;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraftforge.common.util.Constants.NBT;
 
 public abstract class NBTHelper {
     public static final String DATA_ID = "sxData";
@@ -113,8 +111,8 @@ public abstract class NBTHelper {
             stack.setTag(new NBTTagCompound());
         }
 
-        if (!stack.getTag().hasKey(DATA_ID)) {
-            stack.getTag().setTag(DATA_ID, new NBTTagCompound());
+        if (!stack.getTag().contains(DATA_ID)) {
+            stack.getTag().put(DATA_ID, new NBTTagCompound());
         }
     }
 }

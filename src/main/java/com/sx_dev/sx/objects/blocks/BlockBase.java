@@ -16,20 +16,20 @@ public class BlockBase extends Block implements IHasModel, IOreDict<BlockBase> {
 
     public BlockBase(String name, Material material)
 	{
-		super(material);
-		setUnlocalizedName(name);
+		super(Block.Properties.create(material));
+		//setUnlocalizedName(name);
 		setRegistryName(name);
-        setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+        //setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
 		
 		BlockInit.BLOCKS.add(this);
-        ItemInit.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+        ItemInit.ITEMS.add(new ItemBlock(this, new Item.Properties()).setRegistryName(this.getRegistryName()));
 	}
 	
 	@Override
 	public void registerModels() 
 	{
-        SuperheroesX.PROXY.registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory");
-		}
+        //SuperheroesX.PROXY.registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory");
+	}
 
     @Override
     public String getOreDictName() {

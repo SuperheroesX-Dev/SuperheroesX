@@ -123,7 +123,7 @@ public class RecipeHandler {
 
     public static class RecipeHelper {
 
-        /* GENERAL */
+        /* GENERAL *//*
         static void addShapedRecipe(ItemStack output, Object... input) {
 
             ResourceLocation location = getNameForRecipe(output);
@@ -158,7 +158,7 @@ public class RecipeHandler {
             ShapelessOreRecipe recipe = new ShapelessOreRecipe(location, output, input);
             recipe.setRegistryName(location);
             GameData.register_impl(recipe);
-        }
+        }*/
 
         /* STORAGE */
         static void addStorageRecipe(ItemStack one, String nine) {

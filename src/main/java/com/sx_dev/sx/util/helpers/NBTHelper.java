@@ -9,10 +9,10 @@ public abstract class NBTHelper {
     public static final String DATA_ID = "sxData";
 
 
-    public static NBTTagCompound getDataMap(ItemStack stack) {
+    /*public static NBTTagCompound getDataMap(ItemStack stack) {
         initStack(stack);
 
-        return stack.getTagCompound().getCompoundTag(DATA_ID);
+        return stack.getTag().getTag(DATA_ID);
     }
 
     public static boolean hasData(ItemStack stack, String key) {
@@ -106,15 +106,15 @@ public abstract class NBTHelper {
         initStack(stack);
 
         getDataMap(stack).setTag(key, tag);
-    }
+    }*/
 
     private static void initStack(ItemStack stack) {
-        if (stack.getTagCompound() == null) {
-            stack.setTagCompound(new NBTTagCompound());
+        if (stack.getTag() == null) {
+            stack.setTag(new NBTTagCompound());
         }
 
-        if (!stack.getTagCompound().hasKey(DATA_ID)) {
-            stack.getTagCompound().setTag(DATA_ID, new NBTTagCompound());
+        if (!stack.getTag().hasKey(DATA_ID)) {
+            stack.getTag().setTag(DATA_ID, new NBTTagCompound());
         }
     }
 }

@@ -13,7 +13,7 @@ public abstract class SizeHandler {
             entity.height = height;
             double halfWidth = width / 2.0D;
             if (entity.width < oldWidth) {
-                entity.setEntityBoundingBox(new AxisAlignedBB(
+                entity.setBoundingBox(new AxisAlignedBB(
                         entity.posX - halfWidth,
                         entity.posY,
                         entity.posZ - halfWidth,
@@ -22,8 +22,8 @@ public abstract class SizeHandler {
                         entity.posZ + halfWidth));
                 return;
             }
-            AxisAlignedBB axisalignedbb = entity.getEntityBoundingBox();
-            entity.setEntityBoundingBox(new AxisAlignedBB(
+            AxisAlignedBB axisalignedbb = entity.getBoundingBox();
+            entity.setBoundingBox(new AxisAlignedBB(
                     axisalignedbb.minX - halfWidth,
                     axisalignedbb.minY,
                     axisalignedbb.minZ - halfWidth,

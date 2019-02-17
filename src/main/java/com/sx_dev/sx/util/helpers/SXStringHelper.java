@@ -106,7 +106,7 @@ public abstract class SXStringHelper {
     }
 
     public static boolean canShowDetails() {
-        return !ModConfig.client.hud.holdShiftForDetails || StringHelper.isShiftKeyDown();
+        return !ModConfig.client.hud.holdShiftForDetails /*|| StringHelper.isShiftKeyDown()*/;
     }
 
     public static String localize(String unlocalized, Object... args) {

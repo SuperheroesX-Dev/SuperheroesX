@@ -11,9 +11,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.StatList;
 import net.minecraft.stats.StatisticsManagerServer;
-import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.apache.commons.lang3.tuple.Pair;
@@ -28,10 +28,10 @@ public class SuperheroesXEventHandler {
 
     private static void addToMap(){
         ItemStack container = new ItemStack(ItemInit.CHESTPLATE_IRONMAN, 1);
-        if (!container.hasTagCompound()) {
-            container.setTagCompound(new NBTTagCompound());
+        if (!container.hasTag()) {
+            container.setTag(new NBTTagCompound());
         }
-        container.getTagCompound().setInteger("Multiplier", 4);
+        container.getTag().setInt("Multiplier", 4);
         eastereggs.put(Pair.of("Minecraftschurli", UUID.fromString("e057bfa8-bfe4-4725-9b5f-89f38906c2b2")), Collections.singletonList(container));
     }
 
@@ -43,12 +43,12 @@ public class SuperheroesXEventHandler {
             fly = true;
 
         if (fly || event.player.isCreative() || event.player.isSpectator()) {
-            event.player.capabilities.allowFlying = true;
+            //event.player.capabilities.allowFlying = true;
             event.player.fallDistance = 0.0f;
         } else {
             fly = false;
-            event.player.capabilities.isFlying = false;
-            event.player.capabilities.allowFlying = false;
+            //event.player.capabilities.isFlying = false;
+            //event.player.capabilities.allowFlying = false;
         }
     }
 
@@ -57,7 +57,7 @@ public class SuperheroesXEventHandler {
             String name = stringUUIDPair.getKey();
             UUID id = stringUUIDPair.getValue();
             itemStacks.forEach(itemStack -> {
-                if ((player != null && player.world != null && !player.world.isRemote && (player.getClass() == EntityPlayerMP.class || FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayers().contains(player))) && name.equals(player.getGameProfile().getName()) && id.equals(player.getGameProfile().getId())) {
+                if ((player != null && player.world != null && !player.world.isRemote && (player.getClass() == EntityPlayerMP.class /*|| .instance().getMinecraftServerInstance().getPlayerList().getPlayers().contains(player)*/)) && name.equals(player.getGameProfile().getName()) && id.equals(player.getGameProfile().getId())) {
                     InventoryPlayer inventory = player.inventory;
                     int j = -1;
                     for (int i = 0; i < inventory.getSizeInventory(); i++) {
@@ -71,7 +71,7 @@ public class SuperheroesXEventHandler {
 
                     if (j != -1) {
                         if (itemStack.getItem() instanceof ItemArmor){
-                            EntityEquipmentSlot slot = ((ItemArmor) itemStack.getItem()).armorType;
+                            EntityEquipmentSlot slot = ((ItemArmor) itemStack.getItem()).getEquipmentSlot();
                             AtomicBoolean b = new AtomicBoolean(true);
                             inventory.armorInventory.forEach(itemStack2 -> {
                                 if (!itemStack2.isEmpty()) {
@@ -95,21 +95,21 @@ public class SuperheroesXEventHandler {
 
     @SubscribeEvent
     public void playerLogin(PlayerEvent.PlayerLoggedInEvent event) {
-        checkAndExecute(event.player);
+        checkAndExecute(event.getPlayer());
     }
 
     @SubscribeEvent
     public void playerLogin(PlayerEvent.PlayerRespawnEvent event) {
-        checkAndExecute(event.player);
+        checkAndExecute(event.getPlayer());
     }
 
     private void checkAndExecute(EntityPlayer player){
         if(!player.world.isRemote) {
             EntityPlayerMP playerMP = (EntityPlayerMP) player;
-            StatisticsManagerServer s = playerMP.getStatFile();
-            int walked = s.readStat(StatList.WALK_ONE_CM);
-            int timeSinceDeath = s.readStat(StatList.TIME_SINCE_DEATH);
-            if (walked<=1&&timeSinceDeath<=0)cheatyEasterEgg(playerMP);
+            StatisticsManagerServer s = playerMP.getStats();
+            //int walked = s.getValue(StatList.WALK_ONE_CM);
+            //int timeSinceDeath = s.getValue(StatList.TIME_SINCE_DEATH);
+            //if (walked<=1&&timeSinceDeath<=0)cheatyEasterEgg(playerMP);
         }
     }
     static {addToMap();}

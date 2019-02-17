@@ -12,7 +12,8 @@ public class ItemBase extends Item implements IHasModel, IOreDict<ItemBase> {
 
     public ItemBase(String name)
 	{
-		setUnlocalizedName(name);
+        super(new Item.Properties());
+        //setUnlocalizedName(name);
 		setRegistryName(name);
 		
 		ItemInit.ITEMS.add(this);
@@ -22,7 +23,7 @@ public class ItemBase extends Item implements IHasModel, IOreDict<ItemBase> {
     @Override
 	public void registerModels() 
 	{
-        SuperheroesX.PROXY.registerItemRenderer(this, 0, "inventory");
+        //SuperheroesX.PROXY.registerItemRenderer(this, 0, "inventory");
 	}
 
     @Override

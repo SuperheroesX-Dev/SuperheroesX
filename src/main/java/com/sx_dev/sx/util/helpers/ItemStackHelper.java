@@ -4,6 +4,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.IItemProvider;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -49,9 +50,9 @@ public class ItemStackHelper {
         return ItemStack.EMPTY;
     }
 
-    public static ItemStack loadFromNBT(@Nonnull NBTTagCompound tag) {
+    /*public static ItemStack loadFromNBT(@Nonnull NBTTagCompound tag) {
         return new ItemStack(tag);
-    }
+    }*/
 
     public static ItemStack safeCopy(ItemStack stack) {
         if (stack == null) return empty();
@@ -69,9 +70,9 @@ public class ItemStackHelper {
         return stack.serializeNBT();
     }
 
-    public static ItemStack deserializeSafe(@Nonnull NBTTagCompound tag) {
+    /*public static ItemStack deserializeSafe(@Nonnull NBTTagCompound tag) {
         ItemStack stack = new ItemStack(tag);
         if (stack.isEmpty()) return ItemStack.EMPTY;
         return stack;
-    }
+    }*/
 }

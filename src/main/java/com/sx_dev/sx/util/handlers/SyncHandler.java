@@ -2,9 +2,8 @@ package com.sx_dev.sx.util.handlers;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
-import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -96,15 +95,15 @@ public class SyncHandler {
 
     @SubscribeEvent
     public void onPlayerLoggedOut(PlayerEvent.PlayerLoggedOutEvent evt) {
-        removeFromAll(evt.player);
+        removeFromAll(evt.getPlayer());
     }
 
     @SubscribeEvent
     public void onDimChanged(PlayerEvent.PlayerChangedDimensionEvent evt) {
-        removeFromAll(evt.player);
+        removeFromAll(evt.getPlayer());
     }
 
-    @SubscribeEvent
-    public void onClientDisconnectedFromServer(FMLNetworkEvent.ClientDisconnectionFromServerEvent evt) {
-    }
+    /*@SubscribeEvent
+    public void onClientDisconnectedFromServer(ClientDisconnectionFromServerEvent evt) {
+    }*/
 }

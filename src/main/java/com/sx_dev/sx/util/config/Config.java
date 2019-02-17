@@ -1,6 +1,6 @@
 package com.sx_dev.sx.util.config;
 
-import com.sx_dev.sx.SuperheroesX;
+/*import com.sx_dev.sx.SuperheroesX;
 import com.sx_dev.sx.util.Reference;
 import com.sx_dev.sx.util.handlers.EnumHandler;
 import com.sx_dev.sx.util.handlers.PacketHandler;
@@ -17,10 +17,10 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.List;*/
 
 public class Config {
-    public static final List<Section> configSections = new ArrayList<>();
+    /*public static final List<Section> configSections = new ArrayList<>();
     private static final Section sectionHUD = new Section(true, "HUD Settings", "hud");
     public static Configuration config;
 
@@ -123,5 +123,5 @@ public class Config {
     @SubscribeEvent
     public void onPlayerLoggon(PlayerLoggedInEvent evt) {
         PacketHandler.instance.sendTo(new MessageConfigSync(), (EntityPlayerMP) evt.player);
-    }
+    }*/
 }

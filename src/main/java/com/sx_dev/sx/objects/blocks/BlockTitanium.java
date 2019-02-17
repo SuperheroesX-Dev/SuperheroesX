@@ -4,6 +4,9 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
+import net.minecraft.util.IItemProvider;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 import java.util.Random;
 
@@ -20,8 +23,9 @@ public class BlockTitanium extends BlockBase
 		setResistance(15.0F);
 		setHarvestLevel("pickaxe", 2);
 	}
+
 	@Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-    	return Item.getItemFromBlock(this);
+	public IItemProvider getItemDropped(IBlockState p_199769_1_, World p_199769_2_, BlockPos p_199769_3_, int p_199769_4_) {
+		return () -> Item.getItemFromBlock(this);
 	}
 }

@@ -1,6 +1,9 @@
 package com.sx_dev.sx.util.helpers;
 
-import org.lwjgl.input.Keyboard;
+//import org.lwjgl.Keyboard;
+
+import net.java.games.input.Keyboard;
+import net.minecraft.client.Minecraft;
 
 public final class StringHelper {
     public static final String BLACK = "§0";
@@ -32,11 +35,11 @@ public final class StringHelper {
     private StringHelper() {
     }
 
-    public static boolean isControlKeyDown() {
+    /*public static boolean isControlKeyDown() {
         return Keyboard.isKeyDown(29) || Keyboard.isKeyDown(157);
     }
 
     public static boolean isShiftKeyDown() {
         return Keyboard.isKeyDown(42) || Keyboard.isKeyDown(54);
-    }
+    }*/
 }

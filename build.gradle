@@ -1,3 +1,6 @@
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
 buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
@@ -11,17 +14,13 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 //apply plugin: 'eclipse'
+apply plugin: 'java'
 
-class mod {
-    static id = 'sx'
-    static group_id = 'sx_dev'
-    static name = 'Superheroes X'
-    static version = '1.0'
-}
+def mod = new Mod(this)
 
-version = mod.version
-group = 'com.' + mod.group_id + '.' + mod.id // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = mod.id
+version = mod.VERSION
+group = 'com.' + mod.GROUP_ID + '.' + mod.ID // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = mod.ID
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
@@ -88,12 +87,39 @@ dependencies {
 // Example for how to get properties into the manifest for reading by the runtime..
 jar {
     manifest {
-        attributes(["Specification-Title": "${mod.name}",
-                    "Specification-Vendor": "${mod.group_id}",
-                    "Specification-Version": "${mod.version}", // We are version 1 of the modlauncher specification
+        attributes(["Specification-Title": "${mod.NAME}",
+                    "Specification-Vendor": "${mod.GROUP_ID}",
+                    "Specification-Version": "${version}", // We are version 1 of the modlauncher specification
                     "Implementation-Title": project.name,
                     "Implementation-Version": "${version}",
-                    "Implementation-Vendor" :"${mod.group_id}",
+                    "Implementation-Vendor" :"${mod.GROUP_ID}",
                     "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")],)
     }
+}
+
+class Mod {
+
+    String ID = project.pullData('MODID')
+    String GROUP_ID = ('sx_dev')
+    String NAME = project.pullData('NAME')
+    String VERSION = project.pullData('VERSION')
+
+    def project
+    Mod (def project){
+        this.project = project
+    }
+}
+
+def pullData(String key) {
+    File file = file("./src/main/java/com/sx_dev/sx/util/Reference.java")
+    String data = ""
+    Pattern pattern = Pattern.compile(" {4}public static final String " + key + " = \"([\\d\\.]*)\";\$")
+    file.eachLine { String s ->
+        Matcher matcher = pattern.matcher(s)
+        if (matcher.matches()) {
+            data = matcher.group(1)
+            return
+        }
+    }
+    return data
 }

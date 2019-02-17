@@ -1,5 +1,6 @@
 package com.sx_dev.sx.util.integration.TC;
 
+/*
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import slimeknights.tconstruct.library.materials.IMaterialStats;
@@ -9,9 +10,9 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.awt.*;
 import java.util.List;
-
+*///TODO
 @SuppressWarnings("WeakerAccess")
-class TCMaterial extends Material {
+class TCMaterial /*extends Material*/ {/*
 
     public final String oreDictSuffix;
     public TraitMap[] traits;
@@ -73,5 +74,5 @@ class TCMaterial extends Material {
     public TCMaterial setFluidTemp(int temp) {
         this.fluid.setTemperature(temp);
         return this;
-    }
+    }*/
 }

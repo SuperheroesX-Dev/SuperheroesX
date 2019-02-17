@@ -3,58 +3,57 @@ package com.sx_dev.sx.entity;
 import com.google.common.collect.Iterables;
 import com.sx_dev.sx.SuperheroesX;
 import com.sx_dev.sx.init.EnchantmentInit;
+import com.sx_dev.sx.util.handlers.EnumHandler;
 import com.sx_dev.sx.util.helpers.ItemStackHelper;
 import com.sx_dev.sx.util.helpers.PlayerHelper;
 import com.sx_dev.sx.util.misc.DataWatcherItemStack;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IProjectile;
-import net.minecraft.entity.MoverType;
+import net.minecraft.entity.*;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Particles;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.network.play.server.SPacketChangeGameState;
+import net.minecraft.particles.ParticleType;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.IShearable;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.FakePlayerFactory;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.lang.ref.WeakReference;
-import java.util.HashSet;
-import java.util.List;
-import java.util.UUID;
-import java.util.WeakHashMap;
+import java.util.*;
 
 public class EntityCaptainAmericasShield extends Entity implements IEntityAdditionalSpawnData, IProjectile {
     public final static WeakHashMap<Object, WeakReference<EntityCaptainAmericasShield>> shieldOwners = new WeakHashMap<>();
-    public final static WeakHashMap<Object, WeakReference<EntityCaptainAmericasShield>> shieldOwnersClient = SuperheroesX.PROXY.nullifyOnServer(new WeakHashMap<>());
+    public final static WeakHashMap<Object, WeakReference<EntityCaptainAmericasShield>> shieldOwnersClient = /*SuperheroesX.PROXY.nullifyOnServer(*/new WeakHashMap<>()/*)*/;
 
     private static final DataParameter<Byte> DATAWATCHER_OUT_FLAG = EntityDataManager.createKey(EntityCaptainAmericasShield.class, DataSerializers.BYTE);
     private static final DataParameter<Rotations> DATAWATCHER_HOME = EntityDataManager.createKey(EntityCaptainAmericasShield.class, DataSerializers.ROTATIONS);
@@ -67,23 +66,27 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
     private UUID owner = null;
 
     public EntityCaptainAmericasShield(World worldIn) {
-        super(worldIn);
-        this.setSize(0.8F, 0.1F);
-        noClip = true;
-        this.setEntityBoundingBox(BOUNDING_BOX.offset(this.posX, this.posY, this.posZ));
+        this(EntityType.ARROW, worldIn);//TODO
     }
 
-    public EntityCaptainAmericasShield(World worldIn, double x, double y, double z, ItemStack stack, Object owner) {
-        this(worldIn);
+    public EntityCaptainAmericasShield(EntityType<?> type, World worldIn) {
+        super(type, worldIn);
+        this.setSize(0.8F, 0.1F);
+        noClip = true;
+        this.setBoundingBox(BOUNDING_BOX.offset(this.posX, this.posY, this.posZ));
+    }
+
+    public EntityCaptainAmericasShield(EntityType<?> type, World worldIn, double x, double y, double z, ItemStack stack, Object owner) {
+        this(type, worldIn);
         setLocationAndAngles(x, y, z, 0, 0);
         setHome((float) posX, (float) posY, (float) posZ);
         DataWatcherItemStack.setStack(dataManager, stack, DATAWATCHER_STACK);
         if (owner != null) getShieldOwners(worldIn).put(owner, new WeakReference<>(this));
-        this.setEntityBoundingBox(BOUNDING_BOX.offset(this.posX, this.posY, this.posZ));
+        this.setBoundingBox(BOUNDING_BOX.offset(this.posX, this.posY, this.posZ));
     }
 
-    public EntityCaptainAmericasShield(World worldIn, EntityLivingBase shooter, ItemStack stack) {
-        this(worldIn);
+    public EntityCaptainAmericasShield(EntityType<?> type, World worldIn, EntityLivingBase shooter, ItemStack stack) {
+        this(type, worldIn);
 
         DataWatcherItemStack.setStack(dataManager, stack, DATAWATCHER_STACK);
 
@@ -106,7 +109,7 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
         this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, 1.25F * (1 + 0.3F * getEnchantmentLevel(EnchantmentInit.SHIELD_THROW_SPEED)), 0.0F);
 
         setHome((float) eyeVec.x, (float) eyeVec.y, (float) eyeVec.z);
-        this.setEntityBoundingBox(BOUNDING_BOX.offset(this.posX, this.posY, this.posZ));
+        this.setBoundingBox(BOUNDING_BOX.offset(this.posX, this.posY, this.posZ));
     }
 
     public static WeakHashMap<Object, WeakReference<EntityCaptainAmericasShield>> getShieldOwners(World worldIn) {
@@ -126,7 +129,7 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
     }
 
     public static boolean activateBlock(Block block, World world, BlockPos newPos, IBlockState blockState, EntityPlayer player, EnumHand hand, ItemStack stack, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        return block.onBlockActivated(world, newPos, blockState, player, hand, facing, hitX, hitY, hitZ);
+        return block.onBlockActivated(blockState, world, newPos, player, hand, facing, hitX, hitY, hitZ);
     }
 
     public static void markBlockForUpdate(World world, BlockPos pos) {
@@ -166,7 +169,7 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
         return new Vec3d(rotations.getX(), rotations.getY(), rotations.getZ());
     }
 
-    @SideOnly(Side.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     public void setVelocity(double x, double y, double z) {
         this.motionX = x;
         this.motionY = y;
@@ -183,7 +186,7 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
     }
 
     @Override
-    protected void entityInit() {
+    protected void registerData() {
         this.dataManager.register(DATAWATCHER_OUT_FLAG, (byte) 0);
         this.dataManager.register(DATAWATCHER_HOME, new Rotations(0, 0, 0));
         this.dataManager.register(DATAWATCHER_OWNER_ID, -1);
@@ -191,7 +194,7 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
     }
 
     @Override
-    protected void readEntityFromNBT(@Nonnull NBTTagCompound tag) {
+    protected void readAdditional(NBTTagCompound tag) {
         if (tag.hasKey("Target_UUIDL")) {
             owner = new UUID(tag.getLong("Target_UUIDU"), tag.getLong("Target_UUIDL"));
         } else
@@ -199,25 +202,25 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
 
         tag.setByte("OutFlag", dataManager.get(DATAWATCHER_OUT_FLAG));
         tag.setTag("Home", dataManager.get(DATAWATCHER_HOME).writeToNBT());
-        tag.setInteger("Owner", dataManager.get(DATAWATCHER_OWNER_ID));
+        tag.setInt("Owner", dataManager.get(DATAWATCHER_OWNER_ID));
         ItemStack stack = DataWatcherItemStack.getStack(dataManager, DATAWATCHER_STACK);
         if (!ItemStackHelper.isNonNull(stack)) {
             NBTTagCompound t = new NBTTagCompound();
-            stack.writeToNBT(t);
+            stack.write(t);
             tag.setTag("Stack", t);
         }
     }
 
     @Override
-    protected void writeEntityToNBT(@Nonnull NBTTagCompound tag) {
+    protected void writeAdditional(@Nonnull NBTTagCompound tag) {
         if (owner != null) {
             tag.setLong("Target_UUIDL", owner.getLeastSignificantBits());
             tag.setLong("Target_UUIDU", owner.getMostSignificantBits());
         }
         dataManager.set(DATAWATCHER_OUT_FLAG, tag.getByte("OutFlag"));
-        dataManager.set(DATAWATCHER_HOME, new Rotations(tag.getTagList("Home", Constants.NBT.TAG_INT)));
-        dataManager.set(DATAWATCHER_OWNER_ID, tag.getInteger("Owner"));
-        DataWatcherItemStack.setStack(dataManager, ItemStackHelper.loadFromNBT(tag.getCompoundTag("Stack")), DATAWATCHER_STACK);
+        dataManager.set(DATAWATCHER_HOME, new Rotations(tag.getList("Home", Constants.NBT.TAG_INT)));
+        dataManager.set(DATAWATCHER_OWNER_ID, tag.getInt("Owner"));
+        //DataWatcherItemStack.setStack(dataManager, ItemStackHelper.loadFromNBT(tag.getTag("Stack")), DATAWATCHER_STACK);
     }
 
     public int getEnchantmentLevel(Enchantment enchantment) {
@@ -231,8 +234,8 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
     }
 
     @Override
-    public void onUpdate() {
-        super.onUpdate();
+    public void tick() {
+        super.tick();
 
         Entity owner = getOwner();
         boolean isRemote = world.isRemote;
@@ -295,11 +298,12 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
                 if (prevPosSet.contains(newPos)) continue;
                 IBlockState blockState = world.getBlockState(newPos);
                 Block block = blockState.getBlock();
-                if (block == Blocks.STONE_BUTTON || block == Blocks.WOODEN_BUTTON || block == Blocks.LEVER) {
+                List<Block> WOODEN_BUTTONS = Arrays.asList(Blocks.ACACIA_BUTTON, Blocks.BIRCH_BUTTON, Blocks.DARK_OAK_BUTTON, Blocks.JUNGLE_BUTTON, Blocks.OAK_BUTTON, Blocks.SPRUCE_BUTTON);
+                if (block == Blocks.STONE_BUTTON || WOODEN_BUTTONS.contains(block) || block == Blocks.LEVER) {
                     activateBlock(block, world, newPos, blockState, FakePlayerFactory.getMinecraft((WorldServer) world), EnumHand.MAIN_HAND, null, EnumFacing.DOWN, 0, 0, 0);
                 }
                 if (block instanceof IPlantable || block instanceof IShearable) {
-                    block.dropBlockAsItem(world, newPos, blockState, 0);
+                    block.dropBlockAsItemWithChance(blockState, world, newPos, 0, 0);
                     world.setBlockState(newPos, Blocks.AIR.getDefaultState(), 3);
                     markBlockForUpdate(world, newPos);
                 }
@@ -330,13 +334,7 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
                 for (int k = 0; k < 4; ++k) {
                     double t = k / 4.0;
 
-                    world.spawnParticle(EnumParticleTypes.CRIT,
-                            this.posX + dx * t,
-                            this.posY + dy * t,
-                            this.posZ + dz * t,
-                            -dx,
-                            -dy + 0.2D,
-                            -dz);
+                    world.spawnParticle(Particles.CRIT,this.posX + dx * t,this.posY + dy * t,this.posZ + dz * t, -dx,-dy + 0.2D, -dz);
                 }
 
                 if (potionColor != 0) {
@@ -346,10 +344,7 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
 
                     for (int j = 0; j < 3; ++j) {
                         double t = j / 3.0D;
-                        this.world.spawnParticle(EnumParticleTypes.SPELL_MOB,
-                                this.posX + dx * t,
-                                this.posY + dy * t,
-                                this.posZ + dz * t, d0, d1, d2);
+                        //this.world.spawnParticle(SPELL_MOB,this.posX + dx * t,this.posY + dy * t,this.posZ + dz * t, d0, d1, d2);
                     }
                 }
 
@@ -358,13 +353,13 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
 
         Vec3d startVec = new Vec3d(this.posX, this.posY, this.posZ);
         Vec3d endVec = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-        RayTraceResult movingobjectposition = this.world.rayTraceBlocks(startVec, endVec, false, true, false);
+        RayTraceResult movingobjectposition = this.world.rayTraceBlocks(startVec, endVec, RayTraceFluidMode.ALWAYS, true, false);
 
         double distanceMooved = getHome().distanceTo(startVec);
 
         if (!isRemote) {
             Entity entity = null;
-            List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().offset(this.motionX, this.motionY, this.motionZ).grow(1.0D, 1.0D, 1.0D));
+            List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getBoundingBox().offset(this.motionX, this.motionY, this.motionZ).grow(1.0D, 1.0D, 1.0D));
             double d0 = -1;
 
             for (Entity e : list) {
@@ -380,13 +375,13 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
                 if (e.canBeCollidedWith() && !isOwner(e)) {
                     if (e instanceof EntityPlayer) {
                         EntityPlayer entityplayer = (EntityPlayer) e;
-                        if (entityplayer.capabilities.disableDamage || owner instanceof EntityPlayer && !(((EntityPlayer) owner).canAttackPlayer(entityplayer))) {
+                        if (entityplayer.abilities.disableDamage || owner instanceof EntityPlayer && !(((EntityPlayer) owner).canAttackPlayer(entityplayer))) {
                             continue;
                         }
                     }
 
                     float f1 = 0.3F;
-                    AxisAlignedBB axisAlignedBB = e.getEntityBoundingBox().grow((double) f1, (double) f1, (double) f1);
+                    AxisAlignedBB axisAlignedBB = e.getBoundingBox().grow((double) f1, (double) f1, (double) f1);
                     RayTraceResult mop = axisAlignedBB.calculateIntercept(startVec, endVec);
 
                     if (mop != null) {
@@ -424,7 +419,7 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
                                                     potionEffect.getPotion(),
                                                     potionEffect.getDuration() / 8,
                                                     potionEffect.getAmplifier(),
-                                                    potionEffect.getIsAmbient(),
+                                                    potionEffect.isAmbient(),
                                                     potionEffect.doesShowParticles()));
                                 }
                             }
@@ -446,7 +441,7 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
     }
 
     public void addItem(Entity entity) {
-        if (isDead || entity == null || entity.isDead)
+        if (/*isDead ||*/ entity == null /*|| entity.isDead*/)
             return;
 
         EntityItem entityItem = entity instanceof EntityItem ? (EntityItem) entity : null;
@@ -471,7 +466,7 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
 
     public boolean combine(EntityItem adding, EntityItem current) {
         if (adding == current) return true;
-        if (!adding.isEntityAlive() || !current.isEntityAlive())
+        if (!adding.isAlive() || !current.isAlive())
             return true;
 
         ItemStack addingStack = adding.getItem();
@@ -506,16 +501,16 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
 
         removePassengers();
 
-        if (getRidingEntity() != null) {
-            dismountRidingEntity();
-        }
+        //if (getRidingEntity() != null) {
+            //dismountRiding();
+        //}
 
         world.removeEntity(this);
     }
 
     @Nonnull
     public Iterable<BlockPos> getNeighbourBlocks() {
-        AxisAlignedBB expand = getEntityBoundingBox();
+        AxisAlignedBB expand = getBoundingBox();
         return BlockPos.getAllInBox(
                 new BlockPos(
                         MathHelper.floor(expand.minX),
@@ -559,14 +554,14 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
         return entity;
     }
 
-    @Override
+    /*@Override
     public void setDead() {
         super.setDead();
         if (world.isRemote)
             shieldOwnersClient.remove(getOwner());
         else
             shieldOwners.remove(getOwner());
-    }
+    }*/
 
     public Vec3d calcTargetVec() {
         if (world.isRemote) {
@@ -600,7 +595,7 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
     }
 
     @Override
-    public void writeSpawnData(ByteBuf buffer) {
+    public void writeSpawnData(PacketBuffer buffer) {
         buffer.writeInt(flyTime);
     }
 
@@ -613,7 +608,7 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
     }
 
     @Override
-    public void readSpawnData(ByteBuf additionalData) {
+    public void readSpawnData(PacketBuffer additionalData) {
         flyTime = additionalData.readInt();
     }
 

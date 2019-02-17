@@ -1,5 +1,6 @@
 package com.sx_dev.sx.objects.blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -16,16 +17,8 @@ public class BlockTitanium extends BlockBase
 	public BlockTitanium(String name, Material material) 
 	{
 		
-		super(name, material);
-	
-		setSoundType(SoundType.STONE);
-		setHardness(7.0F);
-		setResistance(15.0F);
-		setHarvestLevel("pickaxe", 2);
-	}
+		super(name, Block.Properties.create(material).hardnessAndResistance(7.0F, 15.0F).sound(SoundType.METAL));
 
-	@Override
-	public IItemProvider getItemDropped(IBlockState p_199769_1_, World p_199769_2_, BlockPos p_199769_3_, int p_199769_4_) {
-		return () -> Item.getItemFromBlock(this);
+		//setHarvestLevel("pickaxe", 2);TODO
 	}
 }

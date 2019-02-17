@@ -19,6 +19,14 @@ public class ItemBase extends Item implements IHasModel, IOreDict<ItemBase> {
 		ItemInit.ITEMS.add(this);
 	}
 
+    public ItemBase(String name, Properties properties) {
+        super(properties);
+        //setUnlocalizedName(name);
+        setRegistryName(name);
+
+        ItemInit.ITEMS.add(this);
+    }
+
 
     @Override
 	public void registerModels() 

@@ -16,16 +16,8 @@ public class BlockPalladium extends BlockBase
 	public BlockPalladium(String name, Material material) 
 	{
 		
-		super(name, material);
-	
-		setSoundType(SoundType.STONE);
-		setHardness(7.0F);
-		setResistance(15.0F);
-		setHarvestLevel("pickaxe", 2);
-	}
+		super(name, Properties.create(material).sound(SoundType.METAL).hardnessAndResistance(7.0F, 15.0F));
 
-	@Override
-	public IItemProvider getItemDropped(IBlockState state, World world, BlockPos pos, int fortune) {
-		return () -> Item.getItemFromBlock(this);
+		//setHarvestLevel("pickaxe", 2);//TODO
 	}
 }

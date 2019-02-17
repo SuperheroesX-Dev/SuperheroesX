@@ -1,16 +1,7 @@
 package com.sx_dev.sx.util.handlers;
 
-import com.sx_dev.sx.SuperheroesX;
-import com.sx_dev.sx.util.Reference;
-import com.sx_dev.sx.util.network.message.*;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import net.minecraftforge.fml.relauncher.Side;
-
 public abstract class PacketHandler {
-
+/*
     public static final SimpleNetworkWrapper instance = NetworkRegistry.INSTANCE.newSimpleChannel(Reference.NAME);
 
     public static void init() {
@@ -24,5 +15,5 @@ public abstract class PacketHandler {
 
     public static EntityPlayer getPlayer(MessageContext context) {
         return SuperheroesX.PROXY.getPlayer(context);
-    }
+    }*/
 }

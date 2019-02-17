@@ -10,7 +10,7 @@ public class EnchantmentThrowable extends Enchantment {
 
     public EnchantmentThrowable(String name) {
         super(Rarity.RARE, EnchantmentInit.THROWABLE_SHIELD, new EntityEquipmentSlot[]{EntityEquipmentSlot.MAINHAND, EntityEquipmentSlot.OFFHAND});
-        this.setName(name);
+        //this.setName(name);
         this.setRegistryName(new ResourceLocation(Reference.MODID, name));
 
         EnchantmentInit.ENCHANTMENTS.add(this);

@@ -1,35 +1,14 @@
 package com.sx_dev.sx.util.handlers;
 
-import com.sx_dev.sx.init.BlockInit;
-import com.sx_dev.sx.init.ItemInit;
-import com.sx_dev.sx.init.PotionInit;
-import com.sx_dev.sx.objects.blocks.BlockBase;
-import com.sx_dev.sx.objects.items.ItemBase;
-import com.sx_dev.sx.util.Reference;
-import com.sx_dev.sx.util.integration.Integrations;
-import com.sx_dev.sx.util.misc.MaterialTripplet;
 import net.minecraft.block.Block;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.*;
-import net.minecraft.potion.PotionHelper;
-import net.minecraft.potion.PotionType;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.crafting.CraftingHelper;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.ModContainer;
-import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
-import net.minecraftforge.registries.GameData;
 
 public class RecipeHandler {
     public static void addStandardRecipes() {
 
 
-        /*  */
+        /*  *//*
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.MINI_ARC_REACTOR_BASE, 1), "XXX", "B B", "XXX", 'X', "ingotIron", 'B', cloneStack(ItemInit.CIRCUIT, 1));
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.MINI_ARC_REACTOR_MK1, 1), "XXX", "XBX", "XXX", 'X', "ingotPalladium", 'B', cloneStack(ItemInit.MINI_ARC_REACTOR_BASE, 1));
         RecipeHelper.addShapedOreRecipe(cloneStack(ItemInit.MINI_ARC_REACTOR_MK2, 1), "XXX", "XBX", "XXX", 'X', "ingotVibranium", 'B', cloneStack(ItemInit.MINI_ARC_REACTOR_MK1, 1));
@@ -77,7 +56,7 @@ public class RecipeHandler {
         RecipeHelper.addShapelessOreRecipe(cloneStack(ItemInit.SPANDEX_WHITE, 1), "string", "string", "string", "dyeWhite");
         RecipeHelper.addShapelessOreRecipe(cloneStack(ItemInit.SPANDEX_YELLOW, 1), "string", "string", "string", "dyeYellow");
 
-        /* smelting */
+        /* smelting *//*
         RecipeHelper.addSmelting(BlockInit.ORE_PALLADIUM, cloneStack(ItemInit.INGOT_PALLADIUM, 1), 1F);
         RecipeHelper.addSmelting(BlockInit.ORE_TITANIUM, cloneStack(ItemInit.INGOT_TITANIUM, 1), 1F);
         RecipeHelper.addSmelting(BlockInit.ORE_VIBRANIUM, cloneStack(ItemInit.INGOT_VIBRANIUM, 1), 1F);
@@ -158,9 +137,9 @@ public class RecipeHandler {
             ShapelessOreRecipe recipe = new ShapelessOreRecipe(location, output, input);
             recipe.setRegistryName(location);
             GameData.register_impl(recipe);
-        }*/
+        }
 
-        /* STORAGE */
+        /* STORAGE *//*
         static void addStorageRecipe(ItemStack one, String nine) {
 
             addShapedRecipe(one, "XXX", "XXX", "XXX", 'X', nine);
@@ -242,7 +221,7 @@ public class RecipeHandler {
             }
         }
 
-        /* TOOLS */
+        /* TOOLS *//*
         public static void addAxeRecipe(ItemStack axe, ItemStack headMat, ItemStack handleMat) {
 
             addShapedRecipe(axe, "XX", "XS", " S", 'X', cloneStack(headMat, 1), 'S', cloneStack(handleMat, 1));
@@ -304,7 +283,7 @@ public class RecipeHandler {
 
         }*/
 
-        /* HELPERS */
+        /* HELPERS *//*
         static ResourceLocation getNameForRecipe(ItemStack output) {
 
             ModContainer activeContainer = Loader.instance().activeModContainer();
@@ -337,7 +316,7 @@ public class RecipeHandler {
             return list;
         }
 
-        /* SMELTING */
+        /* SMELTING *//*
         static void addSmelting(Block input, ItemStack output, float xp) {
             FurnaceRecipes.instance().addSmeltingRecipeForBlock(input, output, xp);
         }
@@ -371,7 +350,7 @@ public class RecipeHandler {
             addSmelting(input, output, 0F);
         }
 
-        /* BREWING */
+        /* BREWING *//*
         static void addBrewing(PotionType potionIn, Item ingredientIn, PotionType potionOut) {
             PotionHelper.addMix(potionIn, ingredientIn, potionOut);
         }
@@ -410,6 +389,6 @@ public class RecipeHandler {
             addShapedOreRecipe(cloneStack(chestplate, 1), "X X", "XXX", "XXX", 'X', stack);
             addShapedOreRecipe(cloneStack(leggings, 1), "XXX", "X X", "X X", 'X', stack);
             addShapedOreRecipe(cloneStack(boots, 1), "X X", "X X", 'X', stack);
-        }
+        }*/
     }
 }

@@ -9,11 +9,11 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.WorldServer;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+/*import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;*/
 
-public class MessageKeyBind implements IMessage, IMessageHandler<MessageKeyBind, IMessage> {
+public class MessageKeyBind /*implements IMessage, IMessageHandler<MessageKeyBind, IMessage> */{/*
 
     public IPacketType packetType;
 
@@ -94,5 +94,5 @@ public class MessageKeyBind implements IMessage, IMessageHandler<MessageKeyBind,
     }
 
     public interface IPacketType {
-    }
+    }*/
 }

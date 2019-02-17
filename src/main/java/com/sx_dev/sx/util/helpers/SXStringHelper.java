@@ -48,17 +48,17 @@ public abstract class SXStringHelper {
 
     public static String getHUDFuelText(String prefix, int percent, int fuel) {
         String text = "";
-        if (!ModConfig.client.hud.minimalFuelHUD) {
+        /*if (!ModConfig.client.hud.minimalFuelHUD) {
             text += localize("gui.hud." + prefix + ".fuel") + ": ";
-        }
+        }*/
         if (percent > 0) {
             text += getColoredPercent(percent) + "%";
         } else {
             text += TextFormatting.DARK_RED + localize("gui.hud.fuel.depleted");
         }
-        if (ModConfig.client.hud.showExactFuelInHUD) {
+        /*if (ModConfig.client.hud.showExactFuelInHUD) {
             text += " (" + getFormattedNumber(fuel) + "RF" + ")";
-        }
+        }*/
         return text;
     }
 
@@ -105,9 +105,9 @@ public abstract class SXStringHelper {
         return TextFormatting.GRAY + getFormattedNumber(amount) + " / " + getFormattedNumber(max) + " RF";
     }
 
-    public static boolean canShowDetails() {
-        return !ModConfig.client.hud.holdShiftForDetails /*|| StringHelper.isShiftKeyDown()*/;
-    }
+    /*public static boolean canShowDetails() {
+        return !ModConfig.client.hud.holdShiftForDetails *//*|| StringHelper.isShiftKeyDown()*//*;
+    }*/
 
     public static String localize(String unlocalized, Object... args) {
         return localize(unlocalized, true, args);

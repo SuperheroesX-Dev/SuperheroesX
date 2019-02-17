@@ -12,14 +12,15 @@ import com.sx_dev.sx.util.config.ModConfig;
 import com.sx_dev.sx.util.interfaces.IOreDict;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ArmorMaterial;
+import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
-import net.minecraft.item.Item.ToolMaterial;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.oredict.OreDictionary;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.LazyLoadBase;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class ItemInit 
 {
@@ -27,18 +28,18 @@ public class ItemInit
     public static final List<Item> ITEMS = new ArrayList<>();
 	
 	//Materials
-    public static final ToolMaterial TOOL_DEADPOOL = EnumHelper.addToolMaterial("tool_deadpool", 0, 10000, 1.0F, 5.0F, 5);
-    public static final ToolMaterial SWORD_HEIMDAL = EnumHelper.addToolMaterial("sword_heimdal", 0, 10000, 1.0F, 15.0F, 6);
+    public static final IItemTier TOOL_DEADPOOL = new CustomItemTier("tool_deadpool", 0, 10000, 1.0F, 5.0F, 5, () -> Ingredient.EMPTY);
+    public static final IItemTier SWORD_HEIMDAL = new CustomItemTier("sword_heimdal", 0, 10000, 1.0F, 15.0F, 6, () -> Ingredient.EMPTY);
 
-    public static final ArmorMaterial ARMOR_DEADPOOL = EnumHelper.addArmorMaterial("armor_deadpool", Reference.RESOURCE_PREFIX + "deadpool", 500, new int[]{5, 8, 10, 5}, 10, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 3.0F);
-    public static final ArmorMaterial ARMOR_SUPERBOY = EnumHelper.addArmorMaterial("armor_superboy", Reference.RESOURCE_PREFIX + "superboy", 550, new int[]{10, 10, 10}, 12, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 4.0F);
-    public static final ArmorMaterial ARMOR_KIDFLASH = EnumHelper.addArmorMaterial("armor_kidflash", Reference.RESOURCE_PREFIX + "kidflash", 400, new int[]{4, 7, 10, 4}, 9, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 2.5F);
-    public static final ArmorMaterial ARMOR_BLACKPANTHER = EnumHelper.addArmorMaterial("armor_blackpanther", Reference.RESOURCE_PREFIX + "blackpanther", 1000, new int[]{8, 10, 9, 6}, 14, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 4.5F);
-    public static final ArmorMaterial ARMOR_IRONMAN = EnumHelper.addArmorMaterial("armor_ironman", Reference.RESOURCE_PREFIX + "ironman", 16000, new int[]{7, 9, 8, 5}, 0, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 3.7F);
-    public static final ArmorMaterial ARMOR_ROBIN1 = EnumHelper.addArmorMaterial("armor_robin1", Reference.RESOURCE_PREFIX + "robin1", 370, new int[]{4, 7, 9, 4}, 9, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 2.4F);
-    public static final ArmorMaterial ARMOR_CAPTAIN_AMERICA = EnumHelper.addArmorMaterial("armor_captain_america", Reference.RESOURCE_PREFIX + "captain_america", 500, new int[]{4, 7, 10, 4}, 11, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 2.8F);
-    public static final ArmorMaterial ARMOR_REDHOOD = EnumHelper.addArmorMaterial("armor_redhood", Reference.RESOURCE_PREFIX + "redhood", 500, new int[]{4, 7, 10, 4}, 11, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 2.8F);
-    public static final ArmorMaterial ARMOR_ANTMAN = EnumHelper.addArmorMaterial("armor_antman", Reference.RESOURCE_PREFIX + "antman", 500, new int[]{2, 3, 5, 2}, 5, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 1.5F);
+    public static final ArmorMaterial ARMOR_DEADPOOL = ArmorMaterial.create("armor_deadpool", Reference.RESOURCE_PREFIX + "deadpool", 500, new int[]{5, 8, 10, 5}, 10, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 3.0F,() -> null);
+    public static final ArmorMaterial ARMOR_SUPERBOY = ArmorMaterial.create("armor_superboy", Reference.RESOURCE_PREFIX + "superboy", 550, new int[]{10, 10, 10}, 12, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 4.0F,() -> null);
+    public static final ArmorMaterial ARMOR_KIDFLASH = ArmorMaterial.create("armor_kidflash", Reference.RESOURCE_PREFIX + "kidflash", 400, new int[]{4, 7, 10, 4}, 9, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 2.5F,() -> null);
+    public static final ArmorMaterial ARMOR_BLACKPANTHER = ArmorMaterial.create("armor_blackpanther", Reference.RESOURCE_PREFIX + "blackpanther", 1000, new int[]{8, 10, 9, 6}, 14, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 4.5F,() -> null);
+    public static final ArmorMaterial ARMOR_IRONMAN = ArmorMaterial.create("armor_ironman", Reference.RESOURCE_PREFIX + "ironman", 16000, new int[]{7, 9, 8, 5}, 0, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 3.7F,() -> null);
+    public static final ArmorMaterial ARMOR_ROBIN1 = ArmorMaterial.create("armor_robin1", Reference.RESOURCE_PREFIX + "robin1", 370, new int[]{4, 7, 9, 4}, 9, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 2.4F,() -> null);
+    public static final ArmorMaterial ARMOR_CAPTAIN_AMERICA = ArmorMaterial.create("armor_captain_america", Reference.RESOURCE_PREFIX + "captain_america", 500, new int[]{4, 7, 10, 4}, 11, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 2.8F,() -> null);
+    public static final ArmorMaterial ARMOR_REDHOOD = ArmorMaterial.create("armor_redhood", Reference.RESOURCE_PREFIX + "redhood", 500, new int[]{4, 7, 10, 4}, 11, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 2.8F,() -> null);
+    public static final ArmorMaterial ARMOR_ANTMAN = ArmorMaterial.create("armor_antman", Reference.RESOURCE_PREFIX + "antman", 500, new int[]{2, 3, 5, 2}, 5, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 1.5F,() -> null);
 
 
     public static final Item TEST_ITEM;
@@ -151,100 +152,100 @@ public class ItemInit
 
 
         //MARVEL
-        if (ModConfig.common.marvelItems) {
+        if (/*ModConfig.common.marvelItems*/true) {
             //MCU
-            INGOT_PALLADIUM = new ItemBase("ingot_palladium").setOreDictName("ingotPalladium").
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-            INGOT_VIBRANIUM = new ItemBase("ingot_vibranium").setOreDictName("ingotVibranium").
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-            INGOT_TITANOGOLD = new ItemBase("ingot_titanogold").setOreDictName("ingotTitanogold").
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-            PLATE_TITANOGOLD = new ItemBase("plate_titanogold").setOreDictName("plateTitanogold").
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-            PLATE_VIBRANIUM = new ItemBase("plate_vibranium").setOreDictName("plateVibranium").
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-            DUST_PALLADIUM = new ItemBase("dust_palladium").setOreDictName("dustPalladium").
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-            NUGGET_PALLADIUM = new ItemBase("nugget_palladium").setOreDictName("nuggetPalladium").
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+            INGOT_PALLADIUM = new ItemBase("ingot_palladium").setOreDictName("ingotPalladium")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            INGOT_VIBRANIUM = new ItemBase("ingot_vibranium").setOreDictName("ingotVibranium")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            INGOT_TITANOGOLD = new ItemBase("ingot_titanogold").setOreDictName("ingotTitanogold")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            PLATE_TITANOGOLD = new ItemBase("plate_titanogold").setOreDictName("plateTitanogold")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            PLATE_VIBRANIUM = new ItemBase("plate_vibranium").setOreDictName("plateVibranium")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            DUST_PALLADIUM = new ItemBase("dust_palladium").setOreDictName("dustPalladium")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            NUGGET_PALLADIUM = new ItemBase("nugget_palladium").setOreDictName("nuggetPalladium")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
 
 
-            CLOTH_VIBRANIUM = new ItemBase("cloth_vibranium").
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-            STRENGTHENED_CLOTH = new ItemBase("strengthened_cloth").
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+            CLOTH_VIBRANIUM = new ItemBase("cloth_vibranium")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            STRENGTHENED_CLOTH = new ItemBase("strengthened_cloth")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
 
-            MINI_ARC_REACTOR_BASE = new ItemBase("mini_arc_reactor_base").
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-            MINI_ARC_REACTOR_MK1 = new ItemBase("mini_arc_reactor_mk1").
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-            MINI_ARC_REACTOR_MK2 = new ItemBase("mini_arc_reactor_mk2").
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+            MINI_ARC_REACTOR_BASE = new ItemBase("mini_arc_reactor_base")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            MINI_ARC_REACTOR_MK1 = new ItemBase("mini_arc_reactor_mk1")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            MINI_ARC_REACTOR_MK2 = new ItemBase("mini_arc_reactor_mk2")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
 
             //MCU
-            HELMET_BLACKPANTHER = new ArmorBlackPanther("blackpanther_helmet", ARMOR_BLACKPANTHER, 1, EntityEquipmentSlot.HEAD).
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-            CHESTPLATE_BLACKPANTHER = new ArmorBlackPanther("blackpanther_chestplate", ARMOR_BLACKPANTHER, 1, EntityEquipmentSlot.CHEST).
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-            LEGGINGS_BLACKPANTHER = new ArmorBlackPanther("blackpanther_leggings", ARMOR_BLACKPANTHER, 2, EntityEquipmentSlot.LEGS).
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-            BOOTS_BLACKPANTHER = new ArmorBlackPanther("blackpanther_boots", ARMOR_BLACKPANTHER, 1, EntityEquipmentSlot.FEET).
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+            HELMET_BLACKPANTHER = new ArmorBlackPanther("blackpanther_helmet", ARMOR_BLACKPANTHER, 1, EntityEquipmentSlot.HEAD)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            CHESTPLATE_BLACKPANTHER = new ArmorBlackPanther("blackpanther_chestplate", ARMOR_BLACKPANTHER, 1, EntityEquipmentSlot.CHEST)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            LEGGINGS_BLACKPANTHER = new ArmorBlackPanther("blackpanther_leggings", ARMOR_BLACKPANTHER, 2, EntityEquipmentSlot.LEGS)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            BOOTS_BLACKPANTHER = new ArmorBlackPanther("blackpanther_boots", ARMOR_BLACKPANTHER, 1, EntityEquipmentSlot.FEET)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
 
             HELMET_IRONMAN = new ArmorIronMan("ironman_helmet", 1, EntityEquipmentSlot.HEAD);
-            CHESTPLATE_IRONMAN = (ChestplateIronMan) new ChestplateIronMan().
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+            CHESTPLATE_IRONMAN = (ChestplateIronMan) new ChestplateIronMan()/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
             LEGGINGS_IRONMAN = new ArmorIronMan("ironman_leggings", 2, EntityEquipmentSlot.LEGS);
             BOOTS_IRONMAN = new ArmorIronMan("ironman_boots", 1, EntityEquipmentSlot.FEET);
 
-            SHIELD_CAPTAIN_AMERICA = new ShieldCaptainAmerica().
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-            SHIELD_CAPTAIN_AMERICA_UNCOLORED = new ItemBase("shield_captain_america_uncolored").
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-            SHIELD_HANDLE = new ItemBase("shield_handle").
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+            SHIELD_CAPTAIN_AMERICA = new ShieldCaptainAmerica()/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            SHIELD_CAPTAIN_AMERICA_UNCOLORED = new ItemBase("shield_captain_america_uncolored")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            SHIELD_HANDLE = new ItemBase("shield_handle")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
 
-            HELMET_CAPTAIN_AMERICA = new ArmorCaptainAmerica("captain_america_helmet", ARMOR_CAPTAIN_AMERICA, 1, EntityEquipmentSlot.HEAD).
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-            CHESTPLATE_CAPTAIN_AMERICA = new ArmorCaptainAmerica("captain_america_chestplate", ARMOR_CAPTAIN_AMERICA, 1, EntityEquipmentSlot.CHEST).
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-            LEGGINGS_CAPTAIN_AMERICA = new ArmorCaptainAmerica("captain_america_leggings", ARMOR_CAPTAIN_AMERICA, 2, EntityEquipmentSlot.LEGS).
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-            BOOTS_CAPTAIN_AMERICA = new ArmorCaptainAmerica("captain_america_boots", ARMOR_CAPTAIN_AMERICA, 1, EntityEquipmentSlot.FEET).
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+            HELMET_CAPTAIN_AMERICA = new ArmorCaptainAmerica("captain_america_helmet", ARMOR_CAPTAIN_AMERICA, 1, EntityEquipmentSlot.HEAD)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            CHESTPLATE_CAPTAIN_AMERICA = new ArmorCaptainAmerica("captain_america_chestplate", ARMOR_CAPTAIN_AMERICA, 1, EntityEquipmentSlot.CHEST)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            LEGGINGS_CAPTAIN_AMERICA = new ArmorCaptainAmerica("captain_america_leggings", ARMOR_CAPTAIN_AMERICA, 2, EntityEquipmentSlot.LEGS)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            BOOTS_CAPTAIN_AMERICA = new ArmorCaptainAmerica("captain_america_boots", ARMOR_CAPTAIN_AMERICA, 1, EntityEquipmentSlot.FEET)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
 
-            HELMET_ANTMAN = new ArmorAntman("antman_helmet", ARMOR_ANTMAN, 1, EntityEquipmentSlot.HEAD, "antman").
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-            CHESTPLATE_ANTMAN = new ArmorAntman.ChestplateAntman("antman_chestplate", ARMOR_ANTMAN, 1, EntityEquipmentSlot.CHEST, "antman").
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-            LEGGINGS_ANTMAN = new ArmorAntman("antman_leggings", ARMOR_ANTMAN, 2, EntityEquipmentSlot.LEGS, "antman").
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-            BOOTS_ANTMAN = new ArmorAntman("antman_boots", ARMOR_ANTMAN, 1, EntityEquipmentSlot.FEET, "antman").
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+            HELMET_ANTMAN = new ArmorAntman("antman_helmet", ARMOR_ANTMAN, 1, EntityEquipmentSlot.HEAD, ArmorAntman.Type.ANTMAN)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            CHESTPLATE_ANTMAN = new ArmorAntman.ChestplateAntman("antman_chestplate", ARMOR_ANTMAN, 1, EntityEquipmentSlot.CHEST, ArmorAntman.Type.ANTMAN)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            LEGGINGS_ANTMAN = new ArmorAntman("antman_leggings", ARMOR_ANTMAN, 2, EntityEquipmentSlot.LEGS, ArmorAntman.Type.ANTMAN)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            BOOTS_ANTMAN = new ArmorAntman("antman_boots", ARMOR_ANTMAN, 1, EntityEquipmentSlot.FEET, ArmorAntman.Type.ANTMAN)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
 
-            HELMET_THE_WASP = new ArmorAntman("the_wasp_helmet", ARMOR_ANTMAN, 1, EntityEquipmentSlot.HEAD, "the_wasp").
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-            CHESTPLATE_THE_WASP = new ArmorAntman.ChestplateAntman("the_wasp_chestplate", ARMOR_ANTMAN, 1, EntityEquipmentSlot.CHEST, "the_wasp").
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-            LEGGINGS_THE_WASP = new ArmorAntman("the_wasp_leggings", ARMOR_ANTMAN, 2, EntityEquipmentSlot.LEGS, "the_wasp").
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-            BOOTS_THE_WASP = new ArmorAntman("the_wasp_boots", ARMOR_ANTMAN, 1, EntityEquipmentSlot.FEET, "the_wasp").
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+            HELMET_THE_WASP = new ArmorAntman("the_wasp_helmet", ARMOR_ANTMAN, 1, EntityEquipmentSlot.HEAD, ArmorAntman.Type.THE_WASP)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            CHESTPLATE_THE_WASP = new ArmorAntman.ChestplateAntman("the_wasp_chestplate", ARMOR_ANTMAN, 1, EntityEquipmentSlot.CHEST, ArmorAntman.Type.THE_WASP)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            LEGGINGS_THE_WASP = new ArmorAntman("the_wasp_leggings", ARMOR_ANTMAN, 2, EntityEquipmentSlot.LEGS, ArmorAntman.Type.THE_WASP)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            BOOTS_THE_WASP = new ArmorAntman("the_wasp_boots", ARMOR_ANTMAN, 1, EntityEquipmentSlot.FEET, ArmorAntman.Type.THE_WASP)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
 
 
 
             //XMen
-            HELMET_DEADPOOL = new ArmorDeadpool("deadpool_helmet", ARMOR_DEADPOOL, 1, EntityEquipmentSlot.HEAD).
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-            CHESTPLATE_DEADPOOL = new ArmorDeadpool("deadpool_chestplate", ARMOR_DEADPOOL, 1, EntityEquipmentSlot.CHEST).
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-            LEGGINGS_DEADPOOL = new ArmorDeadpool("deadpool_leggings", ARMOR_DEADPOOL, 2, EntityEquipmentSlot.LEGS).
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
-            BOOTS_DEADPOOL = new ArmorDeadpool("deadpool_boots", ARMOR_DEADPOOL, 1, EntityEquipmentSlot.FEET).
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+            HELMET_DEADPOOL = new ArmorDeadpool("deadpool_helmet", ARMOR_DEADPOOL, 1, EntityEquipmentSlot.HEAD)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            CHESTPLATE_DEADPOOL = new ArmorDeadpool("deadpool_chestplate", ARMOR_DEADPOOL, 1, EntityEquipmentSlot.CHEST)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            LEGGINGS_DEADPOOL = new ArmorDeadpool("deadpool_leggings", ARMOR_DEADPOOL, 2, EntityEquipmentSlot.LEGS)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            BOOTS_DEADPOOL = new ArmorDeadpool("deadpool_boots", ARMOR_DEADPOOL, 1, EntityEquipmentSlot.FEET)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
 
-            KATANA_DEADPOOL = new ToolSword("deadpool_katana", TOOL_DEADPOOL).
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+            KATANA_DEADPOOL = new ToolSword("deadpool_katana", TOOL_DEADPOOL)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
             
             
         } else {
@@ -303,45 +304,45 @@ public class ItemInit
         }
 
         //DC
-        if (ModConfig.common.dcItems) {
-            LOGO_KID_FLASH = new ItemBase("kidflash_logo").
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
+        if (/*ModConfig.common.dcItems*/true) {
+            LOGO_KID_FLASH = new ItemBase("kidflash_logo")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
             
-            CHESTPLATE_SUPERBOY = new ArmorBase("superboy_chestplate", ARMOR_SUPERBOY, 1, EntityEquipmentSlot.CHEST).
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
-            LEGGINGS_SUPERBOY = new ArmorBase("superboy_leggings", ARMOR_SUPERBOY, 1, EntityEquipmentSlot.LEGS).
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
-            BOOTS_SUPERBOY = new ArmorBase("superboy_boots", ARMOR_SUPERBOY, 1, EntityEquipmentSlot.FEET).
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
+            CHESTPLATE_SUPERBOY = new ArmorBase("superboy_chestplate", ARMOR_SUPERBOY, 1, EntityEquipmentSlot.CHEST)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            LEGGINGS_SUPERBOY = new ArmorBase("superboy_leggings", ARMOR_SUPERBOY, 1, EntityEquipmentSlot.LEGS)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            BOOTS_SUPERBOY = new ArmorBase("superboy_boots", ARMOR_SUPERBOY, 1, EntityEquipmentSlot.FEET)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
             
-            HELMET_REDHOOD = new ArmorRedHood("helmet_redhood", ARMOR_REDHOOD, 1, EntityEquipmentSlot.HEAD).
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
-            CHESTPLATE_REDHOOD = new ArmorRedHood("chestplate_redhood", ARMOR_REDHOOD, 1, EntityEquipmentSlot.CHEST).
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
-            LEGGINGS_REDHOOD = new ArmorRedHood("leggings_redhood", ARMOR_REDHOOD, 2, EntityEquipmentSlot.LEGS).
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
-            BOOTS_REDHOOD = new ArmorRedHood("boots_redhood", ARMOR_REDHOOD, 1, EntityEquipmentSlot.FEET).
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
+            HELMET_REDHOOD = new ArmorRedHood("helmet_redhood", ARMOR_REDHOOD, 1, EntityEquipmentSlot.HEAD)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            CHESTPLATE_REDHOOD = new ArmorRedHood("chestplate_redhood", ARMOR_REDHOOD, 1, EntityEquipmentSlot.CHEST)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            LEGGINGS_REDHOOD = new ArmorRedHood("leggings_redhood", ARMOR_REDHOOD, 2, EntityEquipmentSlot.LEGS)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            BOOTS_REDHOOD = new ArmorRedHood("boots_redhood", ARMOR_REDHOOD, 1, EntityEquipmentSlot.FEET)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
 
             //CW
-            HELMET_KIDFLASH = new ArmorKidFlash("kidflash_helmet", ARMOR_KIDFLASH, 1, EntityEquipmentSlot.HEAD).
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
-            CHESTPLATE_KIDFLASH = new ArmorKidFlash("kidflash_chestplate", ARMOR_KIDFLASH, 1, EntityEquipmentSlot.CHEST).
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
-            LEGGINGS_KIDFLASH = new ArmorKidFlash("kidflash_leggings", ARMOR_KIDFLASH, 2, EntityEquipmentSlot.LEGS).
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
-            BOOTS_KIDFLASH = new ArmorKidFlash("kidflash_boots", ARMOR_KIDFLASH, 1, EntityEquipmentSlot.FEET).
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
+            HELMET_KIDFLASH = new ArmorKidFlash("kidflash_helmet", ARMOR_KIDFLASH, 1, EntityEquipmentSlot.HEAD)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            CHESTPLATE_KIDFLASH = new ArmorKidFlash("kidflash_chestplate", ARMOR_KIDFLASH, 1, EntityEquipmentSlot.CHEST)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            LEGGINGS_KIDFLASH = new ArmorKidFlash("kidflash_leggings", ARMOR_KIDFLASH, 2, EntityEquipmentSlot.LEGS)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            BOOTS_KIDFLASH = new ArmorKidFlash("kidflash_boots", ARMOR_KIDFLASH, 1, EntityEquipmentSlot.FEET)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
 
             //Teen Titans
-            HELMET_ROBIN1 = new ArmorRobin1("robin1_helmet", ARMOR_ROBIN1, 1, EntityEquipmentSlot.HEAD).
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
-            CHESTPLATE_ROBIN1 = new ArmorRobin1("robin1_chestplate", ARMOR_ROBIN1, 1, EntityEquipmentSlot.CHEST).
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
-            LEGGINGS_ROBIN1 = new ArmorRobin1("robin1_leggings", ARMOR_ROBIN1, 2, EntityEquipmentSlot.LEGS).
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
-            BOOTS_ROBIN1 = new ArmorRobin1("robin1_boots", ARMOR_ROBIN1, 1, EntityEquipmentSlot.FEET).
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_DC);
+            HELMET_ROBIN1 = new ArmorRobin1("robin1_helmet", ARMOR_ROBIN1, 1, EntityEquipmentSlot.HEAD)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            CHESTPLATE_ROBIN1 = new ArmorRobin1("robin1_chestplate", ARMOR_ROBIN1, 1, EntityEquipmentSlot.CHEST)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            LEGGINGS_ROBIN1 = new ArmorRobin1("robin1_leggings", ARMOR_ROBIN1, 2, EntityEquipmentSlot.LEGS)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+            BOOTS_ROBIN1 = new ArmorRobin1("robin1_boots", ARMOR_ROBIN1, 1, EntityEquipmentSlot.FEET)/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
         } else {
             LOGO_KID_FLASH = null;
 
@@ -369,54 +370,101 @@ public class ItemInit
         }
 
         //Materials
-        SPANDEX_GREEN = new ItemBase("spandex_green").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        SPANDEX_WHITE = new ItemBase("spandex_white").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        SPANDEX_YELLOW = new ItemBase("spandex_yellow").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        SPANDEX_BLACK = new ItemBase("spandex_black").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        SPANDEX_RED = new ItemBase("spandex_red").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+        SPANDEX_GREEN = new ItemBase("spandex_green")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+        SPANDEX_WHITE = new ItemBase("spandex_white")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+        SPANDEX_YELLOW = new ItemBase("spandex_yellow")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+        SPANDEX_BLACK = new ItemBase("spandex_black")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+        SPANDEX_RED = new ItemBase("spandex_red")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
 
-        SPANDEX_CLOTH_GREEN = new ItemBase("spandex_cloth_green").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        SPANDEX_CLOTH_WHITE = new ItemBase("spandex_cloth_white").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        SPANDEX_CLOTH_YELLOW = new ItemBase("spandex_cloth_yellow").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        SPANDEX_CLOTH_BLACK = new ItemBase("spandex_cloth_black").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        SPANDEX_CLOTH_RED = new ItemBase("spandex_cloth_red").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        CLOTH = new ItemBase("cloth").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+        SPANDEX_CLOTH_GREEN = new ItemBase("spandex_cloth_green")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+        SPANDEX_CLOTH_WHITE = new ItemBase("spandex_cloth_white")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+        SPANDEX_CLOTH_YELLOW = new ItemBase("spandex_cloth_yellow")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+        SPANDEX_CLOTH_BLACK = new ItemBase("spandex_cloth_black")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+        SPANDEX_CLOTH_RED = new ItemBase("spandex_cloth_red")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+        CLOTH = new ItemBase("cloth")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
 
-        if (!OreDictionary.doesOreNameExist("plateGold")) {
-            PLATE_GOLD = new ItemBase("plate_gold").setOreDictName("plateGold").
-                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        } else {
-            PLATE_GOLD = OreDictionary.getOres("plateGold").get(0).getItem();
-        }
+        /*if (!OreDictionary.doesOreNameExist("plateGold")) {*/
+            PLATE_GOLD = new ItemBase("plate_gold").setOreDictName("plateGold")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+        /*} else {
+            //PLATE_GOLD = OreDictionary.getOres("plateGold").get(0).getItem();
+        }*/
 
-        INGOT_TITANIUM = new ItemBase("ingot_titanium").setOreDictName("ingotTitanium").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        PLATE_TITANIUM = new ItemBase("plate_titanium").setOreDictName("plateTitanium").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        NUGGET_TITANIUM = new ItemBase("nugget_titanium").setOreDictName("nuggetTitanium").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
-        DUST_TITANIUM = new ItemBase("dust_titanium").setOreDictName("dustTitanium").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+        INGOT_TITANIUM = new ItemBase("ingot_titanium").setOreDictName("ingotTitanium")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+        PLATE_TITANIUM = new ItemBase("plate_titanium").setOreDictName("plateTitanium")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+        NUGGET_TITANIUM = new ItemBase("nugget_titanium").setOreDictName("nuggetTitanium")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
+        DUST_TITANIUM = new ItemBase("dust_titanium").setOreDictName("dustTitanium")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
 
-        CIRCUIT = new ItemBase("circuit").
-                setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);
+        CIRCUIT = new ItemBase("circuit")/*.
+                    setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)*/;
 
 
         if (SuperheroesX.DEBUG) {
             TEST_ITEM = new TestItem();
         } else {
             TEST_ITEM = null;
+        }
+    }
+
+    private static class CustomItemTier implements IItemTier {
+        /** The level of material this tool can harvest (3 = DIAMOND, 2 = IRON, 1 = STONE, 0 = WOOD/GOLD) */
+        private final int harvestLevel;
+        /** The number of uses this material allows. (wood = 59, stone = 131, iron = 250, diamond = 1561, gold = 32) */
+        private final int maxUses;
+        /** The strength of this tool material against blocks which it is effective against. */
+        private final float efficiency;
+        /** Damage versus entities. */
+        private final float attackDamage;
+        /** Defines the natural enchantability factor of the material. */
+        private final int enchantability;
+        private final LazyLoadBase<Ingredient> repairMaterial;
+
+        public CustomItemTier(String name, int harvestLevelIn, int maxUsesIn, float efficiencyIn, float attackDamageIn, int enchantabilityIn, Supplier<Ingredient> repairMaterialIn) {
+            this.harvestLevel = harvestLevelIn;
+            this.maxUses = maxUsesIn;
+            this.efficiency = efficiencyIn;
+            this.attackDamage = attackDamageIn;
+            this.enchantability = enchantabilityIn;
+            this.repairMaterial = new LazyLoadBase<>(repairMaterialIn);
+        }
+
+        public int getMaxUses() {
+            return this.maxUses;
+        }
+
+        public float getEfficiency() {
+            return this.efficiency;
+        }
+
+        public float getAttackDamage() {
+            return this.attackDamage;
+        }
+
+        public int getHarvestLevel() {
+            return this.harvestLevel;
+        }
+
+        public int getEnchantability() {
+            return this.enchantability;
+        }
+
+        public Ingredient getRepairMaterial() {
+            return this.repairMaterial.getValue();
         }
     }
 }

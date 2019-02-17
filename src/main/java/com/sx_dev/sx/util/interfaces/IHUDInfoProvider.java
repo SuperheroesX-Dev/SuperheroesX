@@ -1,12 +1,12 @@
 package com.sx_dev.sx.util.interfaces;
 
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 
 public interface IHUDInfoProvider {
-    @SideOnly(Side.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     void addHUDInfo(List<String> list, ItemStack stack, boolean showFuel, boolean showState);
 }

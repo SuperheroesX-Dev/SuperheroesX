@@ -9,8 +9,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraft.world.gen.feature.WorldGenMinable;
-import net.minecraft.world.gen.feature.WorldGenerator;
+/*import net.minecraft.world.gen.feature.WorldGenMinable;
+import net.minecraft.world.gen.feature.WorldGenerator;*/
 import net.minecraftforge.fml.common.IWorldGenerator;
 
 import java.util.HashMap;
@@ -18,8 +18,8 @@ import java.util.Map;
 import java.util.Random;
 import java.util.function.Predicate;
 
-public class WorldGenCustomOres implements IWorldGenerator {
-    private Map<WorldGenerator, IGeneratableOre.OreSpawnInfo> ores;
+public class WorldGenCustomOres /*implements IWorldGenerator*/ {
+    /*private Map<WorldGenerator, IGeneratableOre.OreSpawnInfo> ores;
 
     public WorldGenCustomOres() {
         ores = new HashMap<>();
@@ -55,5 +55,5 @@ public class WorldGenCustomOres implements IWorldGenerator {
             BlockPos pos = new BlockPos(x, y, z);
             if (isSpawnable.test(pos)) gen.generate(world, rand, pos);
         }
-    }
+    }*/
 }

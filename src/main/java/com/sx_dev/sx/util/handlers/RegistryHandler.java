@@ -31,7 +31,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.oredict.OreDictionary;*/
 
 
-@EventBusSubscriber
+@EventBusSubscriber(modid = Reference.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class RegistryHandler {
 
     @SubscribeEvent
@@ -62,7 +62,7 @@ public class RegistryHandler {
         }
         for (Fluid fluid : FluidInit.FLUIDS) {
             if (fluid != null) {
-                IRegistry.field_212619_h.put(fluid.getRegistryName(),fluid); // fluid has to be registered
+                //IRegistry.field_212619_h.put(fluid.getRegistryName(),fluid); // fluid has to be registered
                 //FluidRegistry.addBucketForFluid(fluid); // add a bucket for the fluid
                 //try {
                     //IRegistry.field_212619_h.put(new BlockFluidClassic(fluid, net.minecraft.block.material.Material.LAVA));

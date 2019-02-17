@@ -9,9 +9,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.stats.StatList;
 import net.minecraft.stats.StatisticsManagerServer;
-import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
@@ -27,7 +25,7 @@ public class SuperheroesXEventHandler {
     private static final Map<Pair<String,UUID>, List<ItemStack>> eastereggs = new HashMap<>();
 
     private static void addToMap(){
-        ItemStack container = new ItemStack(ItemInit.CHESTPLATE_IRONMAN, 1);
+        ItemStack container = new ItemStack(() -> ItemInit.CHESTPLATE_IRONMAN, 1);
         if (!container.hasTag()) {
             container.setTag(new NBTTagCompound());
         }
@@ -43,12 +41,12 @@ public class SuperheroesXEventHandler {
             fly = true;
 
         if (fly || event.player.isCreative() || event.player.isSpectator()) {
-            //event.player.capabilities.allowFlying = true;
+            event.player.abilities.allowFlying = true;
             event.player.fallDistance = 0.0f;
         } else {
             fly = false;
-            //event.player.capabilities.isFlying = false;
-            //event.player.capabilities.allowFlying = false;
+            event.player.abilities.isFlying = false;
+            event.player.abilities.allowFlying = false;
         }
     }
 

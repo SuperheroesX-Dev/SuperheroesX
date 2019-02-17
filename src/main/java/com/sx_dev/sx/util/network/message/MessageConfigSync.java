@@ -1,5 +1,5 @@
 package com.sx_dev.sx.util.network.message;
-
+/*
 import com.sx_dev.sx.SuperheroesX;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
@@ -11,8 +11,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-public class MessageConfigSync implements IMessage, IMessageHandler<MessageConfigSync, IMessage> {
+*/
+public class MessageConfigSync /*implements IMessage, IMessageHandler<MessageConfigSync, IMessage>*/ {/*
     public NBTTagCompound recv;
     public Configuration test;
 
@@ -39,5 +39,5 @@ public class MessageConfigSync implements IMessage, IMessageHandler<MessageConfi
 
     public void handleMessage(MessageConfigSync msg, MessageContext ctx) {
         SuperheroesX.LOGGER.info("Received server configuration");
-    }
+    }*/
 }

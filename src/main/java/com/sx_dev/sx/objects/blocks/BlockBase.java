@@ -14,9 +14,9 @@ public class BlockBase extends Block implements IHasModel, IOreDict<BlockBase> {
     private String oreDictName;
     private boolean hasOreDictName;
 
-    public BlockBase(String name, Material material)
+    public BlockBase(String name, Properties properties)
 	{
-		super(Block.Properties.create(material));
+		super(properties);
 		//setUnlocalizedName(name);
 		setRegistryName(name);
         //setCreativeTab(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS);

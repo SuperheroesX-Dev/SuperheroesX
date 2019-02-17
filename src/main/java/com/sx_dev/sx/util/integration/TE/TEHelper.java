@@ -1,6 +1,6 @@
 package com.sx_dev.sx.util.integration.TE;
 
-import com.sx_dev.sx.init.ItemInit;
+/*import com.sx_dev.sx.init.ItemInit;
 import com.sx_dev.sx.util.Reference;
 import com.sx_dev.sx.util.handlers.RecipeHandler;
 import net.minecraft.item.ItemStack;
@@ -11,11 +11,11 @@ import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.List;*/
 
 @SuppressWarnings({"WeakerAccess", "unused", "Duplicates", "SpellCheckingInspection"})
 public final class TEHelper {
-
+/*
     public static final String ADD_FURNACE_RECIPE = "addfurnacerecipe";
     public static final String ADD_PULVERIZER_RECIPE = "addpulverizerrecipe";
     public static final String ADD_SAWMILL_RECIPE = "addsawmillrecipe";
@@ -73,19 +73,19 @@ public final class TEHelper {
         }
     }
 
-    /* FURNACE */
+    /* FURNACE *//*
     public static void addFurnaceRecipe(int energy, ItemStack input, ItemStack output) {
 
         if (input.isEmpty() || output.isEmpty()) {
             return;
         }
         NBTTagCompound toSend = new NBTTagCompound();
-        toSend.setInteger(ENERGY, energy);
+        toSend.setInt(ENERGY, energy);
         toSend.setTag(INPUT, new NBTTagCompound());
         toSend.setTag(OUTPUT, new NBTTagCompound());
 
-        input.writeToNBT(toSend.getCompoundTag(INPUT));
-        output.writeToNBT(toSend.getCompoundTag(OUTPUT));
+        input.write(toSend.getTag(INPUT));
+        output.write(toSend.getTag(OUTPUT));
         FMLInterModComms.sendMessage(Reference.MODID, ADD_FURNACE_RECIPE, toSend);
     }
 
@@ -101,7 +101,7 @@ public final class TEHelper {
         FMLInterModComms.sendMessage(Reference.MODID, REMOVE_FURNACE_RECIPE, toSend);
     }
 
-    /* PULVERIZER */
+    /* PULVERIZER *//*
     public static void addPulverizerRecipe(int energy, ItemStack input, ItemStack output) {
 
         addPulverizerRecipe(energy, input, output, ItemStack.EMPTY, 0);
@@ -145,7 +145,7 @@ public final class TEHelper {
         FMLInterModComms.sendMessage(Reference.MODID, REMOVE_PULVERIZER_RECIPE, toSend);
     }
 
-    /* SAWMILL */
+    /* SAWMILL *//*
     public static void addSawmillRecipe(int energy, ItemStack input, ItemStack output) {
 
         addSawmillRecipe(energy, input, output, ItemStack.EMPTY, 0);
@@ -190,7 +190,7 @@ public final class TEHelper {
         FMLInterModComms.sendMessage(Reference.MODID, REMOVE_SAWMILL_RECIPE, toSend);
     }
 
-    /* SMELTER */
+    /* SMELTER *//*
     public static void addSmelterRecipe(int energy, ItemStack input, ItemStack input2, ItemStack output) {
 
         addSmelterRecipe(energy, input, input2, output, ItemStack.EMPTY, 0);
@@ -238,7 +238,7 @@ public final class TEHelper {
         FMLInterModComms.sendMessage(Reference.MODID, REMOVE_SMELTER_RECIPE, toSend);
     }
 
-    /* INSOLATOR */
+    /* INSOLATOR *//*
     public static void addInsolatorRecipe(int energy, ItemStack input, ItemStack input2, ItemStack output) {
 
         addInsolatorRecipe(energy, input, input2, output, ItemStack.EMPTY, 0);
@@ -286,7 +286,7 @@ public final class TEHelper {
         FMLInterModComms.sendMessage(Reference.MODID, REMOVE_INSOLATOR_RECIPE, toSend);
     }
 
-    /* COMPACTOR */
+    /* COMPACTOR *//*
     public static void addCompactorRecipe(int energy, ItemStack input, ItemStack output) {
 
         if (input.isEmpty() || output.isEmpty()) {
@@ -395,7 +395,7 @@ public final class TEHelper {
         FMLInterModComms.sendMessage(Reference.MODID, REMOVE_COMPACTOR_GEAR_RECIPE, toSend);
     }
 
-    /* CRUCIBLE */
+    /* CRUCIBLE *//*
     public static void addCrucibleRecipe(int energy, ItemStack input, FluidStack output) {
 
         if (input.isEmpty() || output == null) {
@@ -424,7 +424,7 @@ public final class TEHelper {
         FMLInterModComms.sendMessage(Reference.MODID, REMOVE_CRUCIBLE_RECIPE, toSend);
     }
 
-    /* REFINERY */
+    /* REFINERY *//*
     public static void addRefineryRecipe(int energy, FluidStack input, FluidStack output, ItemStack outputItem) {
 
         if (input == null || output == null) {
@@ -457,7 +457,7 @@ public final class TEHelper {
         FMLInterModComms.sendMessage(Reference.MODID, REMOVE_REFINERY_RECIPE, toSend);
     }
 
-    /* TRANSPOSER */
+    /* TRANSPOSER *//*
     public static void addTransposerFill(int energy, ItemStack input, ItemStack output, FluidStack fluid, boolean reversible) {
 
         if (input.isEmpty() || output.isEmpty() || fluid == null) {
@@ -523,7 +523,7 @@ public final class TEHelper {
         FMLInterModComms.sendMessage(Reference.MODID, REMOVE_TRANSPOSER_EXTRACT_RECIPE, toSend);
     }
 
-    /* CHARGER */
+    /* CHARGER *//*
     public static void addChargerRecipe(int energy, ItemStack input, ItemStack output) {
 
         if (input.isEmpty() || output.isEmpty()) {
@@ -551,7 +551,7 @@ public final class TEHelper {
         FMLInterModComms.sendMessage(Reference.MODID, REMOVE_CHARGER_RECIPE, toSend);
     }
 
-    /* CENTRIFUGE */
+    /* CENTRIFUGE *//*
     public static void addCentrifugeRecipe(int energy, ItemStack input, List<ItemStack> output) {
 
         addCentrifugeRecipe(energy, input, output, new ArrayList<>(), null);
@@ -610,7 +610,7 @@ public final class TEHelper {
         FMLInterModComms.sendMessage(Reference.MODID, REMOVE_CENTRIFUGE_RECIPE, toSend);
     }
 
-    /* BREWER */
+    /* BREWER *//*
     public static void addBrewerRecipe(int energy, ItemStack input, FluidStack inputFluid, FluidStack outputFluid) {
 
         if (input.isEmpty() || inputFluid == null || outputFluid == null) {
@@ -643,7 +643,7 @@ public final class TEHelper {
         FMLInterModComms.sendMessage(Reference.MODID, REMOVE_BREWER_RECIPE, toSend);
     }
 
-    /* ENCHANTER */
+    /* ENCHANTER *//*
     public static void addEnchanterRecipe(int energy, ItemStack input, ItemStack input2, ItemStack output, int fluidExp) {
 
         if (input.isEmpty() || input2.isEmpty() || output.isEmpty() || fluidExp < 0) {
@@ -676,5 +676,5 @@ public final class TEHelper {
         input2.writeToNBT(toSend.getCompoundTag(INPUT_2));
         FMLInterModComms.sendMessage(Reference.MODID, REMOVE_ENCHANTER_RECIPE, toSend);
     }
-
+*/
 }

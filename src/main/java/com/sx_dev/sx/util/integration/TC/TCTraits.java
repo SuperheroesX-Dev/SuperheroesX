@@ -4,8 +4,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import slimeknights.tconstruct.library.traits.AbstractTrait;
-import slimeknights.tconstruct.library.traits.ITrait;
+/*import slimeknights.tconstruct.library.traits.AbstractTrait;
+import slimeknights.tconstruct.library.traits.ITrait;*/
 
 import java.awt.*;
 import java.util.Arrays;
@@ -13,7 +13,7 @@ import java.util.List;
 
 import static net.minecraft.init.Biomes.*;
 
-public class TCTraits {
+public class TCTraits {/*
 
     public static final ITrait unbreakable = new TraitUnbreakable();
     public static final ITrait temperate = new TraitTemperate();
@@ -51,5 +51,5 @@ public class TCTraits {
                 event.setNewSpeed(event.getNewSpeed() * (1 + bonus));
             }
         }
-    }
+    }*/
 }

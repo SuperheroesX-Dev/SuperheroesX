@@ -5,12 +5,12 @@ import com.sx_dev.sx.util.handlers.SyncHandler;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.world.WorldServer;
+import net.minecraft.world.WorldServer;/*
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;*/
 
-public class MessageKeyboardSync implements IMessage, IMessageHandler<MessageKeyboardSync, IMessage> {
+public class MessageKeyboardSync /*implements IMessage, IMessageHandler<MessageKeyboardSync, IMessage> */{
     public boolean flyState;
     public boolean descendState;
 
@@ -30,7 +30,7 @@ public class MessageKeyboardSync implements IMessage, IMessageHandler<MessageKey
         this.leftState = leftState;
         this.rightState = rightState;
     }
-
+/*
     @Override
     public void fromBytes(ByteBuf buf) {
         this.flyState = buf.readBoolean();
@@ -62,12 +62,11 @@ public class MessageKeyboardSync implements IMessage, IMessageHandler<MessageKey
 
         return null;
     }
-
     public void handleMessage(MessageKeyboardSync msg, MessageContext ctx) {
         if (SuperheroesX.DEBUG) System.out.println(">handleMessage<");
         EntityPlayer entityPlayer = ctx.getServerHandler().player;
         if (entityPlayer != null) {
             SyncHandler.processKeyUpdate(entityPlayer, msg.flyState, msg.descendState, msg.forwardState, msg.backwardState, msg.leftState, msg.rightState);
         }
-    }
+    }*/
 }

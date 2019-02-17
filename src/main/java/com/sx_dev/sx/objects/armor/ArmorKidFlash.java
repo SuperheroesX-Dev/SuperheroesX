@@ -1,18 +1,18 @@
 package com.sx_dev.sx.objects.armor;
 
-import com.sx_dev.sx.SuperheroesX;
 import com.sx_dev.sx.init.PotionInit;
-import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.renderer.entity.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
+import net.minecraft.init.Particles;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ArmorKidFlash extends ArmorBase {
 
@@ -21,12 +21,12 @@ public class ArmorKidFlash extends ArmorBase {
     }
 
     @Override
-    public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
+    public void onArmorTick(ItemStack stack, World world, EntityPlayer player) {
         if (this.isWearingFullSet(player)) {
-            super.onArmorTick(world, player, stack);
+            super.onArmorTick(stack, world, player);
             if (player.isSprinting()) {
                 player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 0, 50, false, false));
-                world.spawnParticle(EnumParticleTypes.REDSTONE, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), 1, 1, 0);
+                world.spawnParticle(Particles.DRAGON_BREATH, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), 1, 1, 0);
             }
             player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 0, 4, false, false));
             player.addPotionEffect(new PotionEffect(MobEffects.HASTE, 0, 2, false, false));
@@ -39,7 +39,7 @@ public class ArmorKidFlash extends ArmorBase {
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
         ModelBiped armorModel;
 
@@ -51,11 +51,6 @@ public class ArmorKidFlash extends ArmorBase {
         }
 
         return super.getArmorModel(entityLiving, itemStack, armorSlot, _default);
-    }
-
-    @Override
-    public void registerModels() {
-        SuperheroesX.PROXY.registerItemRenderer(this, 0, "inventory");
     }
 
 }

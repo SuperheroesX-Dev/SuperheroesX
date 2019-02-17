@@ -2,17 +2,19 @@ package com.sx_dev.sx.util.integration;
 
 import com.sx_dev.sx.util.integration.TC.TCIntegration;
 import com.sx_dev.sx.util.integration.TE.TEIntegration;
-import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.ModList;
+//import net.minecraftforge.fml.common.Loader;
 
 public class Integrations {
 
-    public static final boolean TC = Loader.isModLoaded("tconstruct");
-    public static final boolean TE = Loader.isModLoaded("thermalexpansion");
-    public static final boolean TF = Loader.isModLoaded("thermalfoundation");
+    private static final ModList modList = ModList.get();
+    public static final boolean TC = modList.isLoaded("tconstruct");
+    public static final boolean TE = modList.isLoaded("thermalexpansion");
+    public static final boolean TF = modList.isLoaded("thermalfoundation");
 
     public static void preInitIntegrations() {
         if (TC) {
-            TCIntegration.preInit();
+            //TCIntegration.preInit();
         }
         if (TE) {
             TEIntegration.preInit();
@@ -21,7 +23,7 @@ public class Integrations {
 
     public static void initIntegrations() {
         if (TC) {
-            TCIntegration.init();
+            //TCIntegration.init();
         }
         if (TE) {
             TEIntegration.init();
@@ -30,7 +32,7 @@ public class Integrations {
 
     public static void postInitIntegrations() {
         if (TC) {
-            TCIntegration.postInit();
+            //TCIntegration.postInit();
         }
         if (TE) {
             TEIntegration.postInit();

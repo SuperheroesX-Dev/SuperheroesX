@@ -1,6 +1,6 @@
 package com.sx_dev.sx.util.integration.TC;
 
-
+/*
 import cofh.thermalfoundation.init.TFFluids;
 import com.sx_dev.sx.init.ItemInit;
 import com.sx_dev.sx.util.integration.Integrations;
@@ -18,8 +18,8 @@ import slimeknights.tconstruct.tools.TinkerTraits;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-
-public class TCIntegration {
+*///TODO
+public class TCIntegration {/*
     public static final List<TCMaterial> MATERIALS = new ArrayList<>();
 
     //TODO: set stat values @Mini
@@ -96,5 +96,5 @@ public class TCIntegration {
     public static void postInit() {
     }
 
-
+*/
 }

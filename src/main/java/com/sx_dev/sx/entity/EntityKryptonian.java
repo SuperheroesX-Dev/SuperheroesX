@@ -13,11 +13,11 @@ public class EntityKryptonian extends EntityPigZombie
 		
 		super(worldIn);
 		this.isImmuneToFire = true;
-	}
+	}/*
 	
 	protected void applyEntityAttributes()
     {
-        super.applyEntityAttributes();
+        super.applyEAttributes();
         this.getEntityAttribute(SPAWN_REINFORCEMENTS_CHANCE).setBaseValue(0.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(1.25D);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(5.0D);
@@ -52,5 +52,5 @@ public class EntityKryptonian extends EntityPigZombie
 	protected SoundEvent getDeathSound() 
 	{
 		return super.getDeathSound();
-	}
+	}*/
 }

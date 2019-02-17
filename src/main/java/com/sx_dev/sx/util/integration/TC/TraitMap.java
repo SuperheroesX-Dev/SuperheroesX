@@ -1,10 +1,10 @@
 package com.sx_dev.sx.util.integration.TC;
 
-import slimeknights.tconstruct.library.traits.ITrait;
+//import slimeknights.tconstruct.library.traits.ITrait;
 
 import javax.annotation.Nullable;
-
-class TraitMap {
+//TODO
+class TraitMap {/*
     private String dependency;
     private ITrait trait;
 
@@ -19,5 +19,5 @@ class TraitMap {
 
     public String getDependency() {
         return dependency;
-    }
+    }*/
 }

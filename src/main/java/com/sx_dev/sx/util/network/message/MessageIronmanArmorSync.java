@@ -1,5 +1,5 @@
 package com.sx_dev.sx.util.network.message;
-
+/*
 import com.sx_dev.sx.util.handlers.EnumHandler;
 import com.sx_dev.sx.util.handlers.SyncHandler;
 import io.netty.buffer.ByteBuf;
@@ -9,9 +9,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-
-public class MessageIronmanArmorSync implements IMessage, IMessageHandler<MessageIronmanArmorSync, IMessage> {
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;*/
+//TODO
+public class MessageIronmanArmorSync /*implements IMessage, IMessageHandler<MessageIronmanArmorSync, IMessage>*/ {/*
     public int entityId;
     public int particleId;
 
@@ -59,5 +59,5 @@ public class MessageIronmanArmorSync implements IMessage, IMessageHandler<Messag
                 SyncHandler.processIronmanUpdate(msg.entityId, null);
             }
         }
-    }
+    }*/
 }

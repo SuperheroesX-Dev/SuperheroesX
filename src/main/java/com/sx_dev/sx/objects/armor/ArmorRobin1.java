@@ -1,16 +1,17 @@
 package com.sx_dev.sx.objects.armor;
 
 import com.sx_dev.sx.init.PotionInit;
-import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.renderer.entity.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ArmorRobin1 extends ArmorBase {
     public ArmorRobin1(String name, ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) {
@@ -18,9 +19,9 @@ public class ArmorRobin1 extends ArmorBase {
     }
 
     @Override
-    public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
+    public void onArmorTick(ItemStack stack, World world, EntityPlayer player) {
         if (this.isWearingFullSet(player)) {
-            super.onArmorTick(world, player, stack);
+            super.onArmorTick(stack, world, player);
             if (player.isSprinting()) {
                 player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 0, 1, false, false));
             }
@@ -32,7 +33,7 @@ public class ArmorRobin1 extends ArmorBase {
 
 
     @Override
-    @SideOnly(Side.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
         ModelBiped armorModel = null;
 

@@ -11,19 +11,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 
-
 @SuppressWarnings("NullableProblems")
 
 public class CustomPotionEffect extends PotionAdv {
-
 
 
     private final IEffectProvider effectProvider;
@@ -33,12 +31,11 @@ public class CustomPotionEffect extends PotionAdv {
     private final ResourceLocation iconTexture;
 
 
-
     public CustomPotionEffect(String name, boolean isBadEffectIn, int liquidColorIn, IEffectProvider provider, ItemStack... curativeItems) {
 
         super(name, isBadEffectIn, liquidColorIn, provider.isVisible());
 
-        setPotionName(this, name);
+        //setPotionName(this, name);
 
         this.iconTexture = new ResourceLocation(Reference.MODID, "textures/gui/container/custom_effects.png");
 
@@ -48,23 +45,18 @@ public class CustomPotionEffect extends PotionAdv {
 
         this.effectProvider = provider;
 
-        this.setPotionName(name);
-
-
         PotionInit.POTIONS.add(this);
 
     }
 
-    private static void setPotionName(Potion potion, String potionName) {
+    /*private static void setPotionName(Potion potion, String potionName) {
 
         potion.setPotionName("effect." + Reference.MODID + ":" + potionName);
 
-    }
+    }*/
 
-    @SideOnly(Side.CLIENT)
-
+    @OnlyIn(Dist.CLIENT)
     @Override
-
     public void renderInventoryEffect(int x, int y, PotionEffect effect, Minecraft mc) {
 
         if (mc.currentScreen != null) {
@@ -78,29 +70,18 @@ public class CustomPotionEffect extends PotionAdv {
     }
 
 
-
-    @SideOnly(Side.CLIENT)
-
+    @OnlyIn(Dist.CLIENT)
     @Override
-
     public void renderHUDEffect(int x, int y, PotionEffect effect, Minecraft mc, float alpha) {
-
         mc.getTextureManager().bindTexture(iconTexture);
-
         Gui.drawModalRectWithCustomSizedTexture(x + 3, y + 3, 0, 0, 18, 18, 18, 18);
-
         if (effectProvider.hasCustomHUD()) {
-
             effectProvider.renderCustomHUD(x, y, effect, mc, alpha);
-
         }
-
     }
 
 
-
     @Override
-
     public void performEffect(EntityLivingBase entityLivingBaseIn, int amplifier) {
 
         effectProvider.performEffect(entityLivingBaseIn, amplifier);
@@ -108,11 +89,7 @@ public class CustomPotionEffect extends PotionAdv {
     }
 
 
-
-
-
     @Override
-
     public boolean isReady(int duration, int amplifier) {
 
         return true;
@@ -120,17 +97,10 @@ public class CustomPotionEffect extends PotionAdv {
     }
 
 
-
     @Override
-
     public List<ItemStack> getCurativeItems() {
 
         return curativeItems;
 
     }
-
-
-
-
-
 }

@@ -6,11 +6,11 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.WorldServer;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+/*import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;*/
 
-public class MessageMouseSync implements IMessage, IMessageHandler<MessageMouseSync, IMessage> {
+public class MessageMouseSync /*implements IMessage, IMessageHandler<MessageMouseSync, IMessage>*/ {
     public boolean rightClickState;
 
     public MessageMouseSync() {
@@ -19,7 +19,7 @@ public class MessageMouseSync implements IMessage, IMessageHandler<MessageMouseS
     public MessageMouseSync(boolean rightClick) {
         this.rightClickState = rightClick;
     }
-
+/*
     @Override
     public void fromBytes(ByteBuf buf) {
         this.rightClickState = buf.readBoolean();
@@ -51,5 +51,5 @@ public class MessageMouseSync implements IMessage, IMessageHandler<MessageMouseS
         if (entityPlayer != null) {
             SyncHandler.processMouseUpdate(entityPlayer, msg.rightClickState);
         }
-    }
+    }*/
 }

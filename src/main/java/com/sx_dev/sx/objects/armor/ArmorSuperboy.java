@@ -4,6 +4,7 @@ import com.sx_dev.sx.init.PotionInit;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
@@ -14,9 +15,9 @@ public class ArmorSuperboy extends ArmorBase {
     }
 
     @Override
-    public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
+    public void onArmorTick(ItemStack stack, World world, EntityPlayer player) {
         if (this.isWearingFullSet(player)) {
-            super.onArmorTick(world, player, stack);
+            super.onArmorTick(stack, world, player);
 
             player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 3, 1, false, false));
             player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 3, 4, false, false));

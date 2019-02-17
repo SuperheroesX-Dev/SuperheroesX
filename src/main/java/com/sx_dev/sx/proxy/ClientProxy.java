@@ -8,13 +8,14 @@ import com.sx_dev.sx.util.handlers.EnumHandler;
 import com.sx_dev.sx.util.math.Pos3D;
 import com.sx_dev.sx.util.misc.ParticleUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.model.ModelResourceLocation;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Mod;
 
 import java.util.Random;
 
@@ -25,21 +26,21 @@ public class ClientProxy extends CommonProxy
     @Override
     public void registerItemRenderer(Item item, int meta, String id)
 	{
-		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName(), id));
+		//ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName(), id));
     }
 
 	@Override
     public void registerVariantRenderer(Item item, int meta, String filename, String id)
 	{
-		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(new ResourceLocation(Reference.MODID, filename), id));
+		//ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(new ResourceLocation(Reference.MODID, filename), id));
 	}
 
 
 
     @Override
     public void showJetpackParticles(World world, EntityLivingBase wearer, EnumHandler.ParticleType particle) {
-        Minecraft mc = Minecraft.getMinecraft();
-        if (mc.gameSettings.particleSetting == 0 || mc.gameSettings.particleSetting == 1 && mc.world.getTotalWorldTime() % 4L == 0) {
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.gameSettings.particleSetting == 0 || mc.gameSettings.particleSetting == 1 && mc.world.getGameTime() % 4L == 0) {
             Random rand = new Random();
 
             Pos3D playerPos = new Pos3D(wearer).translate(0, 1.5, 0);
@@ -67,15 +68,15 @@ public class ClientProxy extends CommonProxy
     public void registerHandlers() {
         super.registerHandlers();
 
-        MinecraftForge.EVENT_BUS.register(KeyTracker.instance);
-        MinecraftForge.EVENT_BUS.register(new HUDTickHandler());
-        MinecraftForge.EVENT_BUS.register(new AntmanSizeHandler());
+        //Mod.EventBusSubscriber.Bus.MOD.bus().get().register(KeyTracker.instance);
+        Mod.EventBusSubscriber.Bus.MOD.bus().get().register(new HUDTickHandler());
+        Mod.EventBusSubscriber.Bus.MOD.bus().get().register(new AntmanSizeHandler());
     }
 
-    @Override
+    /*@Override
     public void initKeys() {
         KeyTracker.addKeys();
-    }
+    }*/
 
     @Override
     public <T> T nullifyOnServer(T object) {

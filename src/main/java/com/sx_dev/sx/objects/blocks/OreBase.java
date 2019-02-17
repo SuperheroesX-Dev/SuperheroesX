@@ -1,6 +1,5 @@
 package com.sx_dev.sx.objects.blocks;
 
-import com.sx_dev.sx.SuperheroesX;
 import com.sx_dev.sx.init.BlockInit;
 import com.sx_dev.sx.init.ItemInit;
 import com.sx_dev.sx.util.interfaces.IGeneratableOre;
@@ -15,8 +14,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorldReader;
+import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.common.ToolType;
 
 import javax.annotation.Nonnull;
 import java.util.Objects;
@@ -46,19 +48,19 @@ public class OreBase extends Block implements IHasModel, IOreDict<OreBase>, IGen
      * @param item       The Item that drops from the Ore
      */
     public OreBase(String name, Material material, int dimension, int veinSize, int rarity, int minHeight, int maxHeight, int exp, Block baseBlock, float hardness, float resistance, String toolClass, int level, ItemStack item, String oreDict) {
-        super(material);
-        setUnlocalizedName(name);
+        super(Properties.create(material).hardnessAndResistance(hardness,resistance));
+        //setUnlocalizedName(name);
         setRegistryName(name);
-        setHardness(hardness);
-        setResistance(resistance);
-        setHarvestLevel(toolClass, level);
+        //setHardness(hardness);
+        //setResistance(resistance);
+        //setHarvestLevel(toolClass, level);
         this.item = item;
         this.exp = exp;
         this.oreDictName = "ore" + oreDict;
 
         BlockInit.BLOCKS.add(this);
         BlockInit.ORES.add(this);
-        ItemInit.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+        ItemInit.ITEMS.add(new ItemBlock(this,new Item.Properties()).setRegistryName(this.getRegistryName()));
         oreSpawnInfo = new OreSpawnInfo(veinSize, rarity, dimension, minHeight, maxHeight, baseBlock);
     }
 
@@ -78,19 +80,19 @@ public class OreBase extends Block implements IHasModel, IOreDict<OreBase>, IGen
      * @param item       The Item that drops from the Ore
      */
     public OreBase(String name, Material material, int dimension, int veinSize, int rarity, int minHeight, int maxHeight, int exp, float hardness, float resistance, String toolClass, int level, ItemStack item, String oreDict) {
-        super(material);
-        setUnlocalizedName(name);
+        super(Properties.create(material).hardnessAndResistance(hardness,resistance));
+        //setUnlocalizedName(name);
         setRegistryName(name);
-        setHardness(hardness);
-        setResistance(resistance);
-        setHarvestLevel(toolClass, level);
+        //setHardness(hardness);
+        //setResistance(resistance);
+        //setHarvestLevel(toolClass, level);
         this.item = item;
         this.exp = exp;
         this.oreDictName = "ore" + oreDict;
 
         BlockInit.BLOCKS.add(this);
         BlockInit.ORES.add(this);
-        ItemInit.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+        ItemInit.ITEMS.add(new ItemBlock(this,new Item.Properties()).setRegistryName(this.getRegistryName()));
         oreSpawnInfo = new OreSpawnInfo(veinSize, rarity, dimension, minHeight, maxHeight, dimension == -1 ? Blocks.NETHERRACK : dimension == 1 ? Blocks.END_STONE : Blocks.STONE);
     }
 
@@ -109,19 +111,19 @@ public class OreBase extends Block implements IHasModel, IOreDict<OreBase>, IGen
      * @param level      The harvest level of the Ore
      */
     public OreBase(String name, Material material, int dimension, int veinSize, int rarity, int minHeight, int maxHeight, Block baseBlock, float hardness, float resistance, String toolClass, int level, String oreDict) {
-        super(material);
-        setUnlocalizedName(name);
+        super(Properties.create(material).hardnessAndResistance(hardness,resistance));
+        //setUnlocalizedName(name);
         setRegistryName(name);
-        setHardness(hardness);
-        setResistance(resistance);
-        setHarvestLevel(toolClass, level);
+        //setHardness(hardness);
+        //setResistance(resistance);
+        //setHarvestLevel(toolClass, level);
         this.item = null;
         this.exp = 0;
         this.oreDictName = "ore" + oreDict;
 
         BlockInit.BLOCKS.add(this);
         BlockInit.ORES.add(this);
-        ItemInit.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+        ItemInit.ITEMS.add(new ItemBlock(this,new Item.Properties()).setRegistryName(this.getRegistryName()));
         oreSpawnInfo = new OreSpawnInfo(veinSize, rarity, dimension, minHeight, maxHeight, baseBlock);
     }
 
@@ -135,12 +137,12 @@ public class OreBase extends Block implements IHasModel, IOreDict<OreBase>, IGen
      * @param level      The harvest level of the Ore
      */
     public OreBase(String name, Material material, OreSpawnInfo info, float hardness, float resistance, String toolClass, int level, String oreDict) {
-        super(material);
-        setUnlocalizedName(name);
+        super(Properties.create(material).hardnessAndResistance(hardness,resistance));
+        //setUnlocalizedName(name);
         setRegistryName(name);
-        setHardness(hardness);
-        setResistance(resistance);
-        setHarvestLevel(toolClass, level);
+        //setHardness(hardness);
+        //setResistance(resistance);
+        //setHarvestLevel(toolClass, level);
         this.item = null;
         this.exp = 0;
         this.oreDictName = "ore" + oreDict;
@@ -148,7 +150,7 @@ public class OreBase extends Block implements IHasModel, IOreDict<OreBase>, IGen
 
         BlockInit.BLOCKS.add(this);
         BlockInit.ORES.add(this);
-        ItemInit.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+        ItemInit.ITEMS.add(new ItemBlock(this,new Item.Properties()).setRegistryName(this.getRegistryName()));
     }
 
     /**
@@ -165,30 +167,29 @@ public class OreBase extends Block implements IHasModel, IOreDict<OreBase>, IGen
      * @param level      The harvest level of the Ore
      */
     public OreBase(String name, Material material, int dimension, int veinSize, int rarity, int minHeight, int maxHeight, float hardness, float resistance, String toolClass, int level, String oreDict) {
-        super(material);
-        setUnlocalizedName(name);
+        super(Properties.create(material).hardnessAndResistance(hardness,resistance));
+        //setUnlocalizedName(name);
         setRegistryName(name);
-        setHardness(hardness);
-        setResistance(resistance);
-        setHarvestLevel(toolClass, level);
+        //setHardness(hardness);
+        //setResistance(resistance);
+        //setHarvestLevel(toolClass, level);
         this.item = null;
         this.exp = 0;
         this.oreDictName = "ore" + oreDict;
 
         BlockInit.BLOCKS.add(this);
         BlockInit.ORES.add(this);
-        ItemInit.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+        ItemInit.ITEMS.add(new ItemBlock(this,new Item.Properties()).setRegistryName(this.getRegistryName()));
         oreSpawnInfo = new OreSpawnInfo(veinSize, rarity, dimension, minHeight, maxHeight, dimension == -1 ? Blocks.NETHERRACK : dimension == 1 ? Blocks.END_STONE : Blocks.STONE);
     }
 
     @Override
     public void registerModels() {
-        SuperheroesX.PROXY.registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory");
+        //SuperheroesX.PROXY.registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory");
     }
 
     @Override
-    @Nonnull
-    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+    public Item asItem() {
         return this.item != null ? item.getItem() : Item.getItemFromBlock(this);
     }
 
@@ -199,42 +200,40 @@ public class OreBase extends Block implements IHasModel, IOreDict<OreBase>, IGen
     }
 
     @Override
-    public int quantityDropped(Random random) {
-        return (Item.getItemFromBlock(this) != this.getItemDropped(this.getDefaultState(), random, 0)) ? 1 + random.nextInt(2) : 1;
-    }
-
-    @Override
-    public int quantityDroppedWithBonus(int fortune, Random random) {
-        if (fortune > 0 && Item.getItemFromBlock(this) != this.getItemDropped(this.getBlockState().getValidStates().iterator().next(), random, fortune)) {
+    public int getItemsToDropCount(IBlockState state, int fortune, World worldIn, BlockPos pos, Random random) {
+        if (fortune > 0 && Item.getItemFromBlock(this) != this.getItemDropped(state, worldIn, pos, fortune)) {
             int i = random.nextInt(fortune + 2) - 1;
 
             if (i < 0) {
                 i = 0;
             }
 
-            return this.quantityDropped(random) * (i + 1);
+            return this.quantityDropped(random, worldIn, pos) * (i + 1);
         } else {
-            return this.quantityDropped(random);
+            return this.quantityDropped(random, worldIn, pos);
         }
     }
 
-    @Override
-    public boolean canHarvestBlock(IBlockAccess world, BlockPos pos, EntityPlayer player) {
-        IBlockState state = world.getBlockState(pos);
-        ItemStack stack = player.getHeldItemMainhand();
-        return (stack.getItem().getHarvestLevel(stack, Objects.requireNonNull(this.getHarvestTool(state)), player, state) >= this.getHarvestLevel(state)) && (!stack.isEmpty()) && (ForgeHooks.canHarvestBlock(this, player, world, pos));
+    public int quantityDropped(Random random, World world, BlockPos pos) {
+        return (Item.getItemFromBlock(this) != this.getItemDropped(this.getDefaultState(), world, pos, 0)) ? 1 + random.nextInt(2) : 1;
     }
 
     @Override
-    public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune) {
-        if (this.getItemDropped(state, RANDOM, fortune) != Item.getItemFromBlock(this) && this.item != null) {
+    public boolean canHarvestBlock(IBlockState state, IBlockReader world, BlockPos pos, EntityPlayer player) {
+        ItemStack stack = player.getHeldItemMainhand();
+        return (stack.getItem().getHarvestLevel(stack, Objects.requireNonNull(this.getHarvestTool(state)), player, state) >= this.getHarvestLevel(state)) && (!stack.isEmpty()) && (ForgeHooks.canHarvestBlock(state, player, world, pos));
+    }
+
+    @Override
+    public int getExpDrop(IBlockState state, IWorldReader world, BlockPos pos, int fortune) {
+        if (this.getItemDropped(state, (World) world, pos, fortune) != Item.getItemFromBlock(this) && this.item != null) {
             return RANDOM.nextInt(this.exp);
         }
         return 0;
     }
 
     @Override
-    public boolean isToolEffective(String type, IBlockState state) {
+    public boolean isToolEffective(IBlockState state, ToolType type) {
         return type != null && type.equals(this.getHarvestTool(state));
     }
 

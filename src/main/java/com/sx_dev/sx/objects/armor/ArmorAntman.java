@@ -1,17 +1,21 @@
 package com.sx_dev.sx.objects.armor;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.PlayerCapabilities;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class ArmorAntman extends ArmorBase {
 
-    private String type;
+    Type type;
 
-    public ArmorAntman(String name, ItemArmor.ArmorMaterial armorMaterial, int renderIndex, EntityEquipmentSlot entityEquipmentSlot, String type) {
+    public ArmorAntman(String name, ArmorMaterial armorMaterial, int renderIndex, EntityEquipmentSlot entityEquipmentSlot, Type type) {
         super(name, armorMaterial, renderIndex, entityEquipmentSlot);
         this.type = type;
     }
@@ -29,7 +33,7 @@ public class ArmorAntman extends ArmorBase {
     @Override
     public boolean isWearingFullSet(EntityPlayer player) {
         for (ItemStack i : player.getArmorInventoryList()) {
-            if (!(i.getItem() instanceof ArmorAntman) || i.getItem().getRegistryName().toString().contains(this.type))
+            if (!(i.getItem() instanceof ArmorAntman) || i.getItem().getRegistryName().toString().contains(this.type.toString().toLowerCase()))
                 return false;
         }
         return true;
@@ -59,7 +63,7 @@ public class ArmorAntman extends ArmorBase {
          * @param renderIndex         the render index of the armor item
          * @param entityEquipmentSlot the equipment slot of the armor item
          */
-        public ChestplateAntman(String name, ArmorMaterial armorMaterial, int renderIndex, EntityEquipmentSlot entityEquipmentSlot, String type) {
+        public ChestplateAntman(String name, ArmorMaterial armorMaterial, int renderIndex, EntityEquipmentSlot entityEquipmentSlot, Type type) {
             super(name, armorMaterial, renderIndex, entityEquipmentSlot, type);
             this.scalingFactor = SCALING_FACTOR_NORMAL;
         }
@@ -91,15 +95,15 @@ public class ArmorAntman extends ArmorBase {
             else if (this.scalingFactor == SCALING_FACTOR_NORMAL) setScalingFactor(SCALING_FACTOR_SMALL);
         }
 
-        @Override
-        public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+
+        /*public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
             if (!(entityIn instanceof EntityPlayer) || !((EntityPlayer) entityIn).capabilities.allowFlying) return;
             EntityPlayer player = (EntityPlayer) entityIn;
             if (!isWearingFullSet(player) || stack.getItemDamage() != 1) {
                 player.capabilities.allowFlying = player.isCreative();
                 player.capabilities.isFlying = player.isCreative() && player.capabilities.isFlying;
             }
-        }
+        }*/
 
         /**
          * Let the player grow to the next bigger state
@@ -114,22 +118,22 @@ public class ArmorAntman extends ArmorBase {
          *
          * @param world     the world
          * @param player    the player {@link net.minecraft.entity.player.EntityPlayer}
-         * @param itemStack the {@link net.minecraft.item.ItemStack} of the ticking item
+         * @param stack     the {@link net.minecraft.item.ItemStack} of the ticking item
          */
         @Override
-        public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
-            if (isWearingFullSet(player) && itemStack.getItemDamage() == 1) {
-                player.capabilities.allowFlying = true;
+        public void onArmorTick(ItemStack stack, World world, EntityPlayer player) {
+            if (isWearingFullSet(player) && this.type == Type.THE_WASP) {
+                //player.capabilities.allowFlying = true;
             } else {
-                player.capabilities.allowFlying = player.isCreative();
-                player.capabilities.isFlying = player.isCreative();
+                //player.capabilities.allowFlying = player.isCreative();
+                //player.capabilities.isFlying = player.isCreative();
             }
             switch (Math.round(this.scalingFactor * 100)) {
                 case SCALING_FACTOR_SMALL_PERCENT:
-                    player.capabilities.setPlayerWalkSpeed(1F);
+                    player.abilities.setWalkSpeed(1F);
                     break;
                 case SCALING_FACTOR_LARGE_PERCENT:
-                    player.capabilities.setPlayerWalkSpeed(0.01F);
+                    player.abilities.setWalkSpeed(0.01F);
                     if (timer > 20) {
                         timer = 0;
                         player.getFoodStats().addExhaustion(30);
@@ -138,9 +142,14 @@ public class ArmorAntman extends ArmorBase {
                     break;
                 case SCALING_FACTOR_NORMAL_PERCENT:
                 default:
-                    player.capabilities.setPlayerWalkSpeed(0.1F);
+                    player.abilities.setWalkSpeed(0.1F);
                     break;
             }
         }
+    }
+
+    public enum Type{
+        THE_WASP,
+        ANTMAN
     }
 }

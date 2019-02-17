@@ -16,27 +16,29 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.client.FMLClientHandler;
+//import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+//import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import org.lwjgl.input.Keyboard;
+
+//import org.lwjgl.input.Keyboard;
 
 import java.util.ArrayList;
 
 @SuppressWarnings("Duplicates")
-@Mod.EventBusSubscriber(value = Side.CLIENT)
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = Reference.MODID, value = Dist.CLIENT)
 public class KeyTracker {
-
+/*
     public static final KeyTracker instance = new KeyTracker();
 
-    @SideOnly(Side.CLIENT)
-    static final Minecraft mc = Minecraft.getMinecraft();
+    @OnlyIn(Dist.CLIENT)
+    static final Minecraft mc = Minecraft.getInstance();
 
     private static int flyKey;
     private static int descendKey;
@@ -205,5 +207,5 @@ public class KeyTracker {
                 }
             }
         }
-    }
+    }*/
 }

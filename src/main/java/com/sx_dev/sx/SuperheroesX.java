@@ -24,7 +24,7 @@ public class SuperheroesX {
     public static final CreativeTabs SUPERHEROES_X_TAB_DC = new SuperheroesXTabs.DC();*/
 
     public SuperheroesX (){
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::preInit);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::serverStopping);
     }
 
@@ -41,7 +41,7 @@ public class SuperheroesX {
     /*==*/public static final boolean DEBUG = false;/*==*/
     /*==================================================*/
 
-    private void preInit(final FMLCommonSetupEvent event) {
+    private void setup(final FMLCommonSetupEvent event) {
         RegistryHandler.preInitRegistries(event);
         Integrations.preInitIntegrations();
     }

@@ -9,7 +9,7 @@ public class Section {
         this.client = client;
         this.name = name;
         this.id = id;
-        Config.configSections.add(this);
+        //Config.configSections.add(this);
     }
 
     public String toLowerCase() {

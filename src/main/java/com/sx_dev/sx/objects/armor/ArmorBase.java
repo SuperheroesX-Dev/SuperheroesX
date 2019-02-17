@@ -3,20 +3,21 @@ package com.sx_dev.sx.objects.armor;
 import com.sx_dev.sx.SuperheroesX;
 import com.sx_dev.sx.init.ItemInit;
 import com.sx_dev.sx.util.interfaces.IHasModel;
-import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.renderer.entity.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ArmorBase extends ItemArmor implements IHasModel {
 
     public ArmorBase(String name, ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) {
-		super(materialIn, renderIndexIn, equipmentSlotIn);
-		setUnlocalizedName(name);
+		super(materialIn, equipmentSlotIn, new Properties());
+		//setUnlocalizedName(name);
 		setRegistryName(name);
 
 		ItemInit.ITEMS.add(this);
@@ -31,7 +32,7 @@ public class ArmorBase extends ItemArmor implements IHasModel {
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
         ModelBiped armorModel = null;
 
@@ -49,6 +50,6 @@ public class ArmorBase extends ItemArmor implements IHasModel {
 
 	@Override
     public void registerModels() {
-        SuperheroesX.PROXY.registerItemRenderer(this, 0, "inventory");
+        //SuperheroesX.PROXY.registerItemRenderer(this, 0, "inventory");
 	}
 }

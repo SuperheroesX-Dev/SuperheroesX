@@ -1,21 +1,15 @@
 package com.sx_dev.sx.util.handlers;
 
 import com.sx_dev.sx.SuperheroesX;
-import com.sx_dev.sx.objects.armor.ArmorIronMan;
-import com.sx_dev.sx.util.network.message.MessageIronmanArmorSync;
-import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.NetHandlerPlayServer;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-/*import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;*/
 
 import java.lang.reflect.Field;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
+/*import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;*/
 
 @Mod.EventBusSubscriber
 public class LivingTickHandler {
@@ -26,14 +20,14 @@ public class LivingTickHandler {
 
     public LivingTickHandler() {
         try {
-            floatingTickCount = ReflectionHelper.findField(NetHandlerPlayServer.class, "floatingTickCount", "field_147365_f");
+            //floatingTickCount = ReflectionHelper.findField(NetHandlerPlayServer.class, "floatingTickCount", "field_147365_f");
         } catch (Exception e) {
             SuperheroesX.LOGGER.error("Unable to find field \"floatingTickCount\"");
             e.printStackTrace();
         }
     }
 
-    @SubscribeEvent
+    /*@SubscribeEvent
     public void onLivingTick(LivingEvent.LivingUpdateEvent evt) {
         if (!evt.getEntityLiving().world.isRemote) {
             EnumHandler.ParticleType jetpackState = null;
@@ -59,5 +53,5 @@ public class LivingTickHandler {
                 lastJetpackState.keySet().removeIf(entityId -> evt.getEntityLiving().world.getEntityByID(entityId) == null);
             }
         }
-    }
+    }*/
 }

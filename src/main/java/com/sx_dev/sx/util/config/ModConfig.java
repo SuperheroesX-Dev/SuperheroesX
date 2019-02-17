@@ -1,5 +1,5 @@
 package com.sx_dev.sx.util.config;
-
+/*
 import com.sx_dev.sx.util.Reference;
 import com.sx_dev.sx.util.handlers.EnumHandler;
 import net.minecraftforge.common.config.Config;
@@ -9,9 +9,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Config(modid = Reference.MODID)
-@Config.LangKey(Reference.CONFIG_LANG_PREFIX + "category.title")
+@Config.LangKey(Reference.CONFIG_LANG_PREFIX + "category.title")*/
 public class ModConfig {
-
+/*
     @Config.LangKey(Reference.CONFIG_LANG_PREFIX + "common.title")
     public static final CommonConfig common = new CommonConfig();
 
@@ -80,12 +80,12 @@ public class ModConfig {
          * Inject the new values and save to the config file when the config has been changed from the GUI.
          *
          * @param event The event
-         */
+         *//*
         @SubscribeEvent
         public static void onConfigChanged(final ConfigChangedEvent.OnConfigChangedEvent event) {
             if (event.getModID().equals(Reference.MODID)) {
                 ConfigManager.sync(Reference.MODID, Config.Type.INSTANCE);
             }
         }
-    }
+    }*/
 }

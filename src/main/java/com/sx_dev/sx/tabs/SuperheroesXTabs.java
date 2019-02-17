@@ -3,14 +3,14 @@ package com.sx_dev.sx.tabs;
 import com.sx_dev.sx.init.BlockInit;
 import com.sx_dev.sx.init.ItemInit;
 import mcp.MethodsReturnNonnullByDefault;
-import net.minecraft.creativetab.CreativeTabs;
+//import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-@MethodsReturnNonnullByDefault
-public abstract class SuperheroesXTabs extends CreativeTabs {
+//@MethodsReturnNonnullByDefault
+public abstract class SuperheroesXTabs/* extends CreativeTabs */{/*
     public SuperheroesXTabs(String label) {
         super("superheroesx_" + label);
         //this.setBackgroundImageName("superheroesx.png");
@@ -57,13 +57,13 @@ public abstract class SuperheroesXTabs extends CreativeTabs {
                 } else {
                     return item1.getItem().getUnlocalizedName(item1).compareTo(item2.getItem().getUnlocalizedName(item2));
                 }
-            });*/
+            });*//*
         }
 
         @Override
         public ItemStack getTabIconItem() {
             return new ItemStack(ItemInit.LOGO_MARVEL);
         }
-    }
+    }*/
 
 }

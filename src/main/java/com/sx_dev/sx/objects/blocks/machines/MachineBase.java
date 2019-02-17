@@ -1,127 +1,111 @@
 package com.sx_dev.sx.objects.blocks.machines;
 
-import com.sx_dev.sx.SuperheroesX;
 import com.sx_dev.sx.objects.blocks.BlockBase;
 import com.sx_dev.sx.util.Reference;
-import net.minecraft.block.BlockHorizontal;
-import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.*;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.DirectionProperty;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.energy.IEnergyStorage;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.Random;
 
 @SuppressWarnings({"unused", "WeakerAccess", "NullableProblems"})
 public final class MachineBase {
 
     private MachineBase(){}
 
-    public static abstract class BlockMachine extends BlockBase implements ITileEntityProvider {
+    public static abstract class BlockMachine extends BlockBase {
 
-        public static final PropertyDirection FACING = BlockHorizontal.FACING;
-        public static final PropertyBool ACTIVE = PropertyBool.create("active");
+        public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+        public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
         private final int guiId;
 
-        public BlockMachine(String name, Material material, int guiId) {
-            super(name, material);
+        public BlockMachine(String name, Properties properties, int guiId) {
+            super(name, properties.doesNotBlockMovement().sound(SoundType.METAL));
             this.guiId = guiId;
-            setDefaultState(getBlockState().getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(ACTIVE, false));
-        }
-
-        @Nonnull
-        @Override
-        public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-            return Item.getItemFromBlock(this);
-        }
-
-        @Nonnull
-        @Override
-        public ItemStack getPickBlock(@Nonnull IBlockState state, RayTraceResult target, @Nonnull World world, @Nonnull BlockPos pos, EntityPlayer player) {
-            return new ItemStack(getItemDropped(state, null, 0));
-        }
-
-        @Nonnull
-        @Override
-        public IBlockState getStateForPlacement(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull EnumFacing facing, float hitX, float hitY, float hitZ, int meta, @Nonnull EntityLivingBase placer, EnumHand hand) {
-            return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
+            setDefaultState(getDefaultState().with(FACING, EnumFacing.NORTH).with(ACTIVE, false));
         }
 
         @Override
-        public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        public ItemStack getPickBlock(IBlockState state, RayTraceResult target, IBlockReader world, BlockPos pos, EntityPlayer player) {
+            return new ItemStack(getItemDropped(state, null, pos, 0));
+        }
+
+        @Override
+        public IBlockState getStateForPlacement(IBlockState state, EnumFacing facing, IBlockState state2, IWorld world, BlockPos pos1, BlockPos pos2, EnumHand hand) {
+            return this.getDefaultState().with(FACING, facing);
+        }
+
+        @Override
+        public boolean onBlockActivated(IBlockState state, World worldIn, BlockPos pos, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
             if (!worldIn.isRemote) {
-                playerIn.openGui(SuperheroesX.INSTANCE, this.guiId, worldIn, pos.getX(), pos.getY(), pos.getZ());
+                //SuperheroesX.INSTANCE, this.guiId, worldIn, pos.getX(), pos.getY(), pos.getZ()
             }
             return true;
         }
 
         @Override
         public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-            worldIn.setBlockState(pos, this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
+            worldIn.setBlockState(pos, this.getDefaultState().with(FACING, placer.getHorizontalFacing().getOpposite()), 2);
         }
 
-        @Override
-        public abstract void breakBlock(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state);
+        /*@Override
+        public abstract void breakBlock(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state);*/
 
         @Override
-        public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
+        public void onBlockAdded(IBlockState state, World worldIn, BlockPos pos, IBlockState oldState) {
             if (!worldIn.isRemote) {
                 IBlockState north = worldIn.getBlockState(pos.north());
                 IBlockState south = worldIn.getBlockState(pos.south());
                 IBlockState west = worldIn.getBlockState(pos.west());
                 IBlockState east = worldIn.getBlockState(pos.east());
-                EnumFacing face = state.getValue(FACING);
+                EnumFacing face = state.get(FACING);
 
-                if (face == EnumFacing.NORTH && north.isFullBlock() && !south.isFullBlock()) face = EnumFacing.SOUTH;
-                else if (face == EnumFacing.SOUTH && south.isFullBlock() && !north.isFullBlock())
+                if (face == EnumFacing.NORTH && north.isFullCube() && !south.isFullCube()) face = EnumFacing.SOUTH;
+                else if (face == EnumFacing.SOUTH && south.isFullCube() && !north.isFullCube())
                     face = EnumFacing.NORTH;
-                else if (face == EnumFacing.WEST && west.isFullBlock() && !east.isFullBlock()) face = EnumFacing.EAST;
-                else if (face == EnumFacing.EAST && east.isFullBlock() && !west.isFullBlock()) face = EnumFacing.WEST;
-                worldIn.setBlockState(pos, state.withProperty(FACING, face), 2);
+                else if (face == EnumFacing.WEST && west.isFullCube() && !east.isFullCube()) face = EnumFacing.EAST;
+                else if (face == EnumFacing.EAST && east.isFullCube() && !west.isFullCube()) face = EnumFacing.WEST;
+                worldIn.setBlockState(pos, state.with(FACING, face), 2);
             }
         }
 
         @Nullable
         @Override
-        public abstract TileEntity createNewTileEntity(@Nonnull World world, int i);
-
-        @Nonnull
-        @Override
-        protected BlockStateContainer createBlockState() {
-            return new BlockStateContainer(this, ACTIVE, FACING);
-        }
+        public abstract TileEntity createTileEntity(IBlockState state, IBlockReader world);
 
         @Override
-        public int getMetaFromState(IBlockState state) {
-            return state.getValue(FACING).getIndex();
+        public boolean hasTileEntity(IBlockState state) {
+            return true;
         }
-
     }
 
     public static abstract class TileMachine extends TileEntity implements IInventory, ITickable {
 
         private NonNullList<ItemStack> inventory;
 
-        public TileMachine(int invSize) {
-            super();
+        public TileMachine(TileEntityType<?> type, int invSize) {
+            super(type);
             inventory = NonNullList.withSize(invSize, ItemStack.EMPTY);
         }
 
@@ -197,11 +181,10 @@ public final class MachineBase {
         }
 
         @Override
-        public abstract void update();
+        public abstract void tick();
 
         @Override
-        @Nonnull
-        public abstract String getName();
+        public abstract ITextComponent getName();
 
         @Override
         public abstract boolean hasCustomName();
@@ -211,11 +194,11 @@ public final class MachineBase {
         public abstract ITextComponent getDisplayName();
 
         @Override
-        public abstract void readFromNBT(NBTTagCompound compound);
+        public abstract void read(NBTTagCompound compound);
 
         @Nonnull
         @Override
-        public abstract NBTTagCompound writeToNBT(NBTTagCompound compound);
+        public abstract NBTTagCompound write(NBTTagCompound compound);
     }
 
     public static abstract class TileEnergyMachine extends TileMachine implements IEnergyStorage {
@@ -224,8 +207,8 @@ public final class MachineBase {
         private int energyStored;
         private int maxEnergyStored;
 
-        public TileEnergyMachine(int invSize, int maxEnergyStored, int maxTransfer) {
-            super(invSize);
+        public TileEnergyMachine(TileEntityType<?> type,int invSize, int maxEnergyStored, int maxTransfer) {
+            super(type, invSize);
             this.maxTransfer = maxTransfer;
             this.maxEnergyStored = maxEnergyStored;
         }
@@ -284,12 +267,12 @@ public final class MachineBase {
 
             for (int y = 0; y < 3; y++) {
                 for (int x = 0; x < 9; x++) {
-                    this.addSlotToContainer(new Slot(player, x + y * 9 + 9, 8 + x * 18, 84 + y * 18));
+                    this.addSlot(new Slot(player, x + y * 9 + 9, 8 + x * 18, 84 + y * 18));
                 }
             }
 
             for (int x = 0; x < 9; x++) {
-                this.addSlotToContainer(new Slot(player, x, 8 + x * 18, 142));
+                this.addSlot(new Slot(player, x, 8 + x * 18, 142));
             }
         }
 

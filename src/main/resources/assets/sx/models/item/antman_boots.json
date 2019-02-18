@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "sx:items/antman_boots"
+    "layer0": "sx:item/antman_boots"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "sx:item/shield_blocking",
   "textures": {
-    "layer0": "sx:items/shield_captain_america"
+    "layer0": "sx:item/shield_captain_america"
   }
 }

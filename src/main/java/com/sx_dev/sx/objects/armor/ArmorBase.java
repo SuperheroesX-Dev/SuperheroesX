@@ -1,6 +1,5 @@
 package com.sx_dev.sx.objects.armor;
 
-import com.sx_dev.sx.SuperheroesX;
 import com.sx_dev.sx.init.ItemInit;
 import com.sx_dev.sx.util.interfaces.IHasModel;
 import net.minecraft.client.renderer.entity.model.ModelBiped;
@@ -15,8 +14,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ArmorBase extends ItemArmor implements IHasModel {
 
-    public ArmorBase(String name, ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) {
-		super(materialIn, equipmentSlotIn, new Properties());
+    public ArmorBase(String name, ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn, Properties properties) {
+        super(materialIn, equipmentSlotIn, properties);
 		//setUnlocalizedName(name);
 		setRegistryName(name);
 

@@ -1,10 +1,10 @@
 package com.sx_dev.sx.objects.blocks;
 
+import com.sx_dev.sx.SuperheroesX;
 import com.sx_dev.sx.init.BlockInit;
 import com.sx_dev.sx.init.ItemInit;
 import com.sx_dev.sx.util.interfaces.IGeneratableOre;
 import com.sx_dev.sx.util.interfaces.IHasModel;
-import com.sx_dev.sx.util.interfaces.IOreDict;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -24,11 +24,10 @@ import javax.annotation.Nonnull;
 import java.util.Objects;
 import java.util.Random;
 
-public class OreBase extends Block implements IHasModel, IOreDict<OreBase>, IGeneratableOre {
+public class OreBase extends Block implements IHasModel, IGeneratableOre {
 
     private final ItemStack item;
     private final int exp;
-    private final String oreDictName;
     private final OreSpawnInfo oreSpawnInfo;
 
     /**
@@ -47,7 +46,7 @@ public class OreBase extends Block implements IHasModel, IOreDict<OreBase>, IGen
      * @param level      The harvest level of the Ore
      * @param item       The Item that drops from the Ore
      */
-    public OreBase(String name, Material material, int dimension, int veinSize, int rarity, int minHeight, int maxHeight, int exp, Block baseBlock, float hardness, float resistance, String toolClass, int level, ItemStack item, String oreDict) {
+    public OreBase(String name, Material material, int dimension, int veinSize, int rarity, int minHeight, int maxHeight, int exp, Block baseBlock, float hardness, float resistance, String toolClass, int level, ItemStack item) {
         super(Properties.create(material).hardnessAndResistance(hardness,resistance));
         //setUnlocalizedName(name);
         setRegistryName(name);
@@ -56,11 +55,10 @@ public class OreBase extends Block implements IHasModel, IOreDict<OreBase>, IGen
         //setHarvestLevel(toolClass, level);
         this.item = item;
         this.exp = exp;
-        this.oreDictName = "ore" + oreDict;
 
         BlockInit.BLOCKS.add(this);
         BlockInit.ORES.add(this);
-        ItemInit.ITEMS.add(new ItemBlock(this,new Item.Properties()).setRegistryName(this.getRegistryName()));
+        ItemInit.ITEMS.add(new ItemBlock(this, new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)).setRegistryName(this.getRegistryName()));
         oreSpawnInfo = new OreSpawnInfo(veinSize, rarity, dimension, minHeight, maxHeight, baseBlock);
     }
 
@@ -79,7 +77,7 @@ public class OreBase extends Block implements IHasModel, IOreDict<OreBase>, IGen
      * @param level      The harvest level of the Ore
      * @param item       The Item that drops from the Ore
      */
-    public OreBase(String name, Material material, int dimension, int veinSize, int rarity, int minHeight, int maxHeight, int exp, float hardness, float resistance, String toolClass, int level, ItemStack item, String oreDict) {
+    public OreBase(String name, Material material, int dimension, int veinSize, int rarity, int minHeight, int maxHeight, int exp, float hardness, float resistance, String toolClass, int level, ItemStack item) {
         super(Properties.create(material).hardnessAndResistance(hardness,resistance));
         //setUnlocalizedName(name);
         setRegistryName(name);
@@ -88,11 +86,10 @@ public class OreBase extends Block implements IHasModel, IOreDict<OreBase>, IGen
         //setHarvestLevel(toolClass, level);
         this.item = item;
         this.exp = exp;
-        this.oreDictName = "ore" + oreDict;
 
         BlockInit.BLOCKS.add(this);
         BlockInit.ORES.add(this);
-        ItemInit.ITEMS.add(new ItemBlock(this,new Item.Properties()).setRegistryName(this.getRegistryName()));
+        ItemInit.ITEMS.add(new ItemBlock(this, new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)).setRegistryName(this.getRegistryName()));
         oreSpawnInfo = new OreSpawnInfo(veinSize, rarity, dimension, minHeight, maxHeight, dimension == -1 ? Blocks.NETHERRACK : dimension == 1 ? Blocks.END_STONE : Blocks.STONE);
     }
 
@@ -110,7 +107,7 @@ public class OreBase extends Block implements IHasModel, IOreDict<OreBase>, IGen
      * @param toolClass  The tool class the Ore can be broken with
      * @param level      The harvest level of the Ore
      */
-    public OreBase(String name, Material material, int dimension, int veinSize, int rarity, int minHeight, int maxHeight, Block baseBlock, float hardness, float resistance, String toolClass, int level, String oreDict) {
+    public OreBase(String name, Material material, int dimension, int veinSize, int rarity, int minHeight, int maxHeight, Block baseBlock, float hardness, float resistance, String toolClass, int level) {
         super(Properties.create(material).hardnessAndResistance(hardness,resistance));
         //setUnlocalizedName(name);
         setRegistryName(name);
@@ -119,11 +116,10 @@ public class OreBase extends Block implements IHasModel, IOreDict<OreBase>, IGen
         //setHarvestLevel(toolClass, level);
         this.item = null;
         this.exp = 0;
-        this.oreDictName = "ore" + oreDict;
 
         BlockInit.BLOCKS.add(this);
         BlockInit.ORES.add(this);
-        ItemInit.ITEMS.add(new ItemBlock(this,new Item.Properties()).setRegistryName(this.getRegistryName()));
+        ItemInit.ITEMS.add(new ItemBlock(this, new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)).setRegistryName(this.getRegistryName()));
         oreSpawnInfo = new OreSpawnInfo(veinSize, rarity, dimension, minHeight, maxHeight, baseBlock);
     }
 
@@ -136,7 +132,7 @@ public class OreBase extends Block implements IHasModel, IOreDict<OreBase>, IGen
      * @param toolClass  The tool class the Ore can be broken with
      * @param level      The harvest level of the Ore
      */
-    public OreBase(String name, Material material, OreSpawnInfo info, float hardness, float resistance, String toolClass, int level, String oreDict) {
+    public OreBase(String name, Material material, OreSpawnInfo info, float hardness, float resistance, String toolClass, int level) {
         super(Properties.create(material).hardnessAndResistance(hardness,resistance));
         //setUnlocalizedName(name);
         setRegistryName(name);
@@ -145,12 +141,11 @@ public class OreBase extends Block implements IHasModel, IOreDict<OreBase>, IGen
         //setHarvestLevel(toolClass, level);
         this.item = null;
         this.exp = 0;
-        this.oreDictName = "ore" + oreDict;
         this.oreSpawnInfo = info;
 
         BlockInit.BLOCKS.add(this);
         BlockInit.ORES.add(this);
-        ItemInit.ITEMS.add(new ItemBlock(this,new Item.Properties()).setRegistryName(this.getRegistryName()));
+        ItemInit.ITEMS.add(new ItemBlock(this, new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)).setRegistryName(this.getRegistryName()));
     }
 
     /**
@@ -166,7 +161,7 @@ public class OreBase extends Block implements IHasModel, IOreDict<OreBase>, IGen
      * @param toolClass  The tool class the Ore can be broken with
      * @param level      The harvest level of the Ore
      */
-    public OreBase(String name, Material material, int dimension, int veinSize, int rarity, int minHeight, int maxHeight, float hardness, float resistance, String toolClass, int level, String oreDict) {
+    public OreBase(String name, Material material, int dimension, int veinSize, int rarity, int minHeight, int maxHeight, float hardness, float resistance, String toolClass, int level) {
         super(Properties.create(material).hardnessAndResistance(hardness,resistance));
         //setUnlocalizedName(name);
         setRegistryName(name);
@@ -175,11 +170,10 @@ public class OreBase extends Block implements IHasModel, IOreDict<OreBase>, IGen
         //setHarvestLevel(toolClass, level);
         this.item = null;
         this.exp = 0;
-        this.oreDictName = "ore" + oreDict;
 
         BlockInit.BLOCKS.add(this);
         BlockInit.ORES.add(this);
-        ItemInit.ITEMS.add(new ItemBlock(this,new Item.Properties()).setRegistryName(this.getRegistryName()));
+        ItemInit.ITEMS.add(new ItemBlock(this, new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)).setRegistryName(this.getRegistryName()));
         oreSpawnInfo = new OreSpawnInfo(veinSize, rarity, dimension, minHeight, maxHeight, dimension == -1 ? Blocks.NETHERRACK : dimension == 1 ? Blocks.END_STONE : Blocks.STONE);
     }
 
@@ -235,26 +229,6 @@ public class OreBase extends Block implements IHasModel, IOreDict<OreBase>, IGen
     @Override
     public boolean isToolEffective(IBlockState state, ToolType type) {
         return type != null && type.equals(this.getHarvestTool(state));
-    }
-
-    @Override
-    public String getOreDictName() {
-        return this.oreDictName;
-    }
-
-    @Override
-    public OreBase setOreDictName(String oreDictName) {
-        return this;
-    }
-
-    @Override
-    public boolean hasOreDictName() {
-        return this.oreDictName != null && this.oreDictName.length() > 0;
-    }
-
-    @Override
-    public OreBase getEntry() {
-        return this;
     }
 
     @Override

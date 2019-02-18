@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "sx:items/chestplate_ironman"
+    "layer0": "sx:item/chestplate_ironman"
   }
 }

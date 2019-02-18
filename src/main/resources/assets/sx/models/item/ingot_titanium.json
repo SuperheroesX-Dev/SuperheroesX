@@ -1,6 +1,6 @@
 {
-   "parent": "item/generated",
-   "textures": {
-       "layer0": "sx:items/ingot_titanium"
-   }
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "sx:item/ingot_titanium"
+  }
 }

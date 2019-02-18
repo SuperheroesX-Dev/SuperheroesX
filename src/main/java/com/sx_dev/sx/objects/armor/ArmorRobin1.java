@@ -1,5 +1,6 @@
 package com.sx_dev.sx.objects.armor;
 
+import com.sx_dev.sx.SuperheroesX;
 import com.sx_dev.sx.init.PotionInit;
 import net.minecraft.client.renderer.entity.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
@@ -15,7 +16,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ArmorRobin1 extends ArmorBase {
     public ArmorRobin1(String name, ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) {
-        super(name, materialIn, renderIndexIn, equipmentSlotIn);
+        super(name, materialIn, renderIndexIn, equipmentSlotIn, new Properties().group(SuperheroesX.SUPERHEROES_X_TAB_DC));
     }
 
     @Override

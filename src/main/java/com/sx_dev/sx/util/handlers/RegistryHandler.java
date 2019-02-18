@@ -5,8 +5,6 @@ import com.sx_dev.sx.init.*;
 import com.sx_dev.sx.util.Reference;
 import com.sx_dev.sx.util.integration.Integrations;
 import com.sx_dev.sx.util.interfaces.IHasModel;
-//import com.sx_dev.sx.util.interfaces.IOreDict;
-//import com.sx_dev.sx.world.gen.WorldGenCustomOres;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.init.Items;
@@ -16,16 +14,17 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionType;
 import net.minecraft.potion.PotionUtils;
-import net.minecraft.util.registry.IRegistry;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+
+//import com.sx_dev.sx.util.interfaces.IOreDict;
+//import com.sx_dev.sx.world.gen.WorldGenCustomOres;
 /*import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;*/
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 /*import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.oredict.OreDictionary;*/
@@ -60,7 +59,7 @@ public class RegistryHandler {
         if (Integrations.TC) {
             FluidInit.FLUIDS.addAll(FluidInit.TC_FLUIDS);
         }
-        for (Fluid fluid : FluidInit.FLUIDS) {
+        /*for (Fluid fluid : FluidInit.FLUIDS) {
             if (fluid != null) {
                 //IRegistry.field_212619_h.put(fluid.getRegistryName(),fluid); // fluid has to be registered
                 //FluidRegistry.addBucketForFluid(fluid); // add a bucket for the fluid
@@ -70,7 +69,7 @@ public class RegistryHandler {
                 //}
             }
 
-        }
+        }*/
     }
 
     @SubscribeEvent

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "sx:items/leggings_ironman"
+    "layer0": "sx:item/leggings_ironman"
   }
 }

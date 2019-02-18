@@ -1,6 +1,6 @@
 {
-    "parent": "item/handheld",
-    "textures": {
-        "layer0": "sx:items/deadpool_katana"
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "sx:item/deadpool_katana"
   }
 }

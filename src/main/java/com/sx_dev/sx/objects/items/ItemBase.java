@@ -1,6 +1,5 @@
 package com.sx_dev.sx.objects.items;
 
-import com.sx_dev.sx.SuperheroesX;
 import com.sx_dev.sx.init.ItemInit;
 import com.sx_dev.sx.util.interfaces.IHasModel;
 import com.sx_dev.sx.util.interfaces.IOreDict;
@@ -12,7 +11,7 @@ public class ItemBase extends Item implements IHasModel, IOreDict<ItemBase> {
 
     public ItemBase(String name)
 	{
-        super(new Item.Properties());
+        super(new Properties());
         //setUnlocalizedName(name);
 		setRegistryName(name);
 		

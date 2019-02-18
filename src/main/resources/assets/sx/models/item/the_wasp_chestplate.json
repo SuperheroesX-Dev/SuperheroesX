@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "sx:items/wasp_chestplate"
+    "layer0": "sx:item/wasp_chestplate"
   }
 }

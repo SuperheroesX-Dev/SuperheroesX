@@ -1,6 +1,6 @@
 {
-   "parent": "item/generated",
-   "textures": {
-       "layer0": "sx:items/spandex_cloth_white"
-   }
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "sx:item/spandex_cloth_white"
+  }
 }

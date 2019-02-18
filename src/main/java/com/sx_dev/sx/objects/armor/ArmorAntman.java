@@ -1,13 +1,9 @@
 package com.sx_dev.sx.objects.armor;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityItem;
+import com.sx_dev.sx.SuperheroesX;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.entity.player.PlayerCapabilities;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -16,7 +12,7 @@ public class ArmorAntman extends ArmorBase {
     Type type;
 
     public ArmorAntman(String name, ArmorMaterial armorMaterial, int renderIndex, EntityEquipmentSlot entityEquipmentSlot, Type type) {
-        super(name, armorMaterial, renderIndex, entityEquipmentSlot);
+        super(name, armorMaterial, renderIndex, entityEquipmentSlot, new Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MARVEL));
         this.type = type;
     }
 

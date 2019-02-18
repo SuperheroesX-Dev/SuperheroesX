@@ -1,7 +1,7 @@
 package com.sx_dev.sx.objects.armor;
 
+import com.sx_dev.sx.SuperheroesX;
 import com.sx_dev.sx.init.ItemInit;
-import com.sx_dev.sx.util.interfaces.IHUDInfoProvider;
 import net.minecraft.inventory.EntityEquipmentSlot;
 
 /*
@@ -67,8 +67,10 @@ public class ArmorIronMan extends ArmorBase /*implements ISpecialArmor*/ {/*
     protected double absorbRatio = 1D;
     protected final EntityEquipmentSlot entityEquipmentSlot;
 
-    */public ArmorIronMan(String name, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) {
-        super(name, ItemInit.ARMOR_IRONMAN, renderIndexIn, equipmentSlotIn);
+    */
+
+    public ArmorIronMan(String name, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn, Properties properties) {
+        super(name, ItemInit.ARMOR_IRONMAN, renderIndexIn, equipmentSlotIn, properties);
         //entityEquipmentSlot = equipmentSlotIn;
     }/*
 
@@ -260,7 +262,7 @@ public class ArmorIronMan extends ArmorBase /*implements ISpecialArmor*/ {/*
 
 
         */public ChestplateIronMan() {
-            super("ironman_chestplate", 1, EntityEquipmentSlot.CHEST);
+        super("ironman_chestplate", 1, EntityEquipmentSlot.CHEST, new Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MARVEL));
             //this.setHasSubtypes(true);
             //this.setMaxDamage(0);
             //setMultiplier(new ItemStack(this), this.multiplier < 1 ? 1 : this.multiplier);

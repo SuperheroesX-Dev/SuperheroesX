@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "sx:items/strengthened_cloth"
+    "layer0": "sx:item/strengthened_cloth"
   }
 }

@@ -1,5 +1,6 @@
 package com.sx_dev.sx.objects.armor;
 
+import com.sx_dev.sx.SuperheroesX;
 import com.sx_dev.sx.init.PotionInit;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
@@ -11,7 +12,7 @@ import net.minecraft.world.World;
 
 public class ArmorSuperboy extends ArmorBase {
     public ArmorSuperboy(String name, ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) {
-        super(name, materialIn, renderIndexIn, equipmentSlotIn);
+        super(name, materialIn, renderIndexIn, equipmentSlotIn, new Properties().group(SuperheroesX.SUPERHEROES_X_TAB_DC));
     }
 
     @Override

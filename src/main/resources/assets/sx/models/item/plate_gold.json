@@ -1,6 +1,6 @@
 {
-   "parent": "item/generated",
-   "textures": {
-       "layer0": "sx:items/plate_gold"
-   }
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "sx:item/plate_gold"
+  }
 }

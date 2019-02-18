@@ -1,5 +1,6 @@
 package com.sx_dev.sx.objects.armor;
 
+import com.sx_dev.sx.SuperheroesX;
 import com.sx_dev.sx.init.PotionInit;
 import net.minecraft.client.renderer.entity.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,7 +17,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class ArmorBlackPanther extends ArmorBase {
 
     public ArmorBlackPanther(String name, ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) {
-        super(name, materialIn, renderIndexIn, equipmentSlotIn);
+        super(name, materialIn, renderIndexIn, equipmentSlotIn, new Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MARVEL));
     }
 
     @Override
@@ -26,11 +27,11 @@ public class ArmorBlackPanther extends ArmorBase {
             if (player.isSprinting()) {
                 player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 0, 4, true, false));
             }
-            player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 0, 3, true, false));
-            player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 3, 1, true, false));
-            player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 0, 5, true, false));
-            player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 0, 5, true, false));
-            player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, 0, 3, true, false));
+            player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 5, 3, true, false));
+            player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 5, 1, true, false));
+            player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 5, 5, true, false));
+            player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 5, 5, true, false));
+            player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, 5, 3, true, false));
         }
     }
 

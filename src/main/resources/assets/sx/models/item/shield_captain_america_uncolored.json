@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "sx:items/shield_captain_america_uncolored"
+    "layer0": "sx:item/shield_captain_america_uncolored"
   }
 }

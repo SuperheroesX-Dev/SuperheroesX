@@ -1,5 +1,6 @@
 package com.sx_dev.sx.objects.armor;
 
+import com.sx_dev.sx.SuperheroesX;
 import com.sx_dev.sx.init.PotionInit;
 import net.minecraft.client.renderer.entity.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,7 +17,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class ArmorDeadpool extends ArmorBase {
 
     public ArmorDeadpool(String name, ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) {
-        super(name, materialIn, renderIndexIn, equipmentSlotIn);
+        super(name, materialIn, renderIndexIn, equipmentSlotIn, new Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MARVEL));
     }
 
     @Override
@@ -26,7 +27,7 @@ public class ArmorDeadpool extends ArmorBase {
             player.addPotionEffect(new PotionEffect(MobEffects.SATURATION, 5, 1, true, false));
             player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 5, 1, true, false));
             player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 5, 1, true, false));
-            player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 5, 2, true, false));
+            player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 5, 3, true, false));
         }
     }
 

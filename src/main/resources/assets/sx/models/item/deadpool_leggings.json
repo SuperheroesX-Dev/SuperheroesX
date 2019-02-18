@@ -1,6 +1,6 @@
 {
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "sx:items/deadpool_leggings"
-    }
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "sx:item/deadpool_leggings"
+  }
 }

@@ -1,6 +1,6 @@
 {
-   "parent": "item/generated",
-   "textures": {
-       "layer0": "sx:items/mini_arc_reactor_mk2"
-   }
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "sx:item/mini_arc_reactor_mk2"
+  }
 }

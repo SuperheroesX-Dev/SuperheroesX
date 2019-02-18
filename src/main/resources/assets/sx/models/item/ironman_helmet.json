@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "sx:items/helmet_ironman"
+    "layer0": "sx:item/helmet_ironman"
   }
 }

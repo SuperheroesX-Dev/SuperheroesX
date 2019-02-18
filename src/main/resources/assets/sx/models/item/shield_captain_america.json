@@ -1,7 +1,7 @@
 {
   "parent": "sx:item/shield",
   "textures": {
-    "layer0": "sx:items/shield_captain_america"
+    "layer0": "sx:item/shield_captain_america"
   },
   "overrides": [
     {

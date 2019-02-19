@@ -1,6 +1,7 @@
 package com.sx_dev.sx.util.handlers;
 
 import com.sx_dev.sx.SuperheroesX;
+import com.sx_dev.sx.util.Reference;
 import net.minecraftforge.fml.common.Mod;
 
 import java.lang.reflect.Field;
@@ -11,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;*/
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = Reference.MODID)
 public class LivingTickHandler {
     private static final Map<Integer, EnumHandler.ParticleType> lastJetpackState = new ConcurrentHashMap<Integer, EnumHandler.ParticleType>();
 

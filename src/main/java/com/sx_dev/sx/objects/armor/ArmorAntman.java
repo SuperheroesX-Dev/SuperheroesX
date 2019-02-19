@@ -3,16 +3,17 @@ package com.sx_dev.sx.objects.armor;
 import com.sx_dev.sx.SuperheroesX;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import static com.sx_dev.sx.init.ItemInit.ARMOR_ANTMAN;
 
 public class ArmorAntman extends ArmorBase {
 
     Type type;
 
-    public ArmorAntman(String name, ArmorMaterial armorMaterial, int renderIndex, EntityEquipmentSlot entityEquipmentSlot, Type type) {
-        super(name, armorMaterial, renderIndex, entityEquipmentSlot, new Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MARVEL));
+    public ArmorAntman(String name, EntityEquipmentSlot entityEquipmentSlot, Type type) {
+        super(name, ARMOR_ANTMAN, entityEquipmentSlot, new Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MARVEL));
         this.type = type;
     }
 
@@ -55,12 +56,10 @@ public class ArmorAntman extends ArmorBase {
 
         /**
          * @param name                the registry name of the item
-         * @param armorMaterial       the armor material
-         * @param renderIndex         the render index of the armor item
          * @param entityEquipmentSlot the equipment slot of the armor item
          */
-        public ChestplateAntman(String name, ArmorMaterial armorMaterial, int renderIndex, EntityEquipmentSlot entityEquipmentSlot, Type type) {
-            super(name, armorMaterial, renderIndex, entityEquipmentSlot, type);
+        public ChestplateAntman(String name, EntityEquipmentSlot entityEquipmentSlot, Type type) {
+            super(name, entityEquipmentSlot, type);
             this.scalingFactor = SCALING_FACTOR_NORMAL;
         }
 

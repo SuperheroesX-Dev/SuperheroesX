@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.entity.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.ArmorMaterial;
+import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
@@ -14,7 +14,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ArmorBase extends ItemArmor implements IHasModel {
 
-    public ArmorBase(String name, ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn, Properties properties) {
+    public ArmorBase(String name, IArmorMaterial materialIn, EntityEquipmentSlot equipmentSlotIn, Properties properties) {
         super(materialIn, equipmentSlotIn, properties);
 		//setUnlocalizedName(name);
 		setRegistryName(name);

@@ -4,6 +4,7 @@ import com.google.common.collect.Multimap;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 
 @SuppressWarnings("Duplicates")
@@ -12,8 +13,8 @@ public class WeaponizedShield extends ShieldBase {
     private final double attackDamage;
     private final double attackSpeed;
 
-    public WeaponizedShield(String name, int blockTime, double attackDamage, double attackSpeed, int enchantability, int maxDamage, String repairIngot) {
-        super(name, blockTime, enchantability, maxDamage, repairIngot);
+    public WeaponizedShield(String name, int blockTime, double attackDamage, double attackSpeed, int enchantability, int maxDamage, String repairIngot, ItemGroup group) {
+        super(name, blockTime, enchantability, maxDamage, repairIngot, group);
         this.attackDamage = attackDamage;
         this.attackSpeed = attackSpeed;
     }

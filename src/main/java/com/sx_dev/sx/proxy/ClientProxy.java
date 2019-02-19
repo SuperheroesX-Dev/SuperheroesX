@@ -1,20 +1,13 @@
 package com.sx_dev.sx.proxy;
 
-import com.sx_dev.sx.util.Reference;
 import com.sx_dev.sx.util.client.handler.HUDTickHandler;
-import com.sx_dev.sx.util.client.handler.KeyTracker;
-import com.sx_dev.sx.util.handlers.AntmanSizeHandler;
 import com.sx_dev.sx.util.handlers.EnumHandler;
 import com.sx_dev.sx.util.math.Pos3D;
 import com.sx_dev.sx.util.misc.ParticleUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.model.ModelResourceLocation;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.Random;
@@ -70,7 +63,6 @@ public class ClientProxy extends CommonProxy
 
         //Mod.EventBusSubscriber.Bus.MOD.bus().get().register(KeyTracker.instance);
         Mod.EventBusSubscriber.Bus.MOD.bus().get().register(new HUDTickHandler());
-        Mod.EventBusSubscriber.Bus.MOD.bus().get().register(new AntmanSizeHandler());
     }
 
     /*@Override

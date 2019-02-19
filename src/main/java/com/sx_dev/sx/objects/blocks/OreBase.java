@@ -184,7 +184,7 @@ public class OreBase extends Block implements IHasModel, IGeneratableOre {
 
     @Override
     public Item asItem() {
-        return this.item != null ? item.getItem() : Item.getItemFromBlock(this);
+        return this.item != null ? item.getItem() : super.asItem();
     }
 
     @Override
@@ -195,7 +195,7 @@ public class OreBase extends Block implements IHasModel, IGeneratableOre {
 
     @Override
     public int getItemsToDropCount(IBlockState state, int fortune, World worldIn, BlockPos pos, Random random) {
-        if (fortune > 0 && Item.getItemFromBlock(this) != this.getItemDropped(state, worldIn, pos, fortune)) {
+        if (fortune > 0 && super.asItem() != this.getItemDropped(state, worldIn, pos, fortune)) {
             int i = random.nextInt(fortune + 2) - 1;
 
             if (i < 0) {
@@ -209,7 +209,7 @@ public class OreBase extends Block implements IHasModel, IGeneratableOre {
     }
 
     public int quantityDropped(Random random, World world, BlockPos pos) {
-        return (Item.getItemFromBlock(this) != this.getItemDropped(this.getDefaultState(), world, pos, 0)) ? 1 + random.nextInt(2) : 1;
+        return (super.asItem() != this.getItemDropped(this.getDefaultState(), world, pos, 0)) ? 1 + random.nextInt(2) : 1;
     }
 
     @Override
@@ -220,7 +220,7 @@ public class OreBase extends Block implements IHasModel, IGeneratableOre {
 
     @Override
     public int getExpDrop(IBlockState state, IWorldReader world, BlockPos pos, int fortune) {
-        if (this.getItemDropped(state, (World) world, pos, fortune) != Item.getItemFromBlock(this) && this.item != null) {
+        if (this.getItemDropped(state, (World) world, pos, fortune) != super.asItem() && this.item != null) {
             return RANDOM.nextInt(this.exp);
         }
         return 0;

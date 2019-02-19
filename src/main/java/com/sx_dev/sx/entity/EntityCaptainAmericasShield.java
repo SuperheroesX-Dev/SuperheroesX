@@ -1,7 +1,8 @@
 package com.sx_dev.sx.entity;
 
 import com.google.common.collect.Iterables;
-import com.sx_dev.sx.init.EnchantmentInit;
+import com.sx_dev.sx.SuperheroesX;
+import com.sx_dev.sx.util.Reference;
 import com.sx_dev.sx.util.helpers.ItemStackHelper;
 import com.sx_dev.sx.util.helpers.PlayerHelper;
 import com.sx_dev.sx.util.misc.DataWatcherItemStack;
@@ -46,7 +47,9 @@ import java.util.*;
 
 public class EntityCaptainAmericasShield extends Entity implements IEntityAdditionalSpawnData, IProjectile {
     public final static WeakHashMap<Object, WeakReference<EntityCaptainAmericasShield>> shieldOwners = new WeakHashMap<>();
-    public final static WeakHashMap<Object, WeakReference<EntityCaptainAmericasShield>> shieldOwnersClient = /*SuperheroesX.PROXY.nullifyOnServer(*/new WeakHashMap<>()/*)*/;
+    public final static WeakHashMap<Object, WeakReference<EntityCaptainAmericasShield>> shieldOwnersClient = SuperheroesX.PROXY.nullifyOnServer(new WeakHashMap<>());
+
+    public static final EntityType<EntityCaptainAmericasShield> ENTITY_CAPTAIN_AMERICAS_SHIELD_TYPE = EntityType.register("" + Reference.ENTITY_SHIELD, EntityType.Builder.create(EntityCaptainAmericasShield.class, EntityCaptainAmericasShield::new));
 
     private static final DataParameter<Byte> DATAWATCHER_OUT_FLAG = EntityDataManager.createKey(EntityCaptainAmericasShield.class, DataSerializers.BYTE);
     private static final DataParameter<Rotations> DATAWATCHER_HOME = EntityDataManager.createKey(EntityCaptainAmericasShield.class, DataSerializers.ROTATIONS);
@@ -58,19 +61,16 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
     private int potionColor = 0;
     private UUID owner = null;
 
-    public EntityCaptainAmericasShield(World worldIn) {
-        this(EntityType.ARROW, worldIn);//TODO
-    }
 
-    public EntityCaptainAmericasShield(EntityType<?> type, World worldIn) {
-        super(type, worldIn);
+    public EntityCaptainAmericasShield(World worldIn) {
+        super(ENTITY_CAPTAIN_AMERICAS_SHIELD_TYPE, worldIn);
         this.setSize(0.8F, 0.1F);
         noClip = true;
         this.setBoundingBox(BOUNDING_BOX.offset(this.posX, this.posY, this.posZ));
     }
 
-    public EntityCaptainAmericasShield(EntityType<?> type, World worldIn, double x, double y, double z, ItemStack stack, Object owner) {
-        this(type, worldIn);
+    public EntityCaptainAmericasShield(World worldIn, double x, double y, double z, ItemStack stack, Object owner) {
+        this(worldIn);
         setLocationAndAngles(x, y, z, 0, 0);
         setHome((float) posX, (float) posY, (float) posZ);
         DataWatcherItemStack.setStack(dataManager, stack, DATAWATCHER_STACK);
@@ -78,8 +78,8 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
         this.setBoundingBox(BOUNDING_BOX.offset(this.posX, this.posY, this.posZ));
     }
 
-    public EntityCaptainAmericasShield(EntityType<?> type, World worldIn, EntityLivingBase shooter, ItemStack stack) {
-        this(type, worldIn);
+    public EntityCaptainAmericasShield(World worldIn, EntityLivingBase shooter, ItemStack stack) {
+        this(worldIn);
 
         DataWatcherItemStack.setStack(dataManager, stack, DATAWATCHER_STACK);
 
@@ -99,7 +99,7 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
         this.motionX = (double) (-MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI));
         this.motionZ = (double) (MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI));
         this.motionY = (double) (-MathHelper.sin(this.rotationPitch / 180.0F * (float) Math.PI));
-        this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, 1.25F * (1 + 0.3F * getEnchantmentLevel(EnchantmentInit.SHIELD_THROW_SPEED)), 0.0F);
+        this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, 1.25F * (1 + 0.3F/* * getEnchantmentLevel(EnchantmentInit.SHIELD_THROW_SPEED)*/), 0.0F);
 
         setHome((float) eyeVec.x, (float) eyeVec.y, (float) eyeVec.z);
         this.setBoundingBox(BOUNDING_BOX.offset(this.posX, this.posY, this.posZ));
@@ -249,7 +249,7 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
         double acceleration = flyTime * 0.001 + (returning ? 0.05 : 0);
 
         if (returning)
-            acceleration *= (1 + getEnchantmentLevel(EnchantmentInit.SHIELD_THROW_SPEED));
+            acceleration *= (1 /*+ getEnchantmentLevel(EnchantmentInit.SHIELD_THROW_SPEED)*/);
 
         if ((d < 1e-4D && flyTime > 25) || acceleration > 1) {
             setMeDead();
@@ -390,7 +390,7 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
 
 
             if (!returning && entity != null) {
-                if (entity.attackEntityFrom(new DamageSourceCapShield(this, owner), 4.0F + 4 * getEnchantmentLevel(EnchantmentInit.SHIELD_THROW_DAMAGE))) {
+                if (entity.attackEntityFrom(new DamageSourceCapShield(this, owner), 4.0F + 4 /* * getEnchantmentLevel(EnchantmentInit.SHIELD_THROW_DAMAGE)*/)) {
                     if (entity instanceof EntityLivingBase) {
                         motionX = motionY = motionZ = 0;
                         dataManager.set(DATAWATCHER_OUT_FLAG, (byte) 1);
@@ -427,7 +427,7 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
             }
         }
 
-        if (movingobjectposition != null || distanceMooved >= 5 + 2 * getEnchantmentLevel(EnchantmentInit.SHIELD_THROW_RANGE)) {
+        if (movingobjectposition != null || distanceMooved >= 5 + 2 /** getEnchantmentLevel(EnchantmentInit.SHIELD_THROW_RANGE)*/) {
             motionX = motionY = motionZ = 0;
             dataManager.set(DATAWATCHER_OUT_FLAG, (byte) 1);
         }

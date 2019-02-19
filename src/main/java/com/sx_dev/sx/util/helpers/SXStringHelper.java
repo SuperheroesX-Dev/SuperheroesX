@@ -1,8 +1,9 @@
 package com.sx_dev.sx.util.helpers;
 
 import com.sx_dev.sx.util.Reference;
-import com.sx_dev.sx.util.config.ModConfig;
 import com.sx_dev.sx.util.handlers.EnumHandler;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 
 import java.text.DecimalFormat;
@@ -18,14 +19,14 @@ public abstract class SXStringHelper {
     }
 
 
-    public static String getStateText(boolean state) {
+    public static ITextComponent getStateText(boolean state) {
         String onOrOff = state ? TextFormatting.GREEN + localize("tooltip.on") : TextFormatting.RED + localize("tooltip.off");
-        return TextFormatting.GOLD + localize("tooltip.state") + ": " + onOrOff;
+        return new TextComponentString(localize("tooltip.state") + ": " + onOrOff).applyTextStyle(TextFormatting.GOLD);
     }
 
-    public static String getHoverModeText(boolean state) {
+    public static ITextComponent getHoverModeText(boolean state) {
         String enabledOrDisabled = state ? TextFormatting.GREEN + localize("tooltip.enabled") : TextFormatting.RED + localize("tooltip.disabled");
-        return TextFormatting.GOLD + localize("tooltip.hoverMode") + ": " + enabledOrDisabled;
+        return new TextComponentString(localize("tooltip.hoverMode") + ": " + enabledOrDisabled).applyTextStyle(TextFormatting.GOLD);
     }
 
 //	public static String getChargerStateText(boolean state) {
@@ -105,9 +106,9 @@ public abstract class SXStringHelper {
         return TextFormatting.GRAY + getFormattedNumber(amount) + " / " + getFormattedNumber(max) + " RF";
     }
 
-    /*public static boolean canShowDetails() {
-        return !ModConfig.client.hud.holdShiftForDetails *//*|| StringHelper.isShiftKeyDown()*//*;
-    }*/
+    public static boolean canShowDetails() {
+        return true/*!ModConfig.client.hud.holdShiftForDetails || StringHelper.isShiftKeyDown()*/;
+    }
 
     public static String localize(String unlocalized, Object... args) {
         return localize(unlocalized, true, args);
@@ -122,7 +123,7 @@ public abstract class SXStringHelper {
         }
     }
 
-    public static void addDescriptionLines(List<String> list, String base, String color) {
+    public static void addDescriptionLines(List<ITextComponent> list, String base, TextFormatting color) {
         int i = 1;
         while (true) {
             String unlocalized = Reference.PREFIX + "tooltip." + base + ".description." + i;
@@ -130,12 +131,16 @@ public abstract class SXStringHelper {
             if (unlocalized.equals(localized)) {
                 break;
             }
-            list.add(color + localized);
+            if (color != null) {
+                list.add(new TextComponentString(localized).applyTextStyle(color));
+            } else {
+                list.add(new TextComponentString(localized));
+            }
             i++;
         }
     }
 
-    public static void addDescriptionLines(List<String> list, String base) {
-        addDescriptionLines(list, base, "");
+    public static void addDescriptionLines(List<ITextComponent> list, String base) {
+        addDescriptionLines(list, base, null);
     }
 }

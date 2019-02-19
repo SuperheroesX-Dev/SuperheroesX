@@ -2,6 +2,7 @@ package com.sx_dev.sx.util.handlers;
 
 import com.sx_dev.sx.init.ItemInit;
 import com.sx_dev.sx.init.PotionInit;
+import com.sx_dev.sx.util.Reference;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -19,13 +20,13 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = Reference.MODID)
 public class SuperheroesXEventHandler {
 
     private static final Map<Pair<String,UUID>, List<ItemStack>> eastereggs = new HashMap<>();
 
     private static void addToMap(){
-        ItemStack container = new ItemStack(() -> ItemInit.CHESTPLATE_IRONMAN, 1);
+        ItemStack container = new ItemStack(ItemInit.CHESTPLATE_IRONMAN, 1);
         if (!container.hasTag()) {
             container.setTag(new NBTTagCompound());
         }

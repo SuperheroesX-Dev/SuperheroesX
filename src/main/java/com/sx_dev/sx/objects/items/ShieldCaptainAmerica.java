@@ -5,7 +5,6 @@ import com.sx_dev.sx.SuperheroesX;
 import com.sx_dev.sx.entity.EntityCaptainAmericasShield;
 import com.sx_dev.sx.util.Reference;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.IItemPropertyGetter;
@@ -29,7 +28,7 @@ public class ShieldCaptainAmerica extends WeaponizedShield {
     private int ticks;
 
     public ShieldCaptainAmerica() {
-        super("shield_captain_america", Integer.MAX_VALUE, 8, -2.4000000953674316D, 10, 0, "");
+        super("shield_captain_america", Integer.MAX_VALUE, 8, -2.4000000953674316D, 10, 0, "", SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
         addPropertyOverride(new ResourceLocation("throwing"), new IItemPropertyGetter() {
             @OnlyIn(Dist.CLIENT)
             public float call(@Nonnull ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
@@ -65,7 +64,7 @@ public class ShieldCaptainAmerica extends WeaponizedShield {
             if (!canThrowShield(playerIn, EntityCaptainAmericasShield.shieldOwners))
                 return;
 
-            EntityCaptainAmericasShield shieldCap = new EntityCaptainAmericasShield(EntityType.ARROW, worldIn, playerIn, stack.copy());//TODO
+            EntityCaptainAmericasShield shieldCap = new EntityCaptainAmericasShield(worldIn, playerIn, stack.copy());
 
             worldIn.spawnEntity(shieldCap);
         }

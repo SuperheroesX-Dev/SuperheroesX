@@ -1,13 +1,9 @@
 package com.sx_dev.sx.objects.items;
 
-import com.google.common.base.Strings;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumAction;
-import net.minecraft.item.IItemPropertyGetter;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
@@ -15,7 +11,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nullable;
 
@@ -24,8 +19,8 @@ public class ShieldBase extends ItemBase {
     private int enchantability;
     private String repairIngot;
 
-    public ShieldBase(String name, int blockTime, int enchantability, int maxDamage, String repairIngot) {
-        super(name, new Properties().maxStackSize(1).defaultMaxDamage(maxDamage));
+    public ShieldBase(String name, int blockTime, int enchantability, int maxDamage, String repairIngot, ItemGroup group) {
+        super(name, new Properties().maxStackSize(1).defaultMaxDamage(maxDamage).group(group));
         this.blockTime = blockTime;
         this.enchantability = enchantability;
         this.repairIngot = repairIngot;

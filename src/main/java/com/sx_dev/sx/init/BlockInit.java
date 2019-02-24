@@ -21,9 +21,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
 
-import static com.sx_dev.sx.SuperheroesX.DEBUG;
-import static com.sx_dev.sx.SuperheroesX.LOGGER;
-
 public enum BlockInit implements IBlockProvider, IItemProvider {
 
     ORE_VIBRANIUM(() -> new OreBase("ore_vibranium", Material.ROCK, new IGeneratableOre.OreSpawnInfo(6, 2, 0, 5, 12, Blocks.STONE, Arrays.asList(Biomes.SAVANNA, Biomes.SAVANNA_PLATEAU, Biomes.SHATTERED_SAVANNA, Biomes.SHATTERED_SAVANNA_PLATEAU)), 8.0F, 15.0F, "pickaxe", 4), Group.MARVEL),
@@ -53,7 +50,6 @@ public enum BlockInit implements IBlockProvider, IItemProvider {
     @Override
     @Nonnull
     public Item asItem() {
-        if (DEBUG) LOGGER.info(this.block.get().getRegistryName().toString());
         return asBlock().asItem();
     }
 

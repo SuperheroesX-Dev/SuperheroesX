@@ -1,7 +1,7 @@
 package com.sx_dev.sx.objects.armor;
 
 import com.sx_dev.sx.SuperheroesX;
-import com.sx_dev.sx.init.PotionInit;
+import com.sx_dev.sx.init.PotionEffectInit;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -22,7 +22,7 @@ public class ArmorSuperboy extends ArmorBase {
             super.onArmorTick(stack, world, player);
 
             player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 3, 1, false, false));
-            player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 3, 4, false, false));
+            player.addPotionEffect(new PotionEffect(PotionEffectInit.INVISIBLE_STRENGTH.asPotionEffect(), 3, 4, false, false));
             player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 3, 2, false, false));
             player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, 3, 2, false, false));
             player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 3, 4, false, false));

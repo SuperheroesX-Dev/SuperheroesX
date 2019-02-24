@@ -1,7 +1,7 @@
 package com.sx_dev.sx.objects.armor;
 
 import com.sx_dev.sx.SuperheroesX;
-import com.sx_dev.sx.init.PotionInit;
+import com.sx_dev.sx.init.PotionEffectInit;
 import net.minecraft.client.renderer.entity.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -31,7 +31,7 @@ public class ArmorKidFlash extends ArmorBase {
             }
             player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 0, 4, false, false));
             player.addPotionEffect(new PotionEffect(MobEffects.HASTE, 0, 2, false, false));
-            player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 0, 1, true, false));
+            player.addPotionEffect(new PotionEffect(PotionEffectInit.INVISIBLE_STRENGTH.asPotionEffect(), 0, 1, true, false));
             player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 0, 2, true, false));
         }
         if (player.isInWater()) {

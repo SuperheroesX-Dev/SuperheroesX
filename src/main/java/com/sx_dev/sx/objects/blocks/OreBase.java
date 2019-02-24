@@ -2,9 +2,8 @@ package com.sx_dev.sx.objects.blocks;
 
 import com.sx_dev.sx.SuperheroesX;
 import com.sx_dev.sx.init.BlockInit;
-import com.sx_dev.sx.init.ItemInit;
+import com.sx_dev.sx.util.Reference;
 import com.sx_dev.sx.util.interfaces.IGeneratableOre;
-import com.sx_dev.sx.util.interfaces.IHasModel;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -13,6 +12,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
@@ -24,11 +24,12 @@ import javax.annotation.Nonnull;
 import java.util.Objects;
 import java.util.Random;
 
-public class OreBase extends Block implements IHasModel, IGeneratableOre {
+public class OreBase extends Block implements IGeneratableOre {
 
     private final ItemStack item;
     private final int exp;
     private final OreSpawnInfo oreSpawnInfo;
+    private final Item itemBlock;
 
     /**
      * @param name       The name of the Ore
@@ -48,17 +49,13 @@ public class OreBase extends Block implements IHasModel, IGeneratableOre {
      */
     public OreBase(String name, Material material, int dimension, int veinSize, int rarity, int minHeight, int maxHeight, int exp, Block baseBlock, float hardness, float resistance, String toolClass, int level, ItemStack item) {
         super(Properties.create(material).hardnessAndResistance(hardness,resistance));
-        //setUnlocalizedName(name);
-        setRegistryName(name);
-        //setHardness(hardness);
-        //setResistance(resistance);
+        setRegistryName(Reference.MODID, name);
         //setHarvestLevel(toolClass, level);
         this.item = item;
         this.exp = exp;
 
-        BlockInit.BLOCKS.add(this);
         BlockInit.ORES.add(this);
-        ItemInit.ITEMS.add(new ItemBlock(this, new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)).setRegistryName(this.getRegistryName()));
+        this.itemBlock = new ItemBlock(this, new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)).setRegistryName(this.getRegistryName());
         oreSpawnInfo = new OreSpawnInfo(veinSize, rarity, dimension, minHeight, maxHeight, baseBlock);
     }
 
@@ -79,17 +76,13 @@ public class OreBase extends Block implements IHasModel, IGeneratableOre {
      */
     public OreBase(String name, Material material, int dimension, int veinSize, int rarity, int minHeight, int maxHeight, int exp, float hardness, float resistance, String toolClass, int level, ItemStack item) {
         super(Properties.create(material).hardnessAndResistance(hardness,resistance));
-        //setUnlocalizedName(name);
-        setRegistryName(name);
-        //setHardness(hardness);
-        //setResistance(resistance);
+        setRegistryName(Reference.MODID, name);
         //setHarvestLevel(toolClass, level);
         this.item = item;
         this.exp = exp;
 
-        BlockInit.BLOCKS.add(this);
         BlockInit.ORES.add(this);
-        ItemInit.ITEMS.add(new ItemBlock(this, new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)).setRegistryName(this.getRegistryName()));
+        this.itemBlock = new ItemBlock(this, new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)).setRegistryName(this.getRegistryName());
         oreSpawnInfo = new OreSpawnInfo(veinSize, rarity, dimension, minHeight, maxHeight, dimension == -1 ? Blocks.NETHERRACK : dimension == 1 ? Blocks.END_STONE : Blocks.STONE);
     }
 
@@ -109,17 +102,13 @@ public class OreBase extends Block implements IHasModel, IGeneratableOre {
      */
     public OreBase(String name, Material material, int dimension, int veinSize, int rarity, int minHeight, int maxHeight, Block baseBlock, float hardness, float resistance, String toolClass, int level) {
         super(Properties.create(material).hardnessAndResistance(hardness,resistance));
-        //setUnlocalizedName(name);
-        setRegistryName(name);
-        //setHardness(hardness);
-        //setResistance(resistance);
+        setRegistryName(Reference.MODID, name);
         //setHarvestLevel(toolClass, level);
         this.item = null;
         this.exp = 0;
 
-        BlockInit.BLOCKS.add(this);
         BlockInit.ORES.add(this);
-        ItemInit.ITEMS.add(new ItemBlock(this, new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)).setRegistryName(this.getRegistryName()));
+        this.itemBlock = new ItemBlock(this, new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)).setRegistryName(this.getRegistryName());
         oreSpawnInfo = new OreSpawnInfo(veinSize, rarity, dimension, minHeight, maxHeight, baseBlock);
     }
 
@@ -134,18 +123,14 @@ public class OreBase extends Block implements IHasModel, IGeneratableOre {
      */
     public OreBase(String name, Material material, OreSpawnInfo info, float hardness, float resistance, String toolClass, int level) {
         super(Properties.create(material).hardnessAndResistance(hardness,resistance));
-        //setUnlocalizedName(name);
-        setRegistryName(name);
-        //setHardness(hardness);
-        //setResistance(resistance);
+        setRegistryName(Reference.MODID, name);
         //setHarvestLevel(toolClass, level);
         this.item = null;
         this.exp = 0;
         this.oreSpawnInfo = info;
 
-        BlockInit.BLOCKS.add(this);
         BlockInit.ORES.add(this);
-        ItemInit.ITEMS.add(new ItemBlock(this, new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)).setRegistryName(this.getRegistryName()));
+        this.itemBlock = new ItemBlock(this, new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)).setRegistryName(this.getRegistryName());
     }
 
     /**
@@ -163,34 +148,31 @@ public class OreBase extends Block implements IHasModel, IGeneratableOre {
      */
     public OreBase(String name, Material material, int dimension, int veinSize, int rarity, int minHeight, int maxHeight, float hardness, float resistance, String toolClass, int level) {
         super(Properties.create(material).hardnessAndResistance(hardness,resistance));
-        //setUnlocalizedName(name);
-        setRegistryName(name);
-        //setHardness(hardness);
-        //setResistance(resistance);
+        setRegistryName(Reference.MODID, name);
         //setHarvestLevel(toolClass, level);
         this.item = null;
         this.exp = 0;
 
-        BlockInit.BLOCKS.add(this);
         BlockInit.ORES.add(this);
-        ItemInit.ITEMS.add(new ItemBlock(this, new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)).setRegistryName(this.getRegistryName()));
+        this.itemBlock = new ItemBlock(this, new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)).setRegistryName(this.getRegistryName());
         oreSpawnInfo = new OreSpawnInfo(veinSize, rarity, dimension, minHeight, maxHeight, dimension == -1 ? Blocks.NETHERRACK : dimension == 1 ? Blocks.END_STONE : Blocks.STONE);
     }
 
     @Override
-    public void registerModels() {
-        //SuperheroesX.PROXY.registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory");
-    }
-
-    @Override
     public Item asItem() {
-        return this.item != null ? item.getItem() : super.asItem();
+        return itemBlock/*this.item != null ? item.getItem() : super.asItem()*/;
     }
 
     @Override
     @Nonnull
     protected ItemStack getSilkTouchDrop(IBlockState state) {
         return super.getSilkTouchDrop(state);
+    }
+
+    @Override
+    @Nonnull
+    public IItemProvider getItemDropped(IBlockState state, World world, BlockPos pos, int fortune) {
+        return this.item.getItem();
     }
 
     @Override
@@ -234,5 +216,10 @@ public class OreBase extends Block implements IHasModel, IGeneratableOre {
     @Override
     public OreSpawnInfo getOreSpawnInfo() {
         return this.oreSpawnInfo;
+    }
+
+    @Override
+    public Block asBlock() {
+        return this;
     }
 }

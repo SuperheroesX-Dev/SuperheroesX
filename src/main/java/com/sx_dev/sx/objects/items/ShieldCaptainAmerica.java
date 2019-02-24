@@ -58,21 +58,21 @@ public class ShieldCaptainAmerica extends WeaponizedShield {
     }
 
     @Override
-    public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBase entityLiving, int timeLeft) {
-        if (!worldIn.isRemote && entityLiving instanceof EntityPlayer && ticks <= 5 && ticks >= 0) {
-            EntityPlayer playerIn = (EntityPlayer) entityLiving;
+    public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase entity, int timeLeft) {
+        if (!world.isRemote && entity instanceof EntityPlayer && ticks <= 5 && ticks >= 0) {
+            EntityPlayer playerIn = (EntityPlayer) entity;
             if (!canThrowShield(playerIn, EntityCaptainAmericasShield.shieldOwners))
                 return;
 
-            EntityCaptainAmericasShield shieldCap = new EntityCaptainAmericasShield(worldIn, playerIn, stack.copy());
+            EntityCaptainAmericasShield shieldCap = new EntityCaptainAmericasShield(world, playerIn, stack.copy());
 
-            worldIn.spawnEntity(shieldCap);
+            world.spawnEntity(shieldCap);
         }
     }
 
     @Override
     public EnumAction getUseAction(ItemStack stack) {
-        return this.ticks > 5 ? EnumAction.BLOCK : /*SuperheroesX.DEBUG ? EnumHandler.THROW :*/ EnumAction.NONE;//TODO TEST
+        return this.ticks > 5 ? EnumAction.BLOCK : SuperheroesX.DEBUG ? EnumAction.SPEAR : EnumAction.NONE;//TODO TEST
     }
 
     @SubscribeEvent

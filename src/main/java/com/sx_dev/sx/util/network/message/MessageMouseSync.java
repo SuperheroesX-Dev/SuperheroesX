@@ -3,53 +3,38 @@ package com.sx_dev.sx.util.network.message;
 import com.sx_dev.sx.SuperheroesX;
 import com.sx_dev.sx.util.handlers.SyncHandler;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.world.WorldServer;
-/*import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;*/
+import net.minecraftforge.fml.network.NetworkEvent;
 
-public class MessageMouseSync /*implements IMessage, IMessageHandler<MessageMouseSync, IMessage>*/ {
+import java.util.function.Supplier;
+
+public class MessageMouseSync {
     public boolean rightClickState;
 
-    public MessageMouseSync() {
+    public MessageMouseSync(ByteBuf buf) {
+        fromBytes(buf);
     }
 
     public MessageMouseSync(boolean rightClick) {
         this.rightClickState = rightClick;
     }
-/*
-    @Override
+
     public void fromBytes(ByteBuf buf) {
         this.rightClickState = buf.readBoolean();
     }
 
-    @Override
     public void toBytes(ByteBuf buf) {
         buf.writeBoolean(this.rightClickState);
     }
 
-    @Override
-    public IMessage onMessage(MessageMouseSync msg, MessageContext ctx) {
-        EntityPlayerMP entityPlayerMP = ctx.getServerHandler().player;
-        WorldServer worldServer = entityPlayerMP.getServerWorld();
-
-        worldServer.addScheduledTask(new Runnable() {
-            @Override
-            public void run() {
-                handleMessage(msg, ctx);
+    public static void handle(MessageMouseSync msg, Supplier<NetworkEvent.Context> ctx) {
+        ctx.get().enqueueWork(() -> {
+            EntityPlayerMP entityPlayer = ctx.get().getSender();
+            if (entityPlayer != null) {
+                SyncHandler.processMouseUpdate(entityPlayer, msg.rightClickState);
             }
         });
-
-        return null;
-    }
-
-    public void handleMessage(MessageMouseSync msg, MessageContext ctx) {
         if (SuperheroesX.DEBUG) System.out.println(">handleMessage<");
-        EntityPlayer entityPlayer = ctx.getServerHandler().player;
-        if (entityPlayer != null) {
-            SyncHandler.processMouseUpdate(entityPlayer, msg.rightClickState);
-        }
-    }*/
+        ctx.get().setPacketHandled(true);
+    }
 }

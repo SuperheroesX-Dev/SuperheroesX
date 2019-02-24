@@ -1,7 +1,6 @@
 package com.sx_dev.sx.objects.items;
 
 
-import com.sx_dev.sx.SuperheroesX;
 import com.sx_dev.sx.objects.armor.ArmorIronMan;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;

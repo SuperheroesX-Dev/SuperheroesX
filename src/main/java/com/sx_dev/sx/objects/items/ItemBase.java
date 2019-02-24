@@ -1,37 +1,23 @@
 package com.sx_dev.sx.objects.items;
 
-import com.sx_dev.sx.init.ItemInit;
-import com.sx_dev.sx.util.interfaces.IHasModel;
+import com.sx_dev.sx.util.Reference;
 import com.sx_dev.sx.util.interfaces.IOreDict;
 import net.minecraft.item.Item;
 
-public class ItemBase extends Item implements IHasModel, IOreDict<ItemBase> {
+public class ItemBase extends Item implements IOreDict<ItemBase> {
     private String oreDictName;
     private boolean hasOreDictName;
 
     public ItemBase(String name)
 	{
         super(new Properties());
-        //setUnlocalizedName(name);
-		setRegistryName(name);
-		
-		ItemInit.ITEMS.add(this);
+        setRegistryName(Reference.MODID, name);
 	}
 
     public ItemBase(String name, Properties properties) {
         super(properties);
-        //setUnlocalizedName(name);
-        setRegistryName(name);
-
-        ItemInit.ITEMS.add(this);
+        setRegistryName(Reference.MODID, name);
     }
-
-
-    @Override
-	public void registerModels() 
-	{
-        //SuperheroesX.PROXY.registerItemRenderer(this, 0, "inventory");
-	}
 
     @Override
     public String getOreDictName() {

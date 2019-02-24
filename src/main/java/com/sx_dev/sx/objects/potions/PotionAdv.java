@@ -1,7 +1,6 @@
 package com.sx_dev.sx.objects.potions;
 
 
-import com.sx_dev.sx.init.PotionInit;
 import com.sx_dev.sx.util.Reference;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -22,9 +21,6 @@ public class PotionAdv extends Potion {
         this.visible = visible;
 
         this.setRegistryName(new ResourceLocation(Reference.MODID, name));
-
-        PotionInit.POTIONS.add(this);
-
     }
 
 

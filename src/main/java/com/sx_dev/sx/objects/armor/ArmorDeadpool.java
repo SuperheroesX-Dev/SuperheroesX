@@ -1,7 +1,7 @@
 package com.sx_dev.sx.objects.armor;
 
 import com.sx_dev.sx.SuperheroesX;
-import com.sx_dev.sx.init.PotionInit;
+import com.sx_dev.sx.init.PotionEffectInit;
 import net.minecraft.client.renderer.entity.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,7 +27,7 @@ public class ArmorDeadpool extends ArmorBase {
             super.onArmorTick(stack, world, player);
             player.addPotionEffect(new PotionEffect(MobEffects.SATURATION, 5, 1, true, false));
             player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 5, 1, true, false));
-            player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 5, 1, true, false));
+            player.addPotionEffect(new PotionEffect(PotionEffectInit.INVISIBLE_STRENGTH.asPotionEffect(), 5, 1, true, false));
             player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 5, 3, true, false));
         }
     }

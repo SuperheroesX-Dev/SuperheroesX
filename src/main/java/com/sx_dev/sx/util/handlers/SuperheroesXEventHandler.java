@@ -1,7 +1,6 @@
 package com.sx_dev.sx.util.handlers;
 
 import com.sx_dev.sx.init.ItemInit;
-import com.sx_dev.sx.init.PotionInit;
 import com.sx_dev.sx.util.Reference;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -14,7 +13,6 @@ import net.minecraft.stats.StatisticsManagerServer;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.*;
@@ -32,23 +30,6 @@ public class SuperheroesXEventHandler {
         }
         container.getTag().putInt("Multiplier", 4);
         eastereggs.put(Pair.of("Minecraftschurli", UUID.fromString("e057bfa8-bfe4-4725-9b5f-89f38906c2b2")), Collections.singletonList(container));
-    }
-
-    @SubscribeEvent
-    public void onFly(TickEvent.PlayerTickEvent event) {
-        boolean fly = false;
-
-        if (event.player.isPotionActive(PotionInit.INV_GLIDE))
-            fly = true;
-
-        if (fly || event.player.isCreative() || event.player.isSpectator()) {
-            event.player.abilities.allowFlying = true;
-            event.player.fallDistance = 0.0f;
-        } else {
-            fly = false;
-            event.player.abilities.isFlying = false;
-            event.player.abilities.allowFlying = false;
-        }
     }
 
     public static void cheatyEasterEgg(EntityPlayer player) {

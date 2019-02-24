@@ -1,6 +1,5 @@
 package com.sx_dev.sx.util.integration;
 
-import com.sx_dev.sx.util.integration.TC.TCIntegration;
 import com.sx_dev.sx.util.integration.TE.TEIntegration;
 import net.minecraftforge.fml.ModList;
 //import net.minecraftforge.fml.common.Loader;

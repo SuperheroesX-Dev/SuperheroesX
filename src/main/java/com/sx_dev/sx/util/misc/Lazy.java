@@ -6,7 +6,7 @@ public class Lazy<T> {
     private T value;
     private Supplier<T> supplier;
 
-    public Lazy(Supplier<T> supplier) {
+    private Lazy(Supplier<T> supplier) {
         this.supplier = supplier;
     }
 

@@ -9,9 +9,7 @@ import com.sx_dev.sx.objects.items.ItemBase;
 import com.sx_dev.sx.objects.items.ShieldCaptainAmerica;
 import com.sx_dev.sx.objects.tools.SwordDeadpool;
 import com.sx_dev.sx.objects.tools.TridentAquaman;
-import com.sx_dev.sx.util.Reference;
 import com.sx_dev.sx.util.misc.Lazy;
-import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.IArmorMaterial;
@@ -22,31 +20,31 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.IItemProvider;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.function.Supplier;
+
+import static com.sx_dev.sx.SuperheroesX.DEBUG;
+import static com.sx_dev.sx.SuperheroesX.LOGGER;
 
 
 @SuppressWarnings({"SpellCheckingInspection", "unused"})
 public enum ItemInit implements IItemProvider {
 
     //Items
-    SPANDEX_RED(() -> new ItemBase("spandex_red", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS))),
-    SPANDEX_BLACK(() -> new ItemBase("spandex_black", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS))),
-    SPANDEX_YELLOW(() -> new ItemBase("spandex_yellow", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS))),
-    SPANDEX_WHITE(() -> new ItemBase("spandex_white", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS))),
-    SPANDEX_GREEN(() -> new ItemBase("spandex_green", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS))),
+    SPANDEX_RED(() -> new ItemBase("spandex_red", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)), Group.ANY),
+    SPANDEX_BLACK(() -> new ItemBase("spandex_black", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)), Group.ANY),
+    SPANDEX_YELLOW(() -> new ItemBase("spandex_yellow", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)), Group.ANY),
+    SPANDEX_WHITE(() -> new ItemBase("spandex_white", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)), Group.ANY),
+    SPANDEX_GREEN(() -> new ItemBase("spandex_green", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)), Group.ANY),
 
-    SPANDEX_CLOTH_RED(() -> new ItemBase("spandex_cloth_red", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS))),
-    SPANDEX_CLOTH_BLACK(() -> new ItemBase("spandex_cloth_black", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS))),
-    SPANDEX_CLOTH_YELLOW(() -> new ItemBase("spandex_cloth_yellow", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS))),
-    SPANDEX_CLOTH_WHITE(() -> new ItemBase("spandex_cloth_white", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS))),
-    SPANDEX_CLOTH_GREEN(() -> new ItemBase("spandex_cloth_green", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS))),
+    SPANDEX_CLOTH_RED(() -> new ItemBase("spandex_cloth_red", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)), Group.ANY),
+    SPANDEX_CLOTH_BLACK(() -> new ItemBase("spandex_cloth_black", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)), Group.ANY),
+    SPANDEX_CLOTH_YELLOW(() -> new ItemBase("spandex_cloth_yellow", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)), Group.ANY),
+    SPANDEX_CLOTH_WHITE(() -> new ItemBase("spandex_cloth_white", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)), Group.ANY),
+    SPANDEX_CLOTH_GREEN(() -> new ItemBase("spandex_cloth_green", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)), Group.ANY),
 
-    CLOTH_VIBRANIUM(() -> new ItemBase("cloth_vibranium", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS))),
-    STRENGTHENED_CLOTH(() -> new ItemBase("strengthened_cloth", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS))),
-    CLOTH(() -> new ItemBase("cloth", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS))),
+    CLOTH_VIBRANIUM(() -> new ItemBase("cloth_vibranium", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)), Group.ANY),
+    STRENGTHENED_CLOTH(() -> new ItemBase("strengthened_cloth", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)), Group.ANY),
+    CLOTH(() -> new ItemBase("cloth", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)), Group.ANY),
 
     LOGO_KID_FLASH(() -> new ItemBase("kidflash_logo"), Group.DC),
 
@@ -55,14 +53,14 @@ public enum ItemInit implements IItemProvider {
 
     INGOT_VIBRANIUM(() -> new ItemBase("ingot_vibranium", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)), Group.MARVEL),
     INGOT_PALLADIUM(() -> new ItemBase("ingot_palladium", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)), Group.MARVEL),
-    INGOT_TITANIUM(() -> new ItemBase("ingot_titanium", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS))),
+    INGOT_TITANIUM(() -> new ItemBase("ingot_titanium", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)), Group.ANY),
     NUGGET_PALLADIUM(() -> new ItemBase("nugget_palladium", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)), Group.MARVEL),
-    NUGGET_TITANIUM(() -> new ItemBase("nugget_titanium", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS))),
+    NUGGET_TITANIUM(() -> new ItemBase("nugget_titanium", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)), Group.ANY),
     PLATE_VIBRANIUM(() -> new ItemBase("plate_vibranium", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)), Group.MARVEL),
-    PLATE_TITANIUM(() -> new ItemBase("plate_titanium", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS))),
-    PLATE_GOLD(() -> new ItemBase("plate_gold", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS))),
+    PLATE_TITANIUM(() -> new ItemBase("plate_titanium", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)), Group.ANY),
+    PLATE_GOLD(() -> new ItemBase("plate_gold", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)), Group.ANY),
     DUST_PALLADIUM(() -> new ItemBase("dust_palladium", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)), Group.MARVEL),
-    DUST_TITANIUM(() -> new ItemBase("dust_titanium", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS))),
+    DUST_TITANIUM(() -> new ItemBase("dust_titanium", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)), Group.ANY),
     INGOT_TITANOGOLD(() -> new ItemBase("ingot_titanogold", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)), Group.MARVEL),
     PLATE_TITANOGOLD(() -> new ItemBase("plate_titanogold", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)), Group.MARVEL),
     CIRCUIT(() -> new ItemBase("circuit", new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)), Group.MARVEL),
@@ -137,9 +135,6 @@ public enum ItemInit implements IItemProvider {
     LOGO_MARVEL(() -> new ItemBase("logo_marvel"), Group.MARVEL);
 
 
-    public static final List<Item> ITEMS = new ArrayList<>();
-
-
     //Materials
     public static final IItemTier TOOL_DEADPOOL = new CustomItemTier("tool_deadpool", 0, 10000, 1.0F, 5.0F, 5, () -> Ingredient.EMPTY);
     public static final IItemTier SWORD_HEIMDAL = new CustomItemTier("sword_heimdal", 0, 10000, 1.0F, 15.0F, 6, () -> Ingredient.EMPTY);
@@ -155,34 +150,24 @@ public enum ItemInit implements IItemProvider {
     public static final IArmorMaterial ARMOR_REDHOOD = new CustomArmorMaterial("armor_redhood", 500, new int[]{4, 7, 10, 4}, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 2.8F, () -> null);
     public static final IArmorMaterial ARMOR_ANTMAN = new CustomArmorMaterial("armor_antman", 500, new int[]{2, 3, 5, 2}, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 1.5F, () -> null);
 
-    static {
-        System.out.println(Reference.NAME + " Items: Start");
-        Arrays.asList(values()).forEach(ItemInit::asItem);
-        System.out.println(Reference.NAME + " Items: Done");
-    }
+
 
     private final Lazy<Item> item;
+    private final Group group;
 
     ItemInit(Supplier<Item> factory, Group group) {
-        if ((group == Group.MARVEL /*&& ModConfig.common.marvelItems*/) || (group == Group.DC /*&& ModConfig.common.dcItems*/)) {
-            item = Lazy.of(factory);
-        } else {
-            item = Lazy.of(() -> Items.AIR);
-        }
-    }
-
-    ItemInit(Supplier<Item> factory) {
-        item = Lazy.of(factory);
+        this.item = Lazy.of(factory);
+        this.group = group;
     }
 
     @Override
     @Nonnull
     public Item asItem() {
+        if (DEBUG) LOGGER.info(this.item.get().getRegistryName().toString());
         return item.get();
     }
 
-    enum Group {
-        MARVEL,
-        DC
+    public boolean isEnabled() {
+        return this.group.enabled();
     }
 }

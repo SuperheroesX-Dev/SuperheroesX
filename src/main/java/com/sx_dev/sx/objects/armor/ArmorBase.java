@@ -1,6 +1,6 @@
 package com.sx_dev.sx.objects.armor;
 
-import com.sx_dev.sx.init.ItemInit;
+import com.sx_dev.sx.util.Reference;
 import com.sx_dev.sx.util.interfaces.IHasModel;
 import net.minecraft.client.renderer.entity.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,11 +16,7 @@ public class ArmorBase extends ItemArmor implements IHasModel {
 
     public ArmorBase(String name, IArmorMaterial materialIn, EntityEquipmentSlot equipmentSlotIn, Properties properties) {
         super(materialIn, equipmentSlotIn, properties);
-		//setUnlocalizedName(name);
-		setRegistryName(name);
-
-		ItemInit.ITEMS.add(this);
-
+        setRegistryName(Reference.MODID, name);
 	}
 
     protected boolean isWearingFullSet(EntityPlayer player) {

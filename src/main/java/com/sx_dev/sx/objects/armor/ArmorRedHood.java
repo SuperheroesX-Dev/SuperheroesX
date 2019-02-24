@@ -1,7 +1,7 @@
 package com.sx_dev.sx.objects.armor;
 
 import com.sx_dev.sx.SuperheroesX;
-import com.sx_dev.sx.init.PotionInit;
+import com.sx_dev.sx.init.PotionEffectInit;
 import net.minecraft.client.renderer.entity.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,7 +28,7 @@ public class ArmorRedHood extends ArmorBase {
             super.onArmorTick(stack, world, player);
 
             player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 1, 1, true, false));
-            player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 1, 4, true, false));
+            player.addPotionEffect(new PotionEffect(PotionEffectInit.INVISIBLE_STRENGTH.asPotionEffect(), 1, 4, true, false));
             player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, 1, 2, true, false));
         }
     }

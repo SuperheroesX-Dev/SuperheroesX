@@ -1,4 +1,4 @@
 # SuperheroesX
-a mod by MiniMeSnipe and Minecraftschurli
+a mod by Minecraftschurli
 
 curse project: https://minecraft.curseforge.com/projects/superheroes-x

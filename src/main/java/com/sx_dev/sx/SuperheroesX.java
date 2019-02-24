@@ -1,9 +1,13 @@
 package com.sx_dev.sx;
 
 import com.sx_dev.sx.proxy.ClientProxy;
-import com.sx_dev.sx.proxy.CommonProxy;
+import com.sx_dev.sx.proxy.IProxy;
+import com.sx_dev.sx.proxy.ServerProxy;
 import com.sx_dev.sx.tabs.CustomItemGroup;
 import com.sx_dev.sx.util.Reference;
+import com.sx_dev.sx.util.config.ModConfig;
+import com.sx_dev.sx.util.handlers.PacketHandler;
+import com.sx_dev.sx.util.handlers.RecipeHandler;
 import com.sx_dev.sx.util.handlers.RegistryHandler;
 import com.sx_dev.sx.util.handlers.SyncHandler;
 import com.sx_dev.sx.util.integration.Integrations;
@@ -21,45 +25,44 @@ import org.apache.logging.log4j.Logger;
 public class SuperheroesX {
 
     public static final ItemGroup SUPERHEROES_X_TAB_MATERIALS = new CustomItemGroup.Materials();
-    public static final ItemGroup SUPERHEROES_X_TAB_MARVEL = /*ModConfig.common.marvelItems*/true ? new CustomItemGroup.MARVEL() : null;
-    public static final ItemGroup SUPERHEROES_X_TAB_DC = /*ModConfig.common.dcItems*/true ? new CustomItemGroup.DC() : null;
+    public static final ItemGroup SUPERHEROES_X_TAB_MARVEL = ModConfig.common.marvelItems ? new CustomItemGroup.MARVEL() : null;
+    public static final ItemGroup SUPERHEROES_X_TAB_DC = ModConfig.common.dcItems ? new CustomItemGroup.DC() : null;
+
     /*========================Debug Variable========================*/
-    /*========*/public static final boolean DEBUG = false;/*========*/
+    /*========*/public static final boolean DEBUG = true;/*=========*/
+    /*==============================================================*/
+
     public static SuperheroesX INSTANCE;
-    public static CommonProxy PROXY;
+    @SuppressWarnings("Convert2MethodRef")
+    public static IProxy PROXY = DistExecutor.runForDist(() -> () -> new ClientProxy(), () -> () -> new ServerProxy());
     public static Logger LOGGER = LogManager.getLogger(Reference.MODID);
 
-    public SuperheroesX (){
+    public SuperheroesX() {
         INSTANCE = this;
-        PROXY = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::serverStopping);
         MinecraftForge.EVENT_BUS.register(this);
     }
-    /*==============================================================*/
 
     private void setup(final FMLCommonSetupEvent event) {
+
+        //pre init
         RegistryHandler.preInitRegistries(event);
         Integrations.preInitIntegrations();
-    }
 
-    /*@EventHandler
-    public static void init(FMLLoadCompleteEvent event) {
+        //init
         RegistryHandler.initRegistries();
         Integrations.initIntegrations();
         PROXY.registerHandlers();
         PROXY.initKeys();
-        PacketHandler.init();
-    }*/
+        PacketHandler.registerMessages();
 
-    /*@EventHandler
-    public static void postInit(FMLPostInitializationEvent event) {
+        //post init
         RegistryHandler.postInitRegistries();
         Integrations.postInitIntegrations();
         RecipeHandler.addStandardRecipes();
-    }*/
+    }
 
-    //@EventHandler
     private void serverStopping(FMLServerStoppingEvent evt) {
         SyncHandler.clearAll();
     }

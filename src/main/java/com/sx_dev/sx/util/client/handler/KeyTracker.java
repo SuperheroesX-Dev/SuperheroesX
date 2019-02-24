@@ -11,37 +11,40 @@ import com.sx_dev.sx.util.network.message.MessageKeyBind;
 import com.sx_dev.sx.util.network.message.MessageKeyboardSync;
 import com.sx_dev.sx.util.network.message.MessageMouseSync;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.client.util.InputMappings;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-//import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.settings.KeyConflictContext;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
-//import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-
-//import org.lwjgl.input.Keyboard;
+import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
+
+//import net.minecraftforge.fml.client.FMLClientHandler;
+//import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+//import org.lwjgl.input.Keyboard;
 
 @SuppressWarnings("Duplicates")
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = Reference.MODID, value = Dist.CLIENT)
 public class KeyTracker {
-/*
+
     public static final KeyTracker instance = new KeyTracker();
 
     @OnlyIn(Dist.CLIENT)
     static final Minecraft mc = Minecraft.getInstance();
 
-    private static int flyKey;
-    private static int descendKey;
     private static boolean lastFlyState = false;
     private static boolean lastDescendState = false;
     private static boolean lastForwardState = false;
@@ -50,6 +53,9 @@ public class KeyTracker {
     private static boolean lastRightState = false;
     private static boolean lastRightClickState = false;
 
+
+    private static KeyBinding flyKey;
+    private static KeyBinding descendKey;
     private static KeyBinding engineKey;
     private static KeyBinding hoverKey;
     private static KeyBinding shrinkKey;
@@ -58,42 +64,42 @@ public class KeyTracker {
     private static ArrayList<KeyBinding> keys = new ArrayList<>();
 
     public KeyTracker() {
-        engineKey = new KeyBinding(Reference.PREFIX + "keybind.engine", Keyboard.KEY_G, Reference.PREFIX + "category.ironman");
+        engineKey = new KeyBinding(Reference.PREFIX + "keybind.engine", KeyConflictContext.IN_GAME, InputMappings.Type.KEYSYM.getOrMakeInput(GLFW.GLFW_KEY_G), Reference.PREFIX + "category.ironman");
         ClientRegistry.registerKeyBinding(engineKey);
 
-        hoverKey = new KeyBinding(Reference.PREFIX + "keybind.hover", Keyboard.KEY_L, Reference.PREFIX + "category.ironman");
+        hoverKey = new KeyBinding(Reference.PREFIX + "keybind.hover", KeyConflictContext.IN_GAME, InputMappings.Type.KEYSYM.getOrMakeInput(GLFW.GLFW_KEY_L), Reference.PREFIX + "category.ironman");
         ClientRegistry.registerKeyBinding(hoverKey);
 
-        shrinkKey = new KeyBinding(Reference.PREFIX + "keybind.shrink", Keyboard.KEY_C, Reference.PREFIX + "category.antman");
+        shrinkKey = new KeyBinding(Reference.PREFIX + "keybind.shrink", KeyConflictContext.IN_GAME, InputMappings.Type.KEYSYM.getOrMakeInput(GLFW.GLFW_KEY_C), Reference.PREFIX + "category.antman");
         ClientRegistry.registerKeyBinding(shrinkKey);
 
-        growKey = new KeyBinding(Reference.PREFIX + "keybind.grow", Keyboard.KEY_V, Reference.PREFIX + "category.antman");
+        growKey = new KeyBinding(Reference.PREFIX + "keybind.grow", KeyConflictContext.IN_GAME, InputMappings.Type.KEYSYM.getOrMakeInput(GLFW.GLFW_KEY_V), Reference.PREFIX + "category.antman");
         ClientRegistry.registerKeyBinding(growKey);
     }
 
     @SubscribeEvent
     public static void onMouseInput(InputEvent.MouseInputEvent event) {
-        EntityPlayer player = FMLClientHandler.instance().getClient().player;
+        EntityPlayer player = Minecraft.getInstance().player;
         ItemStack chestStack = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
         Item chestItem = ChestplateIronMan.StackUtil.getItem(chestStack);
 
         for (KeyBinding keyBindings : keys) {
-            int button = keyBindings.getKeyCode();
+            int button = keyBindings.getKey().getKeyCode();
             if (button < 0 && keyBindings.isPressed()) {
                 if (chestItem instanceof ChestplateIronMan) {
                     ChestplateIronMan jetpack = (ChestplateIronMan) chestItem;
 
                     if (keyBindings.getKeyDescription().equals(Reference.PREFIX + "keybind.engine")) {
                         jetpack.toggleState(jetpack.isOn(chestStack), chestStack, null, ChestplateIronMan.TAG_ON, player, true);
-                        PacketHandler.instance.sendToServer(new MessageKeyBind(MessageKeyBind.IronmanPacket.ENGINE));
+                        PacketHandler.INSTANCE.sendToServer(new MessageKeyBind(MessageKeyBind.IronmanPacket.ENGINE));
                     }
                     if (keyBindings.getKeyDescription().equals(Reference.PREFIX + "keybind.hover")) {
                         if (StringHelper.isShiftKeyDown()) {
                             jetpack.toggleState(jetpack.isEHoverModeOn(chestStack), chestStack, "EHover", ChestplateIronMan.TAG_EHOVER_ON, player, true);
-                            PacketHandler.instance.sendToServer(new MessageKeyBind(MessageKeyBind.IronmanPacket.EHOVER));
+                            PacketHandler.INSTANCE.sendToServer(new MessageKeyBind(MessageKeyBind.IronmanPacket.EHOVER));
                         } else {
                             jetpack.toggleState(jetpack.isHoverModeOn(chestStack), chestStack, "hoverMode", ChestplateIronMan.TAG_HOVERMODE_ON, player, true);
-                            PacketHandler.instance.sendToServer(new MessageKeyBind(MessageKeyBind.IronmanPacket.HOVER));
+                            PacketHandler.INSTANCE.sendToServer(new MessageKeyBind(MessageKeyBind.IronmanPacket.HOVER));
                         }
                     }
                 } else if (chestItem instanceof ArmorAntman.ChestplateAntman) {
@@ -101,11 +107,11 @@ public class KeyTracker {
 
                     if (keyBindings.getKeyDescription().equals(Reference.PREFIX + "keybind.shrink")) {
                         chestplateAntman.shrink();
-                        PacketHandler.instance.sendToServer(new MessageKeyBind(MessageKeyBind.AntmanPacket.SHRINK));
+                        PacketHandler.INSTANCE.sendToServer(new MessageKeyBind(MessageKeyBind.AntmanPacket.SHRINK));
                     }
                     if (keyBindings.getKeyDescription().equals(Reference.PREFIX + "keybind.grow")) {
                         chestplateAntman.grow();
-                        PacketHandler.instance.sendToServer(new MessageKeyBind(MessageKeyBind.AntmanPacket.GROW));
+                        PacketHandler.INSTANCE.sendToServer(new MessageKeyBind(MessageKeyBind.AntmanPacket.GROW));
                     }
                 }
             }
@@ -119,8 +125,8 @@ public class KeyTracker {
             boolean flyState;
             boolean descendState;
             if (ModConfig.client.controls.customControls) {
-                flyState = mc.inGameHasFocus && Keyboard.isKeyDown(flyKey);
-                descendState = mc.inGameHasFocus && Keyboard.isKeyDown(descendKey);
+                flyState = mc.isGameFocused() && flyKey.isPressed();
+                descendState = mc.isGameFocused() && descendKey.isPressed();
             } else {
                 flyState = mc.gameSettings.keyBindJump.isKeyDown();
                 descendState = mc.gameSettings.keyBindSneak.isKeyDown();
@@ -141,8 +147,8 @@ public class KeyTracker {
                 lastLeftState = leftState;
                 lastRightState = rightState;
                 lastRightClickState = rightClickState;
-                PacketHandler.instance.sendToServer(new MessageMouseSync(rightClickState));
-                PacketHandler.instance.sendToServer(new MessageKeyboardSync(flyState, descendState, forwardState, backwardState, leftState, rightState));
+                PacketHandler.INSTANCE.sendToServer(new MessageMouseSync(rightClickState));
+                PacketHandler.INSTANCE.sendToServer(new MessageKeyboardSync(flyState, descendState, forwardState, backwardState, leftState, rightState));
                 SyncHandler.processKeyUpdate(mc.player, flyState, descendState, forwardState, backwardState, leftState, rightState);
                 SyncHandler.processMouseUpdate(mc.player, rightClickState);
             }
@@ -151,7 +157,7 @@ public class KeyTracker {
 
     @SubscribeEvent
     public static void onClientTick(TickEvent.ClientTickEvent evt) {
-        if (evt.phase == TickEvent.Phase.START && evt.side == Side.CLIENT) {
+        if (evt.phase == TickEvent.Phase.START && evt.side == LogicalSide.CLIENT) {
             tickStart();
         }
     }
@@ -163,34 +169,34 @@ public class KeyTracker {
         keys.add(growKey);
     }
 
-    public static void updateCustomKeybinds(String flyKeyName, String descendKeyName) {
+    /*public static void updateCustomKeybinds(String flyKeyName, String descendKeyName) {
         flyKey = Keyboard.getKeyIndex(flyKeyName);
         descendKey = Keyboard.getKeyIndex(descendKeyName);
-    }
+    }*/
 
     @SubscribeEvent
     public static void onKeyInput(KeyInputEvent event) {
-        EntityPlayer player = FMLClientHandler.instance().getClient().player;
+        EntityPlayerSP player = Minecraft.getInstance().player;
         ItemStack chestStack = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
         Item chestItem = ChestplateIronMan.StackUtil.getItem(chestStack);
 
         for (KeyBinding keyBindings : keys) {
-            int button = keyBindings.getKeyCode();
+            int button = keyBindings.getKey().getKeyCode();
             if (button > 0 && keyBindings.isPressed()) {
                 if (chestItem instanceof ChestplateIronMan) {
                     ChestplateIronMan jetpack = (ChestplateIronMan) chestItem;
                     if (keyBindings.getKeyDescription().equals(Reference.PREFIX + "keybind.engine")) {
                         System.out.println(jetpack.isOn(chestStack));
                         jetpack.toggleState(jetpack.isOn(chestStack), chestStack, null, ChestplateIronMan.TAG_ON, player, true);
-                        PacketHandler.instance.sendToServer(new MessageKeyBind(MessageKeyBind.IronmanPacket.ENGINE));
+                        PacketHandler.INSTANCE.sendToServer(new MessageKeyBind(MessageKeyBind.IronmanPacket.ENGINE));
                     }
                     if (keyBindings.getKeyDescription().equals(Reference.PREFIX + "keybind.hover")) {
                         if (StringHelper.isShiftKeyDown()) {
                             jetpack.toggleState(jetpack.isEHoverModeOn(chestStack), chestStack, "EHover", ChestplateIronMan.TAG_EHOVER_ON, player, true);
-                            PacketHandler.instance.sendToServer(new MessageKeyBind(MessageKeyBind.IronmanPacket.EHOVER));
+                            PacketHandler.INSTANCE.sendToServer(new MessageKeyBind(MessageKeyBind.IronmanPacket.EHOVER));
                         } else {
                             jetpack.toggleState(jetpack.isHoverModeOn(chestStack), chestStack, "hoverMode", ChestplateIronMan.TAG_HOVERMODE_ON, player, true);
-                            PacketHandler.instance.sendToServer(new MessageKeyBind(MessageKeyBind.IronmanPacket.HOVER));
+                            PacketHandler.INSTANCE.sendToServer(new MessageKeyBind(MessageKeyBind.IronmanPacket.HOVER));
                         }
                     }
                 } else if (chestItem instanceof ArmorAntman.ChestplateAntman) {
@@ -198,14 +204,14 @@ public class KeyTracker {
 
                     if (keyBindings.getKeyDescription().equals(Reference.PREFIX + "keybind.shrink")) {
                         chestplateAntman.shrink();
-                        PacketHandler.instance.sendToServer(new MessageKeyBind(MessageKeyBind.AntmanPacket.SHRINK));
+                        PacketHandler.INSTANCE.sendToServer(new MessageKeyBind(MessageKeyBind.AntmanPacket.SHRINK));
                     }
                     if (keyBindings.getKeyDescription().equals(Reference.PREFIX + "keybind.grow")) {
                         chestplateAntman.grow();
-                        PacketHandler.instance.sendToServer(new MessageKeyBind(MessageKeyBind.AntmanPacket.GROW));
+                        PacketHandler.INSTANCE.sendToServer(new MessageKeyBind(MessageKeyBind.AntmanPacket.GROW));
                     }
                 }
             }
         }
-    }*/
+    }
 }

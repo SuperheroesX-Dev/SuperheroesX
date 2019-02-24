@@ -1,6 +1,7 @@
 package com.sx_dev.sx.proxy;
 
 import com.sx_dev.sx.util.client.handler.HUDTickHandler;
+import com.sx_dev.sx.util.client.handler.KeyTracker;
 import com.sx_dev.sx.util.handlers.EnumHandler;
 import com.sx_dev.sx.util.math.Pos3D;
 import com.sx_dev.sx.util.misc.ParticleUtils;
@@ -13,21 +14,17 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.Random;
 
 
-public class ClientProxy extends CommonProxy
-{
+public class ClientProxy implements IProxy {
 
     @Override
-    public void registerItemRenderer(Item item, int meta, String id)
-	{
-		//ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName(), id));
+    public void registerItemRenderer(Item item, int meta, String id) {
+        //ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName(), id));
     }
 
-	@Override
-    public void registerVariantRenderer(Item item, int meta, String filename, String id)
-	{
-		//ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(new ResourceLocation(Reference.MODID, filename), id));
-	}
-
+    @Override
+    public void registerVariantRenderer(Item item, int meta, String filename, String id) {
+        //ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(new ResourceLocation(Reference.MODID, filename), id));
+    }
 
 
     @Override
@@ -59,9 +56,8 @@ public class ClientProxy extends CommonProxy
 
     @Override
     public void registerHandlers() {
-        super.registerHandlers();
 
-        //Mod.EventBusSubscriber.Bus.MOD.bus().get().register(KeyTracker.instance);
+        Mod.EventBusSubscriber.Bus.MOD.bus().get().register(KeyTracker.instance);
         Mod.EventBusSubscriber.Bus.MOD.bus().get().register(new HUDTickHandler());
     }
 
@@ -73,5 +69,9 @@ public class ClientProxy extends CommonProxy
     @Override
     public <T> T nullifyOnServer(T object) {
         return object;
+    }
+
+    @Override
+    public void initKeys() {
     }
 }

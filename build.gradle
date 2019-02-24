@@ -16,16 +16,14 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'idea'
 apply plugin: 'java'
 
-def mod = new Mod(this)
 
-version = mod.VERSION
-group = 'com.' + mod.GROUP_ID + '.' + mod.ID // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = mod.ID
+group = 'com.' + group_id + '.' + mod_id // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = mod_id
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
 minecraft {
-    mappings channel: 'snapshot', version: '20190215-1.13.1'
+    mappings channel: 'snapshot', version: mappings_version
     
     runs {
         client = {
@@ -56,19 +54,36 @@ minecraft {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.13.2-25.0.37'
+    minecraft 'net.minecraftforge:forge:' + minecraft_version + '-' + forge_version
+}
+
+version = "${minecraft_version}-${mod_version}"
+
+processResources {
+    from(sourceSets.main.resources.srcDirs) {
+        include 'META-INF/mods.toml'
+
+        expand 'version': project.version, 'mcversion': minecraft_version, 'forge_version': forge_version_toml
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'META-INF/mods.toml'
+    }
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
 jar {
+    archiveName = mod_name + "-" + project.version + ".jar"
     manifest {
-        attributes(["Specification-Title": "${mod.NAME}",
-                    "Specification-Vendor": "${mod.GROUP_ID}",
-                    "Specification-Version": "1", // We are version 1 of the modlauncher specification
-                    "Implementation-Title": project.name,
-                    "Implementation-Version": "${version}",
-                    "Implementation-Vendor" :"${mod.GROUP_ID}",
-                    "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")],)
+        attributes([
+                "Specification-Title"     : "${mod_name}",
+                "Specification-Vendor"    : "${group_name}",
+                "Specification-Version"   : "1", // We are version 1 of ourselves
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : "${version}",
+                "Implementation-Vendor"   : "${group_name}",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
     }
 }
 
@@ -78,19 +93,6 @@ idea {
             File excludeDir = new File(projectDir, excludeDirName)
             excludeDirs.add(excludeDir)
         }
-    }
-}
-
-class Mod {
-
-    String ID = project.pullData("MODID")
-    String GROUP_ID = ("sx_dev")
-    String NAME = project.pullData("NAME")
-    String VERSION = project.pullData("VERSION")
-
-    def project
-    Mod (def project){
-        this.project = project
     }
 }
 

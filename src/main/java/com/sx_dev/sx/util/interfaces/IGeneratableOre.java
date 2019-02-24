@@ -7,7 +7,7 @@ import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface IGeneratableOre {
+public interface IGeneratableOre extends IOre {
     OreSpawnInfo getOreSpawnInfo();
 
     class OreSpawnInfo {

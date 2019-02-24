@@ -1,22 +1,7 @@
 package com.sx_dev.sx.world.gen;
 
-import com.sx_dev.sx.init.BlockInit;
-import com.sx_dev.sx.objects.blocks.OreBase;
-import com.sx_dev.sx.util.interfaces.IGeneratableOre;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.block.state.pattern.BlockMatcher;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.IChunkGenerator;
 /*import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;*/
-import net.minecraftforge.fml.common.IWorldGenerator;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-import java.util.function.Predicate;
 
 public class WorldGenCustomOres /*implements IWorldGenerator*/ {
     /*private Map<WorldGenerator, IGeneratableOre.OreSpawnInfo> ores;

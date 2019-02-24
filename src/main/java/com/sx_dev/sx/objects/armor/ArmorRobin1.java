@@ -1,7 +1,7 @@
 package com.sx_dev.sx.objects.armor;
 
 import com.sx_dev.sx.SuperheroesX;
-import com.sx_dev.sx.init.PotionInit;
+import com.sx_dev.sx.init.PotionEffectInit;
 import net.minecraft.client.renderer.entity.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,7 +27,7 @@ public class ArmorRobin1 extends ArmorBase {
             if (player.isSprinting()) {
                 player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 0, 1, false, false));
             }
-            player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 0, 1, false, false));
+            player.addPotionEffect(new PotionEffect(PotionEffectInit.INVISIBLE_STRENGTH.asPotionEffect(), 0, 1, false, false));
             player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 0, 1, false, false));
             player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 0, 1, false, false));
         }

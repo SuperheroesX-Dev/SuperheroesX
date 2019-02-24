@@ -1,6 +1,5 @@
 package com.sx_dev.sx.util.handlers;
 
-import com.sx_dev.sx.SuperheroesX;
 import com.sx_dev.sx.util.Reference;
 import net.minecraftforge.fml.common.Mod;
 
@@ -20,12 +19,12 @@ public class LivingTickHandler {
     public static Field floatingTickCount = null;
 
     public LivingTickHandler() {
-        try {
+        /*try {
             //floatingTickCount = ReflectionHelper.findField(NetHandlerPlayServer.class, "floatingTickCount", "field_147365_f");
         } catch (Exception e) {
             SuperheroesX.LOGGER.error("Unable to find field \"floatingTickCount\"");
             e.printStackTrace();
-        }
+        }*/
     }
 
     /*@SubscribeEvent

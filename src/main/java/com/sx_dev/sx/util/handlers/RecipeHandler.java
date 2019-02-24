@@ -357,7 +357,7 @@ public class RecipeHandler {
 
         static void addBrewing(PotionType potionIn, Item ingredientIn, ResourceLocation potionOutName) {
             PotionType potionOut = null;
-            for (PotionType potion : PotionInit.POTION_ITEMS) {
+            for (PotionType potion : PotionEffectInit.POTION_ITEMS) {
                 if (potion.getRegistryName().equals(potionOutName)) potionOut = potion;
             }
             if (potionOut != null) {
@@ -367,7 +367,7 @@ public class RecipeHandler {
 
         static void addBrewing(ResourceLocation potionInName, Item ingredientIn, ResourceLocation potionOutName) {
             PotionType potionIn = null;
-            for (PotionType potion : PotionInit.POTION_ITEMS) {
+            for (PotionType potion : PotionEffectInit.POTION_ITEMS) {
                 if (potion.getRegistryName().equals(potionInName)) potionIn = potion;
             }
             if (potionIn != null) {

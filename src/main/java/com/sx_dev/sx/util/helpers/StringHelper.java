@@ -2,9 +2,6 @@ package com.sx_dev.sx.util.helpers;
 
 //import org.lwjgl.Keyboard;
 
-import net.java.games.input.Keyboard;
-import net.minecraft.client.Minecraft;
-
 public final class StringHelper {
     public static final String BLACK = "§0";
     public static final String BLUE = "§1";
@@ -36,10 +33,10 @@ public final class StringHelper {
     }
 
     /*public static boolean isControlKeyDown() {
-        return Keyboard.isKeyDown(29) || Keyboard.isKeyDown(157);
-    }
+        return Keyboard.isKeyDown(InputMappings.Type.KEYSYM.getOrMakeInput(GLFW.GLFW_KEY_LEFT_CONTROL)) || Keyboard.isKeyDown(InputMappings.Type.KEYSYM.getOrMakeInput(GLFW.GLFW_KEY_RIGHT_CONTROL));
+    }*/
 
     public static boolean isShiftKeyDown() {
-        return Keyboard.isKeyDown(42) || Keyboard.isKeyDown(54);
-    }*/
+        return false/*Keyboard.isKeyDown(42) || Keyboard.isKeyDown(54)*/;
+    }
 }

@@ -14,12 +14,12 @@ public abstract class ParticleUtils {
     private static final Minecraft mc = Minecraft.getInstance();
 
     public static void spawnParticle(EnumHandler.ParticleType particle, World world, double posX, double posY, double posZ, double velX, double velY, double velZ) {
-        switch (particle) {
+        /*switch (particle) {
             case DEFAULT:
             default:
                 //mc.effectRenderer.addEffect(new EntityCustomFlameFX(world, posX, posY, posZ, velX, velY, velZ));
                 return;
-        }
+        }*/
     }
 }
 

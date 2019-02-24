@@ -1,17 +1,7 @@
 package com.sx_dev.sx.util.integration.TC;
 
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.biome.Biome;
-import net.minecraftforge.event.entity.player.PlayerEvent;
 /*import slimeknights.tconstruct.library.traits.AbstractTrait;
 import slimeknights.tconstruct.library.traits.ITrait;*/
-
-import java.awt.*;
-import java.util.Arrays;
-import java.util.List;
-
-import static net.minecraft.init.Biomes.*;
 
 public class TCTraits {/*
 

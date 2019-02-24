@@ -1,7 +1,7 @@
 package com.sx_dev.sx.objects.armor;
 
 import com.sx_dev.sx.SuperheroesX;
-import com.sx_dev.sx.init.PotionInit;
+import com.sx_dev.sx.init.PotionEffectInit;
 import net.minecraft.client.renderer.entity.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,7 +28,7 @@ public class ArmorBlackPanther extends ArmorBase {
             if (player.isSprinting()) {
                 player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 0, 4, true, false));
             }
-            player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 5, 3, true, false));
+            player.addPotionEffect(new PotionEffect(PotionEffectInit.INVISIBLE_STRENGTH.asPotionEffect(), 5, 3, true, false));
             player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 5, 1, true, false));
             player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 5, 5, true, false));
             player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 5, 5, true, false));

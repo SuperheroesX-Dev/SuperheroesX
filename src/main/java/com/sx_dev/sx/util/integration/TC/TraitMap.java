@@ -2,7 +2,6 @@ package com.sx_dev.sx.util.integration.TC;
 
 //import slimeknights.tconstruct.library.traits.ITrait;
 
-import javax.annotation.Nullable;
 //TODO
 class TraitMap {/*
     private String dependency;

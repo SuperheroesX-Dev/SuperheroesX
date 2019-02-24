@@ -2,29 +2,26 @@ package com.sx_dev.sx.util.network.message;
 
 import com.sx_dev.sx.objects.armor.ArmorAntman;
 import com.sx_dev.sx.objects.armor.ArmorIronMan;
-import com.sx_dev.sx.util.handlers.PacketHandler;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.WorldServer;
-/*import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;*/
+import net.minecraftforge.fml.network.NetworkEvent;
 
-public class MessageKeyBind /*implements IMessage, IMessageHandler<MessageKeyBind, IMessage> */{/*
+import java.util.function.Supplier;
+
+public class MessageKeyBind {
 
     public IPacketType packetType;
 
-    public MessageKeyBind() {
+    public MessageKeyBind(ByteBuf dataStream) {
+        fromBytes(dataStream);
     }
 
     public MessageKeyBind(IPacketType type) {
         packetType = type;
     }
 
-    @Override
     public void toBytes(ByteBuf dataStream) {
         if (packetType.getClass().isEnum()) {
             dataStream.writeInt(((Enum) packetType).ordinal());
@@ -32,54 +29,46 @@ public class MessageKeyBind /*implements IMessage, IMessageHandler<MessageKeyBin
 
     }
 
-    @Override
     public void fromBytes(ByteBuf dataStream) {
         packetType = IronmanPacket.values()[dataStream.readInt()];
     }
 
-    @Override
-    public IMessage onMessage(MessageKeyBind msg, MessageContext ctx) {
-        EntityPlayerMP entityPlayerMP = ctx.getServerHandler().player;
-        WorldServer worldServer = entityPlayerMP.getServerWorld();
-
-        worldServer.addScheduledTask(() -> handleMessage(msg, ctx));
-
-        return null;
-    }
-
-    public void handleMessage(MessageKeyBind msg, MessageContext ctx) {
-        EntityPlayer player = PacketHandler.getPlayer(ctx);
-        ItemStack stack = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
-        if (msg.packetType == IronmanPacket.ENGINE) {
-            if (stack.getItem() instanceof ArmorIronMan.ChestplateIronMan) {
-                ArmorIronMan.ChestplateIronMan chestplateIronMan = (ArmorIronMan.ChestplateIronMan) stack.getItem();
-                chestplateIronMan.toggleState(chestplateIronMan.isOn(stack), stack, null, ArmorIronMan.ChestplateIronMan.TAG_ON, player, false);
+    public static void handle(MessageKeyBind msg, Supplier<NetworkEvent.Context> ctx) {
+        ctx.get().enqueueWork(() -> {
+            EntityPlayerMP player = ctx.get().getSender();
+            ItemStack stack = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
+            if (msg.packetType == IronmanPacket.ENGINE) {
+                if (stack.getItem() instanceof ArmorIronMan.ChestplateIronMan) {
+                    ArmorIronMan.ChestplateIronMan chestplateIronMan = (ArmorIronMan.ChestplateIronMan) stack.getItem();
+                    chestplateIronMan.toggleState(chestplateIronMan.isOn(stack), stack, null, ArmorIronMan.ChestplateIronMan.TAG_ON, player, false);
+                }
             }
-        }
-        if (msg.packetType == IronmanPacket.HOVER) {
-            if (stack.getItem() instanceof ArmorIronMan.ChestplateIronMan) {
-                ArmorIronMan.ChestplateIronMan chestplateIronMan = (ArmorIronMan.ChestplateIronMan) stack.getItem();
-                chestplateIronMan.toggleState(chestplateIronMan.isHoverModeOn(stack), stack, null, ArmorIronMan.ChestplateIronMan.TAG_HOVERMODE_ON, player, false);
+            if (msg.packetType == IronmanPacket.HOVER) {
+                if (stack.getItem() instanceof ArmorIronMan.ChestplateIronMan) {
+                    ArmorIronMan.ChestplateIronMan chestplateIronMan = (ArmorIronMan.ChestplateIronMan) stack.getItem();
+                    chestplateIronMan.toggleState(chestplateIronMan.isHoverModeOn(stack), stack, null, ArmorIronMan.ChestplateIronMan.TAG_HOVERMODE_ON, player, false);
+                }
             }
-        }
-        if (msg.packetType == IronmanPacket.EHOVER) {
-            if (stack.getItem() instanceof ArmorIronMan.ChestplateIronMan) {
-                ArmorIronMan.ChestplateIronMan chestplateIronMan = (ArmorIronMan.ChestplateIronMan) stack.getItem();
-                chestplateIronMan.toggleState(chestplateIronMan.isEHoverModeOn(stack), stack, null, ArmorIronMan.ChestplateIronMan.TAG_EHOVER_ON, player, false);
+            if (msg.packetType == IronmanPacket.EHOVER) {
+                if (stack.getItem() instanceof ArmorIronMan.ChestplateIronMan) {
+                    ArmorIronMan.ChestplateIronMan chestplateIronMan = (ArmorIronMan.ChestplateIronMan) stack.getItem();
+                    chestplateIronMan.toggleState(chestplateIronMan.isEHoverModeOn(stack), stack, null, ArmorIronMan.ChestplateIronMan.TAG_EHOVER_ON, player, false);
+                }
             }
-        }
-        if (msg.packetType == AntmanPacket.SHRINK) {
-            if (stack.getItem() instanceof ArmorAntman.ChestplateAntman) {
-                ArmorAntman.ChestplateAntman chestplateAntman = (ArmorAntman.ChestplateAntman) stack.getItem();
-                chestplateAntman.shrink();
+            if (msg.packetType == AntmanPacket.SHRINK) {
+                if (stack.getItem() instanceof ArmorAntman.ChestplateAntman) {
+                    ArmorAntman.ChestplateAntman chestplateAntman = (ArmorAntman.ChestplateAntman) stack.getItem();
+                    chestplateAntman.shrink();
+                }
             }
-        }
-        if (msg.packetType == AntmanPacket.GROW) {
-            if (stack.getItem() instanceof ArmorAntman.ChestplateAntman) {
-                ArmorAntman.ChestplateAntman chestplateAntman = (ArmorAntman.ChestplateAntman) stack.getItem();
-                chestplateAntman.grow();
+            if (msg.packetType == AntmanPacket.GROW) {
+                if (stack.getItem() instanceof ArmorAntman.ChestplateAntman) {
+                    ArmorAntman.ChestplateAntman chestplateAntman = (ArmorAntman.ChestplateAntman) stack.getItem();
+                    chestplateAntman.grow();
+                }
             }
-        }
+        });
+        ctx.get().setPacketHandled(true);
     }
 
     public enum IronmanPacket implements IPacketType {
@@ -94,5 +83,5 @@ public class MessageKeyBind /*implements IMessage, IMessageHandler<MessageKeyBin
     }
 
     public interface IPacketType {
-    }*/
+    }
 }

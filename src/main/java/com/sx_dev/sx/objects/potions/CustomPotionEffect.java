@@ -1,14 +1,12 @@
 package com.sx_dev.sx.objects.potions;
 
 
-import com.sx_dev.sx.init.PotionInit;
 import com.sx_dev.sx.util.Reference;
 import com.sx_dev.sx.util.interfaces.IEffectProvider;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -44,9 +42,6 @@ public class CustomPotionEffect extends PotionAdv {
         this.curativeItems.addAll(Arrays.asList(curativeItems));
 
         this.effectProvider = provider;
-
-        PotionInit.POTIONS.add(this);
-
     }
 
     /*private static void setPotionName(Potion potion, String potionName) {

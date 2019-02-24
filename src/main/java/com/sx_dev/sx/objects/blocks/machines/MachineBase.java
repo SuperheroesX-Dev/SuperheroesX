@@ -3,7 +3,6 @@ package com.sx_dev.sx.objects.blocks.machines;
 import com.sx_dev.sx.objects.blocks.BlockBase;
 import com.sx_dev.sx.util.Reference;
 import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.EntityLivingBase;

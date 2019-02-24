@@ -2,9 +2,8 @@ package com.sx_dev.sx.util.interfaces;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.IItemProvider;
 
-public interface IBlockProvider extends IItemProvider {
+public interface IBlockProvider {
     /**
      * Get the block this object represents.
      *

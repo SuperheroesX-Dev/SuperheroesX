@@ -427,7 +427,7 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
             }
         }
 
-        if (movingobjectposition != null || distanceMooved >= 5 + 2 /** getEnchantmentLevel(EnchantmentInit.SHIELD_THROW_RANGE)*/) {
+        if (movingobjectposition != null || distanceMooved >= 5 + 2 /* getEnchantmentLevel(EnchantmentInit.SHIELD_THROW_RANGE)*/) {
             motionX = motionY = motionZ = 0;
             dataManager.set(DATAWATCHER_OUT_FLAG, (byte) 1);
         }

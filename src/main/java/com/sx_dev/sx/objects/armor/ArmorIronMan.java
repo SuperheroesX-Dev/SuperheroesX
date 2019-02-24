@@ -3,13 +3,14 @@ package com.sx_dev.sx.objects.armor;
 import com.google.common.collect.Multimap;
 import com.sx_dev.sx.SuperheroesX;
 import com.sx_dev.sx.init.ItemInit;
-import com.sx_dev.sx.init.PotionInit;
+import com.sx_dev.sx.init.PotionEffectInit;
 import com.sx_dev.sx.util.Reference;
 import com.sx_dev.sx.util.handlers.LivingTickHandler;
 import com.sx_dev.sx.util.handlers.SyncHandler;
 import com.sx_dev.sx.util.helpers.NBTHelper;
 import com.sx_dev.sx.util.helpers.SXStringHelper;
 import com.sx_dev.sx.util.helpers.StringHelper;
+import com.sx_dev.sx.util.interfaces.IHUDInfoProvider;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.client.renderer.entity.model.ModelBiped;
 import net.minecraft.enchantment.Enchantment;
@@ -232,7 +233,7 @@ public class ArmorIronMan extends ArmorBase /*implements ISpecialArmor*/ {
     }
 
     @SuppressWarnings({"UnusedReturnValue", "SpellCheckingInspection"})
-    public static class ChestplateIronMan extends ArmorIronMan /*implements*/ /*IEnergyContainerItem,*/ /*IHUDInfoProvider*/ {
+    public static class ChestplateIronMan extends ArmorIronMan implements /*IEnergyContainerItem,*/ IHUDInfoProvider {
 
         public static final String TAG_HOVERMODE_ON = "HoverModeOn";
         public static final String TAG_ON = "On";
@@ -262,6 +263,7 @@ public class ArmorIronMan extends ArmorBase /*implements ISpecialArmor*/ {
         }
 
         public static ItemStack setDefaultMaxEnergyTag(ItemStack container, int maxEnergy) {
+            if (container.getTag().contains("MaxEnergy")) return container;
             if (!container.hasTag()) {
                 container.setTag(new NBTTagCompound());
             }
@@ -280,7 +282,7 @@ public class ArmorIronMan extends ArmorBase /*implements ISpecialArmor*/ {
             return container;
         }
 
-        /*@Override
+        @Override
         public void addHUDInfo(List<String> list, ItemStack stack, boolean showFuel, boolean showState) {
             if (showFuel || SuperheroesX.DEBUG) {
                 list.add(this.getHUDEnergyInfo(stack, this));
@@ -288,7 +290,7 @@ public class ArmorIronMan extends ArmorBase /*implements ISpecialArmor*/ {
             if (showState || SuperheroesX.DEBUG) {
                 list.add(this.getHUDStatesInfo(stack));
             }
-        }*/
+        }
 
         @Override
         public void onCreated(ItemStack container, World worldIn, EntityPlayer playerIn) {
@@ -306,10 +308,10 @@ public class ArmorIronMan extends ArmorBase /*implements ISpecialArmor*/ {
         int timer = 0;
         boolean flag = false;
 
-        /*@Override
-        public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+        @Override
+        public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
             setDefaultMaxEnergyTag(stack, this.getArmorMaterial().getDurability(this.entityEquipmentSlot) * (getMultiplier(stack)));
-        }*/
+        }
 
         @OnlyIn(Dist.CLIENT)
         public String getHUDEnergyInfo(ItemStack stack, ChestplateIronMan item) {
@@ -435,7 +437,7 @@ public class ArmorIronMan extends ArmorBase /*implements ISpecialArmor*/ {
                     shootEnergyBlast(player, this);
                 }
                 super.onArmorTick(stack, world, player);
-                player.addPotionEffect(new PotionEffect(PotionInit.INVISIBLE_STRENGTH, 0, 3, true, false));
+                player.addPotionEffect(new PotionEffect(PotionEffectInit.INVISIBLE_STRENGTH.asPotionEffect(), 0, 3, true, false));
 
             } else {
                 if (!world.isRemote && timer > 20) {

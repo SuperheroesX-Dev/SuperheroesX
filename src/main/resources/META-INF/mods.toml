@@ -6,21 +6,21 @@ logoFile="examplemod.png"
 credits="Tiviacz1337 For Deadpool Skin, Mini_Me_Snipe for other textures :D"
 authors="minecraftschurli"
 [[mods]]
-modId="sx"
-version="${file.jarVersion}"
-displayName="Superheroes X"
-description='''
-This mod adds most of your favorite Marvel and DC Characters.
-'''
-[[dependencies.examplemod]]
-    modId="forge"
-    mandatory=true
-    versionRange="[25,)"
-    ordering="NONE"
-    side="BOTH"
-[[dependencies.examplemod]]
-    modId="minecraft"
-    mandatory=true
-    versionRange="[1.13,)"
-    ordering="NONE"
-    side="BOTH"
+    modId="sx"
+    version="${version}"
+    displayName="Superheroes X"
+    description='''
+    This mod adds most of your favorite Marvel and DC Characters.
+    '''
+    [[dependencies.sx]]
+        modId="forge"
+        mandatory=true
+        versionRange="[${forge_version},)"
+        ordering="NONE"
+        side="BOTH"
+    [[dependencies.sx]]
+        modId="minecraft"
+        mandatory=true
+        versionRange="[1.13,)"
+        ordering="NONE"
+        side="BOTH"

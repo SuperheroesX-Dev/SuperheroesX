@@ -27,24 +27,24 @@ public class HUDTickHandler {
     private static void tickEnd() {
         if (mc.player != null) {
 
-            if ((/*ModConfig.client.hud.showHUDWhileChatting && */mc.currentScreen instanceof GuiChat) && !mc.gameSettings.hideGUI && !mc.gameSettings.showDebugInfo) {
+            if ((ModConfig.client.hud.showHUDWhileChatting && mc.currentScreen instanceof GuiChat) && !mc.gameSettings.hideGUI && !mc.gameSettings.showDebugInfo) {
                 ItemStack chestplate = mc.player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
                 if (chestplate.getItem() instanceof IHUDInfoProvider) {
                     IHUDInfoProvider provider = (IHUDInfoProvider) chestplate.getItem();
 
                     List<String> info = new ArrayList<>();
-                    //provider.addHUDInfo(info, chestplate, ModConfig.client.hud.enableFuelHUD, ModConfig.client.hud.enableStateHUD);
+                    provider.addHUDInfo(info, chestplate, ModConfig.client.hud.enableFuelHUD, ModConfig.client.hud.enableStateHUD);
                     if (info.isEmpty()) {
                         return;
                     }
 
                     GL11.glPushMatrix();
-                    //mc.entityRenderer.setupOverlayRendering();
-                    //GL11.glScaled(ModConfig.client.hud.HUDScale, ModConfig.client.hud.HUDScale, 1.0D);
+                    mc.mainWindow.setupOverlayRendering();
+                    GL11.glScaled(ModConfig.client.hud.HUDScale, ModConfig.client.hud.HUDScale, 1.0D);
 
                     int i = 0;
                     for (String s : info) {
-                        //RenderUtils.drawStringAtHUDPosition(s, ModConfig.client.hud.HUDPosition, mc.fontRenderer, ModConfig.client.hud.HUDOffsetX, ModConfig.client.hud.HUDOffsetY, ModConfig.client.hud.HUDScale, 0xeeeeee, true, i);
+                        RenderUtils.drawStringAtHUDPosition(s, ModConfig.client.hud.HUDPosition, mc.fontRenderer, ModConfig.client.hud.HUDOffsetX, ModConfig.client.hud.HUDOffsetY, ModConfig.client.hud.HUDScale, 0xeeeeee, i);
                         i++;
                     }
 

@@ -3,12 +3,10 @@ package com.sx_dev.sx.util.network.message;
 import com.sx_dev.sx.SuperheroesX;
 import com.sx_dev.sx.util.handlers.SyncHandler;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.world.WorldServer;/*
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;*/
+import net.minecraftforge.fml.network.NetworkEvent;
+
+import java.util.function.Supplier;
 
 public class MessageKeyboardSync /*implements IMessage, IMessageHandler<MessageKeyboardSync, IMessage> */{
     public boolean flyState;
@@ -19,7 +17,8 @@ public class MessageKeyboardSync /*implements IMessage, IMessageHandler<MessageK
     public boolean leftState;
     public boolean rightState;
 
-    public MessageKeyboardSync() {
+    public MessageKeyboardSync(ByteBuf buf) {
+        fromBytes(buf);
     }
 
     public MessageKeyboardSync(boolean flyState, boolean descendState, boolean forwardState, boolean backwardState, boolean leftState, boolean rightState) {
@@ -30,8 +29,7 @@ public class MessageKeyboardSync /*implements IMessage, IMessageHandler<MessageK
         this.leftState = leftState;
         this.rightState = rightState;
     }
-/*
-    @Override
+
     public void fromBytes(ByteBuf buf) {
         this.flyState = buf.readBoolean();
         this.descendState = buf.readBoolean();
@@ -42,7 +40,6 @@ public class MessageKeyboardSync /*implements IMessage, IMessageHandler<MessageK
         this.rightState = buf.readBoolean();
     }
 
-    @Override
     public void toBytes(ByteBuf buf) {
         buf.writeBoolean(this.flyState);
         buf.writeBoolean(this.descendState);
@@ -53,20 +50,14 @@ public class MessageKeyboardSync /*implements IMessage, IMessageHandler<MessageK
         buf.writeBoolean(this.rightState);
     }
 
-    @Override
-    public IMessage onMessage(MessageKeyboardSync msg, MessageContext ctx) {
-        EntityPlayerMP entityPlayerMP = ctx.getServerHandler().player;
-        WorldServer worldServer = entityPlayerMP.getServerWorld();
-
-        worldServer.addScheduledTask(() -> handleMessage(msg, ctx));
-
-        return null;
-    }
-    public void handleMessage(MessageKeyboardSync msg, MessageContext ctx) {
+    public static void handle(MessageKeyboardSync msg, Supplier<NetworkEvent.Context> ctx) {
         if (SuperheroesX.DEBUG) System.out.println(">handleMessage<");
-        EntityPlayer entityPlayer = ctx.getServerHandler().player;
-        if (entityPlayer != null) {
-            SyncHandler.processKeyUpdate(entityPlayer, msg.flyState, msg.descendState, msg.forwardState, msg.backwardState, msg.leftState, msg.rightState);
-        }
-    }*/
+        ctx.get().enqueueWork(() -> {
+            EntityPlayerMP entityPlayer = ctx.get().getSender();
+            if (entityPlayer != null) {
+                SyncHandler.processKeyUpdate(entityPlayer, msg.flyState, msg.descendState, msg.forwardState, msg.backwardState, msg.leftState, msg.rightState);
+            }
+        });
+        ctx.get().setPacketHandled(true);
+    }
 }

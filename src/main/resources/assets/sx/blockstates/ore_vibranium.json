@@ -1,6 +1,7 @@
 {
-    "variants": 
-    {
-        "normal": { "model": "sx:ore_vibranium" }
+    "variants": {
+        "": {
+            "model": "sx:ore_vibranium"
+        }
     }
 }

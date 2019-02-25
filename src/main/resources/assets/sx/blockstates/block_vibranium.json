@@ -1,6 +1,7 @@
 {
-    "variants": 
-    {
-        "normal": { "model": "sx:block_vibranium" }
+    "variants": {
+        "": {
+            "model": "sx:block_vibranium"
+        }
     }
 }

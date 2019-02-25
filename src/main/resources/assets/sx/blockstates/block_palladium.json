@@ -1,6 +1,7 @@
 {
-    "variants": 
-    {
-        "normal": { "model": "sx:block_palladium" }
+    "variants": {
+        "": {
+            "model": "sx:block_palladium"
+        }
     }
 }

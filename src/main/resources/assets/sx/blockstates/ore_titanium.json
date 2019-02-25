@@ -1,6 +1,7 @@
 {
-    "variants": 
-    {
-        "normal": { "model": "sx:ore_titanium" }
+    "variants": {
+        "": {
+            "model": "sx:ore_titanium"
+        }
     }
 }

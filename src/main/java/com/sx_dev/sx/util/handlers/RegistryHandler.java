@@ -9,15 +9,17 @@ import com.sx_dev.sx.init.PotionInit;
 import com.sx_dev.sx.util.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.EntityType;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionType;
 import net.minecraft.potion.PotionUtils;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.event.RegistryEvent.Register;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -30,7 +32,7 @@ import java.util.Arrays;
 public class RegistryHandler {
 
     @SubscribeEvent
-    public static void onItemRegister(final Register<Item> event) {
+    public static void onItemRegister(final RegistryEvent.Register<Item> event) {
         SuperheroesX.LOGGER.info("Registering Items: Start");
         event.getRegistry().registerAll(Arrays.stream(ItemInit.values()).parallel().filter(ItemInit::isEnabled).map(ItemInit::asItem).toArray(Item[]::new));
         event.getRegistry().registerAll(Arrays.stream(BlockInit.values()).parallel().filter(BlockInit::isEnabled).map(BlockInit::asItem).toArray(Item[]::new));
@@ -38,7 +40,7 @@ public class RegistryHandler {
     }
 
     @SubscribeEvent
-    public static void onBlockRegister(final Register<Block> event) {
+    public static void onBlockRegister(final RegistryEvent.Register<Block> event) {
         SuperheroesX.LOGGER.info("Registering Blocks: Start");
         event.getRegistry().registerAll(Arrays.stream(BlockInit.values()).parallel().filter(BlockInit::isEnabled).map(BlockInit::asBlock).toArray(Block[]::new));
         SuperheroesX.LOGGER.info("Registering Blocks: Done");
@@ -61,18 +63,33 @@ public class RegistryHandler {
         }*//*
     }*/
 
+    /*@SubscribeEvent
+    public static void onFluidRegister(final RegistryEvent.Register<Fluid> event) {
+        event.getRegistry().registerAll(Arrays.stream(PotionEffectInit.values()).parallel().map(PotionEffectInit::asPotionEffect).toArray(Potion[]::new));
+    }*/
+
     @SubscribeEvent
-    public static void onPotionRegister(final Register<Potion> event) {
+    public static void onPotionRegister(final RegistryEvent.Register<Potion> event) {
         event.getRegistry().registerAll(Arrays.stream(PotionEffectInit.values()).parallel().map(PotionEffectInit::asPotionEffect).toArray(Potion[]::new));
     }
 
     @SubscribeEvent
-    public static void onEnchantmentRegister(final Register<Enchantment> event) {
+    public static void onTERegister(final RegistryEvent.Register<TileEntityType<?>> event) {
+        //event.getRegistry().registerAll(Arrays.stream(TEInit.values()).parallel().map(TEInit::asTileEntityType).toArray(TileEntityType[]::new));
+    }
+
+    @SubscribeEvent
+    public static void onEntityRegister(final RegistryEvent.Register<EntityType<?>> event) {
+        //event.getRegistry().registerAll(Arrays.stream(EntityInit.values()).parallel().map(EntityInit::asEntityType).toArray(EntityType[]::new));
+    }
+
+    @SubscribeEvent
+    public static void onEnchantmentRegister(final RegistryEvent.Register<Enchantment> event) {
         //event.getRegistry().registerAll(EnchantmentInit.ENCHANTMENTS.toArray(new Enchantment[0]));
     }
 
     @SubscribeEvent
-    public static void onPotionTypeRegister(final Register<PotionType> event) {
+    public static void onPotionTypeRegister(final RegistryEvent.Register<PotionType> event) {
         Arrays.stream(PotionInit.values()).parallel().map(PotionInit::asPotion).forEach(potion -> {
             event.getRegistry().register(potion);
             PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), potion);
@@ -82,6 +99,7 @@ public class RegistryHandler {
     @SubscribeEvent
     public static void onModelRegister(final ModelRegistryEvent event) {
     }
+
 
     public static void preInitRegistries(final FMLCommonSetupEvent event) {
         DistExecutor.runWhenOn(Dist.CLIENT, () -> //GameRegistry.registerWorldGenerator(new WorldGenCustomOres(), 0);

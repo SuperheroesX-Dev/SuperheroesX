@@ -63,7 +63,7 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         include 'META-INF/mods.toml'
 
-        expand 'version': project.version, 'mcversion': minecraft_version, 'forge_version': forge_version_toml
+        expand 'version': project.version, 'mcversion': minecraft_version, 'minecraft_version': minecraft_version_toml, 'forge_version': forge_version_toml
     }
 
     from(sourceSets.main.resources.srcDirs) {

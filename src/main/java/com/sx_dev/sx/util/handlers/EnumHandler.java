@@ -11,12 +11,12 @@ public class EnumHandler {
     }
 
     public enum HUDPositions {
-        TOP_LEFT,
-        TOP_CENTER,
-        TOP_RIGHT,
+        TOPLEFT,
+        TOPCENTER,
+        TOPRIGHT,
         LEFT,
         RIGHT,
-        BOTTOM_LEFT,
-        BOTTOM_RIGHT
+        BOTTOMLEFT,
+        BOTTOMRIGHT
     }
 }

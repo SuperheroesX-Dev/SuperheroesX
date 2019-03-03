@@ -61,9 +61,11 @@ public class KeyTracker {
     private static KeyBinding shrinkKey;
     private static KeyBinding growKey;
 
-    private static ArrayList<KeyBinding> keys = new ArrayList<>();
+    private static ArrayList<KeyBinding> keys;
 
     public KeyTracker() {
+        keys = new ArrayList<>();
+
         engineKey = new KeyBinding(Reference.PREFIX + "keybind.engine", KeyConflictContext.IN_GAME, InputMappings.Type.KEYSYM.getOrMakeInput(GLFW.GLFW_KEY_G), Reference.PREFIX + "category.ironman");
         ClientRegistry.registerKeyBinding(engineKey);
 
@@ -75,6 +77,8 @@ public class KeyTracker {
 
         growKey = new KeyBinding(Reference.PREFIX + "keybind.grow", KeyConflictContext.IN_GAME, InputMappings.Type.KEYSYM.getOrMakeInput(GLFW.GLFW_KEY_V), Reference.PREFIX + "category.antman");
         ClientRegistry.registerKeyBinding(growKey);
+
+        addKeys();
     }
 
     @SubscribeEvent
@@ -124,7 +128,7 @@ public class KeyTracker {
         if (mc.player != null) {
             boolean flyState;
             boolean descendState;
-            if (ModConfig.client.controls.customControls) {
+            if (ModConfig.ClientConfig.ControlsConfig.customControls.get()) {
                 flyState = mc.isGameFocused() && flyKey.isPressed();
                 descendState = mc.isGameFocused() && descendKey.isPressed();
             } else {
@@ -183,7 +187,7 @@ public class KeyTracker {
         for (KeyBinding keyBindings : keys) {
             int button = keyBindings.getKey().getKeyCode();
             if (button > 0 && keyBindings.isPressed()) {
-                if (chestItem instanceof ChestplateIronMan) {
+                if (chestItem instanceof ChestplateIronMan && ((ChestplateIronMan) chestItem).isWearingFullSet(player)) {
                     ChestplateIronMan jetpack = (ChestplateIronMan) chestItem;
                     if (keyBindings.getKeyDescription().equals(Reference.PREFIX + "keybind.engine")) {
                         System.out.println(jetpack.isOn(chestStack));
@@ -199,7 +203,7 @@ public class KeyTracker {
                             PacketHandler.INSTANCE.sendToServer(new MessageKeyBind(MessageKeyBind.IronmanPacket.HOVER));
                         }
                     }
-                } else if (chestItem instanceof ArmorAntman.ChestplateAntman) {
+                } else if (chestItem instanceof ArmorAntman.ChestplateAntman && ((ArmorAntman.ChestplateAntman) chestItem).isWearingFullSet(player)) {
                     ArmorAntman.ChestplateAntman chestplateAntman = (ArmorAntman.ChestplateAntman) chestItem;
 
                     if (keyBindings.getKeyDescription().equals(Reference.PREFIX + "keybind.shrink")) {

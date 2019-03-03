@@ -1,94 +1,166 @@
 package com.sx_dev.sx.util.config;
 
-import com.sx_dev.sx.util.handlers.EnumHandler;
-
-/*
+import com.electronwill.nightconfig.core.file.CommentedFileConfig;
+import com.electronwill.nightconfig.core.io.WritingMode;
+import com.sx_dev.sx.SuperheroesX;
 import com.sx_dev.sx.util.Reference;
 import com.sx_dev.sx.util.handlers.EnumHandler;
-import net.minecraftforge.common.config.Config;
-import net.minecraftforge.common.config.ConfigManager;
-import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Config(modid = Reference.MODID)
-@Config.LangKey(Reference.CONFIG_LANG_PREFIX + "category.title")*/
+import java.nio.file.Path;
+
+import static net.minecraftforge.fml.Logging.CORE;
+
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = Reference.MODID)
 public class ModConfig {
 
-    //    @Config.LangKey(Reference.CONFIG_LANG_PREFIX + "common.title")
-    public static final CommonConfig common = new CommonConfig();
+    public static final ForgeConfigSpec SERVER_CONFIG;
+    public static final ForgeConfigSpec CLIENT_CONFIG;
+    private static final ForgeConfigSpec.Builder SERVER_BUILDER = new ForgeConfigSpec.Builder();
+    private static final ForgeConfigSpec.Builder CLIENT_BUILDER = new ForgeConfigSpec.Builder();
 
-    //    @Config.LangKey(Reference.CONFIG_LANG_PREFIX + "client.title")
-    public static final ClientConfig client = new ClientConfig();
+    static {
+        ClientConfig.init(CLIENT_BUILDER);
+        CommonConfig.init(SERVER_BUILDER);
+
+        SERVER_CONFIG = SERVER_BUILDER.build();
+        CLIENT_CONFIG = CLIENT_BUILDER.build();
+    }
+
+    public static void loadConfig(ForgeConfigSpec spec, Path path) {
+        SuperheroesX.LOGGER.debug("Loading config file {}", path);
+
+        final CommentedFileConfig configData = CommentedFileConfig.builder(path)
+                .sync()
+                .autosave()
+                .writingMode(WritingMode.REPLACE)
+                .build();
+
+        SuperheroesX.LOGGER.debug("Built TOML config for {}", path.toString());
+        configData.load();
+        SuperheroesX.LOGGER.debug("Loaded TOML config file {}", path.toString());
+        spec.setConfig(configData);
+    }
+
+    @SubscribeEvent
+    public static void onLoad(final net.minecraftforge.fml.config.ModConfig.Loading configEvent) {
+        SuperheroesX.LOGGER.debug("Loaded {} config file {}", Reference.MODID, configEvent.getConfig().getFileName());
+
+    }
+
+    @SubscribeEvent
+    public static void onFileChange(final net.minecraftforge.fml.config.ModConfig.ConfigReloading configEvent) {
+        SuperheroesX.LOGGER.fatal(CORE, "{} config just got changed on the file system!", Reference.MODID);
+    }
 
     public static class ClientConfig {
 
-        //        @Config.LangKey(Reference.CONFIG_LANG_PREFIX + "client.hud.title")
-        public final HUDConfig hud = new HUDConfig();
-
-        //        @Config.LangKey(Reference.CONFIG_LANG_PREFIX + "client.controls.title")
-        public final ControlsConfig controls = new ControlsConfig();
+        public static void init(ForgeConfigSpec.Builder clientBuilder) {
+            HUDConfig.init(clientBuilder);
+            ControlsConfig.init(clientBuilder);
+        }
 
         public static class HUDConfig {
 
-            //            @Config.LangKey(Reference.CONFIG_LANG_PREFIX + "client.hud.offset_x.title")
-            public final int HUDOffsetX = 0;
-            //            @Config.LangKey(Reference.CONFIG_LANG_PREFIX + "client.hud.offset_y.title")
-            public final int HUDOffsetY = 0;
-            //            @Config.LangKey(Reference.CONFIG_LANG_PREFIX + "client.hud.shift.title")
-            public boolean holdShiftForDetails = true;
-            //            @Config.LangKey(Reference.CONFIG_LANG_PREFIX + "client.hud.pos.title")
-            public EnumHandler.HUDPositions HUDPosition = EnumHandler.HUDPositions.TOP_LEFT;
-            //            @Config.LangKey(Reference.CONFIG_LANG_PREFIX + "client.hud.scale.title")
-            public double HUDScale = 1.0D;
-            //            @Config.LangKey(Reference.CONFIG_LANG_PREFIX + "client.hud.chat.title")
-            public boolean showHUDWhileChatting = true;
-            //            @Config.LangKey(Reference.CONFIG_LANG_PREFIX + "client.hud.enable_fuel.title")
-            public boolean enableFuelHUD = true;
-            //            @Config.LangKey(Reference.CONFIG_LANG_PREFIX + "client.hud.minimal.title")
-            public boolean minimalFuelHUD = false;
-            //            @Config.LangKey(Reference.CONFIG_LANG_PREFIX + "client.hud.exact.title")
-            public boolean showExactFuelInHUD = false;
-            //            @Config.LangKey(Reference.CONFIG_LANG_PREFIX + "client.hud.enable_state.title")
-            public boolean enableStateHUD = true;
+            public static ForgeConfigSpec.IntValue HUDOffsetX;
+            public static ForgeConfigSpec.IntValue HUDOffsetY;
+            public static ForgeConfigSpec.BooleanValue holdShiftForDetails;
+            public static ForgeConfigSpec.IntValue HUDPosition;
+            public static ForgeConfigSpec.DoubleValue HUDScale;
+            public static ForgeConfigSpec.BooleanValue showHUDWhileChatting;
+            public static ForgeConfigSpec.BooleanValue enableFuelHUD;
+            public static ForgeConfigSpec.BooleanValue minimalFuelHUD;
+            public static ForgeConfigSpec.BooleanValue showExactFuelInHUD;
+            public static ForgeConfigSpec.BooleanValue enableStateHUD;
+
+            public static void init(ForgeConfigSpec.Builder clientBuilder) {
+                //clientBuilder.comment("HUDConfig");//.translation(Reference.CONFIG_LANG_PREFIX + "client.hud.title")
+
+
+                HUDOffsetX = clientBuilder
+                        //.translation(Reference.CONFIG_LANG_PREFIX + "client.hud.offset_x.title")
+                        .defineInRange("HUDConfig.HUDOffsetX", 0, 0, Integer.MAX_VALUE);
+
+                HUDOffsetY = clientBuilder
+                        //.translation(Reference.CONFIG_LANG_PREFIX + "client.hud.offset_y.title")
+                        .defineInRange("HUDConfig.HUDOffsetY", 0, 0, Integer.MAX_VALUE);
+
+                holdShiftForDetails = clientBuilder
+                        //.translation(Reference.CONFIG_LANG_PREFIX + "client.hud.shift.title")
+                        .define("HUDConfig.holdShiftForDetails", true);
+
+                HUDPosition = clientBuilder
+                        //.translation(Reference.CONFIG_LANG_PREFIX + "client.hud.pos.title")
+                        .defineInRange("HUDConfig.HUDPosition", EnumHandler.HUDPositions.TOPLEFT.ordinal(), 0, EnumHandler.HUDPositions.values().length - 1);
+
+                HUDScale = clientBuilder
+                        //.translation(Reference.CONFIG_LANG_PREFIX + "client.hud.scale.title")
+                        .defineInRange("HUDConfig.HUDScale", 1D, 0.1D, 100D);
+
+                showHUDWhileChatting = clientBuilder
+                        //.translation(Reference.CONFIG_LANG_PREFIX + "client.hud.chat.title")
+                        .define("HUDConfig.showHUDWhileChatting", true);
+
+                enableFuelHUD = clientBuilder
+                        //.translation(Reference.CONFIG_LANG_PREFIX + "client.hud.enable_fuel.title")
+                        .define("HUDConfig.enableFuelHUD", true);
+
+                minimalFuelHUD = clientBuilder
+                        //.translation(Reference.CONFIG_LANG_PREFIX + "client.hud.minimal.title")
+                        .define("HUDConfig.minimalFuelHUD", false);
+
+                showExactFuelInHUD = clientBuilder
+                        //.translation(Reference.CONFIG_LANG_PREFIX + "client.hud.exact.title")
+                        .define("HUDConfig.showExactFuelInHUD", true);
+
+                enableStateHUD = clientBuilder
+                        //.translation(Reference.CONFIG_LANG_PREFIX + "client.hud.enable_state.title")
+                        .define("HUDConfig.enableStateHUD", true);
+            }
         }
 
         public static class ControlsConfig {
 
-            //            @Config.LangKey(Reference.CONFIG_LANG_PREFIX + "client.controls.custom.title")
-            public boolean customControls = false;
+            public static ForgeConfigSpec.BooleanValue customControls;
+            public static ForgeConfigSpec.BooleanValue invertHoverSneakingBehavior;
 
-            //            @Config.LangKey(Reference.CONFIG_LANG_PREFIX + "client.controls.invert_sneak.title")
-            public boolean invertHoverSneakingBehavior = false;
+            public static void init(ForgeConfigSpec.Builder clientBuilder) {
+                //clientBuilder.comment("controls");
+                //.translation(Reference.CONFIG_LANG_PREFIX + "client.controls.title")
+
+                customControls = clientBuilder
+                        //.translation(Reference.CONFIG_LANG_PREFIX + "client.controls.custom.title")
+                        .define("controls.customControls", false);
+
+                invertHoverSneakingBehavior = clientBuilder
+                        //.translation(Reference.CONFIG_LANG_PREFIX + "client.controls.invert_sneak.title")
+                        .define("controls.invertHoverSneakingBehavior", false);
+            }
         }
     }
 
     public static class CommonConfig {
 
-        //        @Config.Comment("When disabled MARVEL Items will not be available")
-//        @Config.LangKey(Reference.CONFIG_LANG_PREFIX + "common.marvel.title")
-//        @Config.RequiresMcRestart
-        public boolean marvelItems = true;
+        public static ForgeConfigSpec.BooleanValue marvelItems;
+        public static ForgeConfigSpec.BooleanValue dcItems;
 
-        //        @Config.Comment("When disabled DC Items will not be available")
-//        @Config.LangKey(Reference.CONFIG_LANG_PREFIX + "common.dc.title")
-//        @Config.RequiresMcRestart
-        public boolean dcItems = true;
-    }
+        public static void init(ForgeConfigSpec.Builder serverBuilder) {
+            serverBuilder.comment("items");
 
-//    @Mod.EventBusSubscriber(modid = Reference.MODID)
-    /*private static class EventHandler {
 
-        /**
-         * Inject the new values and save to the config file when the config has been changed from the GUI.
-         *
-         * @param event The event
-         *//*
-        @SubscribeEvent
-        public static void onConfigChanged(final ConfigChangedEvent.OnConfigChangedEvent event) {
-            if (event.getModID().equals(Reference.MODID)) {
-                ConfigManager.sync(Reference.MODID, Config.Type.INSTANCE);
-            }
+            marvelItems = serverBuilder
+                    .comment("When disabled MARVEL Items will not be available")
+                    //.translation(Reference.CONFIG_LANG_PREFIX + "common.marvel.title")
+                    .worldRestart()
+                    .define("items.marvelItems", true);
+
+            dcItems = serverBuilder
+                    .comment("When disabled DC Items will not be available")
+                    //.translation(Reference.CONFIG_LANG_PREFIX + "common.dc.title")
+                    .worldRestart()
+                    .define("items.dcItems", true);
         }
-    }*/
+    }
 }

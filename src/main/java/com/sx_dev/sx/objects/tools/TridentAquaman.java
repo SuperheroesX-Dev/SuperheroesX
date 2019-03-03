@@ -1,6 +1,6 @@
 package com.sx_dev.sx.objects.tools;
 
-import com.sx_dev.sx.SuperheroesX;
+import com.sx_dev.sx.tabs.CustomItemGroup;
 import com.sx_dev.sx.util.Reference;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,10 +16,11 @@ import net.minecraft.world.World;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 public class TridentAquaman extends ItemTrident {
+
     private boolean first = true;
 
     public TridentAquaman() {
-        super(new Properties().group(SuperheroesX.SUPERHEROES_X_TAB_DC).defaultMaxDamage(1).rarity(EnumRarity.RARE));
+        super(new Properties().group(CustomItemGroup.Groups.SUPERHEROES_X_TAB_DC).defaultMaxDamage(1).rarity(EnumRarity.RARE));
         setRegistryName(Reference.MODID, "trident_aquaman");
     }
 

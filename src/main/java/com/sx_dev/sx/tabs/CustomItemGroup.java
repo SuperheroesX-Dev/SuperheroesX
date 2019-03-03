@@ -3,6 +3,7 @@ package com.sx_dev.sx.tabs;
 import com.sx_dev.sx.init.BlockInit;
 import com.sx_dev.sx.init.ItemInit;
 import com.sx_dev.sx.util.Reference;
+import com.sx_dev.sx.util.config.ModConfig;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -11,6 +12,12 @@ import net.minecraft.item.ItemStack;
 
 @MethodsReturnNonnullByDefault
 public abstract class CustomItemGroup extends ItemGroup {
+    public static class Groups {
+        public static final ItemGroup SUPERHEROES_X_TAB_MATERIALS = new Materials();
+        public static final ItemGroup SUPERHEROES_X_TAB_MARVEL = ModConfig.CommonConfig.marvelItems.get() ? new MARVEL() : null;
+        public static final ItemGroup SUPERHEROES_X_TAB_DC = ModConfig.CommonConfig.dcItems.get() ? new DC() : null;
+    }
+
     CustomItemGroup(String label) {
         super(getGroupCountSafe(), Reference.MODID + "_" + label);
         //this.setBackgroundImageName("superheroesx.png");

@@ -30,15 +30,15 @@ public abstract class RenderUtils {
         screenHeight /= scale;
 
         switch (position) {
-            case TOP_LEFT:
+            case TOPLEFT:
                 yOffset += lineOffset * 9;
                 drawStringLeft(string, fontRenderer, 2 + xOffset, 2 + yOffset, color);
                 break;
-            case TOP_CENTER:
+            case TOPCENTER:
                 yOffset += lineOffset * 9;
                 drawStringCenter(string, fontRenderer, screenWidth / 2 + xOffset, 2 + yOffset, color);
                 break;
-            case TOP_RIGHT:
+            case TOPRIGHT:
                 yOffset += lineOffset * 9;
                 drawStringRight(string, fontRenderer, screenWidth - 2 + xOffset, 2 + yOffset, color);
                 break;
@@ -50,11 +50,11 @@ public abstract class RenderUtils {
                 yOffset += lineOffset * 9;
                 drawStringRight(string, fontRenderer, screenWidth - 2 + xOffset, screenHeight / 2 + yOffset, color);
                 break;
-            case BOTTOM_LEFT:
+            case BOTTOMLEFT:
                 yOffset -= lineOffset * 9;
                 drawStringLeft(string, fontRenderer, 2 + xOffset, screenHeight - 9 + yOffset, color);
                 break;
-            case BOTTOM_RIGHT:
+            case BOTTOMRIGHT:
                 yOffset -= lineOffset * 9;
                 drawStringRight(string, fontRenderer, screenWidth - 2 + xOffset, screenHeight - 9 + yOffset, color);
         }

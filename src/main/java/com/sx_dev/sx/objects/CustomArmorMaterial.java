@@ -1,9 +1,11 @@
 package com.sx_dev.sx.objects;
 
+import com.sx_dev.sx.util.Reference;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.LazyLoadBase;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -12,7 +14,7 @@ import java.util.function.Supplier;
 
 public class CustomArmorMaterial implements IArmorMaterial {
     private static final int[] MAX_DAMAGE_ARRAY = new int[]{13, 15, 16, 11};
-    private final String name;
+    private final ResourceLocation name;
     private final int maxDamageFactor;
     private final int[] damageReductionAmountArray;
     private final int enchantability;
@@ -21,7 +23,7 @@ public class CustomArmorMaterial implements IArmorMaterial {
     private final LazyLoadBase<Ingredient> repairMaterial;
 
     public CustomArmorMaterial(String name, int maxDamageFactor, int[] damageReductionAmountArray, int enchantability, SoundEvent soundEvent, float toughness, Supplier<Ingredient> repairMaterial) {
-        this.name = name;
+        this.name = new ResourceLocation(Reference.MODID, name);
         this.maxDamageFactor = maxDamageFactor;
         this.damageReductionAmountArray = damageReductionAmountArray;
         this.enchantability = enchantability;
@@ -52,7 +54,7 @@ public class CustomArmorMaterial implements IArmorMaterial {
 
     @OnlyIn(Dist.CLIENT)
     public String getName() {
-        return this.name;
+        return this.name.toString();
     }
 
     public float getToughness() {

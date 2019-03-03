@@ -3,6 +3,7 @@ package com.sx_dev.sx.objects.items;
 
 import com.sx_dev.sx.SuperheroesX;
 import com.sx_dev.sx.entity.EntityCaptainAmericasShield;
+import com.sx_dev.sx.tabs.CustomItemGroup;
 import com.sx_dev.sx.util.Reference;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,7 +29,7 @@ public class ShieldCaptainAmerica extends WeaponizedShield {
     private int ticks;
 
     public ShieldCaptainAmerica() {
-        super("shield_captain_america", Integer.MAX_VALUE, 8, -2.4000000953674316D, 10, 0, "", SuperheroesX.SUPERHEROES_X_TAB_MARVEL);
+        super("shield_captain_america", Integer.MAX_VALUE, 8, -2.4000000953674316D, 10, 0, "", CustomItemGroup.Groups.SUPERHEROES_X_TAB_MARVEL);
         addPropertyOverride(new ResourceLocation("throwing"), new IItemPropertyGetter() {
             @OnlyIn(Dist.CLIENT)
             public float call(@Nonnull ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {

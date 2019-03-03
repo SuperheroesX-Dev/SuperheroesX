@@ -4,6 +4,7 @@ import com.google.common.collect.Multimap;
 import com.sx_dev.sx.SuperheroesX;
 import com.sx_dev.sx.init.ItemInit;
 import com.sx_dev.sx.init.PotionEffectInit;
+import com.sx_dev.sx.tabs.CustomItemGroup;
 import com.sx_dev.sx.util.Reference;
 import com.sx_dev.sx.util.handlers.LivingTickHandler;
 import com.sx_dev.sx.util.handlers.SyncHandler;
@@ -225,7 +226,7 @@ public class ArmorIronMan extends ArmorBase /*implements ISpecialArmor*/ {
     }*/
 
     @Override
-    protected boolean isWearingFullSet(EntityPlayer player) {
+    public boolean isWearingFullSet(EntityPlayer player) {
         for (ItemStack stack : player.getArmorInventoryList())
             if (!(stack.getItem() instanceof ArmorIronMan))
                 return false;
@@ -257,7 +258,7 @@ public class ArmorIronMan extends ArmorBase /*implements ISpecialArmor*/ {
 
 
         public ChestplateIronMan() {
-            super("ironman_chestplate", EntityEquipmentSlot.CHEST, new Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MARVEL).defaultMaxDamage(0));
+            super("ironman_chestplate", EntityEquipmentSlot.CHEST, new Properties().group(CustomItemGroup.Groups.SUPERHEROES_X_TAB_MARVEL).defaultMaxDamage(0));
             setMultiplier(new ItemStack(this), this.multiplier < 1 ? 1 : this.multiplier);
             setDefaultMaxEnergyTag(ChestplateIronMan.setDefaultEnergyTag(new ItemStack(this, 1), 0), this.getArmorMaterial().getDurability(this.entityEquipmentSlot));
         }
@@ -676,7 +677,7 @@ public class ArmorIronMan extends ArmorBase /*implements ISpecialArmor*/ {
 
         @Override
         public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
-            if (group == SuperheroesX.SUPERHEROES_X_TAB_MARVEL) {
+            if (group == CustomItemGroup.Groups.SUPERHEROES_X_TAB_MARVEL) {
                 items.add(getTieredItemStack(1, false));
                 items.add(getTieredItemStack(1, true));
                 items.add(getTieredItemStack(2, false));

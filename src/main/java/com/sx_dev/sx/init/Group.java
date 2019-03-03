@@ -10,9 +10,9 @@ enum Group {
     public boolean enabled() {
         switch (this) {
             case MARVEL:
-                return ModConfig.common.marvelItems;
+                return ModConfig.CommonConfig.marvelItems.get();
             case DC:
-                return ModConfig.common.dcItems;
+                return ModConfig.CommonConfig.dcItems.get();
             case ANY:
                 return true;
             default:

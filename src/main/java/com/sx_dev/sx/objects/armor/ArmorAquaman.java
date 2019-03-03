@@ -1,6 +1,7 @@
 package com.sx_dev.sx.objects.armor;
 
-import com.sx_dev.sx.SuperheroesX;
+import com.sx_dev.sx.init.ItemInit;
+import com.sx_dev.sx.tabs.CustomItemGroup;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.MobEffects;
@@ -14,12 +15,21 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.List;
 
 import static com.sx_dev.sx.init.ItemInit.ARMOR_AQUAMAN;
 
 public class ArmorAquaman extends ArmorBase {
     public ArmorAquaman(String name, EntityEquipmentSlot equipmentSlotIn) {
-        super(name, ARMOR_AQUAMAN, equipmentSlotIn, new Properties().group(SuperheroesX.SUPERHEROES_X_TAB_DC));
+        super(name, ARMOR_AQUAMAN, equipmentSlotIn, new Properties().group(CustomItemGroup.Groups.SUPERHEROES_X_TAB_DC));
+    }
+
+    @Override
+    protected boolean isWearingFullSet(EntityPlayer player) {
+        List<ItemStack> stacks = player.inventory.armorInventory;
+        return stacks.get(0).getItem() == ItemInit.BOOTS_AQUAMAN.asItem() &&
+                stacks.get(1).getItem() == ItemInit.LEGGINGS_AQUAMAN.asItem() &&
+                stacks.get(2).getItem() == ItemInit.CHESTPLATE_AQUAMAN.asItem();
     }
 
     @Override

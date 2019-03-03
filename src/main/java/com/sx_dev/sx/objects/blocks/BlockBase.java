@@ -1,6 +1,6 @@
 package com.sx_dev.sx.objects.blocks;
 
-import com.sx_dev.sx.SuperheroesX;
+import com.sx_dev.sx.tabs.CustomItemGroup;
 import com.sx_dev.sx.util.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -34,14 +34,14 @@ public class BlockBase extends Block {
         setRegistryName(Reference.MODID, name);
         tag.getAllElements().add(this);
 
-        this.itemBlock = new ItemBlock(this, new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)).setRegistryName(this.getRegistryName());
+        this.itemBlock = new ItemBlock(this, new Item.Properties().group(CustomItemGroup.Groups.SUPERHEROES_X_TAB_MATERIALS)).setRegistryName(this.getRegistryName());
     }
 
     public BlockBase(String name, Properties properties) {
         super(properties);
         setRegistryName(Reference.MODID, name);
 
-        this.itemBlock = new ItemBlock(this, new Item.Properties().group(SuperheroesX.SUPERHEROES_X_TAB_MATERIALS)).setRegistryName(this.getRegistryName());
+        this.itemBlock = new ItemBlock(this, new Item.Properties().group(CustomItemGroup.Groups.SUPERHEROES_X_TAB_MATERIALS)).setRegistryName(this.getRegistryName());
     }
 
     @Override

@@ -18,7 +18,6 @@ import net.minecraft.potion.PotionType;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
@@ -74,8 +73,8 @@ public class RegistryHandler {
     }
 
     @SubscribeEvent
-    public static void onTERegister(final RegistryEvent.Register<TileEntityType<?>> event) {
-        //event.getRegistry().registerAll(Arrays.stream(TEInit.values()).parallel().map(TEInit::asTileEntityType).toArray(TileEntityType[]::new));
+    public static void onTileEntityRegister(final RegistryEvent.Register<TileEntityType<?>> event) {
+        //event.getRegistry().registerAll(Arrays.stream(TileEntityInit.values()).parallel().map(TEInit::asTileEntityType).toArray(TileEntityType[]::new));
     }
 
     @SubscribeEvent
@@ -96,13 +95,8 @@ public class RegistryHandler {
         });
     }
 
-    @SubscribeEvent
-    public static void onModelRegister(final ModelRegistryEvent event) {
-    }
-
-
     public static void preInitRegistries(final FMLCommonSetupEvent event) {
-        DistExecutor.runWhenOn(Dist.CLIENT, () -> //GameRegistry.registerWorldGenerator(new WorldGenCustomOres(), 0);
+        DistExecutor.runWhenOn(Dist.CLIENT, () -> //GameRegistry.registerWorldGenerator(new WorldGen(), 0);
                 RenderHandler::registerEntityRenders);
     }
 

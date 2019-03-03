@@ -1,7 +1,7 @@
 package com.sx_dev.sx.objects.armor;
 
-import com.sx_dev.sx.SuperheroesX;
 import com.sx_dev.sx.init.PotionEffectInit;
+import com.sx_dev.sx.tabs.CustomItemGroup;
 import net.minecraft.client.renderer.entity.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,7 +17,7 @@ import static com.sx_dev.sx.init.ItemInit.ARMOR_ROBIN1;
 
 public class ArmorRobin1 extends ArmorBase {
     public ArmorRobin1(String name, EntityEquipmentSlot equipmentSlotIn) {
-        super(name, ARMOR_ROBIN1, equipmentSlotIn, new Properties().group(SuperheroesX.SUPERHEROES_X_TAB_DC));
+        super(name, ARMOR_ROBIN1, equipmentSlotIn, new Properties().group(CustomItemGroup.Groups.SUPERHEROES_X_TAB_DC));
     }
 
     @Override

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "tag": "forge:ores/titanium"
+  },
+  "result": "sx:ingot_titanium",
+  "experience": 1.0
+}

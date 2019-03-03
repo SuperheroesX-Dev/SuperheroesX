@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX",
+    "XX"
+  ],
+  "key": {
+    "X": {
+      "item": "sx:spandex_black"
+    }
+  },
+  "result": {
+    "item": "sx:spandex_cloth_black",
+    "count": 1
+  }
+}

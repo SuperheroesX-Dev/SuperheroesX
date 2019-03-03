@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:dyes/blue"
+    },
+    {
+      "tag": "forge:dyes/white"
+    },
+    {
+      "tag": "forge:dyes/red"
+    },
+    {
+      "item": "sx:shield_captain_america_uncolored"
+    }
+  ],
+  "result": {
+    "item": "sx:shield_captain_america",
+    "count": 1
+  }
+}

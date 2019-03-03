@@ -1,22 +1,19 @@
 {
-    "type": "minecraft:crafting_shaped",
-
-    "pattern":
-    [
-        "XSX",      
-        "X X"
-    ],
-"key": {
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XSX",
+    "X X"
+  ],
+  "key": {
     "X": {
-        "item": "sx:spandex_cloth_black"
-        },
+      "item": "sx:spandex_cloth_black"
+    },
     "S": {
-        "item": "sx:ingot_titanium"
-
-      }
+      "item": "sx:cloth_strengthened"
+    }
   },
   "result": {
     "item": "sx:deadpool_boots",
-     "count": 1
+    "count": 1
   }
 }

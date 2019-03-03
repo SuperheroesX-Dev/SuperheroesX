@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "tag": "forge:ores/vibranium"
+  },
+  "result": "sx:ingot_vibranium",
+  "experience": 1.0
+}

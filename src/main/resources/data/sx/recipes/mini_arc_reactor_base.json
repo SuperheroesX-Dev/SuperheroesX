@@ -1,22 +1,20 @@
 {
-    "type": "minecraft:crafting_shaped",
-
-    "pattern":
-    [
-        "III",
-        "C C",      
-        "III"
-    ],
-"key": {
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "C C",
+    "III"
+  ],
+  "key": {
     "I": {
-      "item": "minecraft:iron_ingot"
+      "tag": "forge:ingots/iron"
     },
     "C": {
-        "item": "sx:circuit"
-        }
-    },  
+      "item": "sx:circuit"
+    }
+  },
   "result": {
     "item": "sx:mini_arc_reactor_base",
-     "count": 1
+    "count": 1
   }
 }

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX",
+    "XX"
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:ingots/titanogold"
+    }
+  },
+  "result": {
+    "item": "sx:plate_titanogold",
+    "count": 1
+  }
+}

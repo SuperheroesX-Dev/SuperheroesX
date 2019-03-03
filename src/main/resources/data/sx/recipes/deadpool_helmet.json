@@ -1,25 +1,23 @@
 {
-    "type": "minecraft:crafting_shaped",
-
-    "pattern":
-    [
-        "BBB",
-        "XTX",      
-        "BBB"
-    ],
-"key": {
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "XTX",
+    "BBB"
+  ],
+  "key": {
     "B": {
       "item": "sx:spandex_cloth_red"
     },
     "X": {
-        "item": "sx:spandex_cloth_black"
-  },
+      "item": "sx:spandex_cloth_black"
+    },
     "T": {
-        "item": "sx:ingot_titanium"
-      }
+      "item": "sx:cloth_strengthened"
+    }
   },
   "result": {
     "item": "sx:deadpool_helmet",
-     "count": 1
+    "count": 1
   }
 }

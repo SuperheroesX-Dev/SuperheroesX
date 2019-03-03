@@ -1,25 +1,19 @@
 {
-    "type": "minecraft:crafting_shaped",
-
-    "pattern":
-    [
-        "IGI",
-        "GRG",      
-        "IGI"
-    ],
-"key": {
-    "I": {
-      "item": "minecraft:iron_ingot"
-    },
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RRR",
+    "GGG"
+  ],
+  "key": {
     "G": {
-        "item": "sx:plate_gold"
-      },
+      "tag": "forge:plates/gold"
+    },
     "R": {
-        "item": "minecraft:redstone"
-      }
+      "tag": "forge:dusts/redstone"
+    }
   },
   "result": {
     "item": "sx:circuit",
-     "count": 1
+    "count": 1
   }
 }

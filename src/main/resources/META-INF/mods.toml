@@ -1,9 +1,8 @@
 modLoader="javafml"
 loaderVersion="[24,)"
 issueTrackerURL="https://github.com/SuperheroesX-Dev/SuperheroesX/issues"
-displayURL=""
-logoFile="examplemod.png"
-credits="Tiviacz1337 For Deadpool Skin, Mini_Me_Snipe for other textures :D"
+displayURL="https://minecraft.curseforge.com/projects/superheroes-x"
+credits="Tiviacz1337 For Deadpool Skin, anonymous people on NovaSkin for Antman, The Wasp Skin and Aquaman Skins, Mini_Me_Snipe for other textures :D"
 authors="minecraftschurli"
 [[mods]]
     modId="sx"
@@ -21,6 +20,6 @@ authors="minecraftschurli"
     [[dependencies.sx]]
         modId="minecraft"
         mandatory=true
-        versionRange="[1.13,)"
+        versionRange="[${minecraft_version},)"
         ordering="NONE"
         side="BOTH"

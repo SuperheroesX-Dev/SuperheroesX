@@ -1,25 +1,23 @@
 {
-    "type": "minecraft:crafting_shaped",
-
-    "pattern":
-    [
-        "R R",
-        "RYR",      
-        "RTR"
-    ],
-"key": {
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "R R",
+    "RYR",
+    "RTR"
+  ],
+  "key": {
     "Y": {
       "item": "minecraft:emerald"
     },
     "R": {
-        "item": "sx:spandex_cloth_black"
-          },
+      "item": "sx:spandex_cloth_black"
+    },
     "T": {
-        "item": "sx:spandex_cloth_yellow"
-      }
+      "item": "sx:spandex_cloth_yellow"
+    }
   },
   "result": {
     "item": "sx:superboy_chestplate",
-     "count": 1
+    "count": 1
   }
 }

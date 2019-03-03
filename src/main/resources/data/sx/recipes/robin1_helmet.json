@@ -1,20 +1,18 @@
 {
-    "type": "minecraft:crafting_shaped",
-
-    "pattern":
-    [
-        "BTB"
-    ],
-"key": {
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BTB"
+  ],
+  "key": {
     "T": {
       "item": "sx:ingot_titanium"
     },
     "B": {
-        "item": "sx:spandex_cloth_black"
-      }
+      "item": "sx:spandex_cloth_black"
+    }
   },
   "result": {
     "item": "sx:robin1_helmet",
-     "count": 1
+    "count": 1
   }
 }

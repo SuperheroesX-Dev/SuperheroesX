@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "tag": "forge:ores/palladium"
+  },
+  "result": "sx:ingot_palladium",
+  "experience": 1.0
+}

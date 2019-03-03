@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "ITI",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "sx:cloth"
+    },
+    "I": {
+      "tag": "forge:ingots/iron"
+    },
+    "T": {
+      "tag": "forge:ingots/titanium"
+    }
+  },
+  "result": {
+    "item": "sx:cloth_strengthened",
+    "count": 1
+  }
+}

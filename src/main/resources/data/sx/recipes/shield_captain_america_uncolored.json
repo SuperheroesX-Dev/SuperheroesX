@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPP",
+    "PHP",
+    "PPP"
+  ],
+  "key": {
+    "P": {
+      "tag": "forge:plates/vibranium"
+    },
+    "H": {
+      "item": "sx:shield_handle"
+    }
+  },
+  "result": {
+    "item": "sx:shield_captain_america_uncolored",
+    "count": 1
+  }
+}

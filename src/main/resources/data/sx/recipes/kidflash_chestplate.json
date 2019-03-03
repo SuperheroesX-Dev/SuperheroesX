@@ -1,28 +1,26 @@
 {
-    "type": "minecraft:crafting_shaped",
-
-    "pattern":
-    [
-        "Y Y",
-        "YLY",      
-        "STS"
-    ],
-"key": {
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "Y Y",
+    "YLY",
+    "STS"
+  ],
+  "key": {
     "T": {
       "item": "sx:ingot_titanium"
     },
     "Y": {
-        "item": "sx:spandex_cloth_yellow"
-      },
+      "item": "sx:spandex_cloth_yellow"
+    },
     "S": {
-        "item": "sx:spandex_cloth_red"
+      "item": "sx:spandex_cloth_red"
     },
     "L": {
-        "item": "sx:kidflash_logo"
-      }
+      "item": "sx:kidflash_logo"
+    }
   },
   "result": {
     "item": "sx:kidflash_chestplate",
-     "count": 1
+    "count": 1
   }
 }

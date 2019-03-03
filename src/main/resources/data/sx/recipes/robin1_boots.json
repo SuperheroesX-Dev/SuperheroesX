@@ -1,21 +1,19 @@
 {
-    "type": "minecraft:crafting_shaped",
-
-    "pattern":
-    [
-        "GTG",    
-        "G G"
-    ],
-"key": {
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GTG",
+    "G G"
+  ],
+  "key": {
     "T": {
       "item": "sx:ingot_titanium"
     },
     "G": {
-        "item": "sx:spandex_cloth_black"
-        }
+      "item": "sx:spandex_cloth_black"
+    }
   },
   "result": {
     "item": "sx:robin1_boots",
-     "count": 1
+    "count": 1
   }
 }

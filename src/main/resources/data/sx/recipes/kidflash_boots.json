@@ -1,22 +1,19 @@
 {
-    "type": "minecraft:crafting_shaped",
-
-    "pattern":
-    [
-        "STS",      
-        "S S"
-    ],
-"key": {
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "STS",
+    "S S"
+  ],
+  "key": {
     "T": {
       "item": "sx:ingot_titanium"
-      },
+    },
     "S": {
-        "item": "sx:spandex_cloth_red"
-
-      }
+      "item": "sx:spandex_cloth_red"
+    }
   },
   "result": {
     "item": "sx:kidflash_boots",
-     "count": 1
+    "count": 1
   }
 }

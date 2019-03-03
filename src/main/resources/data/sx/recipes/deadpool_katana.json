@@ -1,23 +1,20 @@
 {
-    "type": "minecraft:crafting_shaped",
-
-    "pattern":
-    [
-        "TTT",    
-        "TIT",
-        "TTT"
-    ],
-"key": {
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TTT",
+    "TIT",
+    "TTT"
+  ],
+  "key": {
     "T": {
-      "item": "sx:ingot_titanium"
+      "tag": "forge:ingots/titanium"
     },
     "I": {
-    
-        "item": "minecraft:iron_sword"
-        }
+      "item": "minecraft:iron_sword"
+    }
   },
   "result": {
     "item": "sx:deadpool_katana",
-     "count": 1
+    "count": 1
   }
 }

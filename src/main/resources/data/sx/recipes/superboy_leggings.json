@@ -1,25 +1,23 @@
 {
-    "type": "minecraft:crafting_shaped",
-
-    "pattern":
-    [
-        "LLL",
-        "RAR",      
-        "R R"
-    ],
-"key": {
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LLL",
+    "RAR",
+    "R R"
+  ],
+  "key": {
     "L": {
       "item": "minecraft:leather"
     },
     "R": {
-        "item": "minecraft:diamond"
-          },
+      "item": "minecraft:diamond"
+    },
     "A": {
-        "item": "minecraft:emerald"
-      }
+      "item": "minecraft:emerald"
+    }
   },
   "result": {
     "item": "sx:superboy_leggings",
-     "count": 1
+    "count": 1
   }
 }

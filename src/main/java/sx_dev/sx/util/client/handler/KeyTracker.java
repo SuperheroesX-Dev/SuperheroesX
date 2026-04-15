@@ -54,7 +54,7 @@ public class KeyTracker {
     private static KeyBinding shrinkKey;
     private static KeyBinding growKey;
 
-    private static ArrayList<KeyBinding> keys = new ArrayList<>();
+    private static final ArrayList<KeyBinding> keys = new ArrayList<>();
 
     public KeyTracker() {
         engineKey = new KeyBinding(Reference.PREFIX + "keybind.engine", Keyboard.KEY_G, Reference.PREFIX + "category.ironman");

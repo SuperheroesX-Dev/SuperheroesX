@@ -118,7 +118,7 @@ public final class MachineBase {
 
     public static abstract class TileMachine extends TileEntity implements IInventory, ITickable {
 
-        private NonNullList<ItemStack> inventory;
+        private final NonNullList<ItemStack> inventory;
 
         public TileMachine(int invSize) {
             super();
@@ -220,9 +220,9 @@ public final class MachineBase {
 
     public static abstract class TileEnergyMachine extends TileMachine implements IEnergyStorage {
 
-        private int maxTransfer;
+        private final int maxTransfer;
         private int energyStored;
-        private int maxEnergyStored;
+        private final int maxEnergyStored;
 
         public TileEnergyMachine(int invSize, int maxEnergyStored, int maxTransfer) {
             super(invSize);

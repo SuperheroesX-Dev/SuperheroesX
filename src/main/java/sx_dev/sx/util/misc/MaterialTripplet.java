@@ -4,9 +4,9 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
 public class MaterialTripplet extends org.apache.commons.lang3.tuple.Triple<Block, Item, Item> {
-    private Block B;
-    private Item I;
-    private Item N;
+    private final Block B;
+    private final Item I;
+    private final Item N;
 
     public MaterialTripplet(Block block, Item item, Item nugget) {
         this.B = block;

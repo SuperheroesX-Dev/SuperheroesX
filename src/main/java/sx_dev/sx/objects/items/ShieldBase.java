@@ -20,9 +20,9 @@ import net.minecraftforge.oredict.OreDictionary;
 import javax.annotation.Nullable;
 
 public class ShieldBase extends ItemBase {
-    private int blockTime;
-    private int enchantability;
-    private String repairIngot;
+    private final int blockTime;
+    private final int enchantability;
+    private final String repairIngot;
 
     public ShieldBase(String name, int blockTime, int enchantability, int maxDamage, String repairIngot) {
         super(name);

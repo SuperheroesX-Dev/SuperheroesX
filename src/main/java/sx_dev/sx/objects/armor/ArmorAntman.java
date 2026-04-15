@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 
 public class ArmorAntman extends ArmorBase {
 
-    private String type;
+    private final String type;
 
     public ArmorAntman(String name, ItemArmor.ArmorMaterial armorMaterial, int renderIndex, EntityEquipmentSlot entityEquipmentSlot, String type) {
         super(name, armorMaterial, renderIndex, entityEquipmentSlot);

@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 
 public class Structure {
 
-    private IBlockState[][][] area;
+    private final IBlockState[][][] area;
 
     public Structure(IBlockState[][][] area) {
         this.area = area;

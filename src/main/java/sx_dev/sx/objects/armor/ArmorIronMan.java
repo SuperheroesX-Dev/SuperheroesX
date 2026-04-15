@@ -243,18 +243,18 @@ public class ArmorIronMan extends ArmorBase implements ISpecialArmor {
         public static final String TAG_EHOVER_ON = "EHoverOn";
         public static final String TAG_MULTIPLIER = "Multiplier";
         private static final int COOLDOWN_MAX = 20;
-        private double accelVertical = 0.5D;//0.15D
-        private double speedVertical = 0.9D;
-        private double sprintFuelModifier = 6.0D;
-        private double speedVerticalHover = 0.55D;
-        private double speedVerticalHoverSlow = 0.0D;
-        private int maxTransfer = Integer.MAX_VALUE;
-        private int fuelUsage = 10;
+        private final double accelVertical = 0.5D;//0.15D
+        private final double speedVertical = 0.9D;
+        private final double sprintFuelModifier = 6.0D;
+        private final double speedVerticalHover = 0.55D;
+        private final double speedVerticalHoverSlow = 0.0D;
+        private final int maxTransfer = Integer.MAX_VALUE;
+        private final int fuelUsage = 10;
         //private int energyPerShot = 200;
         private int cooldown;
-        private float defaultSpeedSideways = 0.55F;
-        private float sprintSpeedModifier = 5F;
-        private float damagePerHit = 5;
+        private final float defaultSpeedSideways = 0.55F;
+        private final float sprintSpeedModifier = 5F;
+        private final float damagePerHit = 5;
         public int multiplier;
         //private boolean rightClickMoved;
 

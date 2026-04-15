@@ -5,8 +5,8 @@ import slimeknights.tconstruct.library.traits.ITrait;
 import javax.annotation.Nullable;
 
 class TraitMap {
-    private String dependency;
-    private ITrait trait;
+    private final String dependency;
+    private final ITrait trait;
 
     public TraitMap(ITrait trait, @Nullable String dependency) {
         this.dependency = dependency;

@@ -1,6 +1,5 @@
 package sx_dev.sx.util.config;
 
-import jline.internal.Log;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -9,6 +8,7 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent.OnConfigChangedEve
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
+import org.jline.utils.Log;
 import sx_dev.sx.SuperheroesX;
 import sx_dev.sx.util.Reference;
 import sx_dev.sx.util.handlers.EnumHandler;

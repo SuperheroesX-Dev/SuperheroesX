@@ -100,9 +100,9 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
 
         Vec3d eyeVec = getEyeVec(shooter);
         this.setLocationAndAngles(eyeVec.x, eyeVec.y, eyeVec.z, shooter.rotationYaw, shooter.rotationPitch);
-        this.motionX = (double) (-MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI));
-        this.motionZ = (double) (MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI));
-        this.motionY = (double) (-MathHelper.sin(this.rotationPitch / 180.0F * (float) Math.PI));
+        this.motionX = -MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI);
+        this.motionZ = MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI);
+        this.motionY = -MathHelper.sin(this.rotationPitch / 180.0F * (float) Math.PI);
         this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, 1.25F * (1 + 0.3F * getEnchantmentLevel(EnchantmentInit.SHIELD_THROW_SPEED)), 0.0F);
 
         setHome((float) eyeVec.x, (float) eyeVec.y, (float) eyeVec.z);
@@ -136,21 +136,21 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
 
     public void setThrowableHeading(double x, double y, double z, float velocity, float inaccuracy) {
         float f = MathHelper.sqrt(x * x + y * y + z * z);
-        x /= (double) f;
-        y /= (double) f;
-        z /= (double) f;
+        x /= f;
+        y /= f;
+        z /= f;
         x += calc(inaccuracy);
         y += calc(inaccuracy);
         z += calc(inaccuracy);
-        x *= (double) velocity;
-        y *= (double) velocity;
-        z *= (double) velocity;
+        x *= velocity;
+        y *= velocity;
+        z *= velocity;
         this.motionX = x;
         this.motionY = y;
         this.motionZ = z;
         float f1 = MathHelper.sqrt(x * x + z * z);
         this.prevRotationYaw = this.rotationYaw = (float) (MathHelper.atan2(x, z) * 180.0D / Math.PI);
-        this.prevRotationPitch = this.rotationPitch = (float) (MathHelper.atan2(y, (double) f1) * 180.0D / Math.PI);
+        this.prevRotationPitch = this.rotationPitch = (float) (MathHelper.atan2(y, f1) * 180.0D / Math.PI);
     }
 
     private double calc(float inaccuracy) {
@@ -175,7 +175,7 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
         if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {
             float f = MathHelper.sqrt(x * x + z * z);
             this.prevRotationYaw = this.rotationYaw = (float) (MathHelper.atan2(x, z) * 180.0D / Math.PI);
-            this.prevRotationPitch = this.rotationPitch = (float) (MathHelper.atan2(y, (double) f) * 180.0D / Math.PI);
+            this.prevRotationPitch = this.rotationPitch = (float) (MathHelper.atan2(y, f) * 180.0D / Math.PI);
             this.prevRotationPitch = this.rotationPitch;
             this.prevRotationYaw = this.rotationYaw;
             this.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
@@ -272,7 +272,7 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
 
         float f = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
         this.rotationYaw = (float) (MathHelper.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
-        this.rotationPitch = (float) (MathHelper.atan2(this.motionY, (double) f) * 180.0D / Math.PI);
+        this.rotationPitch = (float) (MathHelper.atan2(this.motionY, f) * 180.0D / Math.PI);
 
 
         if (flyTime > 5 || returning)
@@ -386,7 +386,7 @@ public class EntityCaptainAmericasShield extends Entity implements IEntityAdditi
                     }
 
                     float f1 = 0.3F;
-                    AxisAlignedBB axisAlignedBB = e.getEntityBoundingBox().grow((double) f1, (double) f1, (double) f1);
+                    AxisAlignedBB axisAlignedBB = e.getEntityBoundingBox().grow(f1, f1, f1);
                     RayTraceResult mop = axisAlignedBB.calculateIntercept(startVec, endVec);
 
                     if (mop != null) {

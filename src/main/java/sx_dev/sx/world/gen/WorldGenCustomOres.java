@@ -19,7 +19,7 @@ import java.util.Random;
 import java.util.function.Predicate;
 
 public class WorldGenCustomOres implements IWorldGenerator {
-    private Map<WorldGenerator, IGeneratableOre.OreSpawnInfo> ores;
+    private final Map<WorldGenerator, IGeneratableOre.OreSpawnInfo> ores;
 
     public WorldGenCustomOres() {
         ores = new HashMap<>();

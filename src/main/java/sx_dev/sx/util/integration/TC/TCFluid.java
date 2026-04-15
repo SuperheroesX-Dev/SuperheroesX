@@ -8,7 +8,7 @@ import sx_dev.sx.init.FluidInit;
 import java.awt.*;
 
 public class TCFluid extends Fluid {
-    private Color color;
+    private final Color color;
 
     public TCFluid(String fluidName, Color color) {
         super(fluidName, new ResourceLocation("tconstruct:blocks/fluids/molten_metal"), new ResourceLocation("tconstruct:blocks/fluids/molten_metal_flow"));
